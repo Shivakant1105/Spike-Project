@@ -1,0 +1,29 @@
+@import '../function';
+
+span{
+
+    &.f14{
+        font-size: rem(14) !important;
+    }
+    &.f16{
+        font-size: rem(16) !important;
+    }
+    &.f18{
+        font-size: rem(18) !important;
+    }
+    &.f20{
+        font-size: rem(20) !important;
+    }
+    &.f22{
+        font-size: rem(22) !important;
+    }
+    &.f24{
+        font-size: rem(24) !important;
+    }
+    &.f26{
+        font-size: rem(26) !important;
+    }
+    &.f28{
+        font-size: rem(28) !important;
+    }
+}

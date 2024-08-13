@@ -1,8 +1,26 @@
 <!-- header -->
-<app-header></app-header>
+<!--  -->
 
 <!-- sidebar -->
-<app-sidebar></app-sidebar>
+<!--  -->
 
 <!-- dashboard start -->
-<p>dashboard</p>
+<!-- 
+ -->
+
+
+<main class="d-flex gap-3">
+      <aside class="col-md-2 border">
+            <app-sidebar></app-sidebar>
+      </aside>
+
+      <section class="container flex-grow-1 p-0 border d-flex gap-3  flex-column">
+            <header class="p-3 border">
+                  <app-header></app-header>
+            </header>
+
+            <div class="section_overview flex-grow-1 bg-primary">
+                  <p>dashboard</p>
+            </div>
+      </section>
+</main>

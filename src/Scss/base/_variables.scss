@@ -1,0 +1,19 @@
+.light{
+    --bg: #f0f5f9;
+    --bg-high:white;
+    --textColor:black;
+    --textColor-400:rgb(75, 72, 72);
+    --inline-shadow: rgba(0, 0, 0, 0.1);
+    --outline-shadow: rgba(0, 0, 0, 0.1);
+    --strongly-shadow: rgba(0, 0, 0, 0.2);
+}
+
+.black{
+    --bg:#15263a;
+    --bg-high:#111c2d;
+    --textColor:white;
+    --textColor-400:rgb(182, 182, 182);
+    --inline-shadow: rgba(0, 0, 0, 0.5);
+    --outline-shadow: rgba(0, 0, 0, 0.5);
+    --strongly-shadow: rgba(0, 0, 0, 0.7);
+}
