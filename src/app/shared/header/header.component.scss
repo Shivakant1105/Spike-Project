@@ -21,7 +21,6 @@ $base-font-size: 16px;
   display: flex;
   width: 100% !important;
   height: 100%;
-  background-color: #f0f5f9;
 
   .header_body {
     width: 100% !important;
@@ -41,12 +40,29 @@ $base-font-size: 16px;
         font-weight: 500;
         font-style: normal;
         height: rem(40px);
-        padding: rem(16px);
+        padding: rem(16px) !important;
 
         &:hover {
           background-color: #f0f1f2;
           border-radius: rem(25px);
           cursor: pointer;
+        }
+      }
+
+      .apps_icon_conatiner {
+        width: 98px;
+        border-radius: 26px;
+
+        & i-feather {
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &:hover {
+          background-color: #f0f1f2;
         }
       }
 
@@ -82,8 +98,6 @@ $base-font-size: 16px;
       background-color: #f0f1f2;
     }
 
-   
-
     .seachlogo {
       height: 20px;
       width: 20px;
@@ -94,10 +108,12 @@ $base-font-size: 16px;
     .seach input {
       border: none;
       outline: none;
-      padding: 10px;
-      flex: 1;
+      padding: 5px !important;
       border-radius: 20px;
       background-color: transparent;
+    }
+    & input::placeholder {
+      font-size: rem(15px);
     }
   }
 
@@ -115,7 +131,7 @@ $base-font-size: 16px;
   .user_admin {
     width: auto;
     height: rem(48px);
-    padding: rem(26px) rem(18px);
+    padding: rem(26px) rem(18px) !important;
     cursor: pointer;
 
     &:hover {
@@ -138,6 +154,34 @@ $base-font-size: 16px;
 
     .admin_name {
       font-size: rem(14px);
+    }
+  }
+
+  .country_logo {
+    width: 21px;
+    height: 21px;
+    border-radius: 50% !important;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .country_logo img {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: #f0f1f2;
     }
   }
 }
