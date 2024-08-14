@@ -1,0 +1,47 @@
+@import '../../../Scss/function';
+@import '../../../Scss/base/index';
+@import '../../../Scss/mixing';
+
+.sidebar_container{
+    @include setDimension(100%,100%);
+    @include flex('','',column,0,0);
+
+    .side_header{
+        @include setDimension(100%,80px);
+        @include flex(center,center,'',2,0);
+        
+    }
+
+    .side_overview{
+        flex-grow: 1;
+        max-height: rem(764);
+        overflow-y: auto;
+    }
+
+    .side_footer{
+        @include setDimension(100%,80px);
+        @include flex(center,center,'',0,0);
+
+
+        .wrapper{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: rem(32);
+            background-color: var(--header-footer);
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+    
+            .login_user{
+                @include flex(center,center,column,1,0);
+            }
+        }
+
+        
+    }
+
+
+}

@@ -1,29 +1,38 @@
 @import '../function';
+@import './variables';
 
 span{
 
     &.f14{
         font-size: rem(14) !important;
+        color: var(--textColor);
     }
     &.f16{
         font-size: rem(16) !important;
+        color: var(--textColor);
     }
     &.f18{
         font-size: rem(18) !important;
+        color: var(--textColor);
     }
     &.f20{
         font-size: rem(20) !important;
+        color: var(--textColor);
     }
     &.f22{
         font-size: rem(22) !important;
+        color: var(--textColor);
     }
     &.f24{
         font-size: rem(24) !important;
+        color: var(--textColor);
     }
     &.f26{
         font-size: rem(26) !important;
+        color: var(--textColor);
     }
     &.f28{
         font-size: rem(28) !important;
+        color: var(--textColor);
     }
 }

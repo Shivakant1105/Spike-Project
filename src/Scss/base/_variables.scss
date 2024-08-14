@@ -1,4 +1,4 @@
-.light{
+.light-theme{
     --bg: #f0f5f9;
     --bg-high:white;
     --textColor:black;
@@ -6,9 +6,11 @@
     --inline-shadow: rgba(0, 0, 0, 0.1);
     --outline-shadow: rgba(0, 0, 0, 0.1);
     --strongly-shadow: rgba(0, 0, 0, 0.2);
+    --header-footer :#e5f3fa;
+    --light-img: 'https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg'
 }
 
-.dark{
+.dark-theme{
     --bg:#15263a;
     --bg-high:#111c2d;
     --textColor:white;
@@ -16,4 +18,6 @@
     --inline-shadow: rgba(0, 0, 0, 0.5);
     --outline-shadow: rgba(0, 0, 0, 0.5);
     --strongly-shadow: rgba(0, 0, 0, 0.7);
+    --header-footer:#13324f;
+    -light-img:'https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg'
 }
