@@ -4,7 +4,7 @@
     align-items: $align;
     flex-direction: $direction;
     gap: rem($gap);
-    padding: rem($padding);
+    padding: rem($padding) !important;
 }
 
 
@@ -15,8 +15,8 @@
 }
 
 @mixin setDimension($width,$height){
-    width: $width;
-    height: $height;
+    width: $width !important;
+    height: $height !important;
 }
 
 @mixin hover($radius,$bg,$textColor){

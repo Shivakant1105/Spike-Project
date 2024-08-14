@@ -2,9 +2,21 @@
 
 
 @import './Scss/function';
+@import './Scss/base/index';
 
 *{
     padding: 0 !important;
     margin: 0;
     box-sizing: border-box !important;
+}
+
+.custome_radius{
+    border-radius: 18px;
+}
+
+.box_shadow{
+     box-shadow:  
+     0 1px 3px var(--inline-shadow),   
+     0 1px 2px var(--outline-shadow),  
+     0 4px 6px var(--strongly-shadow);
 }

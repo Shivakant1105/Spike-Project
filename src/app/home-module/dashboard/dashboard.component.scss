@@ -1,9 +1,45 @@
 @import '../../../Scss//function';
+@import '../../../Scss/base/index';
+@import '../../../Scss/mixing';
+
 
 main{
-    width: 100vw;
-    height: 100vh;
+    @include setDimension(100vw,100vh);
     padding: rem(16) !important;
+    background-color: var(--bg);
+    padding-right: 0 !important;
+
+    aside{
+        @include setDimension(304px,calc(100vh - 32px));
+        background-color: var(--bg-high);
+        color: var(--textColor);
+        overflow: hidden;
+
+    }
+
+    section{
+        flex-grow: 1;
+        overflow-y: auto;
+
+        .wrapper{
+            @include flex(center,center,column,16,16);
+             
+            header{
+                @include setDimension(100%,70px);
+                @include flex('',center,'',0,0);
+                min-height: rem(70);
+                background-color: var(--bg-high);
+                color: var(--textColor);
+            }
+    
+            .section_overview{
+                @include setDimension(100%,100%);
+                color: var(--textColor);
+            }
+        }
+
+        
+    }
 
 }
-
+ 
