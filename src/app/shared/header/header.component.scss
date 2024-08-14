@@ -19,15 +19,15 @@ $base-font-size: 16px;
 
 .header_container {
   display: flex;
-  width: 100%;
-  height: 100vh;
+  width: 100% !important;
+  height: 100%;
   background-color: #f0f5f9;
 
   .header_body {
     width: 100% !important;
     height: rem(70px);
     background-color: #ffffff;
-    margin: 20px;
+    // margin: 20px;
 
     .header_left_container {
       & button {
@@ -72,10 +72,11 @@ $base-font-size: 16px;
   .search_container {
     border: 1px solid #ccc;
     border-radius: rem(20px);
-    padding: rem(14px);
+    padding: rem(14px) !important;
     height: rem(38px);
     cursor: pointer;
     width: rem(185px);
+    gap: 4px;
 
     &:hover {
       background-color: #f0f1f2;

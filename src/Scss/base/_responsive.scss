@@ -1,0 +1,35 @@
+$mobile: 360px;
+$tablet: 768px;
+$large: 1024px;
+$desktop: 1280px;
+$largeDesktop: 1920px;
+ 
+// --------------- MEDIA QUERY ------------------------
+@mixin width-range($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+// common before large device
+@include width-range(0px, $large - 1px) {
+
+    main{ 
+        padding-top: 0 !important;
+
+
+        aside{
+            display: none !important;
+        }
+
+        section{
+           
+        } 
+
+    }
+  
+    
+
+
+    
+}
