@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans";
+}
+
+html {
+  font-size: 100%;
+}
+
+$base-font-size: 16px;
+
+@function rem($pixels) {
+  @return $pixels / $base-font-size * 1rem;
+}
+
+.header_container {
+  display: flex;
+  width: 100% !important;
+  height: 100%;
+
+  .header_body {
+    width: 100% !important;
+    height: rem(70px);
+    background-color: #ffffff;
+    // margin: 20px;
+
+    .header_left_container {
+      & button {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        font-size: rem(14px);
+        color: #000000;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        height: rem(40px);
+        padding: rem(16px) !important;
+
+        &:hover {
+          background-color: #f0f1f2;
+          border-radius: rem(25px);
+          cursor: pointer;
+        }
+      }
+
+      .apps_icon_conatiner {
+        width: 98px;
+        border-radius: 26px;
+
+        & i-feather {
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &:hover {
+          background-color: #f0f1f2;
+        }
+      }
+
+      .header_left_logo {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f0f1f2;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.header_right_container {
+  float: end !important;
+  .search_container {
+    border: 1px solid #ccc;
+    border-radius: rem(20px);
+    padding: rem(14px) !important;
+    height: rem(38px);
+    cursor: pointer;
+    width: rem(185px);
+    gap: 4px;
+
+    &:hover {
+      background-color: #f0f1f2;
+    }
+
+    .seachlogo {
+      height: 20px;
+      width: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .seach input {
+      border: none;
+      outline: none;
+      padding: 5px !important;
+      border-radius: 20px;
+      background-color: transparent;
+    }
+    & input::placeholder {
+      font-size: rem(15px);
+    }
+  }
+
+  & .icon {
+    cursor: pointer;
+    height: rem(22px);
+    width: rem(22px);
+  }
+
+  .icon_menu {
+    height: rem(22px);
+    width: rem(22px);
+  }
+
+  .user_admin {
+    width: auto;
+    height: rem(48px);
+    padding: rem(26px) rem(18px) !important;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f1f2;
+    }
+
+    .admin_image img {
+      height: rem(40px);
+      width: rem(40px);
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .mike_admin .mike_nielsen {
+      color: #1e1e1e;
+      font-size: rem(16px);
+      font-weight: 600;
+      font-family: "Plus Jakarta Sans";
+    }
+
+    .admin_name {
+      font-size: rem(14px);
+    }
+  }
+
+  .country_logo {
+    width: 21px;
+    height: 21px;
+    border-radius: 50% !important;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .country_logo img {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: #f0f1f2;
+    }
+  }
+}

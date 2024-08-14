@@ -14,7 +14,7 @@
   line-height: $lineH;
 }
 
-@mixin setDimension($width,$height){
+@mixin setDimension($width, $height){
     width: $width !important;
     height: $height !important;
 }
