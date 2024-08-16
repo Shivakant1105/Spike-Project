@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -25,7 +27,7 @@ $base-font-size: 16px;
   .header_body {
     width: 100% !important;
     height: rem(70px);
-    background-color: #ffffff;
+    background-color: var(--bg-high);
     // margin: 20px;
 
     .header_left_container {

@@ -1,38 +1,45 @@
 @import '../function';
 @import './variables';
+@import '../mixing';
 
 span{
 
+    &.f12{
+        font-size: rem(12) !important;
+    }
+
     &.f14{
-        font-size: rem(14) !important;
+        font-size: rem(14);
+    }
+    &.f15{
+        font-size: rem(15);
         color: var(--textColor);
     }
     &.f16{
-        font-size: rem(16) !important;
-        color: var(--textColor);
+        font-size: rem(16);
     }
     &.f18{
-        font-size: rem(18) !important;
-        color: var(--textColor);
+        font-size: rem(18);
     }
     &.f20{
-        font-size: rem(20) !important;
-        color: var(--textColor);
+        font-size: rem(20);
     }
     &.f22{
-        font-size: rem(22) !important;
-        color: var(--textColor);
+        font-size: rem(22);
     }
     &.f24{
-        font-size: rem(24) !important;
-        color: var(--textColor);
+        font-size: rem(24);
     }
     &.f26{
-        font-size: rem(26) !important;
-        color: var(--textColor);
+        font-size: rem(26);
     }
     &.f28{
-        font-size: rem(28) !important;
-        color: var(--textColor);
+        font-size: rem(28);
+    }
+}
+
+span i-feather{
+    &.f24{
+         @include setDimension(rem(18), rem(18));
     }
 }

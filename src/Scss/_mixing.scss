@@ -15,8 +15,8 @@
 }
 
 @mixin setDimension($width, $height){
-    width: $width !important;
-    height: $height !important;
+    width: $width;
+    height: $height;
 }
 
 @mixin hover($radius,$bg,$textColor){

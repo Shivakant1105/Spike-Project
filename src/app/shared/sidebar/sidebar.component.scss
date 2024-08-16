@@ -2,46 +2,145 @@
 @import '../../../Scss/base/index';
 @import '../../../Scss/mixing';
 
-.sidebar_container{
-    @include setDimension(100%,100%);
-    @include flex('','',column,0,0);
+.sidebar_container {
+    @include setDimension(100%, 100%);
+    @include flex('', '', column, 0, 0);
 
-    .side_header{
-        @include setDimension(100%,80px);
-        @include flex(center,center,'',2,0);
-        
+    %sidebar_menu_hover {
+        &:hover::after {
+            animation: animate 0.5s alternate;
+            width: 97%;
+            height: 100%;
+            position: absolute;
+            content: '';
+            display: flex;
+            background-color: var(--sidebar-hover-bg);
+            top: 0;
+            left: 0;
+            border-top-right-radius: rem(25);
+            border-bottom-right-radius: rem(25);
+            z-index: -1;
+        }
     }
 
-    .side_overview{
+    .side_header {
+        @include setDimension(100%, 80px);
+        min-height: rem(80);
+        @include flex(center, center, '', 2, 0);
+
+    }
+
+    .side_overview {
         flex-grow: 1;
-        max-height: rem(764);
+        margin-bottom: rem(30);
         overflow-y: auto;
+        @include flex('', '', column, 0, 0);
+
+        .home_menu_container {
+            @include setDimension(100%, auto);
+            @include flex('', '', column, 0, 0);
+
+            cursor: pointer;
+
+            span.f12 {
+                padding: rem(10);
+                padding-left: rem(25) !important;
+                color: var(--textColor-400);
+            }
+
+            .home_menu_items {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: rem(15);
+                width: 100%;
+                position: relative;
+                z-index: 1;
+                padding-left: rem(25) !important;
+                // Hover
+                @extend %sidebar_menu_hover;
+            }
+
+            .dash1 .f15 {
+                color: #3993e0 !important;
+            }
+
+            .accordion{
+                background-color: transparent;
+                .accordion-item{
+                    background-color: var(--bg-high);
+                    .wrapper{
+                            // padding: rem(15);
+                            width: 100%;
+                            position: relative;
+                            z-index: 1;
+                            padding-left: rem(3) !important;
+                            // Hover
+                            @extend %sidebar_menu_hover;
+                        button{
+                            background-color: transparent;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            background-color: transparent;
+                            border: none;
+                            outline: none;
+                            box-shadow: none;
+
+                            
+                                span{
+                                    i-feather{
+                                        // display: none;
+                                        color: var(--textColor);
+                                    }
+                                }
+                            
+
+                        }
+                    }
+                }
+            }
+            
+           
+
+
+        }
     }
 
-    .side_footer{
-        @include setDimension(100%,80px);
-        @include flex(center,center,'',0,0);
+    .side_footer {
+        @include setDimension(100%, 80px);
+        @include flex(center, center, '', 0, 0);
 
 
-        .wrapper{
+        .wrapper {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
             margin-bottom: rem(32);
             background-color: var(--header-footer);
-            img{
+
+            img {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
             }
-    
-            .login_user{
-                @include flex(center,center,column,1,0);
+
+            .login_user {
+                @include flex(center, center, column, 1, 0);
             }
         }
 
-        
+
     }
 
+}
 
+@keyframes animate {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 97%;
+    }
 }

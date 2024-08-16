@@ -2,12 +2,13 @@
     --bg: #f0f5f9;
     --bg-high:white;
     --textColor:black;
-    --textColor-400:rgb(75, 72, 72);
+    --textColor-400:#9fa3aa;
     --inline-shadow: rgba(0, 0, 0, 0.1);
     --outline-shadow: rgba(0, 0, 0, 0.1);
     --strongly-shadow: rgba(0, 0, 0, 0.2);
     --header-footer :#e5f3fa;
-    --light-img: 'https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg'
+    --sidebar-hover-bg:#f0f5f9;
+    --header-text-Color:#5e5e5e;
 }
 
 .dark-theme{
@@ -19,5 +20,6 @@
     --outline-shadow: rgba(0, 0, 0, 0.5);
     --strongly-shadow: rgba(0, 0, 0, 0.7);
     --header-footer:#13324f;
-    -light-img:'https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg'
+    --sidebar-hover-bg:#13324f;
+    --header-text-Color:#5e5e5e;
 }
