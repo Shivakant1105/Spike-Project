@@ -5,11 +5,14 @@
 
 main{
     @include setDimension(100vw,100vh);
-    padding: rem(16) !important;
+    
     background-color: var(--bg);
-    padding-right: 0 !important;
+    // padding-right: 0 !important;
+    
+    // align-items: center !important;
 
     aside{
+        margin: rem(16) !important;
         @include setDimension(270px,calc(100vh - 32px));
         background-color: var(--bg-high);
         color: var(--textColor);
