@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 
-
-
 * {
   margin: 0;
   padding: 0;
@@ -36,7 +34,8 @@ $base-font-size: 16px;
         border: none;
         background-color: transparent;
         font-size: rem(14px);
-        color: #000000;
+        // color: #000000;
+        color: var(--textColor);
         font-family: "Plus Jakarta Sans", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
@@ -45,7 +44,7 @@ $base-font-size: 16px;
         padding: rem(16px) !important;
 
         &:hover {
-          background-color: #f0f1f2;
+          background-color: var(--sidebar-hover-bg);
           border-radius: rem(25px);
           cursor: pointer;
         }
@@ -64,7 +63,7 @@ $base-font-size: 16px;
         }
 
         &:hover {
-          background-color: #f0f1f2;
+          background-color: var(--sidebar-hover-bg);
         }
       }
 
@@ -77,7 +76,7 @@ $base-font-size: 16px;
         cursor: pointer;
 
         &:hover {
-          background-color: #f0f1f2;
+          background-color: var(--sidebar-hover-bg);
           border-radius: 50%;
         }
       }
@@ -87,6 +86,7 @@ $base-font-size: 16px;
 
 .header_right_container {
   float: end !important;
+
   .search_container {
     border: 1px solid #ccc;
     border-radius: rem(20px);
@@ -97,7 +97,7 @@ $base-font-size: 16px;
     gap: 4px;
 
     &:hover {
-      background-color: #f0f1f2;
+      background-color: var(--sidebar-hover-bg);
     }
 
     .seachlogo {
@@ -116,6 +116,7 @@ $base-font-size: 16px;
     }
     & input::placeholder {
       font-size: rem(15px);
+      color: var(--textColor);
     }
   }
 
@@ -137,7 +138,7 @@ $base-font-size: 16px;
     cursor: pointer;
 
     &:hover {
-      background-color: #f0f1f2;
+      background-color: var(--sidebar-hover-bg);
     }
 
     .admin_image img {
@@ -148,7 +149,7 @@ $base-font-size: 16px;
     }
 
     .mike_admin .mike_nielsen {
-      color: #1e1e1e;
+      color: var(--textColor);
       font-size: rem(16px);
       font-weight: 600;
       font-family: "Plus Jakarta Sans";
@@ -183,7 +184,7 @@ $base-font-size: 16px;
     border-radius: 50%;
 
     &:hover {
-      background-color: #f0f1f2;
+      background-color: var(--sidebar-hover-bg);
     }
   }
 }
