@@ -1,26 +1,31 @@
-@mixin flex($justify,$align,$direction,$gap,$padding){
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $direction;
-    gap: rem($gap);
-    padding: rem($padding) !important;
+@mixin flex($justify, $align, $direction, $gap, $padding) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: rem($gap);
+  padding: rem($padding) !important;
 }
 
+// Mixin to set border-radius for the top-left and top-right corners
+@mixin topleft_topright_radius($left, $right) {
+  border-top-left-radius: $left;
+  border-top-right-radius: $right;
+}
 
-@mixin font($fs,$fw,$lineH){
+@mixin font($fs, $fw, $lineH) {
   font-size: $fs;
   font-weight: $fw;
   line-height: $lineH;
 }
 
-@mixin setDimension($width, $height){
-    width: $width;
-    height: $height;
+@mixin setDimension($width, $height) {
+  width: $width;
+  height: $height;
 }
 
-@mixin hover($radius,$bg,$textColor){
-    border-radius: $radius;
-    background-color: $bg;
-    color: $textColor;
+@mixin hover($radius, $bg, $textColor) {
+  border-radius: $radius;
+  background-color: $bg;
+  color: $textColor;
 }

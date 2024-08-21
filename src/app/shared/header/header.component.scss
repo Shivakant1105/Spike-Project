@@ -1,15 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Plus Jakarta Sans";
-}
-
-html {
-  font-size: 100%;
-}
+@import "../../../Scss/function";
+@import "../../../Scss/base/index";
+@import "../../../Scss/mixing";
 
 $base-font-size: 16px;
 
@@ -168,6 +160,17 @@ $base-font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      outline: none;
+      border: none;
+
+      // @include flex(center, center, '', 0, 0)
+    }
   }
   .country_logo img {
     width: 22px;
@@ -186,5 +189,118 @@ $base-font-size: 16px;
     &:hover {
       background-color: var(--sidebar-hover-bg);
     }
+  }
+}
+
+.country_items_container {
+  flex-direction: column;
+
+  .name_country_logo {
+    height: 45px;
+    margin-top: 5px !important;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--sidebar-hover-bg);
+    }
+  }
+  .name_country_logo.first {
+    margin-top: 16px;
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+  }
+  .name_country_logo.last {
+    border-bottom-left-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+  height: 210px;
+  min-width: 116px;
+  border-radius: 20px;
+  background-color: var(--bg-high);
+  color: var(--textColor);
+  font-weight: 500;
+  transform: translate(909px, 53px) !important;
+}
+
+.dropdown-toggle::after {
+  display: none;
+  margin-left: 0 !important;
+  vertical-align: 0 !important;
+  content: "";
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+}
+
+// Message Icon Modal
+.message_icon_container {
+  .message_items_first {
+    padding: 20px 0 0 28px !important;
+  }
+  .message_items {
+    height: 76px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    padding: 0 0 0 28px !important;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+
+    & img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+
+    .name_message {
+      & div:first-child {
+        font-weight: 600;
+      }
+
+      & div:last-child {
+        font-weight: 400;
+      }
+    }
+
+    .message_weight {
+      font-weight: 600;
+    }
+    .message_new_btn {
+      width: 53px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      background-color: #f8c076;
+      align-items: center;
+      border-radius: 10px;
+      color: var(--textColor);
+      cursor: pointer;
+    }
+  }
+
+  .message_items:not(:first-child):hover {
+    background-color: var(--sidebar-hover-bg);
+    border-radius: 2px;
+  }
+
+  .dropdown-menu.show {
+    min-height: 533px !important;
+    min-width: 360px;
+    position: absolute;
+    inset: 0px auto auto 0px;
+    margin: 0px;
+    transform: translate(662px, 55px) !important;
   }
 }

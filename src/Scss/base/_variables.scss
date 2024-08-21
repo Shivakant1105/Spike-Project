@@ -1,32 +1,41 @@
-.light-theme{
-    --bg: #f0f5f9;
-    --bg-high:white;
-    --textColor:black;
-    --textColor-200:#5d6470;
-    --textColor-400:#9fa3aa;
-    --inline-shadow: rgba(0, 0, 0, 0.1);
-    --outline-shadow: rgba(0, 0, 0, 0.1);
-    --strongly-shadow: rgba(0, 0, 0, 0.2);
-    --header-footer :#e5f3fa;
-    --sidebar-hover-bg:#f0f5f9;
-    --header-text-Color:#5e5e5e;
-    --outlined-btn:#0f6bb0;
-    --outlined-btn-text:#0f6bb0;
-
+.light-theme {
+  --bg: #f0f5f9;
+  --bg-high: white;
+  --textColor: black;
+  --textColor-200: #5d6470;
+  --textColor-400: #9fa3aa;
+  --inline-shadow: rgba(0, 0, 0, 0.1);
+  --outline-shadow: rgba(0, 0, 0, 0.1);
+  --strongly-shadow: rgba(0, 0, 0, 0.2);
+  --header-footer: #e5f3fa;
+  --sidebar-hover-bg: #f0f5f9;
+  --header-text-Color: #5e5e5e;
+  --outlined-btn: #0f6bb0;
+  --outlined-btn-text: #0f6bb0;
+  --header-search-modal-bg: #ffffff;
+  --header-search-scrollbar-bg: #13324f;
+  --input-modal-outline-color: #0085DB;
+  --modal-input-bg: #FFFFFF;
+  --modal-input-palceholder-color: #2A3447;
 }
 
-.dark-theme{
-    --bg:#15263a;
-    --bg-high:#111c2d;
-    --textColor:white;
-    --textColor-200:#8d98ae;
-    --textColor-400:rgb(182, 182, 182);
-    --inline-shadow: rgba(0, 0, 0, 0.5);
-    --outline-shadow: rgba(0, 0, 0, 0.5);
-    --strongly-shadow: rgba(0, 0, 0, 0.7);
-    --header-footer:#13324f;
-    --sidebar-hover-bg:#13324f;
-    --header-text-Color:#5e5e5e;
-    --outlined-btn:#cccccc;;
-    --outlined-btn-text:#0f6bb0;
+.dark-theme {
+  --bg: #15263a;
+  --bg-high: #111c2d;
+  --textColor: white;
+  --textColor-200: #8d98ae;
+  --textColor-400: rgb(182, 182, 182);
+  --inline-shadow: rgba(0, 0, 0, 0.5);
+  --outline-shadow: rgba(0, 0, 0, 0.5);
+  --strongly-shadow: rgba(0, 0, 0, 0.7);
+  --header-footer: #13324f;
+  --sidebar-hover-bg: #13324f;
+  --header-text-Color: #5e5e5e;
+  --outlined-btn: #cccccc;
+  --outlined-btn-text: #0f6bb0;
+  --header-search-modal-bg: #2a3447;
+  --header-search-scrollbar-bg: #a8a8a8;
+  --input-modal-outline-color: #465670;
+  --modal-input-bg: #2A3447;
+  --modal-input-palceholder-color: #9A9A9A;
 }
