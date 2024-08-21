@@ -3,8 +3,14 @@
 @import '../../../Scss/mixing';
 
 .sidebar_container {
-    @include setDimension(100%, 100%);
+    // @include setDimension(270px, 100%);
     @include flex('', '', column, 0, 0);
+
+    margin: rem(16) !important;
+        @include setDimension(270px,calc(100vh - 32px));
+        background-color: var(--bg-high);
+        color: var(--textColor);
+        overflow: hidden;
 
     %sidebar_menu_hover {
         &:hover::after {
@@ -240,4 +246,43 @@
     100% {
         width: 97%;
     }
+}
+
+
+// sidebar 
+.hover_sidecontainer{
+    width: 80px;
+    .side_header{
+        .dark-logo , .light-logo{
+            display: none;
+        }
+
+        #small_logo{
+            display: block !important;
+        }
+    }
+     .side_footer{
+        display: none;
+    }
+
+    .side_overview{
+        span{
+            &.f15{
+                display: none !important;
+            }
+        }
+    }
+
+  .home_menu_items{
+      justify-content: center !important;
+  }
+
+    &:hover{
+       width: rem(250);
+       transition: 0.3s ease-in-out;
+
+    }
+
+    
+
 }
