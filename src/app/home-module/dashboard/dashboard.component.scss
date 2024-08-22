@@ -3,32 +3,74 @@
 @import '../../../Scss/mixing';
 
 
-main{
-    @include setDimension(100vw,100vh); 
+main {
+    @include setDimension(100vw, 100vh);
     background-color: var(--bg);
 
-    section{
+    section {
         flex-grow: 1;
         overflow-y: auto;
 
-        .wrapper{
-            @include flex(center,center,column,16,16);
-             
-            header{
-                @include setDimension(100%,70px);
-                @include flex('',center,'',0,0);
+        .wrapper {
+            @include flex(center, center, column, 16, 16);
+
+            header {
+                @include setDimension(100%, 70px);
+                @include flex('', center, '', 0, 0);
                 min-height: rem(70);
                 background-color: var(--bg-high);
                 color: var(--textColor);
             }
-    
-            .section_overview{
-                @include setDimension(100%,100%);
+
+            .section_overview {
+                @include setDimension(100%, 100%);
                 color: var(--textColor);
+                @include flex('', '', column, 16, 7);
+                min-height: 90vh;
+
+                .dashboard_details {
+                    @include setDimension(100%, auto);
+                    background-color: green;
+                    @include flex('','','',10,0);
+                    flex-wrap: wrap;
+                    min-height: 80vh;
+
+                    .dashboard_details_items{
+                        flex-grow: 1 !important;
+                        margin-bottom: rem(10);
+                        background-color: lightcoral;
+                        min-width: rem(400);
+                        // min-height: 40vh !important;
+                        height: auto;
+                        gap: 20px;
+
+                    }
+
+                    .details1{
+                        @include flex('','',column,0,0);
+
+                        .details1_top, .details1_bottom{
+                            background-color: lightblue;
+                            height: calc(680px / 2) !important;
+                            
+                            
+                        }
+                    }
+                }
+
+
+
+                .dashboard_details2 {
+                    @include setDimension(100%, 100%);
+                    background-color: lightcoral
+                    // margin
+                }
+
+
             }
         }
 
-        
+
     }
 
 }

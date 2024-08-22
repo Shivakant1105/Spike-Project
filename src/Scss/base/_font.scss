@@ -41,4 +41,8 @@ span i-feather{
     &.f24{
          @include setDimension(rem(18), rem(18));
     }
+
+    &.f10{
+        @include setDimension(rem(10), rem(10));
+   }
 }

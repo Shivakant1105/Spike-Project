@@ -124,6 +124,10 @@
         min-height: rem(80);
         @include flex(center, center, '', 2, 0);
 
+        button{
+            color: var(--textColor);
+        }
+
     }
 
     .side_overview {
@@ -221,7 +225,7 @@
             align-items: center;
             margin-bottom: rem(32);
             background-color: var(--header-footer);
-
+            min-width:230px;
             img {
                 width: 40px;
                 height: 40px;

@@ -24,3 +24,13 @@
     background-color: $bg;
     color: $textColor;
 }
+
+@mixin rounded_icons($width,$height,$bg){
+    width: rem($width);
+    height: rem($height);
+    border-radius: 50%;
+    background-color: $bg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
