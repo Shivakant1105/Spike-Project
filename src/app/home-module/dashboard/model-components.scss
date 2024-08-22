@@ -13,7 +13,7 @@
     .modal_header {
       padding-bottom: rem(14);
       padding-right: rem(30);
-      border-bottom: 1px solid var( --input-modal-outline-color) !important;
+      border-bottom: 1px solid var(--input-modal-outline-color) !important;
 
       .input_filed_container {
         @include flex("", center, "", 0, 0);
@@ -43,14 +43,12 @@
             }
           }
         }
-
-        
       }
     }
 
     .search_modal_body {
       min-height: rem(552);
-      max-height: rem(552);
+      max-height: rem(350);
       overflow-y: auto !important;
       width: rem(492);
       padding-left: rem(20) !important;
@@ -68,17 +66,27 @@
           @include flex("", "center", column, 4, 0);
 
           & span.f14 {
-            color: var( --textColor);
+            color: var(--textColor);
           }
 
           & span.f12 {
-            color: var( --textColor-200);
+            color: var(--textColor-200);
             font-weight: 500;
           }
         }
       }
     }
   }
+}
+
+.search_modal_body::-webkit-scrollbar {
+  width: 6px;
+  height: 1px;
+}
+
+.search_modal_body::-webkit-scrollbar-thumb {
+  background-color: #bbb9b9;
+  border-radius: 10px;
 }
 
 // Apps Model

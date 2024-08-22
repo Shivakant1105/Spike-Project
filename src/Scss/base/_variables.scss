@@ -14,9 +14,21 @@
   --outlined-btn-text: #0f6bb0;
   --header-search-modal-bg: #ffffff;
   --header-search-scrollbar-bg: #13324f;
-  --input-modal-outline-color: #0085DB;
-  --modal-input-bg: #FFFFFF;
-  --modal-input-palceholder-color: #2A3447;
+  --input-modal-outline-color: #0085db;
+  --modal-input-bg: #ffffff;
+  --modal-input-palceholder-color: #2a3447;
+  --user-profile-icon-bg: #e5f3fa;
+  --user-inbox-icon-bg: #dffef3;
+  --user-task-icon-bg: #ffede9;
+
+  // Shotcuts Icon Bg
+  --invoce-icon-bg: #e1f5fa;
+  --chat-icon-bg: #e5f3fa;
+  --contact-icon-bg: #e7ecf0;
+  --email-icon-bg: #ffede9;
+  --todo-icon-bg: #fff6ea;
+  --calender-icon-bg: #dffef3;
+  --shortcuts-hover-bg: #e9f2fc;
 }
 
 .dark-theme {
@@ -36,6 +48,18 @@
   --header-search-modal-bg: #2a3447;
   --header-search-scrollbar-bg: #a8a8a8;
   --input-modal-outline-color: #465670;
-  --modal-input-bg: #2A3447;
-  --modal-input-palceholder-color: #9A9A9A;
+  --modal-input-bg: #2a3447;
+  --modal-input-palceholder-color: #9a9a9a;
+  --user-profile-icon-bg: #13324f;
+  --user-inbox-icon-bg: #1a4040;
+  --user-task-icon-bg: #40353d;
+
+  // Shotcuts Icon Bg
+  --invoce-icon-bg: #2a4d61;
+  --chat-icon-bg: #24405d;
+  --contact-icon-bg: #343d4c;
+  --email-icon-bg: #4f434b;
+  --todo-icon-bg: #4f4b4a;
+  --calender-icon-bg: #294e4e;
+  --shortcuts-hover-bg: #242f3e;
 }
