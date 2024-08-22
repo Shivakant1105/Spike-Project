@@ -538,6 +538,7 @@ $base-font-size: 16px;
         }
 
         &:hover {
+          border-bottom-left-radius: rem(20);
           background-color: var(--shortcuts-hover-bg);
           cursor: pointer;
         }
@@ -562,6 +563,7 @@ $base-font-size: 16px;
         }
 
         &:hover {
+          border-bottom-right-radius: rem(20);
           background-color: var(--shortcuts-hover-bg);
           cursor: pointer;
         }
@@ -570,7 +572,7 @@ $base-font-size: 16px;
   }
 
   .dropdown-menu.show {
-    min-height: 447px !important;
+    min-height: 449px !important;
     min-width: 360px;
     position: absolute;
     inset: 0px auto auto 0px;
