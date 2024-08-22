@@ -313,6 +313,7 @@ $base-font-size: 16px;
       @include flex(flex-start, center, "", 25, 0);
       border-bottom: 1px solid #333f55;
       cursor: pointer;
+      margin-top: -11px;
 
       .user_details {
         @include flex("", "", column, 5, 0);
