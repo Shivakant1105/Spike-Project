@@ -5,60 +5,249 @@
 
       <section>
             <div class="wrapper container-lg">
-                  <header class="sticky-top custome_radius box_shadow ">
+                  <header class="sticky-top custome_radius box_shadow">
                         <div class="w-100">
                               <app-header></app-header>
                         </div>
                   </header>
 
-                  <div class="section_overview ">
+                  <div class="section_overview">
 
-                        <div class="dashboard_details border-0">
 
-                              <!-- details -->
-                              <div class="dashboard_details_items details1">
-                                   
+                        <div class="dashboard_details  border-0 gap-4">
+                              <!-- details container-->
+                              <div class="dashboard_details_items  details1 col-md-6 custome_radius box_shadow">
+                                    <!-- for the details -->
                                     <div class="details1_top border-start-0 border-top-0 border-end-0 custome_border d-flex">
-                                          <div class="w-50 col-sm-12 bg-danger">
-                                                hello
+                                          <div class=" col-md-5 col-sm-12 d-flex flex-column flex-grow-1 p-4">
+                                                <span class="f18 h5">Congratulations Jonathan</span>
+                                                <span class="f14">You have done 38% more sales</span>
+
+                                                <div
+                                                      class="icons d-flex h-100 w-100  p-2 gap-4 flex-column justify-content-evenly">
+                                                      <!-- Processig -->
+                                                      <div class="processing d-flex gap-3 just align-items-center">
+                                                            <span class="process_icon"><img width="30px"
+                                                                        src="https://cdn-icons-png.flaticon.com/128/13318/13318606.png"
+                                                                        alt="" /></span>
+
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f16">64 New Orders</span>
+                                                                  <span class="f14">Processing</span>
+                                                            </div>
+                                                      </div>
+
+                                                      <!-- hold -->
+                                                      <div class="processing d-flex  gap-3 align-items-center">
+                                                            <span class="hold_icons"><img width="30px"
+                                                                        src="https://cdn-icons-png.flaticon.com/128/10643/10643870.png"
+                                                                        alt="" /></span>
+
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f16">4 Orders</span>
+                                                                  <span class="f14">On hold</span>
+                                                            </div>
+                                                      </div>
+
+                                                      <!-- delivered -->
+                                                      <div class="processing d-flex  gap-3 align-items-center">
+                                                            <span class="delivered_icon"><img width="30px"
+                                                                        src="https://cdn-icons-png.flaticon.com/128/16641/16641832.png"
+                                                                        alt="" /></span>
+
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f16">12 Orders</span>
+                                                                  <span class="f14">Delivered</span>
+                                                            </div>
+                                                      </div>
+                                                </div>
                                           </div>
-                                          <div class="w-50">right</div>
+                                          <div class="h-100 d-none d-xl-block d-lg-block">
+                                                <div class="h-100  d-flex ">
+                                                      <img class="img-fluid"
+                                                            src="https://spike-angular-pro-main.netlify.app/assets/images/backgrounds/man-working-on-laptop.png"
+                                                            alt="" />
+                                                </div>
+                                          </div>
                                     </div>
-                                    <div class="details1_bottom">bottom</div>
-                                     
+
+                                    <div class="details1_bottom  d-flex flex-column p-3">
+                                          <div class="p-2 d-flex mb-3">
+                                                <div class="flex-grow-1 px-4 d-flex flex-column">
+                                                      <span class="f18">Total Orders</span>
+                                                      <span class="f14">Weekly order updates</span>
+                                                </div>
+                                                <div class="flex-grow-1 d-flex justify-content-end px-4">
+                                                      <select id="fruits"
+                                                            class="outline-none shadow-none custome_border custome_radius px-2 bg-transparent"
+                                                            name="fruits">
+                                                            <option value="march 2024">
+                                                                  <span class="f14">march 2024</span>
+                                                            </option>
+                                                            <option value="march 2024">
+                                                                  <span class="f14">march 2024</span>
+                                                            </option>
+                                                            <option value="march 2024" selected>
+                                                                  <span class="f14">march 2024</span>
+                                                            </option>
+                                                            <option value="march 2024">
+                                                                  <span class="f14">march 2024</span>
+                                                            </option>
+                                                      </select>
+                                                </div>
+                                          </div>
+                                          <div class="graph flex-grow-1">Create Graph</div>
+                                    </div>
                               </div>
 
+                              <!-- other details like paymenyts -->
+                              <div class="dashboard_details_items other_details">
+                                    <div class="row row-cols-1 row-cols-md-2 g-4 ">
+                                          <!-- payments details -->
+                                          <div class="col">
+                                                <div class="card h-100 box_shadow p-3">
+                                                      <header class="d-flex justify-content-between">
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f18 h5">Payment</span>
+                                                                  <span class="f12">Last 7 days</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column text-center">
+                                                                  <span class="f15 h5">12,300</span>
+                                                                  <span class="payment_btn f12">-3.8%</span>
+                                                            </div>
+                                                      </header>
 
+                                                      <div class="card-body  h-100 mb-3"></div>
 
-                              <!-- other details -->
-                              <div class="dashboard_details_items  bg-danger">
-                                    hello
+                                                      <footer>
+                                                            <!-- for paypal -->
+                                                            <div class="d-flex justify-content-between mb-2">
+                                                                  <div class="d-flex gap-2 align-items-center">
+                                                                        <span class="rounded_shape"></span>
+                                                                        <span class="f15">Paypal</span>
+                                                                  </div>
+                                                                  <div><span class="f15">52%</span></div>
+                                                            </div>
+
+                                                            <!-- Credit Card -->
+                                                            <div class="d-flex justify-content-between">
+                                                                  <div class="d-flex gap-2 align-items-center">
+                                                                        <span class="rounded_shape"></span>
+                                                                        <span class="f15">Credit Card</span>
+                                                                  </div>
+                                                                  <div><span class="f15">52%</span></div>
+                                                            </div>
+                                                      </footer>
+                                                </div>
+                                          </div>
+
+                                          <!-- product -->
+                                          <div class="col">
+                                                <div class="card h-100 box_shadow p-3">
+                                                      <header class="d-flex justify-content-between">
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f18 h5">Products</span>
+                                                                  <span class="f12">Last 7 days</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column text-center">
+                                                                  <span class="f15 h5">12,300</span>
+                                                                  <span class="payment_btn f12">-3.8%</span>
+                                                            </div>
+                                                      </header>
+
+                                                      <div class="card-body  h-100 mb-3"></div>
+
+                                                      <footer class="text-center">
+                                                            <span class="f14">$18k Profit more than month</span>
+                                                      </footer>
+                                                </div>
+                                          </div>
+
+                                          <!-- latest deal -->
+                                          <div class="col">
+                                                <div class="card h-100 box_shadow p-3">
+                                                      <header class="d-flex justify-content-between">
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f18 h5">Latest Deals</span>
+                                                                  <span class="f12">Last 7 days</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column text-center">
+                                                                  <span class="payment_btn f12">-3.8%</span>
+                                                            </div>
+                                                      </header>
+
+                                                      <div class="card-body  h-100"></div>
+
+                                                      <footer class="latest_deal d-flex w-100 align-items-center">
+                                                            <div class="p-2 mb-3">
+                                                                  <div class="items">
+                                                                        <img width="40px"
+                                                                              src="https://cdn-icons-png.flaticon.com/128/17596/17596838.png"
+                                                                              alt="" />
+                                                                  </div>
+                                                                  <div class="items">
+                                                                        <img width="40px"
+                                                                              src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png "
+                                                                              alt="" />
+                                                                  </div>
+                                                                  <div class="items">
+                                                                        <img width="40px"
+                                                                              src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png"
+                                                                              alt="" />
+                                                                  </div>
+                                                                  <div class="items">
+                                                                        <img width="40px"
+                                                                              src="https://cdn-icons-png.flaticon.com/128/6997/6997662.png"
+                                                                              alt="" />
+                                                                  </div>
+                                                                  <div class="items">
+                                                                        <a href=""><span class="f14">+8</span></a>
+                                                                  </div>
+                                                            </div>
+                                                      </footer>
+                                                </div>
+                                          </div>
+
+                                          <!-- Customer -->
+                                          <div class="col">
+                                                <div class="card h-100 box_shadow p-3">
+                                                      <header class="d-flex justify-content-between">
+                                                            <div class="d-flex flex-column">
+                                                                  <span class="f18 h5">Customers</span>
+                                                                  <span class="f12">Last 7 days</span>
+                                                            </div>
+                                                            <div class="d-flex flex-column text-center">
+                                                                  <span class="f15 h5">12,300</span>
+                                                                  <span class="payment_btn f12">-3.8%</span>
+                                                            </div>
+                                                      </header>
+
+                                                      <div class="card-body  h-100 mb-3"></div>
+
+                                                      <footer>
+                                                            <!-- for paypal -->
+                                                            <div class="d-flex justify-content-between mb-2">
+                                                                  <div class="d-flex gap-2 align-items-center">
+                                                                        <span class="f14">April 07 - April 14</span>
+                                                                  </div>
+                                                                  <div><span class="f14">63,80</span></div>
+                                                            </div>
+
+                                                            <!-- Credit Card -->
+                                                            <div class="d-flex justify-content-between">
+                                                                  <div class="d-flex gap-2 align-items-center">
+                                                                        <span class="f14">Last week</span>
+                                                                  </div>
+                                                                  <div><span class="f14">4280</span></div>
+                                                            </div>
+                                                      </footer>
+                                                </div>
+                                          </div>
+                                    </div>
                               </div>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="dashboard_details2">
+                        <div class="dashboard_details2 box-shadow custome_radius">
                               <ul>
                                     <li>list-50</li>
                                     <li>list-50</li>
@@ -105,7 +294,6 @@
                   </div>
             </div>
       </section>
-
 
       <!-- Search Modal -->
       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -241,8 +429,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">ToDo
-                                                </span>
+                                                <span class="f14">ToDo </span>
                                           </div>
 
                                           <div><span class="f12"> apps/todo </span></div>
@@ -252,9 +439,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">Taskboard
-
-                                                </span>
+                                                <span class="f14">Taskboard </span>
                                           </div>
 
                                           <div><span class="f12"> apps/taskboard</span></div>
@@ -264,10 +449,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">Blog
-
-
-                                                </span>
+                                                <span class="f14">Blog </span>
                                           </div>
 
                                           <div><span class="f12"> apps/blog</span></div>
@@ -277,9 +459,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">Roll Base Access
-
-                                                </span>
+                                                <span class="f14">Roll Base Access </span>
                                           </div>
 
                                           <div><span class="f12">apps/permission</span></div>
@@ -289,10 +469,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">Treeview
-
-
-                                                </span>
+                                                <span class="f14">Treeview </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/treeview</span></div>
@@ -302,11 +479,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">Pricing
-
-
-
-                                                </span>
+                                                <span class="f14">Pricing </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/pricing</span></div>
@@ -316,9 +489,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">FAQ
-
-                                                </span>
+                                                <span class="f14">FAQ </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/faq</span></div>
@@ -328,9 +499,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">FAQ
-
-                                                </span>
+                                                <span class="f14">FAQ </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/faq</span></div>
@@ -340,9 +509,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">FAQ
-
-                                                </span>
+                                                <span class="f14">FAQ </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/faq</span></div>
@@ -352,9 +519,7 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">FAQ
-
-                                                </span>
+                                                <span class="f14">FAQ </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/faq</span></div>
@@ -364,15 +529,12 @@
                               <div class="list_container mt-2">
                                     <div class="list_items_container d-flex gap-0">
                                           <div>
-                                                <span class="f14">FAQ
-
-                                                </span>
+                                                <span class="f14">FAQ </span>
                                           </div>
 
                                           <div><span class="f12">theme-pages/faq</span></div>
                                     </div>
                               </div>
-
                         </div>
                   </div>
             </div>
@@ -382,57 +544,46 @@
       <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal_dialog">
                   <div class="modal-content app_modal_header">
-                        <div class="modal-header p-4 ">
-
+                        <div class="modal-header p-4">
                               <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body App_modal_body rounded-3 cold-md-12">
-                              <div class="items col-md-4 "></div>
-                              <div class="items col-md-4 "></div>
-                              <div class="items_last col-md-4 "></div>
+                              <div class="items col-md-4"></div>
+                              <div class="items col-md-4"></div>
+                              <div class="items_last col-md-4"></div>
                         </div>
-
                   </div>
             </div>
       </div>
-
 
       <!-- Country Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog country_modal_dialogs ">
+            <div class="modal-dialog country_modal_dialogs">
                   <div class="modal-content p-4 rounded-4 shadow modal_content">
-
                         <div class="modal-body gap-0 modal_body">
-
                               <div class="country_logo_container first">
                                     <div><img src="../../../assets/uk.png" alt="" /></div>
-                                    <div> <span class="f14 English">English</span></div>
-                              </div>
-
-
-                              <div class="country_logo_container">
-                                    <div><img src="../../../assets/uk.png" alt="" /></div>
-                                    <div> <span class="f14">Espanol</span></div>
+                                    <div><span class="f14 English">English</span></div>
                               </div>
 
                               <div class="country_logo_container">
                                     <div><img src="../../../assets/uk.png" alt="" /></div>
-                                    <div> <span class="f14">Francais</span></div>
+                                    <div><span class="f14">Espanol</span></div>
                               </div>
 
                               <div class="country_logo_container">
                                     <div><img src="../../../assets/uk.png" alt="" /></div>
-                                    <div> <span class="f14">German</span></div>
+                                    <div><span class="f14">Francais</span></div>
                               </div>
 
-
+                              <div class="country_logo_container">
+                                    <div><img src="../../../assets/uk.png" alt="" /></div>
+                                    <div><span class="f14">German</span></div>
+                              </div>
                         </div>
-
                   </div>
             </div>
       </div>
-
-
 </main>

@@ -24,8 +24,11 @@ $largeDesktop: 1920px;
 
 @include width-range(0px, $desktop - 1px) {
    
-  .details1, .details2{
+  .details1, .details2, .dashboard_details_items{
      width: 100% !important;
+  }
+  .dashboard_details{
+    flex-wrap: wrap;
   }
 
   
