@@ -4,15 +4,9 @@
 @import "../../../Scss/mixing";
 @import "../../../Scss/base/variables";
 
-$base-font-size: 16px;
-
-// @function rem($pels) {
-//   @return $pixels / $base-font-size * 1rem;
-// }
-
 .header_container {
   display: flex;
-  width: 100% !important;
+  width: 100%;
   height: 100%;
 
   .header_body {
@@ -26,7 +20,6 @@ $base-font-size: 16px;
         background-color: transparent;
         font-size: rem(14);
         color: var(--textColor);
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-weight: 500;
         height: rem(40);
         padding: rem(16);
@@ -71,12 +64,10 @@ $base-font-size: 16px;
   float: end !important;
 
   .search_container {
-    border: 1px solid #ccc;
+    border: rem(1) solid #ccc;
     border-radius: rem(20);
-    padding: rem(14) !important;
+    @include flex("", "", "", 4, 14);
     cursor: pointer;
-    gap: 4px;
-
     @include setDimension(rem(180), rem(38));
 
     &:hover {
@@ -417,11 +408,13 @@ $base-font-size: 16px;
     }
 
     .invoice_chat_cnt {
+
       display: flex;
       @include setDimension(100%, rem(132));
       border-top: 1px solid #333f55;
 
       .invoice_container {
+        min-width: rem(150);
         @include flex(center, center, column, 5, 0);
         transition: background-color 0.3s ease-in-out;
 
@@ -444,6 +437,7 @@ $base-font-size: 16px;
       }
 
       .chat_container {
+        min-width: rem(150);
         @extend .invoice_container;
         border-left: 1px solid #333f55;
         transition: background-color 0.3s ease-in-out;
@@ -474,6 +468,7 @@ $base-font-size: 16px;
       border-bottom: 1px solid #333f55;
 
       .contact_container {
+        min-width: rem(150);
         @include flex(center, center, column, 5, 0);
         transition: background-color 0.3s ease-in-out;
 
@@ -496,6 +491,7 @@ $base-font-size: 16px;
       }
 
       .email_container {
+        min-width: rem(150);
         @include flex(center, center, column, 5, 0);
         border-left: 1px solid #333f55;
         transition: background-color 0.3s ease-in-out;
@@ -524,6 +520,7 @@ $base-font-size: 16px;
 
       .todo_container {
         height: 130px;
+        min-width: rem(150);
         @include flex(center, center, column, 5, 0);
         transition: background-color 0.3s ease-in-out;
 
@@ -546,6 +543,7 @@ $base-font-size: 16px;
       }
 
       .calender_container {
+        min-width: rem(150);
         @include flex(center, center, column, 5, 0);
         border-left: 1px solid #333f55;
         padding: rem(8) 0 0 0 !important;
@@ -573,12 +571,12 @@ $base-font-size: 16px;
   }
 
   .dropdown-menu.show {
-    min-height: 449px !important;
-    min-width: 360px;
     position: absolute;
     inset: 0px auto auto 0px;
     margin: 0px;
-    transform: translate(745px, 59px) !important;
+    min-height: 449px;
+    min-width: 310px;
+    // transform: translate(745px, 59px);
   }
 }
 
@@ -769,6 +767,5 @@ $base-font-size: 16px;
     inset: 0px auto auto 0px;
     margin: 0px;
     transform: translate(75px, 53px) !important;
-    
   }
 }
