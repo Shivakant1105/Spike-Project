@@ -10,7 +10,7 @@
 }
 
 .custome_radius{
-    border-radius: 18px !important;
+    border-radius: rem(18) !important;
 }
 
 .box_shadow{
@@ -18,6 +18,9 @@
      0 1px 3px var(--inline-shadow),   
      0 1px 2px var(--outline-shadow),  
      0 4px 6px var(--strongly-shadow);
+}
+a {
+    text-decoration: none !important;
 }
 
 .custome_border {

@@ -80,7 +80,7 @@ main {
                         }
 
                         select {
-                            height: 40px;
+                            height: rem(40);
                         }
 
                         select,
@@ -105,7 +105,7 @@ main {
                     .other_details {
                         @include flex('', '', '', 6, 0);
                         width: rem(621);
-                        min-width: 200px;
+                        min-width: rem(200);
 
                         // flex-wrap: wrap;
                         .dashboard_details_itemsDiv {
@@ -129,9 +129,9 @@ main {
 
                     .payment_btn {
                         background-color: #dffef3;
-                        padding: 3px 15px;
+                        padding: rem(3) rem(15);
                         border-radius: rem(16);
-                        border: 1px solid #14aa76;
+                        border: rem(1) solid #14aa76;
                         color: #14aa76;
                     }
 
@@ -147,7 +147,7 @@ main {
                     }
 
                     .latest_deal {
-                        height: 100px;
+                        height: rem(100);
                         position: relative;
 
                         .items {
@@ -155,29 +155,25 @@ main {
                             position: absolute;
 
                             &:nth-child(2) {
-                                left: 34px;
+                                left: rem(34);
                                 border: 2px solid white;
                             }
 
                             &:nth-child(3) {
-                                left: 67px;
+                                left: rem(67);
                                 border: 2px solid white;
                             }
 
                             &:nth-child(4) {
-                                left: 95px;
+                                left: rem(95);
                                 border: 2px solid white;
                             }
 
                             &:nth-child(5) {
-                                left: 127px;
+                                left: rem(127);
                                 border: 2px solid white;
                                 z-index: 1;
                                 cursor: pointer;
-                            }
-
-                            a {
-                                text-decoration: none;
                             }
                         }
                     }
