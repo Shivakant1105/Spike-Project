@@ -1,12 +1,10 @@
-
-
 @mixin flex($justify, $align, $direction, $gap, $padding) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
   flex-direction: $direction;
   gap: rem($gap);
-  padding: rem($padding) !important;
+  padding: rem($padding);
 }
 
 // Mixin to set border-radius for the top-left and top-right corners
@@ -30,4 +28,24 @@
   border-radius: $radius;
   background-color: $bg;
   color: $textColor;
+}
+
+@mixin rounded_icons($width, $height, $bg) {
+  width: rem($width);
+  height: rem($height);
+  border-radius: 50%;
+  background-color: $bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin outline_border($border, $outline) {
+  border: $border;
+  outline: $outline;
+}
+
+@mixin minwidth_minheight($min-width, $min-height) {
+  min-width: $min-width;
+  min-height: $min-height !important;
 }

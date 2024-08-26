@@ -6,19 +6,19 @@
 
 .header_container {
   display: flex;
-  width: 100%;
-  height: 100%;
-
+  @include setDimension(100%, 100%);
   .header_body {
     @include setDimension(100%, rem(70));
+    @include flex(space-between, center, "", 0, 16);
     background-color: var(--bg-high);
 
     .header_left_container {
+      @include flex(space-between, center, "", 4, 0);
       & button {
-        outline: none;
-        border: none;
+        display: flex !important;
+        @include outline_border(none, none);
         background-color: transparent;
-        font-size: rem(14);
+        font-size: rem(15);
         color: var(--textColor);
         font-weight: 500;
         height: rem(40);
@@ -32,9 +32,13 @@
       }
 
       .apps_icon_conatiner {
-        width: rem(98);
+        width: rem(82);
         border-radius: rem(26);
+        @include flex(center, center, "", 8, 0);
 
+        & button {
+          @include flex("", center, "", 0, 0);
+        }
         & i-feather {
           @include setDimension(rem(16), rem(16));
           @include flex(center, center, "", 0, 0);
@@ -56,17 +60,24 @@
           border-radius: 50%;
         }
       }
+
+      .chat_button,
+      .calender_button,
+      .email_button {
+        @include flex(center, center, "", 0, 15);
+      }
     }
   }
 }
 
 .header_right_container {
-  float: end !important;
+  float: end;
+  @include flex("", center, "", 8, 0);
 
   .search_container {
     border: rem(1) solid #ccc;
     border-radius: rem(20);
-    @include flex("", "", "", 4, 14);
+    @include flex("", center, "", 4, 14);
     cursor: pointer;
     @include setDimension(rem(180), rem(38));
 
@@ -79,9 +90,12 @@
       @include flex("", center, "", 0, 0);
     }
 
-    .seach input {
-      border: none;
-      outline: none;
+    .search_icon {
+      @include flex("", center, "", 0, 0);
+    }
+
+    .search {
+      @include outline_border(none, none);
       padding: rem(5) !important;
       border-radius: rem(20);
       background-color: transparent;
@@ -103,14 +117,15 @@
 
   .user_admin {
     @include setDimension(auto, rem(48));
-    padding: rem(30) rem(18) !important;
+    @include flex("", center, "", 12, 0);
+    padding: rem(26) rem(18) !important;
     cursor: pointer;
 
     &:hover {
       background-color: var(--sidebar-hover-bg);
     }
 
-    .admin_image img {
+    .admin_image {
       @include setDimension(rem(40), rem(40));
       object-fit: cover;
       border-radius: 50%;
@@ -120,7 +135,6 @@
       color: var(--textColor);
       font-size: rem(16);
       font-weight: 600;
-      font-family: "Plus Jakarta Sans";
     }
 
     .admin_name {
@@ -132,15 +146,14 @@
 
   .country_logo {
     @include setDimension(rem(21), rem(21));
-    border-radius: 50% !important;
+    border-radius: 50%;
     overflow: hidden;
     @include flex("center", center, "", 0, 0);
 
     & button {
       @include flex("center", center, "", 0, 0);
       background-color: transparent;
-      outline: none;
-      border: none;
+      @include outline_border(none, none);
     }
   }
   .country_logo img {
@@ -164,7 +177,7 @@
 
   .name_country_logo {
     height: rem(45);
-    margin-top: 5px !important;
+    margin-top: rem(5) !important;
     @include flex(center, center, "", 18, 0);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -174,13 +187,13 @@
     }
   }
   .name_country_logo.first {
-    margin-top: 16px;
-    border-top-left-radius: 6px !important;
-    border-top-right-radius: 6px !important;
+    margin-top: rem(16);
+    border-top-left-radius: rem(6);
+    border-top-right-radius: rem(6);
   }
   .name_country_logo.last {
-    border-bottom-left-radius: 6px !important;
-    border-bottom-right-radius: 6px !important;
+    border-bottom-left-radius: rem(20);
+    border-bottom-right-radius: rem(20);
   }
 }
 
@@ -192,36 +205,25 @@
   background-color: var(--bg-high);
   color: var(--textColor);
   font-weight: 500;
-  transform: translate(rem(909), rem(53)) !important;
+  transform: translate(rem(909), rem(53));
 }
 
 .dropdown-toggle::after {
   display: none;
-  margin-left: 0 !important;
-  vertical-align: 0 !important;
-  content: "";
-  border-top: 0 !important;
-  border-right: 0 !important;
-  border-bottom: 0 !important;
-  border-left: 0 !important;
 }
 
 // Message Icon Modal
 .message_icon_container {
   .message_items_first {
-    padding: rem(25) 0 0 28px !important;
+    padding: rem(25) 0 0 rem(28);
     margin-top: rem(6);
   }
 
   .message_items {
-    height: 73px;
-    margin-bottom: 4px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 25px;
-    padding: 0 0 0 28px !important;
-    // @include flex(flex-start, center, '', 25, '');
+    height: rem(73);
+    margin-bottom: rem(4);
+    @include flex(flex-start, center, "", 25, 1);
+    padding: 0 0 0 rem(28);
     cursor: pointer;
     transition: background-color 0.5s ease-in-out;
 
@@ -231,6 +233,7 @@
     }
 
     .name_message {
+      @include flex("", "", column, 5, 0);
       & div:first-child {
         font-weight: 600;
       }
@@ -254,33 +257,25 @@
   }
 
   .see_all_message_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(center, center, "", 0, 0);
     .btn_body {
-      width: 294px;
-      height: 36px;
+      @include setDimension(rem(294), rem(36));
       background-color: #2b8ede;
-      border-radius: 18px;
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+      border-radius: rem(18);
+      margin-top: rem(10);
 
-      & span.f14 {
-        font-weight: 400;
-      }
+      @include flex(center, center, "", 0, 0);
+      cursor: pointer;
     }
   }
 
   .message_items:not(:first-child):hover {
     background-color: var(--sidebar-hover-bg);
-    border-radius: 2px;
+    border-radius: rem(2);
   }
 
   .dropdown-menu.show {
-    min-height: 533px !important;
+    min-height: 533px;
     min-width: 360px;
     position: absolute;
     inset: 0px auto auto 0px;
@@ -293,6 +288,8 @@
 .User_profile_container {
   .user_items_body {
     @include flex("", "", column, 10, 0);
+    padding-left: rem(20);
+
     .user_profile_item1 {
       .f18 {
         font-weight: 500;
@@ -300,44 +297,50 @@
     }
 
     .user_profile_item2 {
-      height: 150px;
-      margin-bottom: 12px;
+      height: rem(128);
+      margin-bottom: rem(12);
       @include flex(flex-start, center, "", 25, 0);
-      border-bottom: 1px solid #333f55;
+      border-bottom: rem(1) solid #cccccc;
       cursor: pointer;
-      margin-top: -11px;
+      // margin-top: rem(11);
 
       .user_details {
         @include flex("", "", column, 5, 0);
+
+        & div {
+          @include flex("", center, "", 0, 0);
+        }
 
         .f14 {
           color: #b0bcd3;
         }
 
         i-feather {
-          height: 16px;
-          width: 16px;
+          display: flex;
+          @include setDimension(rem(16), rem(16));
           color: #b0bcd3;
         }
       }
 
       & img {
-        width: 100px;
-        height: 100px;
+        @include setDimension(rem(100), rem(100));
         border-radius: 50%;
       }
     }
 
     .user_profile_item3 {
-      height: 70px;
-      @include flex(flex-start, center, "", 0, 0);
-      gap: 30px;
+      height: rem(70);
+      @include flex(flex-start, center, "", 30, 0);
       cursor: pointer;
+
+      .user_profile {
+        @include flex("", "", column, 0, 0);
+      }
 
       .profile_icon {
         @include flex(center, center, "", 0, 0);
         @include setDimension(rem(50), rem(50));
-        border-radius: 14px;
+        border-radius: rem(14);
         background-color: var(--user-profile-icon-bg);
 
         i-feather {
@@ -345,10 +348,9 @@
           color: #0085db;
         }
       }
+
       .Inbox_icon {
-        @include flex(center, center, "", 0, 0);
-        @include setDimension(rem(50), rem(50));
-        border-radius: 14px;
+        @extend .profile_icon;
         background-color: var(--user-inbox-icon-bg);
 
         i-feather {
@@ -358,15 +360,13 @@
       }
 
       .Tasks_icon {
-        @include flex(center, center, "", 0, 0);
-        @include setDimension(rem(50), rem(50));
-        border-radius: 14px;
+        @extend .profile_icon;
         background-color: var(--user-task-icon-bg);
       }
 
       i-feather {
         @include setDimension(rem(16), rem(27));
-        color: #9f665e;
+        color: #fb977d;
       }
     }
 
@@ -374,16 +374,16 @@
       @include flex(center, center, "", 0, 0);
       @include setDimension(rem(293), rem(36));
       background-color: #0085db;
-      border-radius: 18px;
+      border-radius: rem(18);
+      color: #ffffff;
       cursor: pointer;
     }
   }
 
   .dropdown-menu.show {
-    min-height: 533px !important;
-    min-width: 360px;
+    @include minwidth_minheight(rem(360), rem(512));
     position: absolute;
-    inset: 0px auto auto 0px;
+    inset: 0 auto auto 0;
     margin: 0px;
     transform: translate(-11px, 65px) !important;
   }
@@ -392,8 +392,7 @@
 // Shortcut Icon Modal
 .shortcut_icon_container {
   .shortcut_items_container {
-    display: flex;
-    flex-direction: column;
+    @include flex("", "", column, 0, 0);
 
     .f16 {
       font-weight: 600;
@@ -403,15 +402,14 @@
     }
 
     .shortcut_heading {
-      height: 45px;
+      height: rem(45);
       padding: rem(5) 0 0 rem(36);
     }
 
     .invoice_chat_cnt {
-
       display: flex;
       @include setDimension(100%, rem(132));
-      border-top: 1px solid #333f55;
+      border-top: rem(1) solid #cccccc;
 
       .invoice_container {
         min-width: rem(150);
@@ -439,7 +437,7 @@
       .chat_container {
         min-width: rem(150);
         @extend .invoice_container;
-        border-left: 1px solid #333f55;
+        border-left: rem(1) solid #cccccc;
         transition: background-color 0.3s ease-in-out;
 
         .chat_icon {
@@ -464,8 +462,8 @@
     .contact_email_cnt {
       display: flex;
       @include setDimension(100%, rem(132));
-      border-top: 1px solid #333f55;
-      border-bottom: 1px solid #333f55;
+      border-top: rem(1) solid #cccccc;
+      border-bottom: rem(1) solid #cccccc;
 
       .contact_container {
         min-width: rem(150);
@@ -493,7 +491,7 @@
       .email_container {
         min-width: rem(150);
         @include flex(center, center, column, 5, 0);
-        border-left: 1px solid #333f55;
+        border-left: 1px solid #cccccc;
         transition: background-color 0.3s ease-in-out;
 
         .email_icon {
@@ -519,7 +517,7 @@
       display: flex;
 
       .todo_container {
-        height: 130px;
+        height: rem(130);
         min-width: rem(150);
         @include flex(center, center, column, 5, 0);
         transition: background-color 0.3s ease-in-out;
@@ -545,7 +543,7 @@
       .calender_container {
         min-width: rem(150);
         @include flex(center, center, column, 5, 0);
-        border-left: 1px solid #333f55;
+        border-left: rem(1) solid #cccccc;
         padding: rem(8) 0 0 0 !important;
         transition: background-color 0.3s ease-in-out;
 
@@ -572,37 +570,30 @@
 
   .dropdown-menu.show {
     position: absolute;
-    inset: 0px auto auto 0px;
+    inset: 0 auto auto 0;
     margin: 0px;
-    min-height: 449px;
-    min-width: 310px;
+    @include minwidth_minheight(rem(310), rem(449));
     // transform: translate(745px, 59px);
   }
 }
 
 // Apps Modal
-
 .apps_icon_container {
   .chat_todo_quick_container {
     @include setDimension(rem(800), rem(410));
     display: flex;
-    border-radius: 12px;
+    border-radius: rem(12);
 
     .f14 {
       font-weight: 600;
-      color: var();
     }
     .f12 {
-      font-weight: 400;
       color: var(--textColor-200);
     }
 
     .left_items {
-      display: flex;
-      flex-direction: column;
-      width: 65%;
-      height: 100%;
-      // background-color: rgb(216, 211, 211);
+      @include flex("", "", column, 0, 0);
+      @include setDimension(65%, 100%);
 
       .top_items {
         height: 80%;
@@ -611,36 +602,23 @@
 
         .top_items_left {
           width: 50%;
-          // background-color: lightgreen;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
+          @include flex("", "", column, 10, 0);
           padding-left: rem(10);
 
           .chats_icon_container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            // background-color: rgb(236, 129, 79);
-            gap: 20px;
-            height: 70px;
+            @include flex(center, center, "", 20, 0);
+            height: rem(70);
 
             .chats_logo {
-              @include flex(center, center, "", 0, 0);
-              @include setDimension(rem(50), rem(50));
-              border-radius: 50%;
-              background-color: var(--apps-icon-modal-bg);
-
+              @include rounded_icons(50, 50, var(--apps-icon-modal-bg));
               & img {
                 @include setDimension(rem(22), rem(22));
               }
             }
 
             .heading_mails_cnt {
-              display: flex;
-              flex-direction: column;
-              gap: 2px;
-              width: 160px;
+              @include flex("", "", column, 2, 0);
+              width: rem(160);
 
               span {
                 transition: color 0.3s ease-in-out;
@@ -656,16 +634,12 @@
 
         .top_items_right {
           width: 50%;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
+
+          @include flex("", "", column, 10, 0);
 
           .icon_heading_container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            height: 70px;
+            @include flex(center, center, "", 20, 0);
+            height: rem(70);
 
             .logo_cnt {
               @include flex(center, center, "", 0, 0);
@@ -679,10 +653,8 @@
             }
 
             .heading_cnt {
-              display: flex;
-              flex-direction: column;
-              gap: 2px;
-              width: 160px;
+              @include flex("", "", column, 2, 0);
+              width: rem(160);
 
               span {
                 transition: color 0.3s ease-in-out;
@@ -699,43 +671,38 @@
 
       .bottom_items {
         flex-grow: 1;
-        border-top: 1px solid #333f55;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 rem(30);
+        border-top: rem(1) solid #cccccc;
+
+        @include flex(space-between, center, "", 0, 1);
+
+        padding-left: rem(30) !important;
+        padding-right: rem(30) !important;
 
         .bottom_left {
           @include flex(center, center, row, 8, 0);
 
           i-feather {
             display: flex;
-            @include setDimension(rem(17), rem(20));
+            @include setDimension(rem(20), rem(20));
           }
         }
 
-        .bottom_right button {
+        .bottom_right {
           @include flex(center, center, "", 0, 0);
           border-radius: rem(19);
           @include setDimension(rem(75), rem(35));
           background-color: #2b8ede;
-
-          & span {
-            color: #f4f8fd;
-            font-weight: 400;
-          }
+          color: #f4f8fd;
         }
       }
     }
 
     .right_items {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      @include flex("", "", column, 10, 0);
       flex-grow: 1;
-      padding-left: rem(30);
-      border-left: 1px solid #333f55;
-      height: rem(401);
+      padding: rem(28) 0 0 rem(20);
+      height: rem(408);
+      border-left: rem(1) solid #cccccc;
 
       .f18,
       .f14 {
@@ -746,8 +713,10 @@
         padding-top: rem(20);
       }
 
-      div {
-        height: rem(26);
+      h3,
+      span {
+        height: rem(29);
+        display: block;
       }
 
       span {
@@ -761,11 +730,11 @@
   }
 
   .dropdown-menu.show {
-    min-height: 410px !important;
-    min-width: 800px;
+    padding-top: 0;
+    @include minwidth_minheight(rem(800), rem(410));
     position: absolute;
-    inset: 0px auto auto 0px;
-    margin: 0px;
-    transform: translate(75px, 53px) !important;
+    inset: 0 auto auto 0;
+    margin: 0;
+    // transform: translate(75px, 53px) !important;
   }
 }
