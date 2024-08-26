@@ -2,52 +2,56 @@
 @import './variables';
 @import '../mixing';
 
-span{
 
-    &.small{
-
-    }
-
-    &.f12{
-        font-size: rem(12) !important;
-    }
-
-    &.f14{
-        font-size: rem(14);
-    }
-    &.f15{
-        font-size: rem(15);
-    }
-    &.f16{
-        font-size: rem(16);
-    }
-    &.f18{
-        font-size: rem(18);
-    }
-    &.f20{
-        font-size: rem(20);
-    }
-    &.f22{
-        font-size: rem(22);
-    }
-    &.f24{
-        font-size: rem(24);
-    }
-    &.f26{
-        font-size: rem(26);
-    }
-    &.f28{
-        font-size: rem(28);
-        cursor: pointer;
-    }
+.f12 {
+    font-size: rem(12) !important;
 }
 
-span i-feather{
-    &.f24{
-         @include setDimension(rem(18), rem(18));
+.f14 {
+    font-size: rem(14);
+}
+
+.f15 {
+    font-size: rem(15);
+}
+
+.f16 {
+    font-size: rem(16);
+}
+
+.f18 {
+    font-size: rem(18);
+}
+
+.f20 {
+    font-size: rem(20);
+}
+
+.f22 {
+    font-size: rem(22);
+}
+
+.f24 {
+    font-size: rem(24);
+}
+
+.f26 {
+    font-size: rem(26);
+}
+
+.f28 {
+    font-size: rem(28);
+    cursor: pointer;
+}
+
+ i-feather {
+    &.f24 {
+        color: var(--textColor-200);
+        @include setDimension(rem(18), rem(18));
+        @include flex(center,center,'',0,0);
     }
 
-    &.f10{
+    &.f10 {
         @include setDimension(rem(10), rem(10));
-   }
+    }
 }

@@ -6,13 +6,11 @@
 @import './Scss/mixing';
 
 *{
-    // padding: 0 !important;
-    // margin: 0;
     box-sizing: border-box !important;
 }
 
 .custome_radius{
-    border-radius: 18px;
+    border-radius: 18px !important;
 }
 
 .box_shadow{
@@ -22,18 +20,13 @@
      0 4px 6px var(--strongly-shadow);
 }
 
-
 .custome_border {
     border: 1px solid #afadad5d;
 }
 
-.sidebar_items {
-    background-color: transparent !important;
-}
-
 ::-webkit-scrollbar {
-    width:6px !important;
-    height: 1px !important;
+    width:6px;
+    height: 1px;
 }
 
 ::-webkit-scrollbar-thumb {
