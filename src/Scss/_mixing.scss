@@ -30,5 +30,5 @@
     height: rem($height);
     border-radius: 50%;
     background-color: $bg;
-    @include flex(center,center,'',0,0);
+    // @include flex(center,center,'',0,0);
 }

@@ -38,7 +38,6 @@ main {
                         // justify-content: center;
                         .card {
                             height: rem(365);
-
                             .card-body {
                                 height: 100%;
                                 overflow-y: auto;
@@ -50,11 +49,9 @@ main {
                         @include flex("", "", column, 0, 0);
                         background-color: var(--bg-high);
                         color: var(--textColor);
-
                         .f14 {
                             color: var(--textColor-200);
                         }
-
                         .details1_top,
                         .details1_bottom {
                             height: calc(755px / 2);
@@ -63,14 +60,17 @@ main {
                         .details1_top div {
                             .process_icon {
                                 @include rounded_icons(40, 40, #dffef3);
+                                @include flex(center,center,'',0,0);
                             }
 
                             .hold_icons {
                                 @include rounded_icons(40, 40, #fff6ea);
+                                @include flex(center,center,'',0,0);
                             }
 
                             .delivered_icon {
                                 @include rounded_icons(40, 40, #e1f5fa);
+                                @include flex(center,center,'',0,0);
                             }
                         }
 
@@ -119,20 +119,19 @@ main {
                             color: var(--textColor-200);
                         }
                     }
-
                     .payment_btn {
-                        background-color: #dffef3;
+                        background-color: var(--payment-bg);
                         padding: rem(3) rem(15);
                         border-radius: rem(16);
-                        border: rem(1) solid #14aa76;
-                        color: #14aa76;
+                        border: rem(1) solid var(--payment-textColor);
+                        color: var(--payment-textColor);
                     }
 
                     .rounded_shape {
                         @include rounded_icons(15, 15, transparent);
+                        @include flex(center,center,'',0,0);
                         border: 1px solid rgb(43, 142, 223);
                     }
-
                     .card {
                         background-color: var(--bg-high);
                         border: none;
@@ -145,6 +144,7 @@ main {
 
                         .items {
                             @include rounded_icons(40, 40, #e5f3fa);
+                            @include flex(center,center,'',0,0);
                             position: absolute;
                             border: 2px solid white;
 

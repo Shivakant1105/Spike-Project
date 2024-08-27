@@ -108,7 +108,7 @@
             cursor: pointer;
 
             .f12 {
-                padding: rem(10) 10px 10px 25px;
+                padding-left:rem(25);
                 color: var(--textColor-400);
             }
 
@@ -130,7 +130,6 @@
                         border-radius: 50%;
                     }
                 }
-
                 .outlined {
                     @include flex(end, "", "", 0, 0);
 
@@ -177,6 +176,7 @@
 
             img {
                 @include rounded_icons(40, 40, "");
+                @include flex(center,center,'',0,0);
             }
 
             .login_user {
