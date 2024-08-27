@@ -1,0 +1,34 @@
+@mixin flex($justify,$align,$direction,$gap,$padding){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    gap: rem($gap);
+    padding: rem($padding) !important;
+}
+
+
+@mixin font($fs,$fw,$lineH){
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lineH;
+}
+
+@mixin setDimension($width, $height){
+    width: $width;
+    height: $height;
+}
+
+@mixin hover($radius,$bg,$textColor){
+    border-radius: $radius;
+    background-color: $bg;
+    color: $textColor;
+}
+
+@mixin rounded_icons($width,$height,$bg){
+    width: rem($width) !important;
+    height: rem($height);
+    border-radius: 50%;
+    background-color: $bg;
+    @include flex(center,center,'',0,0);
+}

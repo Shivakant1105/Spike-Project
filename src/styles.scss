@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import './Scss/function';
+@import './Scss/base/index';
+@import './Scss/mixing';
+
+*{
+    box-sizing: border-box !important;
+}
+
+.custome_radius{
+    border-radius: rem(18) !important;
+}
+
+.box_shadow{
+     box-shadow:  
+     0 1px 3px var(--inline-shadow),   
+     0 1px 2px var(--outline-shadow),  
+     0 4px 6px var(--strongly-shadow);
+}
+a {
+    text-decoration: none !important;
+}
+
+.custome_border {
+    border: 1px solid #afadad5d;
+}
+
+::-webkit-scrollbar {
+    width:6px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--sidebar-hover-bg);
+    border-radius: 10px;
+}
+
+.light-theme:has(.light_img) .light-logo{
+   display: none;
+}
+.dark-theme:has(.dark_img) .dark-logo{
+    display: none;
+}

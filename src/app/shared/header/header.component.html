@@ -1,1 +1,83 @@
-<p>header works!</p>
+<div class="header_container  col-md-12">
+    <div class="header_body rounded-4 shadow d-flex justify-content-between align-items-center p-3">
+
+        <div class="header_left_container d-flex gap-1 align-items-center">
+            <div class="header_left_logo">
+
+                <!-- for the menubar on expand and close -->
+                <i-feather id="hover_sidebar" class="d-none d-lg-block d-xl-block"  name="align-left"></i-feather>
+
+                <!-- for the offcanvas in small device -->
+                <i-feather id="offcanvas_sidebar" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" class="d-block d-xl-none d-lg-none" name="align-left"></i-feather>
+            </div>
+
+            <div class="d-none d-lg-block">
+                <div class="d-flex gap-0 align-items-center apps_icon_conatiner">
+                    <button class="d-flex align-items-center" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal2">Apps</button>
+                    <i-feather name="chevron-down"></i-feather>
+                </div>
+            </div>
+
+            <div class="d-none d-lg-block"><button class="d-flex align-items-center ">Chat</button></div>
+            <div class="d-none d-lg-block"><button class="d-flex align-items-center ">Calender</button></div>
+            <div class="d-none d-lg-block"><button class="d-flex align-items-center ">Email</button></div>
+        </div>
+
+        <div class="header_right_container d-flex align-items-center gap-2">
+
+            <div class="d-none d-lg-block d-xl-block" type="button" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                <div class="search_container d-flex align-items-center ">
+                    <div class="search_icon d-flex align-items-center">
+                        <i-feather class="seachlogo" name="search"></i-feather>
+                    </div>
+
+                    <div class="seach"> <input type="text" placeholder="Try to Searching..."></div>
+
+                </div>
+            </div>
+
+            <div class="d-none d-lg-none d-xl-none d-xxl-none d-sm-block d-md-block">
+                <i-feather name="grid" class="icon_menu"></i-feather>
+            </div>
+
+            <div class="country_logo icons" data-bs-toggle="modal" data-bs-target="#exampleModal"><img
+                    src="../../../assets/united-states.png" alt=""></div>
+
+            <div class="icons"><i-feather name="message-square" class="icon" class="d-flex"></i-feather></div>
+
+            <div class="icons"><i-feather name="grid" class="icon" class="d-flex"></i-feather></div>
+
+            <div class="user_admin d-flex align-items-center gap-3 rounded-5">
+
+                <div class="admin_image">
+                    <img src="../../../assets/user.jpg" alt="user image">
+                </div>
+
+                <div class="d-none d-lg-block">
+                    <div class="d-flex flex-column mike_admin">
+                        <div>
+                            <h5 class="mike_nielsen text-nowrap">Mike Nielsen</h5>
+                        </div>
+                        <div><span class="admin_name">Admin</span></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- for the sidebar canvas -->
+    <div class="offcanvas offcanvas-start border-0 shadow-none " data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        
+        <div class="offcanvas-body border-0 shadow-none">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+</div>

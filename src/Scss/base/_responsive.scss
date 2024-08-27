@@ -1,0 +1,48 @@
+$mobile: 360px;
+$tablet: 768px;
+$large: 1024px;
+$desktop: 1280px;
+$largeDesktop: 1920px;
+
+// --------------- MEDIA QUERY ------------------------
+@mixin width-range($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+// common before large device
+@include width-range(0px, $large - 1px) {
+  main {
+    padding-top: 0 !important;
+
+    aside {
+      display: none !important;
+    }
+  }
+
+}
+
+@include width-range(0px, $desktop - 1px) {
+
+  .details1,
+  .details2,
+  .dashboard_details_items {
+    width: 100% !important;
+    // .card{
+    //   height: auto;
+    //   width: 100%;
+
+    //   .card_body{
+    //     max-width: 100%;
+    //     max-height: 100%;
+    //   }
+    // }
+  }
+
+  .dashboard_details {
+    flex-wrap: wrap;
+  }
+
+
+}
