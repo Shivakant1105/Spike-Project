@@ -9,7 +9,6 @@
     @include setDimension(270px, calc(100vh - 32px));
     background-color: var(--bg-high);
     color: var(--textColor);
-    overflow: hidden;
 
     %sidebar_menu_hover {
         &:hover::after {
