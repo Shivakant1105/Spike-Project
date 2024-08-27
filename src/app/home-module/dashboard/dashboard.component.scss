@@ -36,7 +36,7 @@ main {
                     .dashboard_details_items {
                         margin-bottom: rem(10);
                         height: auto;
-                        gap: 20px;
+                        gap: rem(20);
 
                         // justify-content: center;
                         .card {
@@ -55,14 +55,14 @@ main {
                         background-color: var(--bg-high);
                         color: var(--textColor);
 
-                        span.f14 {
+                        .f14 {
                             color: var(--textColor-200);
                         }
 
                         .details1_top,
                         .details1_bottom {
 
-                            height: calc(755px / 2) !important;
+                            height: calc(755px / 2);
                         }
 
                         .details1_top div {
@@ -85,7 +85,7 @@ main {
 
                         select,
                         option {
-                            color: var(--textColor) !important;
+                            color: var(--textColor);
                         }
 
                         option {
@@ -118,11 +118,11 @@ main {
                     header {
                         background-color: transparent;
 
-                        span.f18 {
+                        .f18 {
                             color: var(--textColor);
                         }
 
-                        span.f12 {
+                        .f12 {
                             color: var(--textColor-200);
                         }
                     }
@@ -153,25 +153,22 @@ main {
                         .items {
                             @include rounded_icons(40, 40, #e5f3fa);
                             position: absolute;
+                            border: 2px solid white;
 
                             &:nth-child(2) {
                                 left: rem(34);
-                                border: 2px solid white;
                             }
 
                             &:nth-child(3) {
                                 left: rem(67);
-                                border: 2px solid white;
                             }
 
                             &:nth-child(4) {
                                 left: rem(95);
-                                border: 2px solid white;
                             }
 
                             &:nth-child(5) {
                                 left: rem(127);
-                                border: 2px solid white;
                                 z-index: 1;
                                 cursor: pointer;
                             }

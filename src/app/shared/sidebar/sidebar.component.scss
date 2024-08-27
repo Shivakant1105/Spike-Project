@@ -1,22 +1,22 @@
-@import '../../../Scss/function';
-@import '../../../Scss/base/index';
-@import '../../../Scss/mixing';
+@import "../../../Scss/function";
+@import "../../../Scss/base/index";
+@import "../../../Scss/mixing";
 
 .sidebar_container {
-    @include flex('', '', column, 0, 0);
+    @include flex("", "", column, 0, 0);
 
     margin: rem(16) !important;
-        @include setDimension(270px,calc(100vh - 32px));
-        background-color: var(--bg-high);
-        color: var(--textColor);
-        overflow: hidden;
+    @include setDimension(270px, calc(100vh - 32px));
+    background-color: var(--bg-high);
+    color: var(--textColor);
+    overflow: hidden;
 
     %sidebar_menu_hover {
         &:hover::after {
             animation: animate 0.5s alternate;
-            @include setDimension(97%,100%);
+            @include setDimension(97%, 100%);
             position: absolute;
-            content: '';
+            content: "";
             background-color: var(--sidebar-hover-bg);
             top: 0;
             left: 0;
@@ -29,6 +29,7 @@
     %accordion_style {
         .accordion-item {
             background-color: var(--bg-high);
+
             .wrapper {
                 width: 100%;
                 position: relative;
@@ -37,36 +38,29 @@
                 @extend %sidebar_menu_hover;
 
                 .accordion-button1 {
-                    width: 97% !important;                  
+                    width: 97% !important;
+
                     &::after {
-                        width: 30 !important;
-                        height: auto;
-                        content: '〱';
+                        content: "〱";
                         color: var(--textColor) !important;
                         position: absolute;
                         left: 80%;
                         transform: rotate(90deg);
                         transition: 0.9s ease-in-out;
                     }
-                    &.collapsed{
+
+                    &.collapsed {
                         background-color: unset;
                     }
+
                     &.collapsed::after {
-                        width: 30 !important;
-                        height: auto;
-                        content: '〱';
+                        content: "〱";
                         color: var(--textColor) !important;
                         position: absolute;
                         left: 80%;
                         transform: rotate(-90deg);
                         transition: 0.9s ease-in-out;
                     }
-
-                   
-
-                    
-
-
                 }
 
                 button {
@@ -84,19 +78,14 @@
                             color: var(--textColor);
                         }
                     }
-
-
                 }
             }
 
             .accordion-collapse {
                 .accordion-body {
-                    // padding-left: rem(16);
-
                     ul li {
                         padding: rem(16);
                         padding-top: 0;
-                        // background-color: red;
                         margin-bottom: rem(6);
 
                         &:hover span {
@@ -106,10 +95,7 @@
                         &::marker {
                             color: var(--textColor);
                         }
-
                     }
-
-
                 }
             }
         }
@@ -118,23 +104,22 @@
     .side_header {
         @include setDimension(100%, 80px);
         min-height: rem(80);
-        @include flex(center, center, '', 2, 0);
+        @include flex(center, center, "", 2, 0);
 
-        button{
+        button {
             color: var(--textColor);
         }
-
     }
 
     .side_overview {
         flex-grow: 1;
         margin-bottom: rem(30);
         overflow-y: auto;
-        @include flex('', '', column, 0, 0);
+        @include flex("", "", column, 0, 0);
 
         .home_menu_container {
             @include setDimension(100%, auto);
-            @include flex('', '', column, 0, 0);
+            @include flex("", "", column, 0, 0);
             margin-bottom: rem(10);
             cursor: pointer;
 
@@ -145,28 +130,29 @@
             }
 
             .home_menu_items {
-
-                @include flex('',center,'',10,15);
+                @include flex("", center, "", 10, 15);
                 width: 100%;
                 position: relative;
                 z-index: 1;
                 padding-left: rem(25) !important;
                 @extend %sidebar_menu_hover;
 
-                .chip_box{
-                    @include flex(end,center,'',0,1);
-                   span{
-                    @include flex(center,center,'',0,0);
-                    color: white;
-                      @include setDimension(23px,23px);
-                      background-color: var(--chip-menu_bg);
-                      border-radius: 50%;
-                   };
+                .chip_box {
+                    @include flex(end, center, "", 0, 1);
+
+                    span {
+                        @include flex(center, center, "", 0, 0);
+                        color: white;
+                        @include setDimension(23px, 23px);
+                        background-color: var(--chip-menu_bg);
+                        border-radius: 50%;
+                    }
                 }
 
-                .outlined{
-                    @include flex(end,'','',0,0);
-                    span{
+                .outlined {
+                    @include flex(end, "", "", 0, 0);
+
+                    span {
                         padding: rem(4) rem(6) !important;
                         border-radius: rem(20);
                         color: var(--outlined-btn-text);
@@ -176,14 +162,14 @@
             }
 
             .dash1 .f15 {
-                color: #3993e0 !important;
+                color: #3993e0;
             }
 
             .f15 {
                 color: var(--textColor-200);
             }
 
-            .disabled_menu{
+            .disabled_menu {
                 color: var(--textColor-400);
             }
 
@@ -191,7 +177,7 @@
                 @extend %accordion_style;
             }
 
-            span .sidebar{
+            span .sidebar {
                 transform: rotate(90deg);
             }
         }
@@ -199,23 +185,23 @@
 
     .side_footer {
         @include setDimension(100%, 80px);
-        @include flex(center, center, '', 0, 0);
-
+        @include flex(center, center, "", 0, 0);
 
         .wrapper {
-            @include flex(space-evenly,center,'',0,0);
+            @include flex(space-evenly, center, "", 0, 0);
             margin-bottom: rem(32);
             background-color: var(--header-footer);
-            min-width:rem(230);
+            min-width: rem(230);
+
             img {
-                @include rounded_icons(40,40,'');
+                @include rounded_icons(40, 40, "");
             }
+
             .login_user {
                 @include flex(center, center, column, 1, 0);
             }
         }
     }
-
 }
 
 @keyframes animate {
@@ -228,41 +214,34 @@
     }
 }
 
-
-// sidebar 
-.hover_sidecontainer{
+// sidebar
+.hover_sidecontainer {
     width: rem(80);
-    .side_header{
-        .dark-logo , .light-logo{
-            // display: none;
-        }
 
-        #small_logo{
-            display: block !important;
+    .side_header {
+        #small_logo {
+            display: block;
         }
     }
-     .side_footer{
+
+    .side_footer {
         display: none;
     }
 
-    .side_overview{
-        span{
-            &.f15{
-                display: none !important;
+    .side_overview {
+        span {
+            &.f15 {
+                display: none;
             }
         }
     }
 
-  .home_menu_items{
-      justify-content: center !important;
-  }
-
-    &:hover{
-       width: rem(250);
-       transition: 0.3s ease-in-out;
-
+    .home_menu_items {
+        justify-content: center;
     }
 
-    
-
+    &:hover {
+        width: rem(250);
+        transition: 0.3s ease-in-out;
+    }
 }
