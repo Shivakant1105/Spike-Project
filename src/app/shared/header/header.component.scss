@@ -531,3 +531,8 @@
     }
   }
 }
+
+.offcanvas-start{
+  @include setDimension(auto,100vh);
+  background-color: transparent;
+}
