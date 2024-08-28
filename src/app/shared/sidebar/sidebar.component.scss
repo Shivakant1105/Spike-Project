@@ -1,19 +1,25 @@
-@import '../../../Scss/function';
-@import '../../../Scss/base/index';
-@import '../../../Scss/mixing';
+@import "../../../Scss/function";
+@import "../../../Scss/base/index";
+@import "../../../Scss/mixing";
 
 .sidebar_container {
-    @include setDimension(100%, 100%);
-    @include flex('', '', column, 0, 0);
+    @include flex("", "", column, 0, 0);
+    margin: rem(16);
+    margin-right: 0;
+    @include setDimension(270px, calc(100vh - 32px));
+    background-color: var(--bg-high);
+    color: var(--textColor);
+
+    ul {
+        font-size: rem(15);
+    }
 
     %sidebar_menu_hover {
         &:hover::after {
             animation: animate 0.5s alternate;
-            width: 97%;
-            height: 100%;
+            @include setDimension(97%, 100%);
             position: absolute;
-            content: '';
-            display: flex;
+            content: "";
             background-color: var(--sidebar-hover-bg);
             top: 0;
             left: 0;
@@ -35,66 +41,43 @@
                 @extend %sidebar_menu_hover;
 
                 .accordion-button1 {
-                    width: 97% !important;                  
                     &::after {
-                        width: 30 !important;
-                        height: auto;
-                        content: '〱';
-                        color: var(--textColor) !important;
+                        content: "〱";
+                        color: var(--textColor);
                         position: absolute;
                         left: 80%;
                         transform: rotate(90deg);
                         transition: 0.9s ease-in-out;
                     }
-                    &.collapsed{
-                        background-color: unset;
-                    }
+
                     &.collapsed::after {
-                        width: 30 !important;
-                        height: auto;
-                        content: '〱';
-                        color: var(--textColor) !important;
+                        content: "〱";
+                        color: var(--textColor);
                         position: absolute;
                         left: 80%;
                         transform: rotate(-90deg);
                         transition: 0.9s ease-in-out;
                     }
-
-                   
-
-                    
-
-
                 }
 
                 button {
-                    background-color: transparent;
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
+                    @include flex('', center, row, 10, 16);
                     background-color: transparent;
                     border: none;
                     outline: none;
                     box-shadow: none;
 
-                    span {
-                        i-feather {
-                            color: var(--textColor);
-                        }
+                    i-feather {
+                        color: var(--textColor);
                     }
-
-
                 }
             }
 
             .accordion-collapse {
                 .accordion-body {
-                    // padding-left: rem(16);
-
                     ul li {
                         padding: rem(16);
                         padding-top: 0;
-                        // background-color: red;
                         margin-bottom: rem(6);
 
                         &:hover span {
@@ -104,10 +87,7 @@
                         &::marker {
                             color: var(--textColor);
                         }
-
                     }
-
-
                 }
             }
         }
@@ -116,76 +96,62 @@
     .side_header {
         @include setDimension(100%, 80px);
         min-height: rem(80);
-        @include flex(center, center, '', 2, 0);
-
+        @include flex(center, center, "", 2, 0);
     }
 
     .side_overview {
         flex-grow: 1;
         margin-bottom: rem(30);
         overflow-y: auto;
-        @include flex('', '', column, 0, 0);
 
         .home_menu_container {
-            @include setDimension(100%, auto);
-            @include flex('', '', column, 0, 0);
             margin-bottom: rem(10);
             cursor: pointer;
 
-            span.f12 {
-                padding: rem(10);
-                padding-left: rem(25) !important;
+            .f12 {
+                padding-left:rem(25);
                 color: var(--textColor-400);
             }
 
             .home_menu_items {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: rem(15);
-                width: 100%;
+                @include flex("", center, "", 10, 15);
                 position: relative;
                 z-index: 1;
                 padding-left: rem(25) !important;
-                // Hover
                 @extend %sidebar_menu_hover;
 
-                .chip_box{
-                    @include flex(end,center,'',0,1);
-                   span{
-                    @include flex(center,center,'',0,1);
-                    color: white;
-                      @include setDimension(23px,23px);
-                      background-color: var(--chip-menu_bg);
-                      border-radius: 50%;
-                   };
-                }
+                .chip_box {
+                    @include flex(end, center, "", 0, 1);
 
-                .outlined{
-                    display: flex;
-                    justify-content: end;
-                    span{
-                        width: auto;
-                        height: 100%;
-                        @include flex(center,center,'',0,1);
-                        padding: rem(4) rem(6) !important;
+                    span {
+                        @include flex(center, center, "", 0, 0);
+                        color: white;
+                        @include setDimension(23px, 23px);
+                        background-color: var(--chip-menu_bg);
+                        border-radius: 50%;
+                    }
+                }
+                .outlined {
+                    @include flex(end, "", "", 0, 0);
+
+                    span {
+                        padding: rem(4) rem(6);
                         border-radius: rem(20);
                         color: var(--outlined-btn-text);
                         border: 1px solid var(--outlined-btn);
-
                     }
                 }
             }
 
             .dash1 .f15 {
-                color: #3993e0 !important;
+                color: #3993e0;
             }
 
             .f15 {
                 color: var(--textColor-200);
             }
 
-            .disabled_menu{
+            .disabled_menu {
                 color: var(--textColor-400);
             }
 
@@ -193,43 +159,64 @@
                 @extend %accordion_style;
             }
 
-            span .sidebar{
+            span .sidebar {
                 transform: rotate(90deg);
-                // margin-left: 5px
             }
-
-         
-
-
         }
     }
 
     .side_footer {
         @include setDimension(100%, 80px);
-        @include flex(center, center, '', 0, 0);
-
+        @include flex(center, center, "", 0, 0);
 
         .wrapper {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
+            @include flex(space-evenly, center, "", 0, 0);
             margin-bottom: rem(32);
             background-color: var(--header-footer);
+            min-width: rem(230);
 
             img {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
+                @include rounded_icons(40, 40, "");
+                @include flex(center,center,'',0,0);
             }
 
             .login_user {
                 @include flex(center, center, column, 1, 0);
             }
         }
+    }
+}
 
+// sidebar
+.hover_sidecontainer {
+    width: rem(80);
 
+    .side_header {
+        #small_logo {
+            display: block;
+        }
     }
 
+    .side_footer {
+        display: none;
+    }
+
+    .side_overview {
+        span {
+            &.f15 {
+                display: none;
+            }
+        }
+    }
+
+    .home_menu_items {
+        justify-content: center;
+    }
+
+    &:hover {
+        width: rem(250);
+        transition: 0.3s ease-in-out;
+    }
 }
 
 @keyframes animate {

@@ -5,170 +5,38 @@
 
 //  Search modal
 .modal_dialogs {
-  margin-top: 6.5rem !important;
-
+  margin-top: 6.5rem;
   .modal_contents {
-    background-color: var(--header-search-modal-bg) !important;
-
+    background-color: var(--header-search-modal-bg);
+    color: var(--textColor);
     .modal_header {
       padding-bottom: rem(14);
       padding-right: rem(30);
-      border-bottom: 1px solid var(--input-modal-outline-color) !important;
+      .input_filed {
+        input {
+          border-radius: rem(20);
+          padding-left: rem(17);
+          border: 1px solid var(--input-modal-outline-color);
+          background-color: var(--modal-input-bg);
+          color: var(--textColor);
 
-      .input_filed_container {
-        @include flex("", center, "", 0, 0);
-        width: 100% !important;
-        gap: rem(16);
-
-        .input_filed {
-          width: 100%;
-
-          input {
-            outline: none;
-            box-shadow: none;
-            padding: rem(15) !important;
-            border-radius: rem(20);
-            padding-left: rem(17) !important;
-            border: 1px solid var(--input-modal-outline-color);
-            background-color: var(--modal-input-bg);
-            color: var(--textColor) !important;
-
-            &::placeholder {
-              color: var(--modal-input-palceholder-color);
-              font-weight: 500;
-            }
-
-            &:focus {
-              border: 1px solid var(--input-modal-outline-color);
-            }
-          }
-        }
-      }
-    }
-
-    .search_modal_body {
-      min-height: rem(552);
-      max-height: rem(350);
-      overflow-y: auto !important;
-      width: rem(492);
-      padding-left: rem(20) !important;
-
-      & span.f18 {
-        color: var(--textColor);
-      }
-
-      .list_container {
-        @include flex("end", "center", column, 0, 0);
-        height: rem(65);
-        cursor: pointer;
-
-        .list_items_container {
-          @include flex("", "center", column, 4, 0);
-
-          & span.f14 {
-            color: var(--textColor);
-          }
-
-          & span.f12 {
-            color: var(--textColor-200);
+          &::placeholder {
+            color: var(--modal-input-palceholder-color);
             font-weight: 500;
           }
         }
       }
     }
-  }
-}
-
-.search_modal_body::-webkit-scrollbar {
-  width: 6px;
-  height: 1px;
-}
-
-.search_modal_body::-webkit-scrollbar-thumb {
-  background-color: #bbb9b9;
-  border-radius: 10px;
-}
-
-// Apps Model
-.modal_dialog {
-  position: relative;
-  top: 6%;
-
-  .app_modal_header {
-    position: absolute;
-    left: -30%;
-    @include setDimension(rem(729), rem(600));
-
-    & button {
-      box-shadow: none;
-    }
-
-    .App_modal_body {
-      @include flex("", "", "", 10, 0);
-      background-color: #ffffff;
-      width: rem(706);
-
-      .items {
-        flex-grow: 1;
-        background-color: rgb(235, 200, 235);
-        padding: rem(12) !important;
-
-        &:first-child {
-          border-bottom-left-radius: rem(8);
-        }
+    .search_modal_body {
+      p {
+        padding: 0;
+        margin: 0;
       }
-
-      .items_last {
-        width: rem(236.33);
-        background-color: rgb(235, 200, 235);
-        border-bottom-right-radius: rem(8);
-      }
-    }
-  }
-}
-
-// Country Modal dialogs
-.country_modal_dialogs {
-  width: rem(100);
-
-  .modal_content {
-    @include flex(center, center, "", 0, 0);
-    @include setDimension(rem(114), rem(206));
-
-    .modal_body {
-      width: 100%;
-      @include flex("", "", column, 0, 0);
-
-      .first {
-        margin: 16px 0 0 0 !important;
-        border-top-left-radius: rem(3) !important;
-        border-top-right-radius: rem(3) !important;
-      }
-    }
-
-    .country_logo_container {
-      @include setDimension("", rem(40));
-      @include flex(space-between, center, "", 12, 0);
-      padding: 0 rem(12) !important;
-      transition: background-color 0.3s ease-in-out;
-
-      .English {
-        margin-right: rem(4);
-      }
-
-      & span {
-        font-weight: 500;
-        color: var(--textColor);
-      }
-
-      & img {
-        width: 20px;
-      }
-
-      &:hover {
-        background-color: var(--header-hover-bg);
-        cursor: pointer;
-      }
+      min-height: rem(552);
+      max-height: rem(350);
+      overflow-y: auto;
+      width: rem(492);
+      padding-left: rem(16);
     }
   }
 }

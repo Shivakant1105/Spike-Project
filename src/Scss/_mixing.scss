@@ -24,7 +24,7 @@
   height: $height;
 }
 
-@mixin hover($radius, $bg, $textColor) {
+@mixin hover($radius, $bg, $textColor:$textColor) {
   border-radius: $radius;
   background-color: $bg;
   color: $textColor;
@@ -35,9 +35,6 @@
   height: rem($height);
   border-radius: 50%;
   background-color: $bg;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @mixin outline_border($border, $outline) {

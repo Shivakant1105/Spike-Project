@@ -4,180 +4,160 @@
 @import "../../../Scss/mixing";
 @import "../../../Scss/base/variables";
 
-.header_container {
-  display: flex;
-  @include setDimension(100%, 100%);
-  .header_body {
-    @include setDimension(100%, rem(70));
-    @include flex(space-between, center, "", 0, 16);
-    background-color: var(--bg-high);
+%hover_circle_shape {
+  border-radius: 50%;
+  background-color: var(--sidebar-hover-bg);
+}
+%ifather_circle_shape {
+  position: absolute;
+  @include rounded_icons(50, 50, "");
+  content: "";
+  z-index: -1;
+}
 
-    .header_left_container {
-      @include flex(space-between, center, "", 4, 0);
-      & button {
-        display: flex !important;
-        @include outline_border(none, none);
-        background-color: transparent;
-        font-size: rem(15);
-        color: var(--textColor);
-        font-weight: 500;
-        height: rem(40);
-        padding: rem(16);
-
-        &:hover {
-          background-color: var(--sidebar-hover-bg);
-          border-radius: rem(25);
-          cursor: pointer;
-        }
-      }
-
-      .apps_icon_conatiner {
-        width: rem(82);
-        border-radius: rem(26);
-        @include flex(center, center, "", 8, 0);
-
-        & button {
-          @include flex("", center, "", 0, 0);
-        }
-        & i-feather {
-          @include setDimension(rem(16), rem(16));
-          @include flex(center, center, "", 0, 0);
-          cursor: pointer;
-        }
-
-        &:hover {
-          background-color: var(--sidebar-hover-bg);
-        }
-      }
-
-      .header_left_logo {
-        @include setDimension(rem(48), rem(48));
-        @include flex(center, center, "", 0, 0);
-        cursor: pointer;
-
-        &:hover {
-          background-color: var(--sidebar-hover-bg);
-          border-radius: 50%;
-        }
-      }
-
-      .chat_button,
-      .calender_button,
-      .email_button {
-        @include flex(center, center, "", 0, 15);
-      }
-    }
+%shortcut_hover {
+  height: rem(130);
+  transition: background-color 0.3s ease-in-out;
+  min-width: rem(150);
+  @include flex(center, center, column, 5, 0);
+  &:hover {
+    background-color: var(--shortcuts-hover-bg);
+    cursor: pointer;
   }
 }
 
-.header_right_container {
-  float: end;
-  @include flex("", center, "", 8, 0);
+.header_body {
+  @include flex(space-between, center, "", 0, 16);
+  background-color: var(--bg-high);
 
-  .search_container {
-    border: rem(1) solid #ccc;
-    border-radius: rem(20);
-    @include flex("", center, "", 4, 14);
-    cursor: pointer;
-    @include setDimension(rem(180), rem(38));
-
-    &:hover {
-      background-color: var(--sidebar-hover-bg);
+  .header_left_container {
+    margin-left: rem(10);
+    .menu {
+      z-index: 1;
+      cursor: pointer;
+      @include flex(center, center, "", 0, 0);
+      &:hover::after {
+        @extend %ifather_circle_shape;
+        background-color: var(--sidebar-hover-bg);
+      }
     }
 
-    .seachlogo {
-      @include setDimension(rem(20), rem(20));
-      @include flex("", center, "", 0, 0);
-    }
-
-    .search_icon {
-      @include flex("", center, "", 0, 0);
-    }
-
-    .search {
+    @include flex("", center, "", 10, 0);
+    & button {
       @include outline_border(none, none);
-      padding: rem(5) !important;
-      border-radius: rem(20);
       background-color: transparent;
-    }
-    & input::placeholder {
       font-size: rem(15);
       color: var(--textColor);
+      height: rem(40);
+      padding: rem(16);
+    }
+    .header_item {
+      padding: rem(10);
+      &:hover {
+        @include hover(rem(25), var(--sidebar-hover-bg), "");
+        cursor: pointer;
+      }
+    }
+    .header_left_logo {
+      @include setDimension(rem(48), rem(48));
+      @include flex(center, center, "", 0, 0);
+      cursor: pointer;
+      &:hover {
+        @extend %hover_circle_shape;
+      }
+    }
+    .apps_nav {
+      width: rem(82);
+      border-radius: rem(26);
+      @include flex(center, center, "", 8, 0);
+
+      & button {
+        @include flex("", center, "", 0, 0);
+      }
+      & i-feather {
+        @include setDimension(rem(16), rem(16));
+        @include flex(center, center, "", 0, 0);
+        cursor: pointer;
+      }
+
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
     }
   }
 
-  & .icon {
-    cursor: pointer;
-    @include setDimension(rem(22), rem(22));
-  }
+  .header_right_container {
+    @include flex("", center, "", 8, 0);
+    .search_container {
+      border-radius: rem(20);
+      @include flex("", center, "", 4, 14);
+      cursor: pointer;
+      @include setDimension(rem(180), rem(38));
 
-  .icon_menu {
-    @include setDimension(rem(22), rem(22));
-  }
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
 
-  .user_admin {
-    @include setDimension(auto, rem(48));
-    @include flex("", center, "", 12, 0);
-    padding: rem(26) rem(18) !important;
-    cursor: pointer;
+      .seachlogo {
+        @include setDimension(rem(20), rem(20));
+        @include flex("", center, "", 0, 0);
+      }
+    }
+    .user_admin {
+      @include setDimension(auto, rem(48));
+      @include flex("", center, "", 12, 0);
+      cursor: pointer;
 
-    &:hover {
-      background-color: var(--sidebar-hover-bg);
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
+
+      .admin_image {
+        @include setDimension(rem(40), rem(40));
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .mike_admin .mike_nielsen {
+        color: var(--textColor);
+        font-size: rem(16);
+      }
+
+      .admin_name {
+        font-size: rem(14);
+        margin-top: rem(-5);
+      }
     }
 
-    .admin_image {
-      @include setDimension(rem(40), rem(40));
-      object-fit: cover;
+    .country_logo {
+      @include setDimension(rem(21), rem(21));
       border-radius: 50%;
-    }
-
-    .mike_admin .mike_nielsen {
-      color: var(--textColor);
-      font-size: rem(16);
-      font-weight: 600;
-    }
-
-    .admin_name {
-      font-size: rem(14);
-      margin-top: rem(-5);
-      display: block;
-    }
-  }
-
-  .country_logo {
-    @include setDimension(rem(21), rem(21));
-    border-radius: 50%;
-    overflow: hidden;
-    @include flex("center", center, "", 0, 0);
-
-    & button {
+      overflow: hidden;
       @include flex("center", center, "", 0, 0);
-      background-color: transparent;
-      @include outline_border(none, none);
+
+      & button {
+        @include flex("center", center, "", 0, 0);
+        background-color: transparent;
+        @include outline_border(none, none);
+      }
     }
-  }
-  .country_logo img {
-    @include setDimension(rem(22), rem(22));
-    display: block;
-  }
+    .country_logo img {
+      @include setDimension(rem(22), rem(22));
+    }
 
-  .icons {
-    @include flex(center, center, "", 0, 0);
-    @include setDimension(rem(48), rem(48));
-    border-radius: 50%;
-
-    &:hover {
-      background-color: var(--sidebar-hover-bg);
+    .icons {
+      @include flex(center, center, "", 0, 0);
+      @include rounded_icons(48, 48, "");
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
     }
   }
 }
 
 .country_items_container {
   flex-direction: column;
-
   .name_country_logo {
-    height: rem(45);
-    margin-top: rem(5) !important;
     @include flex(center, center, "", 18, 0);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -195,17 +175,6 @@
     border-bottom-left-radius: rem(20);
     border-bottom-right-radius: rem(20);
   }
-}
-
-.dropdown-menu.show {
-  display: block;
-  height: rem(210);
-  min-width: rem(116);
-  border-radius: rem(20);
-  background-color: var(--bg-high);
-  color: var(--textColor);
-  font-weight: 500;
-  transform: translate(rem(909), rem(53));
 }
 
 .dropdown-toggle::after {
@@ -234,17 +203,11 @@
 
     .name_message {
       @include flex("", "", column, 5, 0);
-      & div:first-child {
-        font-weight: 600;
-      }
+      margin-bottom: rem(19);
 
-      & div:last-child {
-        font-weight: 400;
+      span:first-child {
+        font-weight: bold;
       }
-    }
-
-    .message_weight {
-      font-weight: 600;
     }
     .message_new_btn {
       @include setDimension(rem(53), rem(24));
@@ -261,9 +224,8 @@
     .btn_body {
       @include setDimension(rem(294), rem(36));
       background-color: #2b8ede;
-      border-radius: rem(18);
       margin-top: rem(10);
-
+      color: var(--header-footer);
       @include flex(center, center, "", 0, 0);
       cursor: pointer;
     }
@@ -271,60 +233,39 @@
 
   .message_items:not(:first-child):hover {
     background-color: var(--sidebar-hover-bg);
-    border-radius: rem(2);
   }
 
   .dropdown-menu.show {
-    min-height: 533px;
-    min-width: 360px;
-    position: absolute;
-    inset: 0px auto auto 0px;
-    margin: 0px;
-    transform: translate(662px, 55px) !important;
+    border: none;
+    color: var(--textColor-200);
+    @include minwidth_minheight(rem(360), rem(533));
+    transform: translate(662px, 55px);
   }
 }
-
 // User Profile
 .User_profile_container {
   .user_items_body {
     @include flex("", "", column, 10, 0);
     padding-left: rem(20);
 
-    .user_profile_item1 {
-      .f18 {
-        font-weight: 500;
-      }
-    }
-
     .user_profile_item2 {
       height: rem(128);
-      margin-bottom: rem(12);
       @include flex(flex-start, center, "", 25, 0);
       border-bottom: rem(1) solid #cccccc;
       cursor: pointer;
-      // margin-top: rem(11);
 
       .user_details {
         @include flex("", "", column, 5, 0);
-
         & div {
           @include flex("", center, "", 0, 0);
         }
-
-        .f14 {
-          color: #b0bcd3;
-        }
-
         i-feather {
           display: flex;
           @include setDimension(rem(16), rem(16));
-          color: #b0bcd3;
         }
       }
-
       & img {
-        @include setDimension(rem(100), rem(100));
-        border-radius: 50%;
+        @include rounded_icons(100, 100, "");
       }
     }
 
@@ -332,7 +273,6 @@
       height: rem(70);
       @include flex(flex-start, center, "", 30, 0);
       cursor: pointer;
-
       .user_profile {
         @include flex("", "", column, 0, 0);
       }
@@ -342,7 +282,6 @@
         @include setDimension(rem(50), rem(50));
         border-radius: rem(14);
         background-color: var(--user-profile-icon-bg);
-
         i-feather {
           @include setDimension(rem(16), rem(27));
           color: #0085db;
@@ -352,7 +291,6 @@
       .Inbox_icon {
         @extend .profile_icon;
         background-color: var(--user-inbox-icon-bg);
-
         i-feather {
           @include setDimension(rem(16), rem(27));
           color: #338965;
@@ -375,87 +313,67 @@
       @include setDimension(rem(293), rem(36));
       background-color: #0085db;
       border-radius: rem(18);
-      color: #ffffff;
+      color: var(--white);
       cursor: pointer;
     }
   }
-
   .dropdown-menu.show {
     @include minwidth_minheight(rem(360), rem(512));
-    position: absolute;
-    inset: 0 auto auto 0;
-    margin: 0px;
-    transform: translate(-11px, 65px) !important;
+    transform: translate(-11px, 65px);
   }
 }
-
 // Shortcut Icon Modal
 .shortcut_icon_container {
+  i-feather {
+    position: relative;
+    @include flex(center, center, "", 0, 0);
+    &.invoice:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--invoce-icon-bg);
+    }
+
+    &.chat:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--chat-icon-bg);
+    }
+    &.contact:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--contact-icon-bg);
+    }
+    &.mail:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--email-icon-bg);
+    }
+    &.todo:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--todo-icon-bg);
+    }
+    &.calander:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--calender-icon-bg);
+    }
+    &.chat:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--shortcuts-hover-bg);
+    }
+  }
   .shortcut_items_container {
     @include flex("", "", column, 0, 0);
-
-    .f16 {
-      font-weight: 600;
-    }
-    .f14 {
-      font-weight: 500;
-    }
-
+    color: var(--textColor);
     .shortcut_heading {
       height: rem(45);
       padding: rem(5) 0 0 rem(36);
     }
 
+    .invoice_items {
+      @extend %shortcut_hover;
+    }
+
     .invoice_chat_cnt {
       display: flex;
-      @include setDimension(100%, rem(132));
       border-top: rem(1) solid #cccccc;
-
-      .invoice_container {
-        min-width: rem(150);
-        @include flex(center, center, column, 5, 0);
-        transition: background-color 0.3s ease-in-out;
-
-        .invoice_icon {
-          @include flex(center, center, "", 0, 0);
-          @include setDimension(rem(50), rem(50));
-          border-radius: 50%;
-          background-color: var(--invoce-icon-bg);
-
-          & i-feather {
-            @include setDimension(rem(17), rem(25));
-            color: #41b5d4;
-          }
-        }
-
-        &:hover {
-          background-color: var(--shortcuts-hover-bg);
-          cursor: pointer;
-        }
-      }
-
       .chat_container {
-        min-width: rem(150);
-        @extend .invoice_container;
         border-left: rem(1) solid #cccccc;
-        transition: background-color 0.3s ease-in-out;
-
-        .chat_icon {
-          @include flex(center, center, "", 0, 0);
-          @include setDimension(rem(50), rem(50));
-          border-radius: 50%;
-          background-color: var(--chat-icon-bg);
-
-          & i-feather {
-            @include setDimension(rem(17), rem(25));
-            color: #0085db;
-          }
-        }
-
-        &:hover {
-          background-color: var(--shortcuts-hover-bg);
-          cursor: pointer;
-        }
       }
     }
 
@@ -464,110 +382,18 @@
       @include setDimension(100%, rem(132));
       border-top: rem(1) solid #cccccc;
       border-bottom: rem(1) solid #cccccc;
-
-      .contact_container {
-        min-width: rem(150);
-        @include flex(center, center, column, 5, 0);
-        transition: background-color 0.3s ease-in-out;
-
-        .contact_icon {
-          @include flex(center, center, "", 0, 0);
-          @include setDimension(rem(50), rem(50));
-          border-radius: 50%;
-          background-color: var(--contact-icon-bg);
-
-          & i-feather {
-            @include setDimension(rem(17), rem(25));
-            color: #636d77;
-          }
-        }
-
-        &:hover {
-          background-color: var(--shortcuts-hover-bg);
-          cursor: pointer;
-        }
-      }
-
       .email_container {
-        min-width: rem(150);
-        @include flex(center, center, column, 5, 0);
         border-left: 1px solid #cccccc;
-        transition: background-color 0.3s ease-in-out;
-
-        .email_icon {
-          @include flex(center, center, "", 0, 0);
-          @include setDimension(rem(50), rem(50));
-          border-radius: 50%;
-          background-color: var(--email-icon-bg);
-
-          & i-feather {
-            @include setDimension(rem(17), rem(25));
-            color: #f6957b;
-          }
-        }
-
-        &:hover {
-          background-color: var(--shortcuts-hover-bg);
-          cursor: pointer;
-        }
       }
     }
-
     .todo_calender_cnt {
       display: flex;
-
-      .todo_container {
-        height: rem(130);
-        min-width: rem(150);
-        @include flex(center, center, column, 5, 0);
-        transition: background-color 0.3s ease-in-out;
-
-        .todo_icon {
-          @include flex(center, center, "", 0, 0);
-          @include setDimension(rem(50), rem(50));
-          border-radius: 50%;
-          background-color: var(--todo-icon-bg);
-
-          & i-feather {
-            @include setDimension(rem(17), rem(25));
-          }
-        }
-
-        &:hover {
-          border-bottom-left-radius: rem(20);
-          background-color: var(--shortcuts-hover-bg);
-          cursor: pointer;
-        }
-      }
-
       .calender_container {
-        min-width: rem(150);
-        @include flex(center, center, column, 5, 0);
         border-left: rem(1) solid #cccccc;
-        padding: rem(8) 0 0 0 !important;
-        transition: background-color 0.3s ease-in-out;
-
-        .calender_icon {
-          @include flex(center, center, "", 0, 0);
-          @include setDimension(rem(50), rem(50));
-          border-radius: 50%;
-          background-color: var(--calender-icon-bg);
-
-          & i-feather {
-            @include setDimension(rem(17), rem(25));
-            color: #4bd08b;
-          }
-        }
-
-        &:hover {
-          border-bottom-right-radius: rem(20);
-          background-color: var(--shortcuts-hover-bg);
-          cursor: pointer;
-        }
+        padding: rem(8) 0 0 0;
       }
     }
   }
-
   .dropdown-menu.show {
     position: absolute;
     inset: 0 auto auto 0;
@@ -578,163 +404,130 @@
 }
 
 // Apps Modal
-.apps_icon_container {
-  .chat_todo_quick_container {
-    @include setDimension(rem(800), rem(410));
-    display: flex;
-    border-radius: rem(12);
+.apps_book_model {
+  width: rem(840);
+  .f12 {
+    color: var(--textColor-200);
+  }
 
-    .f14 {
-      font-weight: 600;
-    }
-    .f12 {
-      color: var(--textColor-200);
-    }
+  .left_items {
+    width: rem(540);
+    @include flex("", "", column, 0, 0);
+    .top_items {
+      display: flex;
+      padding-top: rem(20);
 
-    .left_items {
-      @include flex("", "", column, 0, 0);
-      @include setDimension(65%, 100%);
+      .top_items_left {
+        width: 50%;
+        @include flex("", "", column, 10, 0);
+        padding-left: rem(10);
 
-      .top_items {
-        height: 80%;
-        display: flex;
-        padding-top: rem(20);
+        .chats_icon_container {
+          @include flex(center, center, "", 20, 0);
+          height: rem(70);
 
-        .top_items_left {
-          width: 50%;
-          @include flex("", "", column, 10, 0);
-          padding-left: rem(10);
-
-          .chats_icon_container {
-            @include flex(center, center, "", 20, 0);
-            height: rem(70);
-
-            .chats_logo {
-              @include rounded_icons(50, 50, var(--apps-icon-modal-bg));
-              & img {
-                @include setDimension(rem(22), rem(22));
-              }
-            }
-
-            .heading_mails_cnt {
-              @include flex("", "", column, 2, 0);
-              width: rem(160);
-
-              span {
-                transition: color 0.3s ease-in-out;
-
-                &:first-of-type:hover {
-                  color: #0281d5;
-                  cursor: pointer;
-                }
-              }
+          .chats_logo {
+            @include rounded_icons(50, 50, var(--apps-icon-modal-bg));
+            @include flex(center, center, "", 0, 0);
+            & img {
+              @include setDimension(rem(22), rem(22));
             }
           }
-        }
 
-        .top_items_right {
-          width: 50%;
+          .heading_mails_cnt {
+            @include flex("", "", column, 0, 0);
+            width: rem(160);
+            span {
+              transition: color 0.3s ease-in-out;
 
-          @include flex("", "", column, 10, 0);
-
-          .icon_heading_container {
-            @include flex(center, center, "", 20, 0);
-            height: rem(70);
-
-            .logo_cnt {
-              @include flex(center, center, "", 0, 0);
-              @include setDimension(rem(50), rem(50));
-              border-radius: 50%;
-              background-color: var(--apps-icon-modal-bg);
-
-              & img {
-                @include setDimension(rem(22), rem(22));
-              }
-            }
-
-            .heading_cnt {
-              @include flex("", "", column, 2, 0);
-              width: rem(160);
-
-              span {
-                transition: color 0.3s ease-in-out;
-
-                &:first-child:hover {
-                  color: #0281d5;
-                  cursor: pointer;
-                }
+              &:first-of-type:hover {
+                color: #0281d5;
+                cursor: pointer;
               }
             }
           }
         }
       }
 
-      .bottom_items {
-        flex-grow: 1;
-        border-top: rem(1) solid #cccccc;
+      .top_items_right {
+        width: 50%;
 
-        @include flex(space-between, center, "", 0, 1);
+        @include flex("", "", column, 10, 0);
 
-        padding-left: rem(30) !important;
-        padding-right: rem(30) !important;
+        .icon_heading_container {
+          @include flex(center, center, "", 20, 0);
+          height: rem(70);
 
-        .bottom_left {
-          @include flex(center, center, row, 8, 0);
+          .logo_cnt {
+            @include flex(center, center, "", 0, 0);
+            @include setDimension(rem(50), rem(50));
+            border-radius: 50%;
+            background-color: var(--apps-icon-modal-bg);
 
-          i-feather {
-            display: flex;
-            @include setDimension(rem(20), rem(20));
+            & img {
+              @include setDimension(rem(22), rem(22));
+            }
           }
-        }
 
-        .bottom_right {
-          @include flex(center, center, "", 0, 0);
-          border-radius: rem(19);
-          @include setDimension(rem(75), rem(35));
-          background-color: #2b8ede;
-          color: #f4f8fd;
+          .heading_cnt {
+            @include flex("", "", column, 2, 0);
+            width: rem(160);
+
+            span {
+              transition: color 0.3s ease-in-out;
+
+              &:first-child:hover {
+                color: #0281d5;
+                cursor: pointer;
+              }
+            }
+          }
         }
       }
     }
 
-    .right_items {
-      @include flex("", "", column, 10, 0);
+    .bottom_items {
       flex-grow: 1;
-      padding: rem(28) 0 0 rem(20);
-      height: rem(408);
-      border-left: rem(1) solid #cccccc;
+      border-top: rem(1) solid #cccccc;
 
-      .f18,
-      .f14 {
-        font-weight: 600;
+      @include flex(space-between, center, "", 0, 1);
+
+      padding-left: rem(30);
+      padding-right: rem(30);
+
+      .bottom_left {
+        @include flex(center, center, row, 8, 0);
+
+        i-feather {
+          display: flex;
+          @include setDimension(rem(20), rem(20));
+        }
       }
 
-      h3 {
-        padding-top: rem(20);
-      }
-
-      h3,
-      span {
-        height: rem(29);
-        display: block;
-      }
-
-      span {
-        transition: color 0.3s ease-in-out;
-      }
-      & :not(:first-child):hover {
-        color: #0281d5;
-        cursor: pointer;
+      .bottom_right {
+        @include flex(center, center, "", 0, 0);
+        border-radius: rem(19);
+        @include setDimension(rem(75), rem(35));
+        background-color: #2b8ede;
+        color: #f4f8fd;
       }
     }
   }
 
-  .dropdown-menu.show {
-    padding-top: 0;
-    @include minwidth_minheight(rem(800), rem(410));
-    position: absolute;
-    inset: 0 auto auto 0;
-    margin: 0;
-    // transform: translate(75px, 53px) !important;
+  .right_items {
+    @include flex("", "", column, 15, 0);
+    flex-grow: 1;
+    padding: rem(28) 0 0 rem(20);
+    height: rem(408);
+    border-left: rem(1) solid #cccccc;
+
+    span {
+      transition: color 0.3s ease-in-out;
+      font-size: rem(15);
+      &:hover {
+        color: var(--quick-link-hover-color);
+        cursor: pointer;
+      }
+    }
   }
 }
