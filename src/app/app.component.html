@@ -1,4 +1,4 @@
-<main class="d-flex light-theme">
+<main class="d-flex dark-theme">
     <aside class="">
         <app-sidebar></app-sidebar>
     </aside>
@@ -12,9 +12,7 @@
             </header>
 
             <router-outlet></router-outlet>
-
         </div>
-
     </section>
     <div class="offcanvas offcanvas-start" data-bs-backdrop="false" id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel">
@@ -22,31 +20,59 @@
             <app-sidebar></app-sidebar>
         </div>
     </div>
-</main>
 
-<!-- Search Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal_dialogs">
-        <div class="modal-content p-1 modal_contents" style="border-radius: 16px !important">
-            <div class="modal-header modal_header">
-                <div class="input_filed_container">
-                    <div class="input_filed">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Seach here" />
-                    </div>
-
-                    <div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        </button>
-
-                    </div>
+    <!-- Search Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal_dialogs">
+            <div class="modal-content p-1 modal_contents" style="border-radius: 16px !important">
+                <div class="modal-header modal_header input_filed_container">
+                    <input type="email" class="form-control custome_radius" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Seach here" />
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
-            </div>
 
-            <div class="modal-body p-0 mt-3 search_modal_body">
-                <h5>Quick page Links</h5>
+                <div class="modal-body p-0 mt-3 search_modal_body">
+                    <h5 class="search_modal_heading">Quick page Links</h5>
+
+                    <h6 class="heading ">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+                    
+                    <h6 class="heading mt-4">Dashboard 1</h6>
+                    <span class="summary">/dashboards/dashboard1</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
