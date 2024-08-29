@@ -12,10 +12,9 @@ const routes: Routes = [
   { path: 'contacts', component: ContactComponent },
   { path: 'course', component: CourseComponent },
   {path:'chat', component:ChatComponent},
-  { path: 'employee', component: EmployeeComponent },
+  { path: 'employee', component: EmployeeComponent }
 
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

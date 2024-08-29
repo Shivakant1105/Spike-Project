@@ -4,7 +4,8 @@
 
 .sidebar_container {
     @include flex("", "", column, 0, 0);
-    margin: rem(16) !important;
+    margin: rem(16);
+    margin-right: 0;
     @include setDimension(270px, calc(100vh - 32px));
     background-color: var(--bg-high);
     color: var(--textColor);

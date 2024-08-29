@@ -1,189 +1,533 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import "../../../Scss/function";
+@import "../../../Scss/base/index";
+@import "../../../Scss/mixing";
+@import "../../../Scss/base/variables";
 
-@import '../../../Scss/mixing';
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Plus Jakarta Sans";
+%hover_circle_shape {
+  border-radius: 50%;
+  background-color: var(--sidebar-hover-bg);
+}
+%ifather_circle_shape {
+  position: absolute;
+  @include rounded_icons(50, 50, "");
+  content: "";
+  z-index: -1;
 }
 
-html {
-  font-size: 100%;
-}
-
-$base-font-size: 16px;
-
-@function rem($pixels) {
-  @return $pixels / $base-font-size * 1rem;
-}
-
-.header_container {
-  display: flex;
-  width: 100% !important;
-  height: 100%;
-
-  .header_body {
-    width: 100% !important;
-    height: rem(70px);
-    background-color: var(--bg-high);
-    // margin: 20px;
-
-    .header_left_container {
-      & button {
-        outline: none;
-        border: none;
-        background-color: transparent;
-        font-size: rem(14px);
-        color: #000000;
-        font-family: "Plus Jakarta Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
-        height: rem(40px);
-        padding: rem(16px) !important;
-
-        &:hover {
-          background-color: #f0f1f2;
-          border-radius: rem(25px);
-          cursor: pointer;
-        }
-      }
-
-      .apps_icon_conatiner {
-        width: 98px;
-        border-radius: 26px;
-
-        & i-feather {
-          width: 16px;
-          height: 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        &:hover {
-          background-color: #f0f1f2;
-        }
-      }
-
-      .header_left_logo {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f0f1f2;
-          border-radius: 50%;
-        }
-      }
-    }
+%shortcut_hover {
+  height: rem(130);
+  transition: background-color 0.3s ease-in-out;
+  min-width: rem(150);
+  @include flex(center, center, column, 5, 0);
+  &:hover {
+    background-color: var(--shortcuts-hover-bg);
+    cursor: pointer;
   }
 }
 
-.header_right_container {
-  float: end !important;
-  .search_container {
-    border: 1px solid #ccc;
-    border-radius: rem(20px);
-    padding: rem(14px) !important;
-    height: rem(38px);
-    cursor: pointer;
-    width: rem(185px);
-    gap: 4px;
+.header_body {
+  @include flex(space-between, center, "", 0, 16);
+  background-color: var(--bg-high);
 
-    &:hover {
-      background-color: #f0f1f2;
+  .header_left_container {
+    margin-left: rem(10);
+    .menu {
+      z-index: 1;
+      cursor: pointer;
+      @include flex(center, center, "", 0, 0);
+      &:hover::after {
+        @extend %ifather_circle_shape;
+        background-color: var(--sidebar-hover-bg);
+      }
     }
 
-    .seachlogo {
-      height: 20px;
-      width: 20px;
-      display: flex;
-      align-items: center;
-    }
-
-    .seach input {
-      border: none;
-      outline: none;
-      padding: 5px !important;
-      border-radius: 20px;
+    @include flex("", center, "", 10, 0);
+    & button {
+      @include outline_border(none, none);
       background-color: transparent;
+      font-size: rem(15);
+      color: var(--textColor);
+      height: rem(40);
+      padding: rem(16);
     }
-    & input::placeholder {
-      font-size: rem(15px);
+    .header_item {
+      padding: rem(10);
+      &:hover {
+        @include hover(rem(25), var(--sidebar-hover-bg), "");
+        cursor: pointer;
+      }
+    }
+    .header_left_logo {
+      @include setDimension(rem(48), rem(48));
+      @include flex(center, center, "", 0, 0);
+      cursor: pointer;
+      &:hover {
+        @extend %hover_circle_shape;
+      }
+    }
+    .apps_nav {
+      width: rem(82);
+      border-radius: rem(26);
+      @include flex(center, center, "", 8, 0);
+
+      & button {
+        @include flex("", center, "", 0, 0);
+      }
+      & i-feather {
+        @include setDimension(rem(16), rem(16));
+        @include flex(center, center, "", 0, 0);
+        cursor: pointer;
+      }
+
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
     }
   }
 
-  & .icon {
-    cursor: pointer;
-    height: rem(22px);
-    width: rem(22px);
-  }
+  .header_right_container {
+    @include flex("", center, "", 8, 0);
+    .search_container {
+      border-radius: rem(20);
+      @include flex("", center, "", 4, 14);
+      cursor: pointer;
+      @include setDimension(rem(180), rem(38));
 
-  .icon_menu {
-    height: rem(22px);
-    width: rem(22px);
-  }
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
 
-  .user_admin {
-    width: auto;
-    height: rem(48px);
-    padding: rem(26px) rem(18px) !important;
+      .seachlogo {
+        @include setDimension(rem(20), rem(20));
+        @include flex("", center, "", 0, 0);
+      }
+    }
+    .user_admin {
+      @include setDimension(auto, rem(48));
+      @include flex("", center, "", 12, 0);
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
+
+      .admin_image {
+        @include setDimension(rem(40), rem(40));
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .mike_admin .mike_nielsen {
+        color: var(--textColor);
+        font-size: rem(16);
+      }
+
+      .admin_name {
+        font-size: rem(14);
+        margin-top: rem(-5);
+      }
+    }
+
+    .country_logo {
+      @include setDimension(rem(21), rem(21));
+      border-radius: 50%;
+      overflow: hidden;
+      @include flex("center", center, "", 0, 0);
+
+      & button {
+        @include flex("center", center, "", 0, 0);
+        background-color: transparent;
+        @include outline_border(none, none);
+      }
+    }
+    .country_logo img {
+      @include setDimension(rem(22), rem(22));
+    }
+
+    .icons {
+      @include flex(center, center, "", 0, 0);
+      @include rounded_icons(48, 48, "");
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
+    }
+  }
+}
+
+.country_items_container {
+  flex-direction: column;
+  .name_country_logo {
+    @include flex(center, center, "", 18, 0);
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 
     &:hover {
-      background-color: #f0f1f2;
+      background-color: var(--sidebar-hover-bg);
     }
+  }
+  .name_country_logo.first {
+    margin-top: rem(16);
+    border-top-left-radius: rem(6);
+    border-top-right-radius: rem(6);
+  }
+  .name_country_logo.last {
+    border-bottom-left-radius: rem(20);
+    border-bottom-right-radius: rem(20);
+  }
+}
 
-    .admin_image img {
-      height: rem(40px);
-      width: rem(40px);
-      object-fit: cover;
+.dropdown-toggle::after {
+  display: none;
+}
+
+// Message Icon Modal
+.message_icon_container {
+  .message_items_first {
+    padding: rem(25) 0 0 rem(28);
+    margin-top: rem(6);
+  }
+
+  .message_items {
+    height: rem(73);
+    margin-bottom: rem(4);
+    @include flex(flex-start, center, "", 25, 1);
+    padding: 0 0 0 rem(28);
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+
+    & img {
+      @include setDimension(rem(50), rem(50));
       border-radius: 50%;
     }
 
-    .mike_admin .mike_nielsen {
-      color: #1e1e1e;
-      font-size: rem(16px);
-      font-weight: 600;
-      font-family: "Plus Jakarta Sans";
+    .name_message {
+      @include flex("", "", column, 5, 0);
+      margin-bottom: rem(19);
+
+      span:first-child {
+        font-weight: bold;
+      }
+    }
+    .message_new_btn {
+      @include setDimension(rem(53), rem(24));
+      background-color: #f8c076;
+      @include flex(center, center, "", 0, 0);
+      border-radius: rem(10);
+      color: var(--textColor);
+      cursor: pointer;
+    }
+  }
+
+  .see_all_message_btn {
+    @include flex(center, center, "", 0, 0);
+    .btn_body {
+      @include setDimension(rem(294), rem(36));
+      background-color: #2b8ede;
+      margin-top: rem(10);
+      color: var(--header-footer);
+      @include flex(center, center, "", 0, 0);
+      cursor: pointer;
+    }
+  }
+
+  .message_items:not(:first-child):hover {
+    background-color: var(--sidebar-hover-bg);
+  }
+
+  .dropdown-menu.show {
+    border: none;
+    color: var(--textColor-200);
+    @include minwidth_minheight(rem(360), rem(533));
+    transform: translate(662px, 55px);
+  }
+}
+// User Profile
+.User_profile_container {
+  .user_items_body {
+    @include flex("", "", column, 10, 0);
+    padding-left: rem(20);
+
+    .user_profile_item2 {
+      height: rem(128);
+      @include flex(flex-start, center, "", 25, 0);
+      border-bottom: rem(1) solid #cccccc;
+      cursor: pointer;
+
+      .user_details {
+        @include flex("", "", column, 5, 0);
+        & div {
+          @include flex("", center, "", 0, 0);
+        }
+        i-feather {
+          display: flex;
+          @include setDimension(rem(16), rem(16));
+        }
+      }
+      & img {
+        @include rounded_icons(100, 100, "");
+      }
     }
 
-    .admin_name {
-      font-size: rem(14px);
+    .user_profile_item3 {
+      height: rem(70);
+      @include flex(flex-start, center, "", 30, 0);
+      cursor: pointer;
+      .user_profile {
+        @include flex("", "", column, 0, 0);
+      }
+
+      .profile_icon {
+        @include flex(center, center, "", 0, 0);
+        @include setDimension(rem(50), rem(50));
+        border-radius: rem(14);
+        background-color: var(--user-profile-icon-bg);
+        i-feather {
+          @include setDimension(rem(16), rem(27));
+          color: #0085db;
+        }
+      }
+
+      .Inbox_icon {
+        @extend .profile_icon;
+        background-color: var(--user-inbox-icon-bg);
+        i-feather {
+          @include setDimension(rem(16), rem(27));
+          color: #338965;
+        }
+      }
+
+      .Tasks_icon {
+        @extend .profile_icon;
+        background-color: var(--user-task-icon-bg);
+      }
+
+      i-feather {
+        @include setDimension(rem(16), rem(27));
+        color: #fb977d;
+      }
+    }
+
+    .user_profile_logout_cnt {
+      @include flex(center, center, "", 0, 0);
+      @include setDimension(rem(293), rem(36));
+      background-color: #0085db;
+      border-radius: rem(18);
+      color: var(--white);
+      cursor: pointer;
+    }
+  }
+  .dropdown-menu.show {
+    @include minwidth_minheight(rem(360), rem(512));
+    transform: translate(-11px, 65px);
+  }
+}
+// Shortcut Icon Modal
+.shortcut_icon_container {
+  i-feather {
+    position: relative;
+    @include flex(center, center, "", 0, 0);
+    &.invoice:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--invoce-icon-bg);
+    }
+
+    &.chat:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--chat-icon-bg);
+    }
+    &.contact:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--contact-icon-bg);
+    }
+    &.mail:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--email-icon-bg);
+    }
+    &.todo:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--todo-icon-bg);
+    }
+    &.calander:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--calender-icon-bg);
+    }
+    &.chat:after {
+      @extend %ifather_circle_shape;
+      background-color: var(--shortcuts-hover-bg);
+    }
+  }
+  .shortcut_items_container {
+    @include flex("", "", column, 0, 0);
+    color: var(--textColor);
+    .shortcut_heading {
+      height: rem(45);
+      padding: rem(5) 0 0 rem(36);
+    }
+
+    .invoice_items {
+      @extend %shortcut_hover;
+    }
+
+    .invoice_chat_cnt {
+      display: flex;
+      border-top: rem(1) solid #cccccc;
+      .chat_container {
+        border-left: rem(1) solid #cccccc;
+      }
+    }
+
+    .contact_email_cnt {
+      display: flex;
+      @include setDimension(100%, rem(132));
+      border-top: rem(1) solid #cccccc;
+      border-bottom: rem(1) solid #cccccc;
+      .email_container {
+        border-left: 1px solid #cccccc;
+      }
+    }
+    .todo_calender_cnt {
+      display: flex;
+      .calender_container {
+        border-left: rem(1) solid #cccccc;
+        padding: rem(8) 0 0 0;
+      }
+    }
+  }
+  .dropdown-menu.show {
+    position: absolute;
+    inset: 0 auto auto 0;
+    margin: 0px;
+    @include minwidth_minheight(rem(310), rem(449));
+    // transform: translate(745px, 59px);
+  }
+}
+
+// Apps Modal
+.apps_book_model {
+  width: rem(840);
+  .f12 {
+    color: var(--textColor-200);
+  }
+
+  .left_items {
+    width: rem(540);
+    @include flex("", "", column, 0, 0);
+    .top_items {
+      display: flex;
+      padding-top: rem(20);
+
+      .top_items_left {
+        width: 50%;
+        @include flex("", "", column, 10, 0);
+        padding-left: rem(10);
+
+        .chats_icon_container {
+          @include flex(center, center, "", 20, 0);
+          height: rem(70);
+
+          .chats_logo {
+            @include rounded_icons(50, 50, var(--apps-icon-modal-bg));
+            @include flex(center, center, "", 0, 0);
+            & img {
+              @include setDimension(rem(22), rem(22));
+            }
+          }
+
+          .heading_mails_cnt {
+            @include flex("", "", column, 0, 0);
+            width: rem(160);
+            span {
+              transition: color 0.3s ease-in-out;
+
+              &:first-of-type:hover {
+                color: #0281d5;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      .top_items_right {
+        width: 50%;
+
+        @include flex("", "", column, 10, 0);
+
+        .icon_heading_container {
+          @include flex(center, center, "", 20, 0);
+          height: rem(70);
+
+          .logo_cnt {
+            @include flex(center, center, "", 0, 0);
+            @include setDimension(rem(50), rem(50));
+            border-radius: 50%;
+            background-color: var(--apps-icon-modal-bg);
+
+            & img {
+              @include setDimension(rem(22), rem(22));
+            }
+          }
+
+          .heading_cnt {
+            @include flex("", "", column, 2, 0);
+            width: rem(160);
+
+            span {
+              transition: color 0.3s ease-in-out;
+
+              &:first-child:hover {
+                color: #0281d5;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .bottom_items {
+      flex-grow: 1;
+      border-top: rem(1) solid #cccccc;
+
+      @include flex(space-between, center, "", 0, 1);
+
+      padding-left: rem(30);
+      padding-right: rem(30);
+
+      .bottom_left {
+        @include flex(center, center, row, 8, 0);
+
+        i-feather {
+          display: flex;
+          @include setDimension(rem(20), rem(20));
+        }
+      }
+
+      .bottom_right {
+        @include flex(center, center, "", 0, 0);
+        border-radius: rem(19);
+        @include setDimension(rem(75), rem(35));
+        background-color: #2b8ede;
+        color: #f4f8fd;
+      }
     }
   }
 
-  .country_logo {
-    width: 21px;
-    height: 21px;
-    border-radius: 50% !important;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .country_logo img {
-    width: 22px;
-    height: 22px;
-    display: block;
-  }
+  .right_items {
+    @include flex("", "", column, 15, 0);
+    flex-grow: 1;
+    padding: rem(28) 0 0 rem(20);
+    height: rem(408);
+    border-left: rem(1) solid #cccccc;
 
-  .icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 48px;
-    width: 48px;
-    border-radius: 50%;
-
-    &:hover {
-      background-color: #f0f1f2;
+    span {
+      transition: color 0.3s ease-in-out;
+      font-size: rem(15);
+      &:hover {
+        color: var(--quick-link-hover-color);
+        cursor: pointer;
+      }
     }
   }
 }

@@ -1,34 +1,48 @@
-@mixin flex($justify,$align,$direction,$gap,$padding){
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $direction;
-    gap: rem($gap);
-    padding: rem($padding) !important;
+@mixin flex($justify, $align, $direction, $gap, $padding) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: rem($gap);
+  padding: rem($padding);
 }
 
+// Mixin to set border-radius for the top-left and top-right corners
+@mixin topleft_topright_radius($left, $right) {
+  border-top-left-radius: $left;
+  border-top-right-radius: $right;
+}
 
-@mixin font($fs,$fw,$lineH){
+@mixin font($fs, $fw, $lineH) {
   font-size: $fs;
   font-weight: $fw;
   line-height: $lineH;
 }
 
-@mixin setDimension($width, $height){
-    width: $width;
-    height: $height;
+@mixin setDimension($width, $height) {
+  width: $width;
+  height: $height;
 }
 
-@mixin hover($radius,$bg,$textColor){
-    border-radius: $radius;
-    background-color: $bg;
-    color: $textColor;
+@mixin hover($radius, $bg, $textColor:$textColor) {
+  border-radius: $radius;
+  background-color: $bg;
+  color: $textColor;
 }
 
-@mixin rounded_icons($width,$height,$bg){
-    width: rem($width) !important;
-    height: rem($height);
-    border-radius: 50%;
-    background-color: $bg;
-    // @include flex(center,center,'',0,0);
+@mixin rounded_icons($width, $height, $bg) {
+  width: rem($width);
+  height: rem($height);
+  border-radius: 50%;
+  background-color: $bg;
+}
+
+@mixin outline_border($border, $outline) {
+  border: $border;
+  outline: $outline;
+}
+
+@mixin minwidth_minheight($min-width, $min-height) {
+  min-width: $min-width;
+  min-height: $min-height !important;
 }

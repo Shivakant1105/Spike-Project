@@ -15,7 +15,9 @@ $largeDesktop: 1920px;
 @include width-range(0px, $large - 1px) {
   main {
     padding-top: 0 !important;
-
+     #menu_toggle{
+      display: none;
+     }
     aside {
       display: none !important;
     }
@@ -29,20 +31,10 @@ $largeDesktop: 1920px;
   .details2,
   .dashboard_details_items {
     width: 100% !important;
-    // .card{
-    //   height: auto;
-    //   width: 100%;
-
-    //   .card_body{
-    //     max-width: 100%;
-    //     max-height: 100%;
-    //   }
-    // }
   }
-
+  
   .dashboard_details {
     flex-wrap: wrap;
   }
-
 
 }

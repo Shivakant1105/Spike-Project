@@ -7,7 +7,6 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from "../shared/shared.module";
 
-
 @NgModule({
   declarations: [
     DashboardComponent

@@ -1,0 +1,29 @@
+@import "../Scss/function";
+@import "../Scss/base/index";
+@import "../Scss/mixing";
+main {
+  @include setDimension(100vw, 100vh);
+  background-color: var(--bg);
+  section {
+    flex-grow: 1;
+    overflow-y: auto;
+    .wrapper {
+      @include flex(center, center, column, 16, 16);
+
+      header {
+        @include setDimension(100%, 70px);
+        @include flex("", center, "", 0, 0);
+        min-height: rem(70);
+        background-color: var(--bg-high);
+        color: var(--textColor);
+      }
+    }
+  }
+
+  .offcanvas-start {
+    // display: none;
+    background-color: transparent;
+    overflow-y: hidden !important;
+    border: none;
+  }
+}
