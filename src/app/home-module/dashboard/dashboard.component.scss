@@ -58,18 +58,6 @@
             @include i_father_circle(50,50,var(--delivered-bg));
           }
       }
-      select {
-        height: rem(40);
-      }
-
-      select,
-      option {
-        color: var(--textColor);
-      }
-
-      option {
-        background-color: var(--bg-high);
-      }
 
       .graph {
         max-height: rem(316);
