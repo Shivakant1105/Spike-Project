@@ -44,21 +44,20 @@
           z-index: 1;
           &.lock{
             color: var(--proccessing-text);
-            @include i_father_circle(50,50,var(--processing-bg));
+            @include i_feather(50,50,var(--processing-bg));
           }
 
           &.pause{
             color: var(--hold-text);
-            @include i_father_circle(50,50,var(--hold-bg));
+            @include i_feather(50,50,var(--hold-bg));
           }
 
           &.delivered{
             color: var(--delivered-text);
             transform: rotate(30deg);
-            @include i_father_circle(50,50,var(--delivered-bg));
+            @include i_feather(50,50,var(--delivered-bg));
           }
       }
-
       .graph {
         max-height: rem(316);
         overflow-y: auto;
