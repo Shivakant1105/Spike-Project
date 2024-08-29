@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@amcharts/amcharts5": "^5.9.8",
     "@angular/animations": "~13.2.0",
     "@angular/common": "~13.2.0",
     "@angular/compiler": "~13.2.0",
@@ -18,8 +19,14 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^12.1.2",
+    "@popperjs/core": "^2.10.2",
+    "ag-grid-angular": "^28.1.1",
+    "ag-grid-community": "^28.1.1",
+    "angular-calendar": "^0.29.0",
     "angular-feather": "^6.5.1",
     "bootstrap": "^5.3.3",
+    "date-fns": "^2.2.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
