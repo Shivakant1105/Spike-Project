@@ -46,3 +46,17 @@
   min-width: $min-width;
   min-height: $min-height !important;
 }
+
+@mixin i_father_circle($width,$height,$bg){
+  position: relative;
+    &::after{
+      position: absolute;
+      content: '';
+      width: rem($width);
+      height: rem($height);
+      border-radius: 50%;
+      background-color: $bg;
+      border: none;
+      z-index: -1;
+    }
+}

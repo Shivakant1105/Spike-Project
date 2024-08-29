@@ -3,7 +3,7 @@
 @import '../mixing';
 
 .f12 {
-    font-size: rem(12) !important;
+    font-size: rem(12);
 }
 
 .f14 {
@@ -20,6 +20,9 @@
 
 .f18 {
     font-size: rem(18);
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
 .f20 {
