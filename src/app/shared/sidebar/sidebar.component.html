@@ -1,4 +1,4 @@
-<div class="sidebar_container custome_radius box_shadow ">
+<div  [ngClass]="toggle?'hover_sidecontainer':''"  class="sidebar_container custome_radius box_shadow ">
 
     <div class="side_header">
 
@@ -59,7 +59,7 @@
             </div>
 
             <!-- for the Contact -->
-            <div class="home_menu_items" routerLink="menu/contact">
+            <div class="home_menu_items" routerLink="menu/contacts">
                 <i-feather class="f24" name="phone"></i-feather>
                 <span class="f15">Contact</span>
             </div>
