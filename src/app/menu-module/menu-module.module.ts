@@ -9,7 +9,9 @@ import { allIcons } from 'angular-feather/icons';
 import { CourseComponent } from './course/course.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ChatComponent } from './chat/chat.component';
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,13 @@ import { ChatComponent } from './chat/chat.component';
   imports: [
     CommonModule,
     MenuModuleRoutingModule,
-    FeatherModule.pick(allIcons)
+    ReactiveFormsModule,
+    FormsModule,
+    FeatherModule.pick(allIcons),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ]
 })
 export class MenuModuleModule { }
