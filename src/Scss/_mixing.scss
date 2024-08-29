@@ -24,7 +24,7 @@
   height: $height;
 }
 
-@mixin hover($radius, $bg, $textColor:$textColor) {
+@mixin hover($radius, $bg, $textColor: $textColor) {
   border-radius: $radius;
   background-color: $bg;
   color: $textColor;
@@ -45,4 +45,28 @@
 @mixin minwidth_minheight($min-width, $min-height) {
   min-width: $min-width;
   min-height: $min-height !important;
+}
+
+// Custom scrollbar mixin
+@mixin custom-scrollbar(
+  $width,
+  $track-color,
+  $thumb-color,
+  $thumb-hover-color
+) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
 }
