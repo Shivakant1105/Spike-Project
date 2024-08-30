@@ -27,13 +27,17 @@ $largeDesktop: 1920px;
 
 @include width-range(0px, $desktop - 1px) {
 
-  .details1,
+  .details,
   .details2,
   .dashboard_details_items {
     width: 100% !important;
   }
-  
-  .dashboard_details {
+
+.table_container{
+  .items{
+    width: 100% !important;
+  }
+}  .dashboard_details {
     flex-wrap: wrap;
   }
 

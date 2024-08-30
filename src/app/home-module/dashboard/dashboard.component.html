@@ -220,7 +220,58 @@
   </div>
 
   <!-- start with table of products  -->
-  <div class="bg-danger tables_container gap-4 w-100 h-100 p-3 row">
-      
+  <!-- start with table of products  -->
+  <div class="table_container">
+    <div class="items product_table custome_radius shadow">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="f14" scope="col">Product</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Status</th>
+            <th scope="col">...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="f14">
+            <td class="product_col">
+              <img width="50px" src="https://spike-angular-pro-main.netlify.app/assets/images/products/product-5.png"
+                alt="">
+              <span>Product</span>
+            </td>
+            <td class="payment_col f14">
+              <p>$499/499</p>
+              <p>Fully Paid</p>
+              <div class="progress_bar confirm">
+                <div class="progress_status"></div>
+              </div>
+            </td>
+            <td class="status_col">
+                <span class="confirm_status">Confirmed</span>
+            </td>
+            <td class="more_col">more</td>
+          </tr>
+
+          <tr class="f14">
+            <td class="product_col">
+              <img width="50px" src="https://spike-angular-pro-main.netlify.app/assets/images/products/product-5.png"
+                alt="">
+              <span>Product</span>
+            </td>
+            <td class="payment_col f14">
+              <p>$499/499</p>
+              <p>Fully Paid</p>
+              <div class="progress_bar pending">
+                <div class="progress_status"></div>
+              </div>
+            </td>
+            <td class="status_col">Otto</td>
+            <td class="more_col">Status</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="items map_table custome_radius bg-primary">map</div>
+    <div class="items reviews_product bg-warning custome_radius">reviews</div>
   </div>
 </div>

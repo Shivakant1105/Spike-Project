@@ -1,18 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
 @import "./Scss/function";
 @import "./Scss/base/index";
 @import "../src/Scss/mixing";
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Plus Jakarta Sans";
 }
 
 h1,h2,h3,h4,h5,h6,p{
   padding: 0;
-  margin: 0;
+  margin: 0 !important;
 }
 
 html {
@@ -53,4 +52,43 @@ html {
 }
 .dark-theme:has(.dark_img) .dark-logo {
   display: none;
+}
+
+.progress_bar{
+@include setDimension(100%,4px);
+  margin-top: rem(6);
+  position: relative;
+  .progress_status{
+    position: absolute;
+    @include setDimension(40%,100%);
+    background-color: green;
+  }
+  &.confirm{
+    background-color: var(--bg);
+    .progress_status{
+      background-color: var(--outlined-btn);
+    }
+  }
+
+  &.pending{
+    background-color: rgb(22, 31, 199);
+    .progress_status{
+      background-color: rgba(121, 198, 121, 0.52);
+    }
+  }
+
+  &.cancel{
+    background-color: rgb(22, 31, 199);
+    .progress_status{
+      background-color: rgba(121, 198, 121, 0.52);
+    }
+  }
+  
+}
+.status_col{
+  span{
+    height: rem(25);
+    padding: rem(6);
+    background-color: lightblue;
+  }
 }
