@@ -1,0 +1,101 @@
+@import "../../../Scss/mixing";
+@import "../../../Scss/function";
+@import "../../../Scss/base/variables";
+.login_page_container {
+  display: flex;
+  @include flex(center, center, "", 10, 0);
+  height: 99vh;
+
+  .login_page {
+    flex: 1 1 rem(1130);
+    max-width: rem(1130);
+    @include setDimension("", rem(715));
+    @include flex("", "", "", 20, 0);
+    background-color: var(--login-bg);
+    border-radius: rem(18);
+    border: 1px solid blue;
+
+    .left_item {
+      @include setDimension(50%, 100%);
+      @include flex("", "", column, 35, 1);
+      padding: rem(38) 0 0 rem(36);
+
+      & :nth-child(1) {
+        @include setDimension(rem(200), rem(41));
+      }
+      & :nth-child(2) {
+        @include setDimension(90%, auto);
+        object-fit: cover;
+      }
+    }
+
+    .right_item {
+      @include setDimension(50%, 100%);
+      @include flex("", "", column, 25, 0);
+      padding-top: rem(100);
+      background-color: lightcyan;
+
+      .welcome_headline {
+        @include flex(flex-start, "", column, 25, 0);
+      }
+
+      .headline {
+        font-size: rem(30);
+        font-weight: 700;
+      }
+      .admin_dashboard {
+        margin-top: -22px;
+      }
+      .google_facebook_icon_container {
+        @include flex("", "", "", 16, 0);
+
+        .first_btn {
+          outline: none;
+          border: 1px solid rgb(166, 168, 166);
+          border-radius: 18px;
+          flex: 1 1 rem(120);
+          @include setDimension("", rem(36));
+          @include flex(center, center, "", 10, 0);
+        }
+        .second_btn {
+          @include flex(center, center, "", 10, 0);
+          @include setDimension("", rem(36));
+          flex: 1 1 rem(120);
+          outline: none;
+          border: 1px solid rgb(166, 168, 166);
+          border-radius: 18px;
+        }
+      }
+
+      .underline_container {
+        display: flex;
+        gap: 55px;
+        align-items: center;
+        justify-content: flex-start;
+        width: 455px;
+
+        .underline {
+          width: 120px;
+          border-bottom: 1px solid rgb(196, 194, 194);
+        }
+      }
+
+      .username {
+        @include flex("", "", column, 2, 0);
+
+        & input {
+          height: rem(55);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .login_page {
+    display: flex;
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+  }
+}
