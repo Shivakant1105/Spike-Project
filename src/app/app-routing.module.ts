@@ -15,6 +15,12 @@ const routes: Routes = [
       return x.MenuModuleModule
     })
   },
+  {
+    path: 'auth',
+    loadChildren: () => import("./auth/auth.module").then((x) => {
+      return x.AuthModule
+    })
+  },
 
 ];
 

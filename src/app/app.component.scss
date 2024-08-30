@@ -45,7 +45,7 @@ main {
       box-shadow: none;
       background-color: var(--search-modal-bg);
       border: 2px solid var(--input-border-color);
-      color: var(--textColor);
+      color: #ffffff;
 
       &::placeholder {
         color: var(--textColor-200);

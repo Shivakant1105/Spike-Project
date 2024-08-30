@@ -6,9 +6,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CommonService {
   constructor() {}
+
   sideBarTogglebtn = new BehaviorSubject(false);
 
-  setSideBarToggleBtn(flag: boolean) {
+  /*   @description This is a toggle button for sidebar.
+   *   @author Gautam Yadav
+   * @params {flag:boolean}
+   * @return {void} Return a void
+   */
+  setSideBarToggleBtn(flag: boolean): void {
     this.sideBarTogglebtn.next(flag);
   }
 }

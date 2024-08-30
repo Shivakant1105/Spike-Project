@@ -1,4 +1,4 @@
-<main class="d-flex light-theme">
+<main *ngIf="authService.isLogin | async" class="d-flex light-theme">
     <aside class="">
         <app-sidebar></app-sidebar>
     </aside>
@@ -76,3 +76,5 @@
         </div>
     </div>
 </main>
+
+<router-outlet *ngIf="!(authService.isLogin | async)"></router-outlet>
