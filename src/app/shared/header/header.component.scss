@@ -1,7 +1,8 @@
-@import "function";
-@import "base/index";
-@import "mixing";
-@import "base/variables";
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import "../../../Scss/function";
+@import "../../../Scss/base/index";
+@import "../../../Scss/mixing";
+@import "../../../Scss/base/variables";
 
 %hover_circle_shape {
   border-radius: 50%;

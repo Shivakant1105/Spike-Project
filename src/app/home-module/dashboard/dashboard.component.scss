@@ -1,7 +1,6 @@
-
-@import "function";
-@import "base/index";
-@import "mixing";
+@import "../../../Scss/function";
+@import "../../../Scss/base/index";
+@import "../../../Scss/mixing";
 
 .section_overview {
   @include setDimension(100%, 100%);
