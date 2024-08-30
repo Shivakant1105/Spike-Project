@@ -9,10 +9,11 @@ export class CommonService {
 
   sideBarTogglebtn = new BehaviorSubject(false);
 
-  //   @description This is a toggle button for sidebar.
-  //   @author Gautam Yadav
-  // @params {flag:boolean} 
-  // @return {void} Return a void
+  /*   @description This is a toggle button for sidebar.
+   *   @author Gautam Yadav
+   * @params {flag:boolean}
+   * @return {void} Return a void
+   */
   setSideBarToggleBtn(flag: boolean): void {
     this.sideBarTogglebtn.next(flag);
   }

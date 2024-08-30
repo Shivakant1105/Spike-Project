@@ -14,19 +14,21 @@ export class HeaderComponent implements OnInit {
     private commonService: CommonService,
     private authService: AuthService
   ) {}
-
-  //   @description This is a toggle button.
-  //   @author Gautam Yadav
-  // @return {void} Return a void
+  /*
+   * @description This is a toggle button.
+   *   @author Gautam Yadav
+   * @return {void} Return a void
+   */
   toggleFn(): void {
     this.toggle = !this.toggle;
     this.commonService.setSideBarToggleBtn(this.toggle);
   }
   ngOnInit(): void {}
-
-  //   @description This is a logout method.
-  //   @author Gautam Yadav
-  // @return {void} Return a void
+  /*
+   * @description This is a logout method.
+   *  @author Gautam Yadav
+   * @return {void} Return a void
+   */
   onLogout(): void {
     this.authService.logout(false);
   }
