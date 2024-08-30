@@ -39,36 +39,24 @@
         height: calc(755px / 2);
       }
 
-      .details1_top div {
-        .process_icon {
-          @include rounded_icons(40, 40, #dffef3);
-          @include flex(center, center, "", 0, 0);
-        }
+      .order_summary i-feather{
+          z-index: 1;
+          &.lock{
+            color: var(--proccessing-text);
+            @include i_feather(50,50,var(--processing-bg));
+          }
 
-        .hold_icons {
-          @include rounded_icons(40, 40, #fff6ea);
-          @include flex(center, center, "", 0, 0);
-        }
+          &.pause{
+            color: var(--hold-text);
+            @include i_feather(50,50,var(--hold-bg));
+          }
 
-        .delivered_icon {
-          @include rounded_icons(40, 40, #e1f5fa);
-          @include flex(center, center, "", 0, 0);
-        }
+          &.delivered{
+            color: var(--delivered-text);
+            transform: rotate(30deg);
+            @include i_feather(50,50,var(--delivered-bg));
+          }
       }
-
-      select {
-        height: rem(40);
-      }
-
-      select,
-      option {
-        color: var(--textColor);
-      }
-
-      option {
-        background-color: var(--bg-high);
-      }
-
       .graph {
         max-height: rem(316);
         overflow-y: auto;
@@ -149,9 +137,7 @@
     }
   }
 
-  .dashboard_details2 {
-    @include setDimension(100%, 100%);
-    background-color: var(--bg-high);
-
+  .tables_container{
+    flex-wrap: wrap;
   }
 }
