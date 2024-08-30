@@ -1,6 +1,6 @@
-@import "../../../Scss/function";
-@import "../../../Scss/base/index";
-@import "../../../Scss/mixing";
+@import "function";
+@import "base/index";
+@import "mixing";
 
 .sidebar_container {
     @include flex("", "", column, 0, 0);

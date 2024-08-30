@@ -1,6 +1,6 @@
-@import "../Scss/function";
-@import "../Scss/base/variables";
-@import "../Scss/mixing";
+@import "function";
+@import "./base/variables";
+@import "mixing";
 main {
   @include setDimension(100vw, 100vh);
   background-color: var(--bg);

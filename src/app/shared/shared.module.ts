@@ -7,10 +7,13 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 
+const declared = [
+  HeaderComponent,
+  SidebarComponent,
+]
 @NgModule({
   declarations: [
-    HeaderComponent,
-    SidebarComponent
+    ...declared
   ],
   imports: [
     CommonModule,
@@ -18,8 +21,7 @@ import { RouterModule } from '@angular/router';
     FeatherModule.pick(allIcons)
   ],
   exports: [
-    HeaderComponent,
-    SidebarComponent
+    ...declared
   ]
 })
 export class SharedModule { }
