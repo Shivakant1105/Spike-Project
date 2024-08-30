@@ -1,4 +1,4 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import "../../../Scss/function";
 @import "../../../Scss/base/index";
 @import "../../../Scss/mixing";
@@ -10,16 +10,17 @@
 }
 %ifather_circle_shape {
   position: absolute;
-  @include rounded_icons(50, 50, "");
+  @include rounded_icons(45, 45, "");
   content: "";
   z-index: -1;
 }
 
 %shortcut_hover {
-  height: rem(130);
+  height: rem(144);
   transition: background-color 0.3s ease-in-out;
   min-width: rem(150);
-  @include flex(center, center, column, 5, 0);
+  @include flex(center, center, column, 5, 16);
+  text-wrap: nowrap;
   &:hover {
     background-color: var(--shortcuts-hover-bg);
     cursor: pointer;
@@ -104,8 +105,9 @@
       }
     }
     .user_admin {
-      @include setDimension(auto, rem(48));
-      @include flex("", center, "", 12, 0);
+      @include setDimension(rem(180), rem(55));
+      @include flex(center, center, "", 12, 1);
+      transition: background-color 0.3s ease-in-out;
       cursor: pointer;
 
       &:hover {
@@ -154,43 +156,65 @@
     }
   }
 }
-
-.country_items_container {
-  flex-direction: column;
-  .name_country_logo {
-    @include flex(center, center, "", 18, 0);
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-
-    &:hover {
-      background-color: var(--sidebar-hover-bg);
-    }
-  }
-  .name_country_logo.first {
-    margin-top: rem(16);
-    border-top-left-radius: rem(6);
-    border-top-right-radius: rem(6);
-  }
-  .name_country_logo.last {
-    border-bottom-left-radius: rem(20);
-    border-bottom-right-radius: rem(20);
-  }
-}
-
 .dropdown-toggle::after {
   display: none;
 }
 
+.country_items_container {
+  flex-direction: column;
+  color: var(--text-color-600);
+  background-color: var(--apps-icon-modal-bg);
+
+  .name_country_logo {
+    @include setDimension(rem(116), rem(40));
+    @include flex(center, center, "", 12, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--shortcuts-hover-bg);
+    }
+  }
+  .name_country_logo.first {
+    margin-top: rem(16);
+    border-top-left-radius: rem(2);
+    border-top-right-radius: rem(2);
+  }
+  .name_country_logo.last {
+    border-bottom-left-radius: rem(2);
+    border-bottom-right-radius: rem(2);
+  }
+  .dropdown-menu.show {
+    border: none;
+    color: var(--textColor-200);
+    @include minwidth_minheight(rem(360), rem(533));
+    transform: translate(662px, 55px);
+  }
+}
+
+// country icon
+.country_logo {
+  .dropdown-menu.show {
+    @include minwidth_minheight(rem(116), rem(211));
+    box-shadow: var(--message-madal-box-shadow);
+  }
+}
 // Message Icon Modal
 .message_icon_container {
+  .f14 {
+    font-weight: 600;
+    color: var(--text-color-600);
+  }
+  .f12 {
+    color: var(--text-color-400);
+  }
   .message_items_first {
     padding: rem(25) 0 0 rem(28);
-    margin-top: rem(6);
+    margin: rem(3) 0 0 rem(6);
   }
 
   .message_items {
     height: rem(73);
-    margin-bottom: rem(4);
     @include flex(flex-start, center, "", 25, 1);
     padding: 0 0 0 rem(28);
     cursor: pointer;
@@ -203,8 +227,6 @@
 
     .name_message {
       @include flex("", "", column, 5, 0);
-      margin-bottom: rem(19);
-
       span:first-child {
         font-weight: bold;
       }
@@ -225,7 +247,7 @@
       @include setDimension(rem(294), rem(36));
       background-color: #2b8ede;
       margin-top: rem(10);
-      color: var(--header-footer);
+      color: #ffffff;
       @include flex(center, center, "", 0, 0);
       cursor: pointer;
     }
@@ -240,10 +262,21 @@
     color: var(--textColor-200);
     @include minwidth_minheight(rem(360), rem(533));
     transform: translate(662px, 55px);
+    background-color: var(--message-madal-bg);
+    box-shadow: var(--message-madal-box-shadow);
   }
 }
+
 // User Profile
 .User_profile_container {
+  .f16,
+  .f18 {
+    color: var(--text-color-600);
+    font-weight: 600;
+  }
+  .f14 {
+    color: var(--textColor-200);
+  }
   .user_items_body {
     @include flex("", "", column, 10, 0);
     padding-left: rem(20);
@@ -262,6 +295,7 @@
         i-feather {
           display: flex;
           @include setDimension(rem(16), rem(16));
+          color: var(--textColor-200);
         }
       }
       & img {
@@ -320,10 +354,20 @@
   .dropdown-menu.show {
     @include minwidth_minheight(rem(360), rem(512));
     transform: translate(-11px, 65px);
+    background-color: var(--message-madal-bg);
   }
 }
+
 // Shortcut Icon Modal
 .shortcut_icon_container {
+  .f16 {
+    color: var(--text-color-600);
+    font-weight: 600;
+  }
+
+  .f14 {
+    color: var(--text-color-400);
+  }
   i-feather {
     position: relative;
     @include flex(center, center, "", 0, 0);
@@ -371,25 +415,25 @@
 
     .invoice_chat_cnt {
       display: flex;
-      border-top: rem(1) solid #cccccc;
+      border-top: rem(1) solid var(--left-bottom-border);
       .chat_container {
-        border-left: rem(1) solid #cccccc;
+        border-left: rem(1) solid var(--left-bottom-border);
       }
     }
 
     .contact_email_cnt {
       display: flex;
       @include setDimension(100%, rem(132));
-      border-top: rem(1) solid #cccccc;
-      border-bottom: rem(1) solid #cccccc;
+      border-top: rem(1) solid var(--left-bottom-border);
+      border-bottom: rem(1) solid var(--left-bottom-border);
       .email_container {
-        border-left: 1px solid #cccccc;
+        border-left: 1px solid var(--left-bottom-border);
       }
     }
     .todo_calender_cnt {
       display: flex;
       .calender_container {
-        border-left: rem(1) solid #cccccc;
+        border-left: rem(1) solid var(--left-bottom-border);
         padding: rem(8) 0 0 0;
       }
     }
@@ -400,14 +444,28 @@
     margin: 0px;
     @include minwidth_minheight(rem(310), rem(449));
     // transform: translate(745px, 59px);
+    background-color: var(--shortcuts-bg);
   }
 }
 
 // Apps Modal
+.apps_modal {
+  background-color: var(--apps-icon-modal-bg);
+}
 .apps_book_model {
   width: rem(840);
+  height: rem(425);
+  .f14 {
+    font-weight: 600;
+    color: var(--text-color-600);
+  }
   .f12 {
-    color: var(--textColor-200);
+    color: var(--text-color-400);
+
+    &:hover {
+      color: var(--quick-link-hover-color);
+      cursor: pointer;
+    }
   }
 
   .left_items {
@@ -427,7 +485,7 @@
           height: rem(70);
 
           .chats_logo {
-            @include rounded_icons(50, 50, var(--apps-icon-modal-bg));
+            @include rounded_icons(50, 50, var(--apps-icon-bg));
             @include flex(center, center, "", 0, 0);
             & img {
               @include setDimension(rem(22), rem(22));
@@ -435,7 +493,7 @@
           }
 
           .heading_mails_cnt {
-            @include flex("", "", column, 0, 0);
+            @include flex("", "", column, 8, 0);
             width: rem(160);
             span {
               transition: color 0.3s ease-in-out;
@@ -451,7 +509,6 @@
 
       .top_items_right {
         width: 50%;
-
         @include flex("", "", column, 10, 0);
 
         .icon_heading_container {
@@ -462,7 +519,7 @@
             @include flex(center, center, "", 0, 0);
             @include setDimension(rem(50), rem(50));
             border-radius: 50%;
-            background-color: var(--apps-icon-modal-bg);
+            background-color: var(--apps-icon-bg);
 
             & img {
               @include setDimension(rem(22), rem(22));
@@ -470,7 +527,7 @@
           }
 
           .heading_cnt {
-            @include flex("", "", column, 2, 0);
+            @include flex("", "", column, 8, 0);
             width: rem(160);
 
             span {
@@ -488,16 +545,13 @@
 
     .bottom_items {
       flex-grow: 1;
-      border-top: rem(1) solid #cccccc;
-
+      border-top: rem(1) solid var(--left-bottom-border);
       @include flex(space-between, center, "", 0, 1);
-
-      padding-left: rem(30);
-      padding-right: rem(30);
+      padding: 0 rem(30);
 
       .bottom_left {
         @include flex(center, center, row, 8, 0);
-
+        color: var(--text-color-600);
         i-feather {
           display: flex;
           @include setDimension(rem(20), rem(20));
@@ -515,15 +569,19 @@
   }
 
   .right_items {
-    @include flex("", "", column, 15, 0);
+    @include flex("", "", column, 17, 0);
     flex-grow: 1;
     padding: rem(28) 0 0 rem(20);
-    height: rem(408);
-    border-left: rem(1) solid #cccccc;
+    border-left: rem(1) solid var(--left-bottom-border);
+
+    h4 {
+      color: var(--text-color-600);
+    }
 
     span {
       transition: color 0.3s ease-in-out;
       font-size: rem(15);
+      color: var(--text-color-400);
       &:hover {
         color: var(--quick-link-hover-color);
         cursor: pointer;
@@ -532,7 +590,7 @@
   }
 }
 
-.offcanvas-start{
-  @include setDimension(auto,100vh);
+.offcanvas-start {
+  @include setDimension(auto, 100vh);
   background-color: transparent;
 }

@@ -24,7 +24,7 @@
   height: $height;
 }
 
-@mixin hover($radius, $bg, $textColor:$textColor) {
+@mixin hover($radius, $bg, $textColor: $textColor) {
   border-radius: $radius;
   background-color: $bg;
   color: $textColor;
@@ -47,16 +47,41 @@
   min-height: $min-height !important;
 }
 
-@mixin i_feather($width,$height,$bg){
+@mixin i_feather($width, $height, $bg) {
   position: relative;
-    &::after{
-      position: absolute;
-      content: '';
-      width: rem($width);
-      height: rem($height);
-      border-radius: 50%;
-      background-color: $bg;
-      border: none;
-      z-index: -1;
-    }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: rem($width);
+    height: rem($height);
+    border-radius: 50%;
+    background-color: $bg;
+    border: none;
+    z-index: -1;
+  }
+}
+
+// Custom scrollbar mixin
+@mixin custom-scrollbar(
+  $width,
+  $track-color,
+  $thumb-color,
+  $thumb-hover-color
+) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
 }
