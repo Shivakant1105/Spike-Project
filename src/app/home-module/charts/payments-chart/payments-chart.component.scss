@@ -1,0 +1,26 @@
+@import "../../../../Scss/function";
+@import "../../../../Scss/base/index";
+@import "../../../../Scss/mixing";
+header {
+    background-color: transparent;
+
+    .f18 {
+      color: var(--textColor);
+    }
+
+    .f12 {
+      color: var(--textColor-200);
+    }
+  }
+  .payment_btn {
+    background-color: var(--payment-bg);
+    padding: rem(3) rem(15);
+    border-radius: rem(16);
+    border: rem(1) solid var(--payment-textColor);
+    color: var(--payment-textColor);
+  }
+  .rounded_shape {
+    @include rounded_icons(15, 15, transparent);
+    @include flex(center, center, "", 0, 0);
+    border: 1px solid rgb(43, 142, 223);
+  }

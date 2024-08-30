@@ -1,0 +1,51 @@
+@import "../../../../Scss/function";
+@import "../../../../Scss/base/index";
+@import "../../../../Scss/mixing";
+header {
+    background-color: transparent;
+
+    .f18 {
+      color: var(--textColor);
+    }
+
+    .f12 {
+      color: var(--textColor-200);
+    }
+  }
+  .payment_btn {
+    background-color: var(--payment-bg);
+    padding: rem(3) rem(15);
+    border-radius: rem(16);
+    border: rem(1) solid var(--payment-textColor);
+    color: var(--payment-textColor);
+  }
+.latest_deal {
+    height: rem(100);
+    position: relative;
+
+    .items {
+      @include rounded_icons(40, 40, #e5f3fa);
+      @include flex(center, center, "", 0, 0);
+      position: absolute;
+      border: 2px solid white;
+
+      &:nth-child(2) {
+        left: rem(34);
+      }
+
+      &:nth-child(3) {
+        left: rem(67);
+      }
+
+      &:nth-child(4) {
+        left: rem(95);
+      }
+
+      &:nth-child(5) {
+        left: rem(127);
+        z-index: 1;
+        cursor: pointer;
+      }
+    }
+  }
+ 

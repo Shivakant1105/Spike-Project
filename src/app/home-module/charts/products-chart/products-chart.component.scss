@@ -1,0 +1,160 @@
+@import "../../../../Scss/function";
+@import "../../../../Scss/base/index";
+@import "../../../../Scss/mixing";
+
+.section_overview {
+  @include setDimension(100%, 100%);
+  color: var(--textColor);
+  @include flex("", "", column, 16, 7);
+  min-height: 90vh;
+
+  .dashboard_details {
+    @include setDimension(100%, auto);
+    @include flex("", "", "", 10, 0);
+    min-height: 80vh;
+
+    .dashboard_details_items {
+      margin-bottom: rem(10);
+      height: auto;
+      gap: rem(20);
+
+      // justify-content: center;
+      .card {
+        height: rem(365);
+        .card-body {
+          height: 100%;
+          overflow-y: auto;
+        }
+      }
+    }
+
+    .details1 {
+      @include flex("", "", column, 0, 0);
+      background-color: var(--bg-high);
+      color: var(--textColor);
+      .f14 {
+        color: var(--textColor-200);
+      }
+      .details1_top,
+      .details1_bottom {
+        height: calc(755px / 2);
+      }
+
+      .details1_top div {
+        .process_icon {
+          @include rounded_icons(40, 40, #dffef3);
+          @include flex(center, center, "", 0, 0);
+        }
+
+        .hold_icons {
+          @include rounded_icons(40, 40, #fff6ea);
+          @include flex(center, center, "", 0, 0);
+        }
+
+        .delivered_icon {
+          @include rounded_icons(40, 40, #e1f5fa);
+          @include flex(center, center, "", 0, 0);
+        }
+      }
+
+      select {
+        height: rem(40);
+      }
+
+      select,
+      option {
+        color: var(--textColor);
+      }
+
+      option {
+        background-color: var(--bg-high);
+      }
+
+      .graph {
+        max-height: rem(316);
+        overflow-y: auto;
+        @include flex(center, center, "", 0, 16);
+      }
+    }
+
+    // for the other details
+    .other_details {
+      @include flex("", "", "", 6, 0);
+      width: rem(621);
+      min-width: rem(200);
+
+      // flex-wrap: wrap;
+      .dashboard_details_itemsDiv {
+        width: calc(621px / 2);
+        flex-shrink: 0;
+        // background-color: lightcyan;
+      }
+    }
+
+    header {
+      background-color: transparent;
+
+      .f18 {
+        color: var(--textColor);
+      }
+
+      .f12 {
+        color: var(--textColor-200);
+      }
+    }
+    .payment_btn {
+      background-color: var(--payment-bg);
+      padding: rem(3) rem(15);
+      border-radius: rem(16);
+      border: rem(1) solid var(--payment-textColor);
+      color: var(--payment-textColor);
+    }
+
+    .rounded_shape {
+      @include rounded_icons(15, 15, transparent);
+      @include flex(center, center, "", 0, 0);
+      border: 1px solid rgb(43, 142, 223);
+    }
+    .card {
+      background-color: var(--bg-high);
+      border: none;
+      color: var(--textColor-200);
+    }
+
+    .latest_deal {
+      height: rem(100);
+      position: relative;
+
+      .items {
+        @include rounded_icons(40, 40, #e5f3fa);
+        @include flex(center, center, "", 0, 0);
+        position: absolute;
+        border: 2px solid white;
+
+        &:nth-child(2) {
+          left: rem(34);
+        }
+
+        &:nth-child(3) {
+          left: rem(67);
+        }
+
+        &:nth-child(4) {
+          left: rem(95);
+        }
+
+        &:nth-child(5) {
+          left: rem(127);
+          z-index: 1;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .dashboard_details2 {
+    @include setDimension(100%, 100%);
+    background-color: var(--bg-high);
+
+  }
+}
