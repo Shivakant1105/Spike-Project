@@ -5,7 +5,7 @@
 .section_overview {
   @include setDimension(100%, 100%);
   color: var(--textColor);
-  @include flex("", "", column, 16, 7);
+  @include flex("", "", column, 16, 0);
   min-height: 90vh;
 
   .dashboard_details {
@@ -147,51 +147,17 @@
   .table_container {
     @include flex(center, center, '', 20, 0);
     flex-wrap: wrap;
-    margin: 10px;
-
     .items {
       height: rem(580);
       background-color: var(--bg-high);
-    }
-
-    .product_table {
       padding: rem(32);
-      flex-grow: 1;
-
-      .product_col{
-        // @include setDimension(375px,93px);
-        width: 375px;
-        background-color: rgba(255, 0, 0, 0.363);
-      }
-
-      .payment_col{
-        // @include setDimension(133px,93px);
-        width: 133px;
-        background-color: lightblue;
-        // display: flex;
-      }
-
-      .status_col{
-        // @include setDimension(128px,93px);
-        width: 128px;
-        // display: flex;
-        // justify-content: center;
-        background-color: lightcoral;
-       
-      }
-
-      .more_col{
-        // @include setDimension(92px,93px);
-        background-color: lightpink;
-        width: 92px;
-      }
-
     }
-
+    .product_table {
+      flex-grow: 1;
+    }
     .map_table {
       width: rem(380);
     }
-
     .reviews_product {
       width: 100%;
     }

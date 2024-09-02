@@ -8,7 +8,7 @@ main {
     flex-grow: 1;
     overflow-y: auto;
     .wrapper {
-      @include flex(center, center, column, 16, 16);
+      @include flex(center, center, column, 16, 25);
 
       header {
         @include setDimension(100%, 70px);
