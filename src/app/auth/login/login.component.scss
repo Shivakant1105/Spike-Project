@@ -48,7 +48,6 @@
       .right {
         @extend .left;
         flex-grow: 1;
-        border: rem(1) solid;
         @include flex(flex-start, "", column, 25, 25);
 
         .welcome_heading {
@@ -99,6 +98,7 @@
             border: rem(1) solid var(--input-border-color);
             background-color: var(--bg-high);
             color: var(--textColor);
+            cursor: pointer;
 
             &:focus {
               border: rem(2) solid var(--input-border-color);
@@ -109,15 +109,21 @@
         .checkbox_forget_page {
           @include flex(space-between, center, "", 0, 0);
           color: var(--textColor);
+          cursor: pointer;
 
           .form-check-input {
             @include setDimension(rem(18), rem(18));
             box-shadow: none;
             background-color: var(--bg-high);
+            cursor: pointer;
+          }
+          .form-check-label {
+            cursor: pointer;
           }
           .forget {
             color: var(--quick-link-hover-color);
             font-weight: 600;
+            cursor: pointer;
           }
         }
 
@@ -133,6 +139,7 @@
         }
         .create_account {
           color: #007edb;
+          cursor: pointer;
         }
       }
     }
