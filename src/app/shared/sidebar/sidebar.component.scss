@@ -1,11 +1,14 @@
 @import '../styles.scss';
+
 .sidebar_container {
     @include flex("", "", column, 0, 0);
     margin: rem(16);
     margin-right: 0;
+    overflow: hidden;
     @include setDimension(270px, calc(100vh - 32px));
     background-color: var(--bg-high);
     color: var(--textColor);
+    transition: 0.3s ease-in-out;
 
     ul {
         font-size: rem(15);
@@ -43,8 +46,8 @@
                         color: var(--textColor);
                         position: absolute;
                         left: 80%;
-                        transform: rotate(90deg);
-                        transition: 0.9s ease-in-out;
+                        transform: rotate(-90deg);
+                        transition: 0.4s ease-in-out;
                     }
 
                     &.collapsed::after {
@@ -52,8 +55,8 @@
                         color: var(--textColor);
                         position: absolute;
                         left: 80%;
-                        transform: rotate(-90deg);
-                        transition: 0.9s ease-in-out;
+                        transform: rotate(90deg);
+                        transition: 0.4s ease-in-out;
                     }
                 }
 
@@ -76,6 +79,7 @@
                         padding: rem(16);
                         padding-top: 0;
                         margin-bottom: rem(6);
+                        text-wrap: nowrap;
 
                         &:hover span {
                             color: var(--textColor);
@@ -93,7 +97,20 @@
     .side_header {
         @include setDimension(100%, 80px);
         min-height: rem(80);
-        @include flex(center, center, "", 2, 0);
+        @include flex(start, center, "", 2, 0);
+        position: relative;
+        margin-left: rem(24);
+
+        button {
+            position: absolute;
+            right: 15%;
+        }
+
+        img {
+            position: absolute;
+            overflow: hidden;
+
+        }
     }
 
     .side_overview {
@@ -106,7 +123,7 @@
             cursor: pointer;
 
             .f12 {
-                padding-left:rem(25);
+                padding-left: rem(25);
                 color: var(--textColor-400);
             }
 
@@ -128,6 +145,7 @@
                         border-radius: 50%;
                     }
                 }
+
                 .outlined {
                     @include flex(end, "", "", 0, 0);
 
@@ -174,7 +192,7 @@
 
             img {
                 @include rounded_icons(40, 40, "");
-                @include flex(center,center,'',0,0);
+                @include flex(center, center, '', 0, 0);
             }
 
             .login_user {
@@ -184,13 +202,21 @@
     }
 }
 
-// sidebar
+// sidebar over click
 .hover_sidecontainer {
+    transition: .3s ease-in-out;
     width: rem(80);
 
     .side_header {
-        #small_logo {
-            display: block;
+
+        .dark_logo,
+        .light_logo {
+            display: none !important;
+            position: relative;
+        }
+
+        img {
+            width: rem(205);
         }
     }
 
@@ -201,9 +227,17 @@
     .side_overview {
         span {
             &.f15 {
+                transition: 0.3s ease-in-out;
                 display: none;
             }
         }
+
+        .wrapper {
+            .accordion-button1 {
+                display: none !important;
+            }
+        }
+
     }
 
     .home_menu_items {
@@ -223,5 +257,35 @@
 
     100% {
         width: 97%;
+    }
+}
+
+// sidebar over hover
+.sidebar_container:hover {
+    .side_header img {
+        width: unset;
+    }
+
+    .side_overview {
+        span {
+            &.f15 {
+                display: block;
+            }
+        }
+
+        .wrapper {
+            .accordion-button1 {
+                display: flex !important;
+            }
+        }
+
+    }
+
+    .side_footer {
+        display: flex;
+    }
+
+    .home_menu_items {
+        justify-content: start;
     }
 }
