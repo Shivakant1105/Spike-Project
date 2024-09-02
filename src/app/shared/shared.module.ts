@@ -6,11 +6,15 @@ import { allIcons } from 'angular-feather/icons';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { SmoothedLineSeriesComponent } from './charts/smoothed-line-series/smoothed-line-series.component';
 
+const declared = [
+  HeaderComponent,
+  SidebarComponent,
+  SmoothedLineSeriesComponent]
 @NgModule({
   declarations: [
-    HeaderComponent,
-    SidebarComponent
+    ...declared
   ],
   imports: [
     CommonModule,
@@ -18,8 +22,7 @@ import { RouterModule } from '@angular/router';
     FeatherModule.pick(allIcons)
   ],
   exports: [
-    HeaderComponent,
-    SidebarComponent
+    ...declared
   ]
 })
 export class SharedModule { }
