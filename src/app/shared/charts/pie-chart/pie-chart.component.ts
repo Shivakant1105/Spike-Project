@@ -10,11 +10,11 @@ import * as am5percent from '@amcharts/amcharts5/percent';
 export class PieChartComponent implements AfterViewInit {
   constructor(private zone: NgZone) {}
   private root: am5.Root | undefined;
-  
-   /**  
-    * @description This is a Pie-Chart
-    * @author Vivek Sengar
-    */
+
+  /**
+   * @description This is a Pie-Chart
+   * @author Vivek Sengar
+   */
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
       let currentColor: any;
@@ -43,46 +43,6 @@ export class PieChartComponent implements AfterViewInit {
           colors: colorSet,
         })
       );
-
-      series.slices.template.events.on('pointerover', function (event) {
-        currentColor = event.target.get('fill');
-        if (currentColor && !(event.target.get('active'))) {
-          let lightColor = am5.Color.lighten(currentColor, 0.5);
-          event.target.set('fill', lightColor);
-        }
-      });
-
-      series.slices.template.events.on('pointerout', function (event) {
-        if (!event.target.get('active')) {
-          event.target.set('fill', currentColor);
-        }
-      });
-      series.slices.template.events.on('click', function (ev) {
-            const newColors = [
-              am5.color('#3280d7'), 
-              am5.color('#4bc9e9'), 
-              am5.color('#fb9780'),  
-            ];
-            series.slices.each((slice, index) => {
-              if (slice !== ev.target && slice.get('active')) {
-                slice.set('active', false);
-                slice.set('fill', newColors[index]);
-              }
-              if (ev.target == slice && slice.get('active')) {
-                slice.set('fill', newColors[index]);
-              }
-              if (slice == ev.target) {
-                currentColor = slice.get('fill')
-                console.log(currentColor)
-        
-                if (currentColor) {
-                  const darkColor = am5.Color.lighten(currentColor, -0.5);
-                  ev.target.set('fill', darkColor);
-                }
-              }
-             
-            });
-          });
       series.data.setAll([
         {
           category: 'First',
@@ -97,6 +57,43 @@ export class PieChartComponent implements AfterViewInit {
           value: 30,
         },
       ]);
+      series.slices.template.events.on('pointerover', function (event) {
+        currentColor = event.target.get('fill');
+        if (currentColor && !event.target.get('active')) {
+          let lightColor = am5.Color.lighten(currentColor, 0.5);
+          event.target.set('fill', lightColor);
+        }
+      });
+
+      series.slices.template.events.on('pointerout', function (event) {
+        if (!event.target.get('active')) {
+          event.target.set('fill', currentColor);
+        }
+      });
+      series.slices.template.events.on('click', function (ev) {
+        const newColors = [
+          am5.color('#3280d7'),
+          am5.color('#4bc9e9'),
+          am5.color('#fb9780'),
+        ];
+        series.slices.each((slice, index) => {
+          if (slice !== ev.target && slice.get('active')) {
+            slice.set('active', false);
+            slice.set('fill', newColors[index]);
+          }
+          if (ev.target == slice && slice.get('active')) {
+            slice.set('fill', newColors[index]);
+          }
+          if (slice == ev.target) {
+            currentColor = slice.get('fill');
+            if (currentColor) {
+              const darkColor = am5.Color.lighten(currentColor, -0.5);
+              ev.target.set('fill', darkColor);
+            }
+          }
+        });
+      });
+
       series.labels.template.set('visible', false);
       series.ticks.template.set('visible', false);
       series.slices.template.set('tooltipText', '');
