@@ -29,9 +29,17 @@ $largeDesktop: 1920px;
 
   .details,
   .details2,
-  .dashboard_details_items {
+  .dashboard_details_items{
     width: 100% !important;
   }
+
+.account_main{
+  // padding: 0 !important;
+  #change_profile,.change_password,.profile_details{
+    width: 100%;
+    height: auto !important;
+  }
+}  
 
 .table_container{
   .items{
