@@ -1,11 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
-@import "./Scss/function";
-@import "./Scss/base/index";
-@import "../src/Scss/mixing";
+@import "./function";
+@import "./base/index";
+@import "./mixing";
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Plus Jakarta Sans";
 }

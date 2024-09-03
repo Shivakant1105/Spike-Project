@@ -25,13 +25,18 @@ $landscape: rem(600);
 }
 
 @include width-range(0px, $desktop - rem(1)) {
-  .details1,
+
+  .details,
   .details2,
   .dashboard_details_items {
     width: 100% !important;
   }
 
-  .dashboard_details {
+.table_container{
+  .items{
+    width: 100% !important;
+  }
+}  .dashboard_details {
     flex-wrap: wrap;
   }
 
