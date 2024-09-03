@@ -86,6 +86,8 @@ export class PieChartComponent implements AfterViewInit {
           }
           if (slice == ev.target) {
             currentColor = slice.get('fill');
+            console.log(currentColor);
+
             if (currentColor) {
               const darkColor = am5.Color.lighten(currentColor, -0.5);
               ev.target.set('fill', darkColor);
@@ -93,7 +95,20 @@ export class PieChartComponent implements AfterViewInit {
           }
         });
       });
-
+      series.data.setAll([
+        {
+          category: 'First',
+          value: 30,
+        },
+        {
+          category: 'Second',
+          value: 30,
+        },
+        {
+          category: 'Remaining',
+          value: 30,
+        },
+      ]);
       series.labels.template.set('visible', false);
       series.ticks.template.set('visible', false);
       series.slices.template.set('tooltipText', '');
