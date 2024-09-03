@@ -25,18 +25,18 @@ $landscape: rem(600);
 }
 
 @include width-range(0px, $desktop - rem(1)) {
-
   .details,
   .details2,
   .dashboard_details_items {
     width: 100% !important;
   }
 
-.table_container{
-  .items{
-    width: 100% !important;
+  .table_container {
+    .items {
+      width: 100% !important;
+    }
   }
-}  .dashboard_details {
+  .dashboard_details {
     flex-wrap: wrap;
   }
 
@@ -54,7 +54,7 @@ $landscape: rem(600);
   .login_section {
     section {
       width: 100% !important;
-      height: rem(750) !important;
+      height: rem(790) !important;
 
       .login_content .right {
         padding: 24px !important;
@@ -69,6 +69,9 @@ $landscape: rem(600);
         }
       }
     }
+  }
+  .contact_container .user_profile .card {
+    width: 100% !important;
   }
 }
 
