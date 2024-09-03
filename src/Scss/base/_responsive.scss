@@ -1,9 +1,9 @@
-$mobile: 360px;
-$tablet: 768px;
-$large: 1024px;
-$desktop: 1280px;
-$largeDesktop: 1920px;
-
+$mobile: rem(360);
+$tablet: rem(768);
+$large: rem(1024);
+$desktop: rem(1280);
+$largeDesktop: rem(1920);
+$landscape: rem(600);
 // --------------- MEDIA QUERY ------------------------
 @mixin width-range($min, $max) {
   @media only screen and (min-width: $min) and (max-width: $max) {
@@ -12,20 +12,19 @@ $largeDesktop: 1920px;
 }
 
 // common before large device
-@include width-range(0px, $large - 1px) {
+@include width-range(0px, $large - rem(1)) {
   main {
     padding-top: 0 !important;
-     #menu_toggle{
+    #menu_toggle {
       display: none;
-     }
+    }
     aside {
       display: none !important;
     }
   }
-
 }
 
-@include width-range(0px, $desktop - 1px) {
+@include width-range(0px, $desktop - rem(1)) {
 
   .details,
   .details2,
@@ -41,4 +40,46 @@ $largeDesktop: 1920px;
     flex-wrap: wrap;
   }
 
+  .login_section {
+    section {
+      flex-grow: 1;
+      .left {
+        display: none;
+      }
+    }
+  }
+}
+
+@include width-range(0px, $landscape - rem(1)) {
+  .login_section {
+    section {
+      width: 100% !important;
+      height: rem(750) !important;
+
+      .login_content .right {
+        padding: 24px !important;
+        .icon_container {
+          flex-direction: column !important;
+          gap: rem(18) !important;
+
+          .first_btn,
+          .second_btn {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include width-range(0px, $mobile - rem(1)) {
+  .login_section section .light-logo {
+    display: none !important;
+  }
+}
+
+@include width-range(0px, rem(1400) - rem(1)) {
+  .header_body .header_right_container .user_admin {
+    width: auto !important;
+  }
 }

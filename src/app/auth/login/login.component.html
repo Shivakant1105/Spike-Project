@@ -1,1 +1,67 @@
-<p>login works!</p>
+<main class="login_section">
+    <section class="p-2 box_shadow custome_radius">
+
+        <!-- <img class="login_logo float-start" src="./assets/login/spike_logo.svg" alt=""> -->
+        <img class="dark-logo light_img me-2" src="https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg"
+            alt="">
+        <!-- image in dark theme -->
+        <img id="dark_img" class="img-fluid light-logo dark_img me-2 "
+            src="https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg" alt="">
+
+        <div class="login_content d-flex">
+
+            <div class="left items">
+                <img src="../../../assets/login/login-bg.png" alt="login-bg-img">
+            </div>
+
+            <div class="right items pt-5">
+                <div class="welcome_heading">
+                    <h4 class="headline">Welcome to Spike Admin</h4>
+                    <span class="f14 admin_dashboard">Your Admin Dashboard</span>
+                </div>
+
+                <div class="icon_container">
+                    <button class="first_btn custome_radius">
+                        <img src="../../../assets/login/google_logo.png" alt="">
+                        <span class="f14">Sign in with Google</span>
+                    </button>
+                    <button class="second_btn custome_radius">
+                        <img src="../../../assets/login/facebook_logo.png" alt="">
+                        <span class="f14">Sign in with Facebook</span>
+                    </button>
+                </div>
+
+                <div class="underline_container">
+                    <span class="underline"></span>
+                    <span class="text-nowrap">or sign in with</span>
+                    <span class="underline"></span>
+                </div>
+
+                <div class="form-group username_cnt gap-2 d-flex flex-column">
+                    <label for="username">Username</label>
+                    <input type="email" class="form-control custome_radius" id="username">
+                </div>
+
+                <div class="form-group password_cnt gap-2 d-flex flex-column">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control custome_radius" id="password">
+                </div>
+
+                <div class="checkbox_forget_page">
+                    <div class="d-flex align-items-center gap-3">
+                        <input class="form-check-input" type="checkbox" value="" id="checkbox">
+                        <label class="form-check-label f14" for="checkbox">
+                            Remember this Device
+                        </label>
+                    </div>
+                    <span class="f14 forget">Forgot Password ?</span>
+                </div>
+
+                <button type="button" class="custome_radius signin_btn">Sign In</button>
+                <p class="f14 spike">New to Spike? <span class="f14 create_account">Create an account</span></p>
+
+            </div>
+        </div>
+
+    </section>
+</main>
