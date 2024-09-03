@@ -16,7 +16,7 @@
 }
 
 %shortcut_hover {
-  height: rem(144);
+  @include setDimension(rem(144), rem(144));
   transition: background-color 0.3s ease-in-out;
   min-width: rem(150);
   @include flex(center, center, column, 5, 16);
