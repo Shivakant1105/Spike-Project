@@ -7,14 +7,17 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { SmoothedLineSeriesComponent } from './charts/smoothed-line-series/smoothed-line-series.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 
 const declared = [
   HeaderComponent,
   SidebarComponent,
-  SmoothedLineSeriesComponent]
+  SmoothedLineSeriesComponent, 
+  PieChartComponent]
 @NgModule({
   declarations: [
-    ...declared
+    ...declared,
+   
   ],
   imports: [
     CommonModule,

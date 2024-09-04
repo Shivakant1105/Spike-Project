@@ -1,6 +1,6 @@
 <section class="account_container custome_radius">
     <header class="sub_header custome_radius box_shadow">
-        <h4>Account Settings</h4>
+        <h4 class="f20">Account Settings</h4>
         <span class="f14">Dashboard</span>
         <li class="f14">Account Settings</li>
     </header>
@@ -18,7 +18,7 @@
             <div class="btn_group">
                 <button class="btn upload">Upload</button>
                 <button class="btn reset">Reset</button>
-                <p>Allowed JPG, GIF or PNG. Max size of 800K</p>
+                <p class="w-100 text-center">Allowed JPG, GIF or PNG. Max size of 800K</p>
             </div>
         </div>
 
@@ -27,21 +27,17 @@
             <h5 class="mb-1">Change Password</h5>
             <p class="f14">To change your password please confirm here</p>
             <form class="f14 mt-3">
-
-                <div class="mb-4">
+                    <!-- for the current password -->
                     <label>Current Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
+                    <input type="password" class="form-control mb-4">
 
-                <div class="mb-4">
+                    <!-- for the new password -->
                     <label>New password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
+                    <input type="password" class="form-control mb-4">
 
-                <div class="mb-4">
+                    <!-- for the confirm password -->
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
+                    <input type="password" class="form-control">
 
             </form>
         </div>
@@ -50,53 +46,50 @@
         <div class="profile_details custome_radius custome_border f14">
             <h5 class="mb-1">Change Password</h5>
             <p class="f14">To change your password please confirm here</p>
-           
+
             <form>
-                <div class="mb-3">
-                    <label>Your Name</label>
-                    <input type="text" class="form-control">
-                   
-                </div>
+                <!-- for the Your name -->
+                <label>Your Name</label>
+                <input type="text" class="form-control mb-4">
+
+                <!-- for the Location -->
                 <label>Location</label>
-                <select class="form-select mb-4" aria-label="Default select example">
+                <select class="form-select mb-4">
                     <option selected>India</option>
                     <option value="1">USA</option>
                     <option value="2">UK</option>
                     <option value="3">China</option>
-                  </select>
+                </select>
 
-                  <div class="mb-3">
-                    <label>Email</label>
-                    <input type="email" class="form-control">
-                </div>
+                <!-- for the Email -->
+                <label>Email</label>
+                <input type="email" class="form-control mb-3">
 
             </form>
 
             <form>
-                <div class="mb-3">
-                    <label>Store Name</label>
-                    <input type="text" class="form-control">
-                   
-                </div>
+                <!-- for the Name -->
+                <label>Store Name</label>
+                <input type="text" class="form-control mb-4">
+
+                <!-- for the Currency -->
                 <label>Currency</label>
                 <select class="form-select mb-4">
                     <option selected>India (INR)</option>
                     <option value="1">Us Dollor($)</option>
                     <option value="2">Russia</option>
-                  </select>
+                </select>
 
-                  <div class="mb-3">
-                    <label>Phone</label>
-                    <input type="number" class="form-control">
-                </div>
+                <label>Phone</label>
+                <input type="number" class="form-control">
 
             </form>
 
-            <div class="mb-3 w-100">
+            <div class="w-100">
                 <label>Address</label>
                 <input type="text" class="form-control">
             </div>
-            
+
         </div>
     </main>
 

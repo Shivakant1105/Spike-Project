@@ -1,0 +1,148 @@
+@import "../../../styles.scss";
+
+%login-button {
+  outline: none;
+  border: rem(1) solid var(--icons-outline-color);
+  @include setDimension(rem(200), rem(36));
+  @include flex(center, center, "", 10, 15);
+  text-wrap: nowrap;
+  flex-grow: 1;
+  background-color: var(--bg-high);
+  color: var(--text-color-600);
+  &:hover {
+    background-color: var(--btn-hover-color);
+  }
+}
+
+.login_section {
+  @include setDimension(100vw, 100vh);
+  @include flex(center, center, "", 0, 0);
+  padding: rem(20);
+  background-color: var(--bg);
+  section {
+    @include setDimension(rem(1130), rem(715));
+    background-color: var(--bg-high);
+    @include flex("", "", column, 0, 0);
+
+    .light-logo {
+      height: rem(50);
+      display: block;
+      margin: rem(18) auto 0 rem(47) !important;
+    }
+    .dark-logo {
+      height: rem(50);
+      margin: rem(18) auto 0 rem(47) !important;
+    }
+
+    .login_content {
+      .left {
+        width: 50%;
+        height: calc(rem(715) - rem(70));
+        padding-left: rem(40);
+
+        & img {
+          width: 100%;
+        }
+      }
+
+      .right {
+        @extend .left;
+        flex-grow: 1;
+        @include flex(flex-start, "", column, 25, 57);
+
+        .welcome_heading {
+          @include flex(flex-start, "", column, 16, 0);
+          .headline {
+            font-size: rem(30);
+            font-weight: 700;
+            color: var(--text-color-600);
+          }
+          .admin_dashboard {
+            color: var(--text-color-400);
+          }
+        }
+
+        .icon_container {
+          @include flex("", "", "", 35, 1);
+          .first_btn {
+            @extend %login-button;
+            img {
+              width: rem(18);
+            }
+          }
+          .second_btn {
+            @extend %login-button;
+            img {
+              width: rem(20);
+            }
+          }
+        }
+
+        .underline_container {
+          @include flex(flex-start, center, "", 50, 0);
+          color: var(--text-color-600);
+          .underline {
+            width: rem(115);
+            border-bottom: rem(1) solid var(--icons-outline-color);
+            flex-grow: 1;
+          }
+        }
+
+        .username_cnt,
+        .password_cnt {
+          color: var(--text-color-400);
+          & input {
+            height: rem(50);
+            box-shadow: none;
+            padding-left: rem(16);
+            border: rem(1) solid var(--input-border-color);
+            background-color: var(--bg-high);
+            color: var(--textColor);
+            cursor: pointer;
+
+            &:focus {
+              border: rem(2) solid var(--input-border-color);
+            }
+          }
+        }
+
+        .checkbox_forget_page {
+          @include flex(space-between, center, "", 0, 0);
+          color: var(--textColor);
+          cursor: pointer;
+
+          .form-check-input {
+            @include setDimension(rem(18), rem(18));
+            box-shadow: none;
+            background-color: var(--bg-high);
+            cursor: pointer;
+          }
+          .form-check-label {
+            cursor: pointer;
+          }
+          .forget {
+            color: var(--quick-link-hover-color);
+            font-weight: 600;
+            cursor: pointer;
+          }
+        }
+
+        .signin_btn {
+          outline: none;
+          border: 0;
+          @include setDimension("", rem(36));
+          background-color: var(--btn-bg-color);
+          color: var(--text-color-600);
+          @include flex(center, center, "", 0, 16);
+        }
+        .spike {
+          color: var(--text-color-600);
+        }
+        .create_account {
+          color: #007edb;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

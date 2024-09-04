@@ -1,5 +1,5 @@
 // common variables
-:root{
+:root {
   --white: white;
   --proccessing-text: #58d595;
   --hold-text:#f8c076;
@@ -17,7 +17,7 @@
   --strongly-shadow: rgba(0, 0, 0, 0.2);
   --header-footer: #e5f3fa;
   --sidebar-hover-bg: #f0f5f9;
-  --header-text-Color: #5e5e5e; 
+  --header-text-Color: #5e5e5e;
   --outlined-btn: #0f6bb0;
   --outlined-btn-text: #0f6bb0;
   --payment-bg: #dffef3;
@@ -31,11 +31,11 @@
   --user-inbox-icon-bg: #dffef3;
   --user-task-icon-bg: #ffede9;
   --quick-link-hover-color: #0281d5;
-  
+
   // for the order summary
-  --processing-bg:#dffef3;
-  --hold-bg:#fff6ea;
-  --delivered-bg:#e1f5fa;
+  --processing-bg: #dffef3;
+  --hold-bg: #fff6ea;
+  --delivered-bg: #e1f5fa;
 
   //seach modal
   --search-modal-bg: #ffffff;
@@ -61,7 +61,9 @@
   --text-color-600: #111c2d;
   --text-color-400: #111c2d;
   --left-bottom-border: #e5eaef;
-  
+
+  //sign in Page
+  --btn-bg-color: #e0e0e0;
 }
 
 .dark-theme {
@@ -90,8 +92,8 @@
   --payment-textColor: #14aa76;
   --quick-link-hover-color: #0281d5;
 
-   //seach modal
-  --search-modal-bg: #2A3447;
+  //seach modal
+  --search-modal-bg: #2a3447;
   --input-border-color: #455570;
 
   // message moddal
@@ -111,13 +113,19 @@
   // Apps Modal
   --apps-icon-modal-bg: #13324f;
 
-   // for the order summary
-   --processing-bg:#1a4040;
-   --hold-bg:#403d3c;
-   --delivered-bg:#1b3f53;
+  // for the order summary
+  --processing-bg: #1a4040;
+  --hold-bg: #403d3c;
+  --delivered-bg: #1b3f53;
   --apps-icon-modal-bg: #111c2d;
   --apps-icon-bg: #13324f;
   --text-color-600: #eaeff4;
   --text-color-400: #c6d1e9;
   --left-bottom-border: #333f55;
+
+  //sign in Page
+  --btn-bg-color: #2f3847;
+  --btn-hover-color: #242E3E;
+  --input-border-color: #465670;
+  --icons-outline-color: #293241;
 }
