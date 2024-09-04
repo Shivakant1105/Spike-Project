@@ -93,13 +93,14 @@
             height: rem(50);
             box-shadow: none;
             padding-left: rem(16);
-            border: rem(1) solid var(--input-border-color);
+            border: rem(1) solid var(--icons-outline-color);
             background-color: var(--bg-high);
             color: var(--textColor);
             cursor: pointer;
+                border: 1px solid #cfcdcd;
 
             &:focus {
-              border: rem(2) solid var(--input-border-color);
+              border: rem(1) solid #465670;
             }
           }
         }
