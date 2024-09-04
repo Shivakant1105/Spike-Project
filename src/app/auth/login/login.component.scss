@@ -112,7 +112,6 @@
           .form-check-input {
             @include setDimension(rem(18), rem(18));
             box-shadow: none;
-            // background-color: var(--bg-high);
             cursor: pointer;
           }
           .form-check-label {

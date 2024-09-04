@@ -108,6 +108,7 @@ main {
           padding: 0 rem(30);
           .social {
             @include flex(center, center, "", 6, 0);
+            cursor: pointer;
             color: var(--text-color-400);
             i-feather {
               display: flex;
