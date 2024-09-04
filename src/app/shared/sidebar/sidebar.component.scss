@@ -12,6 +12,14 @@
 
     ul {
         font-size: rem(15);
+        color: var(--textColor-200);
+        padding-left: rem(27);
+        li{
+            margin-bottom: rem(19);
+            &:hover{
+                color: var(--textColor);
+            }
+        }
     }
 
     %sidebar_menu_hover {
@@ -206,15 +214,7 @@
 .hover_sidecontainer {
     transition: .3s ease-in-out;
     width: rem(80);
-
     .side_header {
-
-        .dark_logo,
-        .light_logo {
-            display: none !important;
-            position: relative;
-        }
-
         img {
             width: rem(205);
         }
@@ -242,6 +242,9 @@
 
     .home_menu_items {
         justify-content: center;
+        .outlined,.chip_box{
+            display: none !important;
+        }
     }
 
     &:hover {
@@ -287,5 +290,8 @@
 
     .home_menu_items {
         justify-content: start;
+        .outlined,.chip_box{
+            display: flex !important;
+        }
     }
 }

@@ -6,6 +6,17 @@
   @include flex("", "", column, 16, 0);
   min-height: 90vh;
 
+  select {
+    height: rem(54);
+    box-shadow: none;
+    outline: none;
+    color: var(--textColor);
+    border: 1px solid #cccccc4a;
+    option{
+      background-color: var(--bg-high);
+    }
+ }
+
   .dashboard_details {
     @include setDimension(100%, auto);
     @include flex("", "", "", 10, 0);
