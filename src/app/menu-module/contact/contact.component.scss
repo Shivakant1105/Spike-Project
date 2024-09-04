@@ -1,7 +1,7 @@
 @import "../../../styles.scss";
 %btn {
   @include flex(center, center, "", 0, 0);
-  color: #ffffff;
+  color: var(--white);
 }
 main {
   .contact_container {
@@ -23,7 +23,7 @@ main {
         @include flex(center, center, "", 15, 0);
         .dashboard {
           color: var(--quick-link-hover-color);
-          cursor: pointer
+          cursor: pointer;
         }
         .circle {
           @include setDimension(rem(5), rem(5));
@@ -46,21 +46,23 @@ main {
       .left_items {
         @include setDimension(rem(360), rem(52));
         @include flex(space-between, center, "", 0, 0);
-        border: rem(1) solid #465670;
+        border: rem(1) solid var(--input-search-color);
         padding-right: rem(18);
 
         & input {
           @include setDimension(rem(360), rem(50));
           background-color: var(--bg-high);
           color: var(--text-color-600);
-          box-shadow: none;
-          outline: none;
           border: 0;
           border-top-left-radius: rem(18);
           border-bottom-left-radius: rem(18);
           padding-left: rem(15);
-          &::placeholder{
-             color: var(--textColor-400);
+
+          &:focus {
+            outline: 0;
+          }
+          &::placeholder {
+            color: var(--textColor-400);
           }
         }
 
@@ -71,8 +73,8 @@ main {
       }
       .right_items {
         @include minwidth_minheight(rem(120), rem(36));
-        background-color: #1b8add;
-        color: #ffffff;
+        background-color: var(--contact-user-bg);
+        color: var(--white);
       }
     }
 
@@ -87,25 +89,30 @@ main {
         min-width: rem(381);
 
         .card_items {
-          @include flex(center, center, column, 10, 36);
+          @include flex(center, center, column, 13, 36);
           color: var(--text-color-600);
           flex-grow: 1;
+          .mb-3 {
+            margin-top: rem(-7);
+          }
           & img {
+            width: rem(50);
             @include rounded_icons(100, 100, "");
           }
           .chat-follow {
             .btn1 {
               @include setDimension(rem(60), rem(34));
-              background-color: #1b8add;
+              background-color: var(--contact-user-bg);
               @extend %btn;
             }
             .btn2 {
               @extend %btn;
               @include setDimension(rem(70), rem(34));
-              background-color: #7b848c;
+              background-color: var(--contact-page-btn-color);
             }
           }
         }
+
         .footer {
           @include flex(space-between, center, "", 0, 0);
           @include setDimension(100%, rem(40));
@@ -115,10 +122,6 @@ main {
             @include flex(center, center, "", 6, 0);
             cursor: pointer;
             color: var(--text-color-400);
-            i-feather {
-              display: flex;
-              @include setDimension(rem(16), rem(16));
-            }
           }
         }
       }

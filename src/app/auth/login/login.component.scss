@@ -96,9 +96,7 @@
             border: rem(1) solid var(--icons-outline-color);
             background-color: var(--bg-high);
             color: var(--textColor);
-            cursor: pointer;
-                border: 1px solid #cfcdcd;
-
+            cursor: pointer; 
             &:focus {
               border: rem(1) solid #465670;
             }

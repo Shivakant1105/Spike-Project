@@ -4,6 +4,9 @@
   --proccessing-text: #58d595;
   --hold-text: #f8c076;
   --delivered-text: #4cccec;
+  --input-search-color: #465670;
+  --contact-user-bg: #1b8add;
+  --contact-page-btn-color: #7b848c;
 }
 .light-theme {
   --bg: #f0f5f9;
@@ -39,6 +42,7 @@
   //seach modal
   --search-modal-bg: #ffffff;
   --input-outline-color: rgb(105, 177, 245);
+  --input-border-color: #404a5c42;
 
   // message moddal
   --message-madal-bg: #ffffff;
@@ -95,7 +99,7 @@
 
   //seach modal
   --search-modal-bg: #2a3447;
-  
+
   // message moddal
   --message-madal-bg: #111c2d;
   --message-madal-box-shadow: #919eab4d 0 0 2px, #919eab05 0 12px 24px -4px;
