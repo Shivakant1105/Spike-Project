@@ -8,7 +8,14 @@
   font-family: "Plus Jakarta Sans";
 }
 
-h1,h2,h3,h4,h5,h6,p,ul{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
   padding: 0;
   margin: 0;
 }
@@ -17,9 +24,9 @@ html {
   font-size: 100%;
 }
 
-.custome_bottom_border{
-  border:none;
-   border-bottom: 1px solid #cccccc;
+.custome_bottom_border {
+  border: none;
+  border-bottom: 1px solid var(--border-color-lighter);
 }
 
 .custome_radius,
@@ -33,11 +40,10 @@ html {
 }
 
 .custome_border {
-  border: 1px solid #cccccc4a;
+  border: 1px solid var(--border-color-light);
 }
 
 ::-webkit-scrollbar {
-
   @include setDimension(rem(6), rem(1));
 }
 

@@ -2,9 +2,11 @@
 :root {
   --white: white;
   --proccessing-text: #58d595;
-  --hold-text:#f8c076;
-  --delivered-text:#4cccec;
-  --dashboard-color:#9fc1ea;
+  --hold-text: #f8c076;
+  --delivered-text: #4cccec;
+  --dashboard-color: #9fc1ea;
+  --border-color-lighter: #cccccc4a;
+  --border-color-light: #cccccc94;
 }
 .light-theme {
   --bg: #f0f5f9;
@@ -125,7 +127,7 @@
 
   //sign in Page
   --btn-bg-color: #2f3847;
-  --btn-hover-color: #242E3E;
+  --btn-hover-color: #242e3e;
   --input-border-color: #465670;
   --icons-outline-color: #293241;
 }

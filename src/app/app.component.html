@@ -1,4 +1,4 @@
-<main *ngIf="authService.isLogin | async" class="d-flex light-theme">
+<main *ngIf="authService.isLogin | async" class="d-flex dark-theme">
     <aside class="">
         <app-sidebar></app-sidebar>
     </aside>
@@ -10,9 +10,9 @@
                     <app-header></app-header>
                 </div>
             </header>
-            
-            <div class="w-100 m-3"><router-outlet></router-outlet></div>    
-            
+
+            <div class="w-100 m-3"><router-outlet></router-outlet></div>
+
         </div>
     </section>
     <div class="offcanvas offcanvas-start" data-bs-backdrop="false" id="offcanvasScrolling"
@@ -69,7 +69,7 @@
 
                     <h6 class="heading mt-4">Dashboard 1</h6>
                     <span class="summary">/dashboards/dashboard1</span>
-                    
+
                     <h6 class="heading mt-4">Dashboard 1</h6>
                     <span class="summary">/dashboards/dashboard1</span>
                 </div>
