@@ -44,9 +44,12 @@ main {
       height: rem(51);
       box-shadow: none;
       background-color: var(--search-modal-bg);
-      border: 2px solid var(--input-border-color);
+      border: 1px solid var(--input-border-color);
       color: #ffffff;
 
+      &:focus {
+        border: rem(2) solid var(--input-modal-outline-color);
+      }
       &::placeholder {
         color: var(--textColor-200);
         font-weight: 500;
@@ -77,7 +80,7 @@ main {
       font-weight: 500;
       display: block;
     }
-    
+
     // Mixin for scrollbar
     & {
       @include custom-scrollbar(rem(6), "", #c1c1c1, "");
