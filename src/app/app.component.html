@@ -1,81 +1,104 @@
-<main *ngIf="authService.isLogin | async" class="d-flex dark-theme">
-    <aside class="">
-        <app-sidebar></app-sidebar>
-    </aside>
+<main *ngIf="authService.isLogin | async" class="d-flex light-theme">
+  <aside class="">
+    <app-sidebar></app-sidebar>
+  </aside>
 
-    <section>
-        <div class="wrapper container-lg">
-            <header class="sticky-top custome_radius box_shadow">
-                <div class="w-100">
-                    <app-header></app-header>
-                </div>
-            </header>
-
-            <div class="w-100 m-3"><router-outlet></router-outlet></div>
-
+  <section>
+    <div class="wrapper container-lg">
+      <header class="sticky-top custome_radius box_shadow">
+        <div class="w-100">
+          <app-header></app-header>
         </div>
-    </section>
-    <div class="offcanvas offcanvas-start" data-bs-backdrop="false" id="offcanvasScrolling"
-        aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-body overflow-hidden p-0">
-            <app-sidebar></app-sidebar>
-        </div>
+      </header>
+
+      <div class="w-100 m-3"><router-outlet></router-outlet></div>
     </div>
-
-    <!-- Search Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal_dialogs">
-            <div class="modal-content p-1 modal_contents" style="border-radius: 16px !important">
-                <div class="modal-header modal_header input_filed_container">
-                    <input type="email" class="form-control custome_radius" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Seach here" />
-                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body p-0 mt-3 search_modal_body">
-                    <h5 class="search_modal_heading">Quick page Links</h5>
-
-                    <h6 class="heading ">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-
-                    <h6 class="heading mt-4">Dashboard 1</h6>
-                    <span class="summary">/dashboards/dashboard1</span>
-                </div>
-            </div>
-        </div>
+  </section>
+  <div
+    class="offcanvas offcanvas-start"
+    data-bs-backdrop="false"
+    id="offcanvasScrolling"
+    aria-labelledby="offcanvasScrollingLabel"
+  >
+    <div class="offcanvas-body overflow-hidden p-0">
+      <app-sidebar></app-sidebar>
     </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal_dialogs">
+      <div
+        class="modal-content p-1 modal_contents"
+        style="border-radius: 16px !important"
+      >
+        <div class="modal-header modal_header input_filed_container">
+          <input
+            type="email"
+            class="form-control custome_radius"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Seach here"
+          />
+          <button
+            type="button"
+            class="btn-close shadow-none"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body p-0 mt-3 search_modal_body">
+          <h5 class="search_modal_heading">Quick page Links</h5>
+
+          <h6 class="heading">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+
+          <h6 class="heading mt-4">Dashboard 1</h6>
+          <span class="summary">/dashboards/dashboard1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <i-feather class="setting" name="settings"></i-feather>
 </main>
 
 <router-outlet *ngIf="!(authService.isLogin | async)"></router-outlet>

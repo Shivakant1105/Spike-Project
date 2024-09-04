@@ -25,7 +25,6 @@ $landscape: rem(600);
 }
 
 @include width-range(0px, $desktop - rem(1)) {
-
   .details,
   .details2,
   .dashboard_details_items{
@@ -44,7 +43,7 @@ $landscape: rem(600);
   .items{
     width: 100% !important;
   }
-}  .dashboard_details {
+  .dashboard_details {
     flex-wrap: wrap;
   }
 
@@ -58,11 +57,13 @@ $landscape: rem(600);
   }
 }
 
+}
+
 @include width-range(0px, $landscape - rem(1)) {
   .login_section {
     section {
       width: 100% !important;
-      height: rem(750) !important;
+      height: rem(790) !important;
 
       .login_content .right {
         padding: 24px !important;
@@ -78,11 +79,40 @@ $landscape: rem(600);
       }
     }
   }
+
+  main .contact_container .user_profile .card {
+    flex-grow: 1;
+  }
+  .contact_container {
+    .contact_search_section {
+      padding: rem(18) rem(30) !important;
+      min-height: rem(180) !important;
+      justify-content: center !important;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .left_items,
+      input {
+        width: 100% !important;
+      }
+    }
+    .card {
+      min-width: 100% !important;
+    }
+  }
 }
 
 @include width-range(0px, $mobile - rem(1)) {
   .login_section section .light-logo {
     display: none !important;
+  }
+  .dashboard_section {
+    .right {
+      .circle,
+      .contact {
+        display: none;
+      }
+    }
   }
 }
 
