@@ -18,11 +18,11 @@
         <!-- For Home menu -->
         <div class="home_menu_container"><span class=" f12 ">HOME</span>
 
-            <div class="home_menu_items dash1" routerLink="home/dashboard">
+            <div class="home_menu_items dash1 blue" routerLink="home/dashboard">
                 <i-feather class="f24" name="grid"></i-feather><span class="f15">Dashboard1</span>
             </div>
 
-            <div class="home_menu_items dash2">
+            <div class="home_menu_items dash2 grey">
                 <i-feather class="f24" name="grid"></i-feather><span class="f15">Dashboard2</span>
             </div>
 
@@ -31,59 +31,9 @@
         <!-- For Apps Menu -->
         <div class="home_menu_container"><span class=" f12 ">APPS</span>
 
-            <!-- for the Chats -->
-            <div class="home_menu_items" routerLink="menu/chat">
-                <i-feather class="f24" name="message-circle"></i-feather><span class="f15">Chats</span>
-            </div>
-
-            <!-- for the Calandar -->
-            <div class="home_menu_items" routerLink="menu/calender">
-                <i-feather class="f24" name="calendar"></i-feather><span class="f15">Calender</span>
-            </div>
-
-            <!-- for the Email -->
-            <div class="home_menu_items" routerLink="menu">
-                <i-feather class="f24" name="Mail"></i-feather><span class="f15">Email</span>
-            </div>
-
-            <!-- for the Contact -->
-            <div class="home_menu_items" routerLink="menu/contacts">
-                <i-feather class="f24" name="phone"></i-feather><span class="f15">Contact</span>
-            </div>
-
-            <!-- for the Courses -->
-            <div class="home_menu_items" routerLink="menu/course">
-                <i-feather class="f24" name="book"></i-feather><span class="f15">Courses</span>
-            </div>
-
-            <!-- for the Employee -->
-            <div class="home_menu_items" routerLink="menu/employee">
-                <i-feather class="f24" name="users"></i-feather><span class="f15">Employee</span>
-            </div>
-
-            <!-- for the Notes -->
-            <div class="home_menu_items">
-                <i-feather class="f24" name="book-open"></i-feather><span class="f15">Notes</span>
-            </div>
-
-            <!-- for the Tickets -->
-            <div class="home_menu_items">
-                <i-feather class="f24" name="minus-square"></i-feather><span class="f15">Tickets</span>
-            </div>
-
-            <!-- for the Invoice -->
-            <div class="home_menu_items">
-                <i-feather class="f24" name="folder"></i-feather><span class="f15">Invoice</span>
-            </div>
-
-            <!-- for the Todo -->
-            <div class="home_menu_items">
-                <i-feather class="f24" name="edit"></i-feather><span class="f15">Todo</span>
-            </div>
-
-            <!-- for the Task Board -->
-            <div class="home_menu_items">
-                <i-feather class="f24" name="trello"></i-feather><span class="f15">Taskboard</span>
+            <div *ngFor="let sidebar of listOfSidebar" class="home_menu_items  {{sidebar.className}}"
+                routerLink="{{sidebar.route}}" routerLinkActive="active">
+                <i-feather class="f24" name="{{sidebar.icon}}"></i-feather><span class="f15">{{sidebar.name}}</span>
             </div>
 
             <!-- for the Blog -->
@@ -91,7 +41,7 @@
                 <div class="accordion-item">
 
                     <div class="wrapper">
-                        <button class="accordion-button1   p-3 custome_toggle collapsed" type="button"
+                        <button class="accordion-button1  p-3 custome_toggle collapsed" type="button"
                             data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
                             aria-controls="flush-collapseOne">
                             <i-feather class="f24" name="life-buoy"></i-feather><span class="f15">Blog</span>

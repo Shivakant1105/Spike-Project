@@ -85,3 +85,8 @@
     background: $thumb-hover-color;
   }
 }
+
+@mixin activeStyles($color, $bg-color) {
+  color: $color !important;
+  background-color: $bg-color;
+}
