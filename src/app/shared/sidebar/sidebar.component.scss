@@ -10,8 +10,10 @@
   color: var(--textColor);
   transition: 0.3s ease-in-out;
 
-  ul {
+  ul li {
     font-size: rem(15);
+    padding-left: 16px;
+    color: var(--textColor-200);
   }
 
   %sidebar_menu_hover {
@@ -75,7 +77,7 @@
           ul li {
             padding: rem(16);
             padding-top: 0;
-            margin-bottom: rem(6);
+            margin-bottom: rem(0);
             text-wrap: nowrap;
 
             &:hover span {
@@ -131,34 +133,35 @@
 
         &.red:hover {
           &::after {
-            @include activeStyles(#fb977d, #ffede9);
+            @include activeStyles(var(--red-hover-text), var(--red-hover));
             @extend %sidebar_menu_hover;
           }
         }
 
         &.green:hover {
           &::after {
-            @include activeStyles(#4bd08b, #ddfff3);
+            @include activeStyles(var(--green-hover-text), var(--green-hover));
             @extend %sidebar_menu_hover;
           }
         }
 
         &.blue:hover {
           &::after {
-            @include activeStyles(#0085db, #eaf2fb);
+            @include activeStyles(var(--blue-hover-text), var(--blue-hover));
             @extend %sidebar_menu_hover;
           }
         }
 
         &.orange:hover {
           &::after {
-            @include activeStyles(#f8c076, #fef6eb);
+            @include activeStyles(var(--orange-hover-text), var(--orange-hover));
             @extend %sidebar_menu_hover;
           }
         }
+
         &.grey:hover {
           &::after {
-            @include activeStyles(#707a82, #f0f1f2);
+            @include activeStyles(var(--grey-hover-text), var(--grey-hover));
             @extend %sidebar_menu_hover;
           }
         }
@@ -168,7 +171,7 @@
 
           span {
             @include flex(center, center, "", 0, 0);
-            color: white;
+            color: var(--white);
             @include setDimension(23px, 23px);
             background-color: var(--chip-menu_bg);
             border-radius: 50%;
@@ -188,7 +191,7 @@
       }
 
       .dash1 .f15 {
-        color: #3993e0;
+        color: var(--quick-link-hover-color);
       }
 
       .f15 {
@@ -237,6 +240,7 @@
   width: rem(80);
 
   .side_header {
+
     .dark_logo,
     .light_logo {
       display: none !important;
@@ -269,6 +273,12 @@
 
   .home_menu_items {
     justify-content: center;
+
+    .chip,
+    .outline_text {
+      display: none !important;
+    }
+
   }
 
   &:hover {
@@ -313,6 +323,11 @@
 
   .home_menu_items {
     justify-content: start;
+
+    .chip,
+    .outline_text {
+      display: flex !important;
+    }
   }
 }
 
@@ -329,21 +344,22 @@
   z-index: -1;
 
   &.red {
-    @include activeStyles(#fb977d, #ffede9);
+    @include activeStyles(var(--red-hover-text), var(--red-hover));
   }
 
   &.green {
-    @include activeStyles(#4bd08b, #ddfff3);
+    @include activeStyles(var(--green-hover-text), var(--green-hover));
   }
 
   &.blue {
-    @include activeStyles(#0085db, #eaf2fb);
+    @include activeStyles(var(--blue-hover-text), var(--blue-hover));
   }
 
   &.orange {
-    @include activeStyles(#f8c076, #fef6eb);
+    @include activeStyles(var(--orange-hover-text), var(--orange-hover));
   }
+
   &.grey {
-    @include activeStyles(#707a82, #f0f1f2);
+    @include activeStyles(var(--grey-hover-text), var(--grey-hover));
   }
 }

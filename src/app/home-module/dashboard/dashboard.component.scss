@@ -106,7 +106,7 @@
     .rounded_shape {
       @include rounded_icons(15, 15, transparent);
       @include flex(center, center, "", 0, 0);
-      border: 1px solid rgb(43, 142, 223);
+      border: 1px solid var(--quick-link-hover-color);
     }
 
     .card {
@@ -120,10 +120,10 @@
       position: relative;
 
       .items {
-        @include rounded_icons(40, 40, #e5f3fa);
+        @include rounded_icons(40, 40, var(--white));
         @include flex(center, center, "", 0, 0);
         position: absolute;
-        border: 2px solid white;
+        border: 2px solid var(--white);
 
         &:nth-child(2) {
           left: rem(34);

@@ -1,7 +1,8 @@
 @import '../styles.scss';
 
 .account_container {
-     color: var(--textColor);
+   color: var(--textColor);
+
    h5 {
       font-weight: 600;
    }
@@ -70,12 +71,12 @@
 
             button {
                &.upload {
-                  @include customize_radius(30px, #0085db, white)
+                  @include customize_radius(30px, var(--quick-link-hover-color), var(--white))
                }
 
                &.reset {
-                  @include customize_radius(30px, '', #fdc4b6);
-                  border: 1px solid #fdc4b6;
+                  @include customize_radius(30px, '', var(--red-hover-text));
+                  border: 1px solid var(--red-hover-text);
                }
 
             }
@@ -130,7 +131,7 @@
          outline: none;
          color: var(--textColor);
          @include customize_radius(40px, '', '');
-         border: 1px solid #cccccc4a;
+         border: 1px solid var(--border-color-lighter);
       }
 
    }
