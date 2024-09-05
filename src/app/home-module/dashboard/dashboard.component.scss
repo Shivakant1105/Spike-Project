@@ -1,4 +1,4 @@
-@import "../styles.scss";
+@import '../styles.scss';
 
 .section_overview {
   @include setDimension(100%, 100%);
@@ -11,10 +11,11 @@
     box-shadow: none;
     outline: none;
     color: var(--textColor);
-    option {
+    border: 1px solid #cccccc4a;
+    option{
       background-color: var(--bg-high);
     }
-  }
+ }
 
   .dashboard_details {
     @include setDimension(100%, auto);
@@ -112,7 +113,7 @@
     .rounded_shape {
       @include rounded_icons(15, 15, transparent);
       @include flex(center, center, "", 0, 0);
-      border: 1px solid var(--quick-link-hover-color);
+      border: 1px solid rgb(43, 142, 223);
     }
 
     .card {
@@ -126,9 +127,10 @@
       position: relative;
 
       .items {
-        @include rounded_icons(40, 40, "");
+        @include rounded_icons(40, 40, #e5f3fa);
         @include flex(center, center, "", 0, 0);
         position: absolute;
+        border: 2px solid white;
 
         &:nth-child(2) {
           left: rem(34);
@@ -152,7 +154,7 @@
   }
 
   .table_container {
-    @include flex(center, center, "", 20, 0);
+    @include flex(center, center, '', 20, 0);
     flex-wrap: wrap;
     .items {
       height: rem(580);
