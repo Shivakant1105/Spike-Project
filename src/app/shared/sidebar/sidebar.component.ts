@@ -10,8 +10,13 @@ import { CommonService } from 'src/service/common.service';
 export class SidebarComponent implements OnInit {
   toggle!: boolean;
   unSub = new Subject();
-  
-  listOfSidebar: { name: string; icon: string; route: string; className: string }[] = [
+
+  listOfSidebar: {
+    name: string;
+    icon: string;
+    route: string;
+    className: string;
+  }[] = [
     {
       name: 'Chats',
       icon: 'message-circle',
@@ -92,6 +97,16 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  /**
+   * @description This is a trackBy function.
+   * @author Gautam Yadav
+   * @param {number} index
+   * @return {number}
+   */
+  identify(index: number): number {
+    return index;
+  }
 
   ngOnDestroy(): void {
     this.unSub.next(null);

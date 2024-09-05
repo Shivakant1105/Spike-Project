@@ -31,7 +31,7 @@
         <!-- For Apps Menu -->
         <div class="home_menu_container"><span class=" f12 ">APPS</span>
 
-            <div *ngFor="let sidebar of listOfSidebar" class="home_menu_items  {{sidebar.className}}"
+            <div *ngFor="let sidebar of listOfSidebar;trackBy:identify" class="home_menu_items  {{sidebar.className}}"
                 routerLink="{{sidebar.route}}" routerLinkActive="active">
                 <i-feather class="f24" name="{{sidebar.icon}}"></i-feather><span class="f15">{{sidebar.name}}</span>
             </div>
