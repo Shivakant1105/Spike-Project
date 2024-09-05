@@ -1,9 +1,10 @@
 $mobile: rem(360);
+$landscape: rem(600);
 $tablet: rem(768);
 $large: rem(1024);
 $desktop: rem(1280);
 $largeDesktop: rem(1920);
-$landscape: rem(600);
+
 // --------------- MEDIA QUERY ------------------------
 @mixin width-range($min, $max) {
   @media only screen and (min-width: $min) and (max-width: $max) {
@@ -20,6 +21,27 @@ $landscape: rem(600);
     }
     aside {
       display: none !important;
+    }
+  }
+  .course_card_container {
+    flex-wrap: wrap;
+  }
+}
+
+@include width-range(0px, $tablet - rem(1)) {
+  // Course setion
+  .course_container {
+    .search_section {
+      flex-wrap: wrap;
+      .left_search {
+        width: 100% !important;
+        & input {
+          width: 0 !important;
+        }
+      }
+      .right_selection {
+        width: 100% !important;
+      }
     }
   }
 }
@@ -48,6 +70,28 @@ $landscape: rem(600);
       }
     }
   }
+  // Course page
+  .course_container {
+    .search_section {
+      padding: rem(35) !important;
+      height: rem(175) !important;
+      min-height: rem(180) !important;
+
+      .left_search {
+        width: 100% !important;
+      }
+      .right_selection {
+        width: 100% !important;
+        .custome_radius {
+          width: 100% !important;
+        }
+      }
+    }
+    .course_card_container {
+      flex-wrap: wrap;
+    }
+  }
+
 }
 
 @include width-range(0px, $landscape - rem(1)) {
@@ -90,6 +134,19 @@ $landscape: rem(600);
     .card {
       min-width: 100% !important;
     }
+  }
+  // Course Page
+  .course_container .search_section {
+    width: 100%;
+    height: rem(180) !important;
+    @include flex(center, center, "", 15, 40);
+    padding: rem(40) !important;
+    .right_selection {
+      width: 100% !important;
+    }
+  }
+  .course_container .course_header_section .right .Dashboard {
+    display: none;
   }
 }
 

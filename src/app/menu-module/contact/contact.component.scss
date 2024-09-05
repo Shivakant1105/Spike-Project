@@ -81,12 +81,13 @@ main {
     .user_profile {
       flex-grow: 1;
       @include flex("", "", "", 20, 0);
+      padding-bottom: rem(16);
       flex-wrap: wrap;
 
       .card {
         @include setDimension(rem(408), rem(433));
         background-color: var(--bg-high);
-        min-width: rem(381);
+        flex-grow: 1;
 
         .card_items {
           @include flex(center, center, column, 13, 36);
