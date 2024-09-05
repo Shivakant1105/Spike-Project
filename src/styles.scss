@@ -19,7 +19,7 @@ html {
 
 .custome_bottom_border{
   border:none;
-   border-bottom: 1px solid #cccccc;
+   border-bottom: 1px solid var(--border-color-lighter);
 }
 
 .custome_radius,
@@ -33,7 +33,7 @@ html {
 }
 
 .custome_border {
-  border: 1px solid #cccccc4a;
+  border: 1px solid var(--border-color-light);
 }
 
 ::-webkit-scrollbar {

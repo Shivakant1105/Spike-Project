@@ -15,7 +15,7 @@
 }
 
 .login_section {
-  @include setDimension(100vw, 100vh);
+  @include setDimension(100%, 100vh);
   @include flex(center, center, "", 0, 0);
   padding: rem(20);
   background-color: var(--bg);
@@ -26,12 +26,10 @@
 
     .light-logo {
       height: rem(50);
-      display: block;
       margin: rem(18) auto 0 rem(47) !important;
     }
     .dark-logo {
-      height: rem(50);
-      margin: rem(18) auto 0 rem(47) !important;
+      @extend .light-logo;
     }
 
     .login_content {
@@ -95,13 +93,12 @@
             height: rem(50);
             box-shadow: none;
             padding-left: rem(16);
-            border: rem(1) solid var(--input-border-color);
+            border: rem(1) solid var(--icons-outline-color);
             background-color: var(--bg-high);
             color: var(--textColor);
-            cursor: pointer;
-
+            cursor: pointer; 
             &:focus {
-              border: rem(2) solid var(--input-border-color);
+              border: rem(1) solid #465670;
             }
           }
         }
@@ -114,7 +111,6 @@
           .form-check-input {
             @include setDimension(rem(18), rem(18));
             box-shadow: none;
-            background-color: var(--bg-high);
             cursor: pointer;
           }
           .form-check-label {
