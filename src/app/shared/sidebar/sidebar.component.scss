@@ -1,297 +1,349 @@
-@import '../styles.scss';
+@import "../styles.scss";
 
 .sidebar_container {
-    @include flex("", "", column, 0, 0);
-    margin: rem(16);
-    margin-right: 0;
-    overflow: hidden;
-    @include setDimension(270px, calc(100vh - 32px));
-    background-color: var(--bg-high);
-    color: var(--textColor);
-    transition: 0.3s ease-in-out;
+  @include flex("", "", column, 0, 0);
+  margin: rem(16);
+  margin-right: 0;
+  overflow: hidden;
+  @include setDimension(270px, calc(100vh - 32px));
+  background-color: var(--bg-high);
+  color: var(--textColor);
+  transition: 0.3s ease-in-out;
 
-    ul {
-        font-size: rem(15);
-        color: var(--textColor-200);
-        padding-left: rem(27);
-        li{
-            margin-bottom: rem(19);
-            &:hover{
-                color: var(--textColor);
-            }
-        }
-    }
+  ul {
+    font-size: rem(15);
+  }
 
-    %sidebar_menu_hover {
-        &:hover::after {
-            animation: animate 0.5s alternate;
-            @include setDimension(97%, 100%);
-            position: absolute;
-            content: "";
-            background-color: var(--sidebar-hover-bg);
-            top: 0;
-            left: 0;
-            border-top-right-radius: rem(25);
-            border-bottom-right-radius: rem(25);
-            z-index: -1;
-        }
-    }
+  %sidebar_menu_hover {
+    animation: animate 0.5s alternate;
+    @include setDimension(97%, 100%);
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    border-top-right-radius: rem(25);
+    border-bottom-right-radius: rem(25);
+    z-index: -1;
+  }
 
-    %accordion_style {
-        .accordion-item {
-            background-color: var(--bg-high);
+  %accordion_style {
+    .accordion-item {
+      background-color: var(--bg-high);
 
-            .wrapper {
-                width: 100%;
-                position: relative;
-                z-index: 1;
-                padding-left: rem(10) !important;
-                @extend %sidebar_menu_hover;
-
-                .accordion-button1 {
-                    &::after {
-                        content: "〱";
-                        color: var(--textColor);
-                        position: absolute;
-                        left: 80%;
-                        transform: rotate(-90deg);
-                        transition: 0.4s ease-in-out;
-                    }
-
-                    &.collapsed::after {
-                        content: "〱";
-                        color: var(--textColor);
-                        position: absolute;
-                        left: 80%;
-                        transform: rotate(90deg);
-                        transition: 0.4s ease-in-out;
-                    }
-                }
-
-                button {
-                    @include flex('', center, row, 10, 16);
-                    background-color: transparent;
-                    border: none;
-                    outline: none;
-                    box-shadow: none;
-
-                    i-feather {
-                        color: var(--textColor);
-                    }
-                }
-            }
-
-            .accordion-collapse {
-                .accordion-body {
-                    ul li {
-                        padding: rem(16);
-                        padding-top: 0;
-                        margin-bottom: rem(6);
-                        text-wrap: nowrap;
-
-                        &:hover span {
-                            color: var(--textColor);
-                        }
-
-                        &::marker {
-                            color: var(--textColor);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .side_header {
-        @include setDimension(100%, 80px);
-        min-height: rem(80);
-        @include flex(start, center, "", 2, 0);
+      .wrapper {
+        width: 100%;
         position: relative;
-        margin-left: rem(24);
+        z-index: 1;
+        padding-left: rem(10) !important;
+        @extend %sidebar_menu_hover;
+
+        .accordion-button1 {
+          &::after {
+            content: "〱";
+            color: var(--textColor);
+            position: absolute;
+            left: 80%;
+            transform: rotate(-90deg);
+            transition: 0.4s ease-in-out;
+          }
+
+          &.collapsed::after {
+            content: "〱";
+            color: var(--textColor);
+            position: absolute;
+            left: 80%;
+            transform: rotate(90deg);
+            transition: 0.4s ease-in-out;
+          }
+        }
 
         button {
-            position: absolute;
-            right: 15%;
-        }
+          @include flex("", center, row, 10, 16);
+          background-color: transparent;
+          border: none;
+          outline: none;
+          box-shadow: none;
 
-        img {
-            position: absolute;
-            overflow: hidden;
-
+          i-feather {
+            color: var(--textColor);
+          }
         }
+      }
+
+      .accordion-collapse {
+        .accordion-body {
+          ul li {
+            padding: rem(16);
+            padding-top: 0;
+            margin-bottom: rem(6);
+            text-wrap: nowrap;
+
+            &:hover span {
+              color: var(--textColor);
+            }
+
+            &::marker {
+              color: var(--textColor);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .side_header {
+    @include setDimension(100%, 80px);
+    min-height: rem(80);
+    @include flex(start, center, "", 2, 0);
+    position: relative;
+    margin-left: rem(24);
+
+    button {
+      position: absolute;
+      right: 15%;
     }
 
-    .side_overview {
-        flex-grow: 1;
-        margin-bottom: rem(30);
-        overflow-y: auto;
-
-        .home_menu_container {
-            margin-bottom: rem(10);
-            cursor: pointer;
-
-            .f12 {
-                padding-left: rem(25);
-                color: var(--textColor-400);
-            }
-
-            .home_menu_items {
-                @include flex("", center, "", 10, 15);
-                position: relative;
-                z-index: 1;
-                padding-left: rem(25) !important;
-                @extend %sidebar_menu_hover;
-
-                .chip_box {
-                    @include flex(end, center, "", 0, 1);
-
-                    span {
-                        @include flex(center, center, "", 0, 0);
-                        color: white;
-                        @include setDimension(23px, 23px);
-                        background-color: var(--chip-menu_bg);
-                        border-radius: 50%;
-                    }
-                }
-
-                .outlined {
-                    @include flex(end, "", "", 0, 0);
-
-                    span {
-                        padding: rem(4) rem(6);
-                        border-radius: rem(20);
-                        color: var(--outlined-btn-text);
-                        border: 1px solid var(--outlined-btn);
-                    }
-                }
-            }
-
-            .dash1 .f15 {
-                color: #3993e0;
-            }
-
-            .f15 {
-                color: var(--textColor-200);
-            }
-
-            .disabled_menu {
-                color: var(--textColor-400);
-            }
-
-            .accordion {
-                @extend %accordion_style;
-            }
-
-            span .sidebar {
-                transform: rotate(90deg);
-            }
-        }
+    img {
+      position: absolute;
+      overflow: hidden;
     }
+  }
 
-    .side_footer {
-        @include setDimension(100%, 80px);
+  .side_overview {
+    flex-grow: 1;
+    margin-bottom: rem(30);
+    overflow-y: auto;
+
+    .home_menu_container {
+      margin-bottom: rem(10);
+      cursor: pointer;
+
+      .f12 {
+        padding-left: rem(25);
+        color: var(--textColor-400);
+      }
+
+      .home_menu_items {
+        @include flex("", center, "", 10, 15);
+        position: relative;
+        z-index: 1;
+        padding-left: rem(25) !important;
+
+        &.red:hover {
+          &::after {
+            @include activeStyles(#fb977d, #ffede9);
+            @extend %sidebar_menu_hover;
+          }
+        }
+
+        &.green:hover {
+          &::after {
+            @include activeStyles(#4bd08b, #ddfff3);
+            @extend %sidebar_menu_hover;
+          }
+        }
+
+        &.blue:hover {
+          &::after {
+            @include activeStyles(#0085db, #eaf2fb);
+            @extend %sidebar_menu_hover;
+          }
+        }
+
+        &.orange:hover {
+          &::after {
+            @include activeStyles(#f8c076, #fef6eb);
+            @extend %sidebar_menu_hover;
+          }
+        }
+        &.grey:hover {
+          &::after {
+            @include activeStyles(#707a82, #f0f1f2);
+            @extend %sidebar_menu_hover;
+          }
+        }
+
+        .chip_box {
+          @include flex(end, center, "", 0, 1);
+
+          span {
+            @include flex(center, center, "", 0, 0);
+            color: white;
+            @include setDimension(23px, 23px);
+            background-color: var(--chip-menu_bg);
+            border-radius: 50%;
+          }
+        }
+
+        .outlined {
+          @include flex(end, "", "", 0, 0);
+
+          span {
+            padding: rem(4) rem(6);
+            border-radius: rem(20);
+            color: var(--outlined-btn-text);
+            border: 1px solid var(--outlined-btn);
+          }
+        }
+      }
+
+      .dash1 .f15 {
+        color: #3993e0;
+      }
+
+      .f15 {
+        color: var(--textColor-200);
+      }
+
+      .disabled_menu {
+        color: var(--textColor-400);
+      }
+
+      .accordion {
+        @extend %accordion_style;
+      }
+
+      span .sidebar {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .side_footer {
+    @include setDimension(100%, 80px);
+    @include flex(center, center, "", 0, 0);
+
+    .wrapper {
+      @include flex(space-evenly, center, "", 0, 0);
+      margin-bottom: rem(32);
+      background-color: var(--header-footer);
+      min-width: rem(230);
+
+      img {
+        @include rounded_icons(40, 40, "");
         @include flex(center, center, "", 0, 0);
+      }
 
-        .wrapper {
-            @include flex(space-evenly, center, "", 0, 0);
-            margin-bottom: rem(32);
-            background-color: var(--header-footer);
-            min-width: rem(230);
-
-            img {
-                @include rounded_icons(40, 40, "");
-                @include flex(center, center, '', 0, 0);
-            }
-
-            .login_user {
-                @include flex(center, center, column, 1, 0);
-            }
-        }
+      .login_user {
+        @include flex(center, center, column, 1, 0);
+      }
     }
+  }
 }
 
 // sidebar over click
 .hover_sidecontainer {
-    transition: .3s ease-in-out;
-    width: rem(80);
-    .side_header {
-        img {
-            width: rem(205);
-        }
+  transition: 0.3s ease-in-out;
+  width: rem(80);
+
+  .side_header {
+    .dark_logo,
+    .light_logo {
+      display: none !important;
+      position: relative;
     }
 
-    .side_footer {
-        display: none;
+    img {
+      width: rem(205);
     }
+  }
 
-    .side_overview {
-        span {
-            &.f15 {
-                transition: 0.3s ease-in-out;
-                display: none;
-            }
-        }
+  .side_footer {
+    display: none;
+  }
 
-        .wrapper {
-            .accordion-button1 {
-                display: none !important;
-            }
-        }
-
-    }
-
-    .home_menu_items {
-        justify-content: center;
-        .outlined,.chip_box{
-            display: none !important;
-        }
-    }
-
-    &:hover {
-        width: rem(250);
+  .side_overview {
+    span {
+      &.f15 {
         transition: 0.3s ease-in-out;
+        display: none;
+      }
     }
+
+    .wrapper {
+      .accordion-button1 {
+        display: none !important;
+      }
+    }
+  }
+
+  .home_menu_items {
+    justify-content: center;
+  }
+
+  &:hover {
+    width: rem(250);
+    transition: 0.3s ease-in-out;
+  }
 }
 
 @keyframes animate {
-    0% {
-        width: 0%;
-    }
+  0% {
+    width: 0%;
+  }
 
-    100% {
-        width: 97%;
-    }
+  100% {
+    width: 97%;
+  }
 }
 
 // sidebar over hover
 .sidebar_container:hover {
-    .side_header img {
-        width: unset;
+  .side_header img {
+    width: unset;
+  }
+
+  .side_overview {
+    span {
+      &.f15 {
+        display: block;
+      }
     }
 
-    .side_overview {
-        span {
-            &.f15 {
-                display: block;
-            }
-        }
-
-        .wrapper {
-            .accordion-button1 {
-                display: flex !important;
-            }
-        }
-
+    .wrapper {
+      .accordion-button1 {
+        display: flex !important;
+      }
     }
+  }
 
-    .side_footer {
-        display: flex;
-    }
+  .side_footer {
+    display: flex;
+  }
 
-    .home_menu_items {
-        justify-content: start;
-        .outlined,.chip_box{
-            display: flex !important;
-        }
-    }
+  .home_menu_items {
+    justify-content: start;
+  }
+}
+
+.active {
+  animation: animate 0.5s alternate;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  border-top-right-radius: rem(25);
+  border-bottom-right-radius: rem(25);
+  z-index: -1;
+
+  &.red {
+    @include activeStyles(#fb977d, #ffede9);
+  }
+
+  &.green {
+    @include activeStyles(#4bd08b, #ddfff3);
+  }
+
+  &.blue {
+    @include activeStyles(#0085db, #eaf2fb);
+  }
+
+  &.orange {
+    @include activeStyles(#f8c076, #fef6eb);
+  }
+  &.grey {
+    @include activeStyles(#707a82, #f0f1f2);
+  }
 }

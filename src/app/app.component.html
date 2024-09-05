@@ -11,7 +11,9 @@
         </div>
       </header>
 
-      <div class="w-100 m-3"><router-outlet></router-outlet></div>
+      <div class="w-100 mt-3">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </section>
   <div class="offcanvas offcanvas-start" data-bs-backdrop="false" id="offcanvasScrolling"
@@ -77,4 +79,16 @@
   <i-feather class="setting" name="settings"></i-feather>
 </main>
 
+<<<<<<< HEAD
 <router-outlet *ngIf="!(authService.isLogin | async)"></router-outlet>
+=======
+<main *ngIf="!(authService.isLogin | async)" class="d-flex light-theme">
+  <section>
+    <div class="wrapper container-lg">
+      <div class="w-100 mt-3">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </section>
+</main>
+>>>>>>> e424b6318551d8a7530f705077700d1115e86b96
