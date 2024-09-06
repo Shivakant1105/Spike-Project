@@ -8,7 +8,7 @@
    }
 
    .sub_header {
-      @include setDimension(100%, 81px);
+      @include setDimension(100%, 8rem(1));
       @include flex('', center, '', 20, 16);
       background-color: var(--bg-high);
 
@@ -43,7 +43,7 @@
          }
 
          &:after {
-            @include setDimension(150px, 3px);
+            @include setDimension(rem(150), rem(3));
             background-color: var(--outlined-btn);
             content: '';
             position: absolute;
@@ -71,12 +71,12 @@
 
             button {
                &.upload {
-                  @include customize_radius(30px, var(--quick-link-hover-color), var(--white))
+                  @include customize_radius(rem(30), var(--quick-link-hover-color), var(--white))
                }
 
                &.reset {
-                  @include customize_radius(30px, '', var(--red-hover-text));
-                  border: 1px solid var(--red-hover-text);
+                  @include customize_radius(rem(30), '', var(--red-hover-text));
+                  border: rem(1) solid var(--red-hover-text);
                }
 
             }
@@ -100,7 +100,7 @@
             height: rem(54);
             box-shadow: none;
             outline: none;
-            @include customize_radius(40px, '', '')
+            @include customize_radius(rem(40), '', '')
          }
       }
 
@@ -113,7 +113,7 @@
          h5,
          p {
             width: 100%;
-            line-height: 10px;
+            line-height: rem(10);
             margin-bottom: rem(30);
          }
 
@@ -130,8 +130,8 @@
          background-color: var(--bg-high);
          outline: none;
          color: var(--textColor);
-         @include customize_radius(40px, '', '');
-         border: 1px solid var(--border-color-lighter);
+         @include customize_radius(rem(40), '', '');
+         border: rem(1) solid var(--border-color-lighter);
       }
 
    }

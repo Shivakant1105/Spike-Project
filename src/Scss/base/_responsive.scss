@@ -13,7 +13,7 @@ $landscape: rem(600);
 }
 
 // common before large device
-@include width-range(0px, $large - rem(1)) {
+@include width-range(rem(0), $large - rem(1)) {
   main {
     padding-top: 0 !important;
 
@@ -27,7 +27,7 @@ $landscape: rem(600);
   }
 }
 
-@include width-range(0px, $desktop - rem(1)) {
+@include width-range(rem(0), $desktop - rem(1)) {
 
   .dashboard_details {
     flex-wrap: wrap;
@@ -67,14 +67,14 @@ $landscape: rem(600);
 
 }
 
-@include width-range(0px, $landscape - rem(1)) {
+@include width-range(rem(0), $landscape - rem(1)) {
   .login_section {
     section {
       width: 100% !important;
       height: rem(790) !important;
 
       .login_content .right {
-        padding: 24px !important;
+        padding: rem(24) !important;
 
         .icon_container {
           flex-direction: column !important;
@@ -113,7 +113,7 @@ $landscape: rem(600);
   }
 }
 
-@include width-range(0px, $mobile - rem(1)) {
+@include width-range(rem(0), $mobile - rem(1)) {
   .login_section section .light-logo {
     display: none !important;
   }
@@ -129,7 +129,7 @@ $landscape: rem(600);
   }
 }
 
-@include width-range(0px, rem(1400) - rem(1)) {
+@include width-range(rem(0), rem(1400) - rem(1)) {
   .header_body .header_right_container .user_admin {
     width: auto !important;
   }

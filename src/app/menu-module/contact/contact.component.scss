@@ -1,8 +1,10 @@
 @import "../../../styles.scss";
+
 %btn {
   @include flex(center, center, "", 0, 0);
   color: var(--white);
 }
+
 main {
   .contact_container {
     @include setDimension(100%, 100vh);
@@ -19,17 +21,21 @@ main {
         color: var(--text-color-600);
         font-weight: 600;
       }
+
       .right {
         @include flex(center, center, "", 15, 0);
+
         .dashboard {
           color: var(--quick-link-hover-color);
           cursor: pointer;
         }
+
         .circle {
           @include setDimension(rem(5), rem(5));
           background-color: var(--textColor);
           border-radius: 50%;
         }
+
         .contact {
           color: var(--textColor);
           cursor: pointer;
@@ -43,6 +49,7 @@ main {
       background-color: var(--bg-high);
       @include flex(space-between, center, "", 15, 0);
       padding: 0 rem(30);
+
       .left_items {
         @include setDimension(rem(360), rem(52));
         @include flex(space-between, center, "", 0, 0);
@@ -61,6 +68,7 @@ main {
           &:focus {
             outline: 0;
           }
+
           &::placeholder {
             color: var(--textColor-400);
           }
@@ -71,6 +79,7 @@ main {
           color: var(--text-color-600);
         }
       }
+
       .right_items {
         @include minwidth_minheight(rem(120), rem(36));
         background-color: var(--contact-user-bg);
@@ -92,19 +101,23 @@ main {
           @include flex(center, center, column, 13, 36);
           color: var(--text-color-600);
           flex-grow: 1;
+
           .mb-3 {
             margin-top: rem(-7);
           }
+
           & img {
             width: rem(50);
             @include rounded_icons(100, 100, "");
           }
+
           .chat-follow {
             .btn1 {
               @include setDimension(rem(60), rem(34));
               background-color: var(--contact-user-bg);
               @extend %btn;
             }
+
             .btn2 {
               @extend %btn;
               @include setDimension(rem(70), rem(34));
@@ -116,8 +129,9 @@ main {
         .footer {
           @include flex(space-between, center, "", 0, 0);
           @include setDimension(100%, rem(40));
-          border-top: 1px solid var(--inline-shadow);
+          border-top: rem(1) solid var(--inline-shadow);
           padding: 0 rem(30);
+
           .social {
             @include flex(center, center, "", 6, 0);
             cursor: pointer;

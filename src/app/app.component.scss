@@ -14,7 +14,7 @@ main {
       @include flex(center, center, column, 16, 25);
 
       header {
-        @include setDimension(100%, 70px);
+        @include setDimension(100%, rem(70));
         @include flex("", center, "", 0, 0);
         min-height: rem(70);
         background-color: var(--bg-high);
@@ -34,7 +34,7 @@ main {
     bottom: 10%;
     right: rem(30);
     color: var(--bg);
-    @include setDimension(30px, 30px);
+    @include setDimension(rem(30), rem(30));
     @include flex(center, center, row, 0, 0);
     cursor: pointer;
     z-index: 1;
@@ -44,8 +44,8 @@ main {
       position: absolute;
       @include rounded_icons(60, 60, var(--outlined-btn));
       z-index: -1;
-      top: -15px;
-      left: -15px;
+      top: rem(-15);
+      left: rem(-15);
     }
   }
 }
@@ -62,13 +62,13 @@ main {
     @include setDimension(100%, rem(100));
     @include flex(space-between, center, "", 15, 0);
     padding: 0 rem(38);
-    border-bottom: 1px solid var(--input-border-color);
+    border-bottom: rem(1) solid var(--input-border-color);
 
     input {
       height: rem(51);
       box-shadow: none;
       background-color: var(--search-modal-bg);
-      border: 1px solid var(--input-border-color);
+      border: rem(1) solid var(--input-border-color);
       color: var(--white);
 
       &:focus {
