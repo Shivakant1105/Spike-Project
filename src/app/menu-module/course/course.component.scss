@@ -48,7 +48,7 @@
       padding: 0 rem(20);
 
       &:hover {
-        border: 2px solid var(--contact-user-bg);
+        border: rem(2) solid var(--contact-user-bg);
         cursor: pointer;
         label {
           z-index: 20;
