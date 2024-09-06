@@ -384,7 +384,7 @@
 
   .dropdown-menu.show {
     @include minwidth_minheight(rem(360), rem(512));
-    transform: translate(rem(-11), 65px);
+    transform: translate(rem(-11), rem(65));
     background-color: var(--message-madal-bg);
   }
 }
