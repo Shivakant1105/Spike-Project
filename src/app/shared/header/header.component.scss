@@ -4,6 +4,7 @@
   border-radius: 50%;
   background-color: var(--sidebar-hover-bg);
 }
+
 %ifather_circle_shape {
   position: absolute;
   @include rounded_icons(45, 45, "");
@@ -17,6 +18,7 @@
   min-width: rem(150);
   @include flex(center, center, column, 5, 16);
   text-wrap: nowrap;
+
   &:hover {
     background-color: var(--shortcuts-hover-bg);
     cursor: pointer;
@@ -29,10 +31,12 @@
 
   .header_left_container {
     margin-left: rem(10);
+
     .menu {
       z-index: 1;
       cursor: pointer;
       @include flex(center, center, "", 0, 0);
+
       &:hover::after {
         @extend %ifather_circle_shape;
         background-color: var(--sidebar-hover-bg);
@@ -40,6 +44,7 @@
     }
 
     @include flex("", center, "", 10, 0);
+
     & button {
       @include outline_border(none, none);
       background-color: transparent;
@@ -48,21 +53,26 @@
       height: rem(40);
       padding: rem(16);
     }
+
     .header_item {
       padding: rem(10);
+
       &:hover {
         @include hover(rem(25), var(--sidebar-hover-bg), "");
         cursor: pointer;
       }
     }
+
     .header_left_logo {
       @include setDimension(rem(48), rem(48));
       @include flex(center, center, "", 0, 0);
       cursor: pointer;
+
       &:hover {
         @extend %hover_circle_shape;
       }
     }
+
     .apps_nav {
       width: rem(82);
       border-radius: rem(26);
@@ -71,6 +81,7 @@
       & button {
         @include flex("", center, "", 0, 0);
       }
+
       & i-feather {
         @include setDimension(rem(16), rem(16));
         @include flex(center, center, "", 0, 0);
@@ -85,6 +96,7 @@
 
   .header_right_container {
     @include flex("", center, "", 8, 0);
+
     .search_container {
       border-radius: rem(20);
       @include flex("", center, "", 4, 14);
@@ -100,6 +112,7 @@
         @include flex("", center, "", 0, 0);
       }
     }
+
     .user_admin {
       @include setDimension(rem(180), rem(55));
       @include flex(center, center, "", 12, 1);
@@ -139,6 +152,7 @@
         @include outline_border(none, none);
       }
     }
+
     .country_logo img {
       @include setDimension(rem(22), rem(22));
     }
@@ -146,12 +160,14 @@
     .icons {
       @include flex(center, center, "", 0, 0);
       @include rounded_icons(48, 48, "");
+
       &:hover {
         background-color: var(--sidebar-hover-bg);
       }
     }
   }
 }
+
 .dropdown-toggle::after {
   display: none;
 }
@@ -171,15 +187,18 @@
       background-color: var(--shortcuts-hover-bg);
     }
   }
+
   .name_country_logo.first {
     margin-top: rem(16);
-    border-top-left-radius: rem(2);
-    border-top-right-radius: rem(2);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
   }
+
   .name_country_logo.last {
-    border-bottom-left-radius: rem(2);
-    border-bottom-right-radius: rem(2);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
   }
+
   .dropdown-menu.show {
     border: none;
     color: var(--textColor-200);
@@ -195,15 +214,18 @@
     box-shadow: var(--message-madal-box-shadow);
   }
 }
+
 // Message Icon Modal
 .message_icon_container {
   .f14 {
     font-weight: 600;
     color: var(--text-color-600);
   }
+
   .f12 {
     color: var(--text-color-400);
   }
+
   .message_items_first {
     padding: rem(25) 0 0 rem(28);
     margin: rem(3) 0 0 rem(6);
@@ -223,10 +245,12 @@
 
     .name_message {
       @include flex("", "", column, 5, 0);
+
       span:first-child {
         font-weight: bold;
       }
     }
+
     .message_new_btn {
       @include setDimension(rem(53), rem(24));
       background-color: #f8c076;
@@ -239,6 +263,7 @@
 
   .see_all_message_btn {
     @include flex(center, center, "", 0, 0);
+
     .btn_body {
       @include setDimension(rem(294), rem(36));
       background-color: #2b8ede;
@@ -265,14 +290,17 @@
 
 // User Profile
 .User_profile_container {
+
   .f16,
   .f18 {
     color: var(--text-color-600);
     font-weight: 600;
   }
+
   .f14 {
     color: var(--textColor-200);
   }
+
   .user_items_body {
     @include flex("", "", column, 10, 0);
     padding-left: rem(20);
@@ -285,15 +313,18 @@
 
       .user_details {
         @include flex("", "", column, 5, 0);
+
         & div {
           @include flex("", center, "", 0, 0);
         }
+
         i-feather {
           display: flex;
           @include setDimension(rem(16), rem(16));
           color: var(--textColor-200);
         }
       }
+
       & img {
         @include rounded_icons(100, 100, "");
       }
@@ -303,6 +334,7 @@
       height: rem(70);
       @include flex(flex-start, center, "", 30, 0);
       cursor: pointer;
+
       .user_profile {
         @include flex("", "", column, 0, 0);
       }
@@ -312,6 +344,7 @@
         @include setDimension(rem(50), rem(50));
         border-radius: rem(14);
         background-color: var(--user-profile-icon-bg);
+
         i-feather {
           @include setDimension(rem(16), rem(27));
           color: #0085db;
@@ -321,6 +354,7 @@
       .Inbox_icon {
         @extend .profile_icon;
         background-color: var(--user-inbox-icon-bg);
+
         i-feather {
           @include setDimension(rem(16), rem(27));
           color: #338965;
@@ -347,9 +381,10 @@
       cursor: pointer;
     }
   }
+
   .dropdown-menu.show {
     @include minwidth_minheight(rem(360), rem(512));
-    transform: translate(-11px, 65px);
+    transform: translate(rem(-11), rem(65));
     background-color: var(--message-madal-bg);
   }
 }
@@ -364,9 +399,11 @@
   .f14 {
     color: var(--text-color-400);
   }
+
   i-feather {
     position: relative;
     @include flex(center, center, "", 0, 0);
+
     &.invoice:after {
       @extend %ifather_circle_shape;
       background-color: var(--invoce-icon-bg);
@@ -376,30 +413,37 @@
       @extend %ifather_circle_shape;
       background-color: var(--chat-icon-bg);
     }
+
     &.contact:after {
       @extend %ifather_circle_shape;
       background-color: var(--contact-icon-bg);
     }
+
     &.mail:after {
       @extend %ifather_circle_shape;
       background-color: var(--email-icon-bg);
     }
+
     &.todo:after {
       @extend %ifather_circle_shape;
       background-color: var(--todo-icon-bg);
     }
+
     &.calander:after {
       @extend %ifather_circle_shape;
       background-color: var(--calender-icon-bg);
     }
+
     &.chat:after {
       @extend %ifather_circle_shape;
       background-color: var(--shortcuts-hover-bg);
     }
   }
+
   .shortcut_items_container {
     @include flex("", "", column, 0, 0);
     color: var(--textColor);
+
     .shortcut_heading {
       height: rem(45);
       padding: rem(5) 0 0 rem(36);
@@ -412,6 +456,7 @@
     .invoice_chat_cnt {
       display: flex;
       border-top: rem(1) solid var(--left-bottom-border);
+
       .chat_container {
         border-left: rem(1) solid var(--left-bottom-border);
       }
@@ -422,18 +467,22 @@
       @include setDimension(100%, rem(132));
       border-top: rem(1) solid var(--left-bottom-border);
       border-bottom: rem(1) solid var(--left-bottom-border);
+
       .email_container {
-        border-left: 1px solid var(--left-bottom-border);
+        border-left: rem(1) solid var(--left-bottom-border);
       }
     }
+
     .todo_calender_cnt {
       display: flex;
+
       .calender_container {
         border-left: rem(1) solid var(--left-bottom-border);
         padding: rem(8) 0 0 0;
       }
     }
   }
+
   .dropdown-menu.show {
     position: absolute;
     inset: 0 auto auto 0;
@@ -448,13 +497,16 @@
 .apps_modal {
   background-color: var(--apps-icon-modal-bg);
 }
+
 .apps_book_model {
   width: rem(840);
   height: rem(425);
+
   .f14 {
     font-weight: 600;
     color: var(--text-color-600);
   }
+
   .f12 {
     color: var(--text-color-400);
 
@@ -467,6 +519,7 @@
   .left_items {
     width: rem(540);
     @include flex("", "", column, 0, 0);
+
     .top_items {
       display: flex;
       padding-top: rem(20);
@@ -483,6 +536,7 @@
           .chats_logo {
             @include rounded_icons(50, 50, var(--apps-icon-bg));
             @include flex(center, center, "", 0, 0);
+
             & img {
               @include setDimension(rem(22), rem(22));
             }
@@ -491,6 +545,7 @@
           .heading_mails_cnt {
             @include flex("", "", column, 8, 0);
             width: rem(160);
+
             span {
               transition: color 0.3s ease-in-out;
 
@@ -548,6 +603,7 @@
       .bottom_left {
         @include flex(center, center, row, 8, 0);
         color: var(--text-color-600);
+
         i-feather {
           display: flex;
           @include setDimension(rem(20), rem(20));
@@ -578,6 +634,7 @@
       transition: color 0.3s ease-in-out;
       font-size: rem(15);
       color: var(--text-color-400);
+
       &:hover {
         color: var(--quick-link-hover-color);
         cursor: pointer;

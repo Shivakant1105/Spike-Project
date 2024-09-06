@@ -31,13 +31,17 @@
       background-color: var(--bg-high);
       color: var(--textColor);
 
+      select {
+        height: rem(50);
+      }
+
       .f14 {
         color: var(--textColor-200);
       }
 
       .details1_top,
       .details1_bottom {
-        height: calc(755px / 2);
+        height: calc(rem(755) / 2);
       }
 
       .order_summary i-feather {
@@ -74,7 +78,7 @@
       min-width: rem(200);
 
       .dashboard_details_itemsDiv {
-        width: calc(621px / 2);
+        width: calc(rem(621) / 2);
         flex-shrink: 0;
       }
     }
@@ -102,7 +106,7 @@
     .rounded_shape {
       @include rounded_icons(15, 15, transparent);
       @include flex(center, center, "", 0, 0);
-      border: 1px solid rgb(43, 142, 223);
+      border: rem(1) solid var(--quick-link-hover-color);
     }
 
     .card {
@@ -116,10 +120,10 @@
       position: relative;
 
       .items {
-        @include rounded_icons(40, 40, #e5f3fa);
+        @include rounded_icons(40, 40, var(--white));
         @include flex(center, center, "", 0, 0);
         position: absolute;
-        border: 2px solid white;
+        border: rem(2) solid var(--white);
 
         &:nth-child(2) {
           left: rem(34);
@@ -145,17 +149,21 @@
   .table_container {
     @include flex(center, center, '', 20, 0);
     flex-wrap: wrap;
+
     .items {
       height: rem(580);
       background-color: var(--bg-high);
       padding: rem(32);
     }
+
     .product_table {
       flex-grow: 1;
     }
+
     .map_table {
       width: rem(380);
     }
+
     .reviews_product {
       width: 100%;
     }
