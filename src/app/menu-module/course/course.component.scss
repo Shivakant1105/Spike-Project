@@ -67,7 +67,7 @@
       .f14:focus + label,
       .f14:not(:placeholder-shown) + label {
         top: rem(-12);
-        background-color: var(--white);
+        background-color: var(--bg-high);
         color: var(--contact-user-bg);
       }
 
@@ -157,7 +157,7 @@
             color: var(--text-color-600);
           }
           .f12 {
-            word-spacing: rem(1);
+            word-spacing: rem(2);
             color: var(--textColor-200);
           }
         }

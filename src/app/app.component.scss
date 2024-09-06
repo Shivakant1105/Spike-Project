@@ -28,6 +28,7 @@ main {
 }
 // Search Modal
 .modal_dialogs {
+  margin-top: 6.5%;
   .modal_contents {
     @include minwidth_minheight(rem(550), rem(650));
     background-color: var(--search-modal-bg);
@@ -84,6 +85,64 @@ main {
     // Mixin for scrollbar
     & {
       @include custom-scrollbar(rem(6), "", #c1c1c1, "");
+    }
+  }
+}
+
+// Contact page modal
+.add_emp_modal_dialog {
+  margin-top: 5%;
+  .modal_items{
+    @include setDimension(rem(600), rem(730));
+    background-color: var(--bg-high);
+
+    .add_employee_body {
+      @include flex("", "", column, 22, 0);
+      padding: 0 rem(25);
+
+      .heading {
+        margin-top: rem(30);
+        color: var(--text-color-600);
+        font-weight: 600;
+      }
+      input {
+        background-color: var(--bg-high);
+        border-radius: rem(18);
+        box-shadow: none;
+        @include setDimension(100%, rem(55));
+        color: var(--text-color-600);
+        border: rem(1) solid var(--input-border-color);
+        cursor: pointer;
+        &::placeholder {
+          font-size: rem(14);
+          color: var(--text-color-400);
+        }
+        &:focus {
+          border: rem(2) solid var(--input-modal-outline-color);
+        }
+      }
+    }
+    .modal-footer {
+      @include flex(flex-start, center, "", 0, 0);
+      @include setDimension(100%, rem(85));
+      padding-left: rem(20);
+      border-top: rem(1) solid var(--input-border-color);
+
+      #cancel_button {
+        @include setDimension(rem(79), rem(36));
+        border-radius: rem(18);
+        border: rem(1) solid var(--hold-text);
+        font-size: rem(14);
+        color: var(--hold-text);
+      }
+      .disabled {
+        @include setDimension(rem(117), rem(36));
+        font-size: rem(14);
+        text-wrap: nowrap;
+        border: none;
+        background-color: var(--contact-page-btn-color);
+        color: var(--text-color-600);
+      }
     }
   }
 }
