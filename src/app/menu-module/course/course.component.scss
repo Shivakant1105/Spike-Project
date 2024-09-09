@@ -50,9 +50,6 @@
       &:hover {
         border: rem(2) solid var(--contact-user-bg);
         cursor: pointer;
-        label {
-          z-index: 20;
-        }
       }
       input {
         width: rem(300);

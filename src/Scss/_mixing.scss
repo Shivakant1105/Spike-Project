@@ -30,6 +30,12 @@
   color: $textColor;
 }
 
+@mixin customize_radius($radius, $bg, $textColor: $textColor) {
+  border-radius: $radius;
+  background-color: $bg;
+  color: $textColor;
+}
+
 @mixin rounded_icons($width, $height, $bg) {
   width: rem($width);
   height: rem($height);
@@ -84,4 +90,9 @@
   &::-webkit-scrollbar-thumb:hover {
     background: $thumb-hover-color;
   }
+}
+
+@mixin activeStyles($color, $bg-color) {
+  color: $color !important;
+  background-color: $bg-color;
 }

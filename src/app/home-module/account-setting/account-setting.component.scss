@@ -1,0 +1,138 @@
+@import '../styles.scss';
+
+.account_container {
+   color: var(--textColor);
+
+   h5 {
+      font-weight: 600;
+   }
+
+   .sub_header {
+      @include setDimension(100%, 8rem(1));
+      @include flex('', center, '', 20, 16);
+      background-color: var(--bg-high);
+
+      h4 {
+         flex-grow: 1;
+         font-weight: 600;
+      }
+
+      span {
+         color: var(--dashboard-color);
+      }
+   }
+
+   main {
+      // flex-grow: 1;
+      background-color: var(--bg-high);
+      @include flex('', '', '', 30, 50);
+      flex-wrap: wrap;
+      background-color: var(--bg-high);
+
+      .account_tab {
+         width: 100%;
+         padding: rem(10);
+         padding-left: rem(20);
+         @include flex('', center, '', 10, 10);
+         color: var(--outlined-btn);
+         position: relative;
+         cursor: pointer;
+
+         i-feather {
+            color: var(--outlined-btn);
+         }
+
+         &:after {
+            @include setDimension(rem(150), rem(3));
+            background-color: var(--outlined-btn);
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+         }
+      }
+
+      .change_profile {
+         padding: rem(31);
+         @include setDimension(rem(525), rem(359));
+         background-color: var(--bg-high);
+
+         img {
+            @include rounded_icons(100, 100, transparent);
+            display: block;
+            margin: 0 auto;
+            margin-top: rem(35);
+         }
+
+         .btn_group {
+            @include flex(center, '', '', 20, 0);
+            margin-top: rem(35);
+            flex-wrap: wrap;
+
+            button {
+               &.upload {
+                  @include customize_radius(rem(30), var(--quick-link-hover-color), var(--white))
+               }
+
+               &.reset {
+                  @include customize_radius(rem(30), '', var(--red-hover-text));
+                  border: rem(1) solid var(--red-hover-text);
+               }
+
+            }
+
+         }
+      }
+
+      label {
+         font-weight: 600;
+         padding-left: rem(16);
+         margin-bottom: rem(5);
+      }
+
+      .change_password {
+         flex-grow: 1;
+         height: rem(408);
+         background-color: var(--bg-high);
+         padding: rem(31);
+
+         input {
+            height: rem(54);
+            box-shadow: none;
+            outline: none;
+            @include customize_radius(rem(40), '', '')
+         }
+      }
+
+      .profile_details {
+         width: 100%;
+         background-color: var(--bg-high);
+         @include flex('', '', '', 10, 31);
+         flex-wrap: wrap;
+
+         h5,
+         p {
+            width: 100%;
+            line-height: rem(10);
+            margin-bottom: rem(30);
+         }
+
+         form {
+            flex-grow: 1;
+
+         }
+      }
+
+      input,
+      select {
+         height: rem(54);
+         box-shadow: none;
+         background-color: var(--bg-high);
+         outline: none;
+         color: var(--textColor);
+         @include customize_radius(rem(40), '', '');
+         border: rem(1) solid var(--border-color-lighter);
+      }
+
+   }
+}

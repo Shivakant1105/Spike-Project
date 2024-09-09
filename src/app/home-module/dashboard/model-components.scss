@@ -6,17 +6,20 @@
 //  Search modal
 .modal_dialogs {
   margin-top: 6.5rem;
+
   .modal_contents {
     background-color: var(--header-search-modal-bg);
     color: var(--textColor);
+
     .modal_header {
       padding-bottom: rem(14);
       padding-right: rem(30);
+
       .input_filed {
         input {
           border-radius: rem(20);
           padding-left: rem(17);
-          border: 1px solid var(--input-modal-outline-color);
+          border: rem(1) solid var(--input-modal-outline-color);
           background-color: var(--modal-input-bg);
           color: var(--textColor);
 
@@ -27,11 +30,13 @@
         }
       }
     }
+
     .search_modal_body {
       p {
         padding: 0;
         margin: 0;
       }
+
       min-height: rem(552);
       max-height: rem(350);
       overflow-y: auto;

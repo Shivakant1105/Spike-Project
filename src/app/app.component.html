@@ -11,54 +11,32 @@
         </div>
       </header>
 
-      <div class="w-100 mt-3"><router-outlet></router-outlet></div>
+      <div class="w-100 mt-3">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </section>
-  <div
-    class="offcanvas offcanvas-start"
-    data-bs-backdrop="false"
-    id="offcanvasScrolling"
-    aria-labelledby="offcanvasScrollingLabel"
-  >
+  <div class="offcanvas offcanvas-start" data-bs-backdrop="false" id="offcanvasScrolling"
+    aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-body overflow-hidden p-0">
       <app-sidebar></app-sidebar>
     </div>
   </div>
 
   <!-- Search Modal -->
-  <div
-    class="modal fade"
-    id="staticBackdrop"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal_dialogs">
-      <div
-        class="modal-content p-1 modal_contents"
-        style="border-radius: 16px !important"
-      >
+      <div class="modal-content p-1 modal_contents" style="border-radius: 16px !important">
         <div class="modal-header modal_header input_filed_container">
-          <input
-            type="email"
-            class="form-control custome_radius"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Seach here"
-          />
-          <button
-            type="button"
-            class="btn-close shadow-none"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <input type="email" class="form-control custome_radius" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Seach here" />
+          <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
+  
         <div class="modal-body p-0 mt-3 search_modal_body">
           <h5 class="search_modal_heading">Quick page Links</h5>
-
+          
           <h6 class="heading">Dashboard 1</h6>
           <span class="summary">/dashboards/dashboard1</span>
 
@@ -111,7 +89,11 @@
       <div class="modal-content modal_items custome_radius box_shadow">
         <div class="modal-body add_employee_body">
           <h3 class="f18 ms-2 heading">Add New Contact</h3>
-          <input type="text" class="form-control mt-3" placeholder="Name Here" />
+          <input
+            type="text"
+            class="form-control mt-3"
+            placeholder="Name Here"
+          />
           <input type="text" class="form-control" placeholder="Post Here" />
           <input type="text" class="form-control" placeholder="Address Here" />
           <input type="text" class="form-control" placeholder="Number Here" />
@@ -148,6 +130,7 @@
       </div>
     </div>
   </div>
+  <i-feather class="setting" name="settings"></i-feather>
 </main>
 
 <router-outlet *ngIf="!(authService.isLogin | async)"></router-outlet>

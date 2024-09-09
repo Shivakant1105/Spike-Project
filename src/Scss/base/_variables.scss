@@ -4,6 +4,9 @@
   --proccessing-text: #58d595;
   --hold-text: #f8c076;
   --delivered-text: #4cccec;
+  --dashboard-color: #9fc1ea;
+  --border-color-lighter: #cccccc4a;
+  --border-color-light: #cccccc94;
   --input-search-color: #465670;
   --contact-user-bg: #1b8add;
   --contact-page-btn-color: #7b848c;
@@ -13,7 +16,11 @@
   --course-page-header-salmon: #fb977d;
   --course-page-header-yellow: #f8c076;
   --course-page-header-grey: #707a83;
+  --hold-text: #f8c076;
+  --delivered-text: #4cccec;
+  --dashboard-color: #9fc1ea;
 }
+
 .light-theme {
   --bg: #f0f5f9;
   --bg-high: white;
@@ -53,7 +60,7 @@
 
   // message moddal
   --message-madal-bg: #ffffff;
-  --message-madal-box-shadow: #919eab4d 0 0 2px, #919eab1f 0 12px 24px -4px;
+  --message-madal-box-shadow: #919eab4d 0 0 rem(2), #919eab1f 0 rem(2) rem(24) rem(-4);
 
   // Shotcuts modal
   --invoce-icon-bg: #e1f5fa;
@@ -76,6 +83,22 @@
   --btn-bg-color: #e0e0e0;
   --icons-outline-color: #e0e0e0;
   --btn-hover-color: #f5f5f5;
+
+  // sidebar Hover
+  --red-hover-text: #fb977d;
+  --red-hover: #ffede9;
+
+  --green-hover-text: #4bd08b;
+  --green-hover: #ddfff3;
+
+  --blue-hover-text: #0085db;
+  --blue-hover: #eaf2fb;
+
+  --orange-hover-text: #f8c076;
+  --orange-hover: #fef6eb;
+
+  --grey-hover-text: #707a82;
+  --grey-hover: #f0f1f2;
 }
 
 .dark-theme {
@@ -111,7 +134,7 @@
 
   // message moddal
   --message-madal-bg: #111c2d;
-  --message-madal-box-shadow: #919eab4d 0 0 2px, #919eab05 0 12px 24px -4px;
+  --message-madal-box-shadow: #919eab4d 0 0 rem(2), #919eab05 0 1rem(2) rem(24) rem(-4);
 
   // Shotcuts modal
   --invoce-icon-bg: #2a4d61;
