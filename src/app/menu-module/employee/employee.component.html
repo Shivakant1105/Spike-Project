@@ -1,1 +1,80 @@
-<p>employee works!</p>
+<section class="account_container custome_radius">
+
+    <header class="sub_header custome_radius box_shadow">
+        <h4 class="f20">Employee</h4>
+        <span class="f14">Dashboard</span>
+        <ul><li class="f14">Employee</li></ul>
+    </header>
+
+    <div class="employee_search_section custome_radius box_shadow">
+        <div class="left_items custome_radius flex-nowrap">
+            <input class="f14" type="text" placeholder="Search Employee" />
+            <i-feather name="search" class="d-flex"></i-feather>
+        </div>
+
+        <button type="button" data-bs-toggle="modal" data-bs-target="#addEmployee"
+            class="btn right_items custome_radius f14">
+            Add Employee
+        </button>
+    </div>
+
+    <!-- for the table -->
+    <main class="custome_radius box_shadow">
+        <div class="wrapper">
+            <div class="employee_table ">
+                table
+            </div>
+            <footer class="f12">
+                <span>Items Per Page:</span>
+                <select id="fruit" name="fruit" class="f14">
+                    <option value="apple">Apple</option>
+                    <option value="banana">Banana</option>
+                    <option value="cherry">Cherry</option>
+                    <option value="date">Date</option>
+                </select>
+                <span class="page_number">1 – 9 of 9</span>
+                <i-feather class="f24" name="skip-back"></i-feather>
+                <i-feather class="f24" name="chevron-left"></i-feather>
+                <i-feather class="f24" name="chevron-right"></i-feather>
+                <i-feather class="f24" name="skip-forward"></i-feather>
+
+            </footer>
+        </div>
+    </main>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addEmployee">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow">
+                <strong class="modal-header border-0 h5">
+                    Add
+                </strong>
+                <div class="modal-body f14 ">
+                    <img src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
+                    <input class="input_file" type="file">
+                    <form>
+                        <input type="text" class="custome_border" placeholder="Name">
+
+                        <input type="text" class="custome_border" placeholder="Position">
+
+                        <input type="email" class="custome_border" placeholder="Email">
+
+                        <input type="number" class="custome_border" placeholder="Number">
+
+                        <div class="d-flex gap-3 flex-wrap ">
+                            <input type="text" value="dd-mm-yyyy" class="flex-grow-1 custome_border" placeholder="Date">
+
+                            <input type="text" class="flex-grow-1 custome_border" placeholder="Position">
+
+                            <input type="number" class="flex-grow-1 custome_border" placeholder="Salary">
+                        </div>
+
+                        <button type="submit" class="btn add h5">Add</button>
+                        <button type="button" class="btn close" data-bs-dismiss="modal">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
