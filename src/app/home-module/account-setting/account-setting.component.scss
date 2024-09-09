@@ -3,12 +3,60 @@
 .account_container {
    color: var(--textColor);
 
-   h5 {
+   ul {
+      margin-top: rem(16);
+   }
+
+   %paragraph_header_commmon {
+      width: 100%;
+      line-height: rem(10);
+   }
+
+   .form_items {
+      @include flex('', '', column, 0, 0);
+
+      p {
+         @extend %paragraph_header_commmon;
+         display: none;
+      }
+
+      &.error {
+         p {
+            display: block;
+            margin-left: rem(16);
+            margin-bottom: rem(20);
+            color: var(--red);
+            line-height: rem(10);
+         }
+
+         input,
+         select {
+            border: rem(1) solid var(--red);
+            color: var(--red);
+         }
+      }
+   }
+
+   label {
       font-weight: 600;
+      margin-bottom: rem(5);
+   }
+
+   input,
+   select {
+      height: rem(54);
+      box-shadow: none;
+      background-color: var(--bg-high);
+      font-size: rem(14);
+      padding-left: rem(16);
+      outline: none;
+      color: var(--textColor);
+      @include customize_radius(rem(40), '', '');
+      border: rem(1) solid var(--border-color-lighter);
    }
 
    .sub_header {
-      @include setDimension(100%, 8rem(1));
+      @include setDimension(100%, rem(81));
       @include flex('', center, '', 20, 16);
       background-color: var(--bg-high);
 
@@ -22,17 +70,23 @@
       }
    }
 
+   .save_btn {
+      @include customize_radius(rem(25), var(--contact-user-bg), var(--white))
+   }
+
+   .cancel_btn {
+      @include customize_radius(rem(25), var(--bg-high), var(--red-hover-text));
+      border: 1px solid var(--red-hover-text);
+   }
+
    main {
-      // flex-grow: 1;
       background-color: var(--bg-high);
       @include flex('', '', '', 30, 50);
       flex-wrap: wrap;
-      background-color: var(--bg-high);
 
       .account_tab {
          width: 100%;
-         padding: rem(10);
-         padding-left: rem(20);
+         padding: rem(10) rem(10) rem(10) rem(20);
          @include flex('', center, '', 10, 10);
          color: var(--outlined-btn);
          position: relative;
@@ -55,13 +109,11 @@
       .change_profile {
          padding: rem(31);
          @include setDimension(rem(525), rem(359));
-         background-color: var(--bg-high);
 
          img {
             @include rounded_icons(100, 100, transparent);
             display: block;
-            margin: 0 auto;
-            margin-top: rem(35);
+            margin: rem(35) auto 0;
          }
 
          .btn_group {
@@ -84,55 +136,36 @@
          }
       }
 
-      label {
-         font-weight: 600;
-         padding-left: rem(16);
-         margin-bottom: rem(5);
-      }
-
       .change_password {
          flex-grow: 1;
-         height: rem(408);
-         background-color: var(--bg-high);
          padding: rem(31);
 
          input {
             height: rem(54);
-            box-shadow: none;
-            outline: none;
             @include customize_radius(rem(40), '', '')
          }
       }
 
       .profile_details {
          width: 100%;
-         background-color: var(--bg-high);
          @include flex('', '', '', 10, 31);
          flex-wrap: wrap;
 
-         h5,
-         p {
-            width: 100%;
-            line-height: rem(10);
-            margin-bottom: rem(30);
+         h5 {
+            @extend %paragraph_header_commmon;
          }
 
          form {
             flex-grow: 1;
+            @include flex('', '', '', 10, 0);
+            flex-wrap: wrap;
 
+            .form_items {
+               flex-grow: 1;
+               @include flex('', '', '', 0, 0);
+               width: rem(450);
+            }
          }
       }
-
-      input,
-      select {
-         height: rem(54);
-         box-shadow: none;
-         background-color: var(--bg-high);
-         outline: none;
-         color: var(--textColor);
-         @include customize_radius(rem(40), '', '');
-         border: rem(1) solid var(--border-color-lighter);
-      }
-
    }
 }

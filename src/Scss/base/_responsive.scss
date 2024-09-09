@@ -32,9 +32,14 @@ $landscape: rem(600);
   .dashboard_details {
     flex-wrap: wrap;
   }
+
   .details,
   .details2,
   .dashboard_details_items {
+    width: 100% !important;
+  }
+
+  .form_items{
     width: 100% !important;
   }
 
@@ -93,14 +98,13 @@ $landscape: rem(600);
     flex-grow: 1;
   }
 
-  .contact_container {
-    .contact_search_section {
+  .account_container {
+    .employee_search_section {
       padding: rem(18) rem(30) !important;
       min-height: rem(180) !important;
       justify-content: center !important;
       align-items: center;
       flex-wrap: wrap;
-
       .left_items,
       input {
         width: 100% !important;
@@ -115,7 +119,6 @@ $landscape: rem(600);
 
 @include width-range(rem(0), $mobile - rem(1)) {
   .login_section section .light-logo {
-    display: none !important;
   }
 
   .dashboard_section {

@@ -75,8 +75,7 @@
       .accordion-collapse {
         .accordion-body {
           ul li {
-            padding: rem(16);
-            padding-top: 0;
+            padding: 0 rem(16) rem(16) rem(16);
             margin-bottom: rem(0);
             text-wrap: nowrap;
 

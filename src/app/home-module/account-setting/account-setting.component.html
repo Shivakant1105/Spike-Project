@@ -2,7 +2,7 @@
     <header class="sub_header custome_radius box_shadow">
         <h4 class="f20">Account Settings</h4>
         <span class="f14">Dashboard</span>
-        <li class="f14">Account Settings</li>
+        <ul><li class="f14">Account Settings</li></ul>
     </header>
 
     <main class="mt-4 account_main custome_radius box_shadow">
@@ -12,7 +12,7 @@
 
         <!-- change profile -->
         <div id="change_profile" class="change_profile custome_radius custome_border">
-            <h5>Change Profile</h5>
+            <h5 class="mb-2">Change Profile</h5>
             <p class="f14">Change your profile picture from here</p>
             <img src="./assets/account/user-1.jpg" alt="">
             <div class="btn_group">
@@ -24,20 +24,27 @@
 
         <!-- change password -->
         <div class="change_password custome_radius custome_border">
-            <h5 class="mb-1">Change Password</h5>
-            <p class="f14">To change your password please confirm here</p>
+            <h5 class="mb-2">Change Password</h5>
+            <p class="f14">To change your personal detail , edit and save from here</p>
             <form class="f14 mt-3">
-                    <!-- for the current password -->
+                <!-- for the current password -->
+                <div class="form_items error">
                     <label>Current Password</label>
-                    <input type="password" class="form-control mb-4">
+                    <input type="password" class="form-control mb-3" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
-                    <!-- for the new password -->
-                    <label>New password</label>
-                    <input type="password" class="form-control mb-4">
+                <div class="form_items">
+                    <label>New Password</label>
+                    <input type="password" class="form-control mb-3" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
-                    <!-- for the confirm password -->
+                <div class="form_items">
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
             </form>
         </div>
@@ -46,51 +53,73 @@
         <div class="profile_details custome_radius custome_border f14">
             <h5 class="mb-1">Change Password</h5>
             <p class="f14">To change your password please confirm here</p>
-
             <form>
                 <!-- for the Your name -->
-                <label>Your Name</label>
-                <input type="text" class="form-control mb-4">
+                <div class="form_items">
+                    <label class="w-100">Your Name</label>
+                    <input type="text" class="form-control flex-grow-1 mb-3" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <!-- for the Store name -->
+                <div class="form_items">
+                    <label class="w-100">Store Name</label>
+                    <input type="text" class="form-control flex-grow-1 mb-3" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
                 <!-- for the Location -->
-                <label>Location</label>
-                <select class="form-select mb-4">
-                    <option selected>India</option>
-                    <option value="1">USA</option>
-                    <option value="2">UK</option>
-                    <option value="3">China</option>
-                </select>
-
-                <!-- for the Email -->
-                <label>Email</label>
-                <input type="email" class="form-control mb-3">
-
-            </form>
-
-            <form>
-                <!-- for the Name -->
-                <label>Store Name</label>
-                <input type="text" class="form-control mb-4">
+                <div class="form_items">
+                    <label>Location</label>
+                    <select class="form-select mb-3" required>
+                        <option selected>India</option>
+                        <option value="1">USA</option>
+                        <option value="2">UK</option>
+                        <option value="3">China</option>
+                    </select>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
                 <!-- for the Currency -->
-                <label>Currency</label>
-                <select class="form-select mb-4">
-                    <option selected>India (INR)</option>
-                    <option value="1">Us Dollor($)</option>
-                    <option value="2">Russia</option>
-                </select>
+                <div class="form_items">
+                    <label>Currency</label>
+                    <select class="form-select mb-3" required>
+                        <option selected>India</option>
+                        <option value="1">USA</option>
+                        <option value="2">UK</option>
+                        <option value="3">China</option>
+                    </select>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
-                <label>Phone</label>
-                <input type="number" class="form-control">
+                <!-- for the Email -->
+                <div class="form_items mb-3">
+                    <label class="">Email</label>
+                    <input type="email" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
 
+                <!-- for the Phone -->
+                <div class="d-flex flex-column form_items mb-3">
+                    <label class="">Phone</label>
+                    <input type="number" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <div class="d-flex flex-column form_items">
+                    <label>Address</label>
+                    <input type="text" class="form-control">
+                    <p>Oops! Something Went Wrong</p>
+                </div>
             </form>
-
-            <div class="w-100">
-                <label>Address</label>
-                <input type="text" class="form-control">
-            </div>
-
         </div>
+
+        <!-- buttons for save and cancel -->
+        <div class="action_buttons w-100 d-flex gap-3 justify-content-end">
+            <button class="btn save_btn">save</button>
+            <button type="reset" class="btn cancel_btn">cancel</button>
+        </div>
+
     </main>
 
 </section>

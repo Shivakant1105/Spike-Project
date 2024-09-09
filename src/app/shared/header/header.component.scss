@@ -190,20 +190,20 @@
 
   .name_country_logo.first {
     margin-top: rem(16);
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    border-top-left-radius: rem(2);
+    border-top-right-radius: rem(2);
   }
 
   .name_country_logo.last {
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: rem(2);
+    border-bottom-right-radius: rem(2);
   }
 
   .dropdown-menu.show {
     border: none;
     color: var(--textColor-200);
     @include minwidth_minheight(rem(360), rem(533));
-    transform: translate(662px, 55px);
+    transform: translate(66rem(2), 55px);
   }
 }
 
@@ -282,7 +282,7 @@
     border: none;
     color: var(--textColor-200);
     @include minwidth_minheight(rem(360), rem(533));
-    transform: translate(662px, 55px);
+    transform: translate(66rem(2), 55px);
     background-color: var(--message-madal-bg);
     box-shadow: var(--message-madal-box-shadow);
   }
