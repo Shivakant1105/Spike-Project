@@ -99,7 +99,7 @@
 
     .search_container {
       border-radius: rem(20);
-      @include flex("", center, "", 4, 14);
+      @include flex("", center, "", 10, 14);
       cursor: pointer;
       @include setDimension(rem(180), rem(38));
 
@@ -108,7 +108,7 @@
       }
 
       .seachlogo {
-        @include setDimension(rem(20), rem(20));
+        @include setDimension(rem(16), rem(16));
         @include flex("", center, "", 0, 0);
       }
     }
