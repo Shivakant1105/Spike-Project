@@ -104,6 +104,13 @@
       right: 15%;
     }
 
+    div{
+      width: rem(220);
+      i-feather{
+        cursor: pointer;
+      }
+    }
+
     img {
       position: absolute;
       overflow: hidden;
@@ -237,15 +244,12 @@
 .hover_sidecontainer {
   transition: 0.3s ease-in-out;
   width: rem(80);
-
   .side_header {
-
     .dark_logo,
     .light_logo {
       display: none !important;
       position: relative;
     }
-
     img {
       width: rem(205);
     }

@@ -1,5 +1,5 @@
 <main *ngIf="authService.isLogin | async" class="d-flex light-theme">
-  <aside class="">
+  <aside>
     <app-sidebar></app-sidebar>
   </aside>
 
@@ -16,14 +16,7 @@
       </div>
     </div>
   </section>
-
-  <div class="offcanvas offcanvas-start" data-bs-backdrop="false" id="offcanvasScrolling"
-    aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-body overflow-hidden p-0">
-      <app-sidebar></app-sidebar>
-    </div>
-  </div>
-
+  
   <!-- Search Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

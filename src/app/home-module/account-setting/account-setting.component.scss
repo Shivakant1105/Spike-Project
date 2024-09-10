@@ -76,7 +76,7 @@
 
    .cancel_btn {
       @include customize_radius(rem(25), var(--bg-high), var(--red-hover-text));
-      border: 1px solid var(--red-hover-text);
+      border: rem(1) solid var(--red-hover-text);
    }
 
    main {

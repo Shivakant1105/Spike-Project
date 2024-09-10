@@ -16,39 +16,54 @@ $largeDesktop: rem(1920);
 @include width-range(rem(0), $large - rem(1)) {
   main {
     padding-top: 0 !important;
-
-    #menu_toggle {
-      display: none;
+    aside {
+      .sidebar_container {
+        display: none !important;
+      }
+      .sidebar_container {
+        position: absolute;
+        z-index: 10;
+      }
     }
 
-    aside {
-      display: none !important;
+    aside:has(.hover_sidecontainer) {
+      .sidebar_container {
+        display: flex !important;
+      }
+
     }
   }
+
   .course_card_container {
     flex-wrap: wrap;
   }
 }
 
-@include width-range(0px, $tablet - rem(1)) {
+@include width-range(rem(0), $tablet - rem(1)) {
+
   // Course setion
   .course_container {
     .search_section {
       flex-wrap: wrap;
+
       .left_search {
         width: 100% !important;
+
         & input {
           width: 0 !important;
         }
       }
+
       .right_selection {
         width: 100% !important;
       }
     }
   }
+
   // contact page modal
   .modal-dialog {
     padding: 0 rem(10) !important;
+
     .modal-content {
       width: unset !important;
     }
@@ -67,7 +82,7 @@ $largeDesktop: rem(1920);
     width: 100% !important;
   }
 
-  .form_items{
+  .form_items {
     width: 100% !important;
   }
 
@@ -97,6 +112,7 @@ $largeDesktop: rem(1920);
       }
     }
   }
+
   // Course page
   .course_container {
     .search_section {
@@ -107,13 +123,16 @@ $largeDesktop: rem(1920);
       .left_search {
         width: 100% !important;
       }
+
       .right_selection {
         width: 100% !important;
+
         .custome_radius {
           width: 100% !important;
         }
       }
     }
+
     .course_card_container {
       flex-wrap: wrap;
     }
@@ -128,6 +147,7 @@ $largeDesktop: rem(1920);
 
       .login_content .right {
         padding: rem(24) !important;
+
         .icon_container {
           flex-direction: column !important;
           gap: rem(18) !important;
@@ -152,6 +172,7 @@ $largeDesktop: rem(1920);
       justify-content: center !important;
       align-items: center;
       flex-wrap: wrap;
+
       .left_items,
       input {
         width: 100% !important;
@@ -162,24 +183,26 @@ $largeDesktop: rem(1920);
       min-width: 100% !important;
     }
   }
+
   // Course Page
   .course_container .search_section {
     width: 100%;
     height: rem(180) !important;
     @include flex(center, center, "", 15, 40);
     padding: rem(40) !important;
+
     .right_selection {
       width: 100% !important;
     }
   }
+
   .course_container .course_header_section .right .Dashboard {
     display: none;
   }
 }
 
 @include width-range(rem(0), $mobile - rem(1)) {
-  .login_section section .light-logo {
-  }
+  .login_section section .light-logo {}
 
   .dashboard_section {
     .right {
@@ -192,8 +215,4 @@ $largeDesktop: rem(1920);
   }
 }
 
-@include width-range(rem(0), rem(1400) - rem(1)) {
-  .header_body .header_right_container .user_admin {
-    width: auto !important;
-  }
-}
+@include width-range(rem(0), $large - rem(1)) {}
