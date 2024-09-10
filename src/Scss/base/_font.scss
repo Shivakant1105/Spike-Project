@@ -51,6 +51,11 @@
         @include setDimension(rem(18), rem(18));
         @include flex(center,center,'',0,0);
     }
+    &.f20 {
+        color: var(--text-color-600);
+        @include setDimension(rem(15), rem(15));
+        @include flex(center,center,'',0,0);
+    }
 
     &.f10 {
         @include setDimension(rem(10), rem(10));
