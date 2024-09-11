@@ -1,5 +1,5 @@
-<main *ngIf="authService.isLogin | async" class="d-flex light-theme">
-  <aside class="">
+<main *ngIf="authService.isLogin | async" class="d-flex dark-theme">
+  <aside>
     <app-sidebar></app-sidebar>
   </aside>
 
@@ -16,17 +16,7 @@
       </div>
     </div>
   </section>
-  <div
-    class="offcanvas offcanvas-start"
-    data-bs-backdrop="false"
-    id="offcanvasScrolling"
-    aria-labelledby="offcanvasScrollingLabel"
-  >
-    <div class="offcanvas-body overflow-hidden p-0">
-      <app-sidebar></app-sidebar>
-    </div>
-  </div>
-
+  
   <i-feather class="setting" name="settings"></i-feather>
 </main>
 

@@ -75,8 +75,7 @@
       .accordion-collapse {
         .accordion-body {
           ul li {
-            padding: rem(16);
-            padding-top: 0;
+            padding: 0 rem(16) rem(16) rem(16);
             margin-bottom: rem(0);
             text-wrap: nowrap;
 
@@ -103,6 +102,14 @@
     button {
       position: absolute;
       right: 15%;
+    }
+
+    div {
+      width: rem(220);
+
+      i-feather {
+        cursor: pointer;
+      }
     }
 
     img {
@@ -132,36 +139,47 @@
         padding-left: rem(25) !important;
 
         &.red:hover {
+          color: var(--red-hover-text);
+
           &::after {
-            @include activeStyles(var(--red-hover-text), var(--red-hover));
+            background-color: var(--red-hover);
             @extend %sidebar_menu_hover;
+
           }
         }
 
         &.green:hover {
+          color: var(--green-hover-text);
+
           &::after {
-            @include activeStyles(var(--green-hover-text), var(--green-hover));
+            background-color: var(--green-hover);
             @extend %sidebar_menu_hover;
           }
         }
 
         &.blue:hover {
+          color: var(--blue-hover-text);
+
           &::after {
-            @include activeStyles(var(--blue-hover-text), var(--blue-hover));
+            background-color: var(--blue-hover);
             @extend %sidebar_menu_hover;
           }
         }
 
         &.orange:hover {
+          color: var(--orange-hover-text);
+
           &::after {
-            @include activeStyles(var(--orange-hover-text), var(--orange-hover));
+            background-color: var(--orange-hover);
             @extend %sidebar_menu_hover;
           }
         }
 
         &.grey:hover {
+          color: var(--grey-hover-text);
+
           &::after {
-            @include activeStyles(var(--grey-hover-text), var(--grey-hover));
+            background-color: var(--grey-hover);
             @extend %sidebar_menu_hover;
           }
         }
@@ -192,10 +210,6 @@
 
       .dash1 .f15 {
         color: var(--quick-link-hover-color);
-      }
-
-      .f15 {
-        color: var(--textColor-200);
       }
 
       .disabled_menu {

@@ -9,6 +9,7 @@ main {
   section {
     flex-grow: 1;
     overflow-y: auto;
+    z-index: 1;
 
     .wrapper {
       @include flex(center, center, column, 16, 25);

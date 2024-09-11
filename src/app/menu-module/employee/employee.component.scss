@@ -1,0 +1,181 @@
+@import '../styles.scss';
+
+.account_container {
+    color: var(--textColor);
+    @include flex(center, center, column, 23, 0);
+
+    .sub_header {
+        @include setDimension(100%, rem(81));
+        @include flex('', center, '', 20, 16);
+        background-color: var(--bg-high);
+        ul{
+            margin-top: rem(16);
+        }
+        h4 {
+            flex-grow: 1;
+            font-weight: 600;
+        }
+
+        span {
+            color: var(--dashboard-color);
+        }
+    }
+
+    .employee_search_section {
+        @include setDimension(100%, rem(116));
+        min-height: rem(116);
+        background-color: var(--bg-high);
+        @include flex(space-between, center, "", 15, 0);
+        padding: 0 rem(30);
+
+        .left_items {
+            @include setDimension(rem(360), rem(52));
+            @include flex(space-between, center, "", 0, 0);
+            border: rem(1) solid var(--input-search-color);
+            padding-right: rem(18);
+
+            & input {
+                @include setDimension(rem(360), rem(50));
+                background-color: var(--bg-high);
+                color: var(--text-color-600);
+                border: 0;
+                border-top-left-radius: rem(18);
+                border-bottom-left-radius: rem(18);
+                padding-left: rem(15);
+
+                &:focus {
+                    outline: 0;
+                }
+
+                &::placeholder {
+                    color: var(--textColor-400);
+                }
+            }
+
+            & i-feather {
+                @include setDimension(rem(18), rem(18));
+                color: var(--text-color-600);
+            }
+        }
+
+        .right_items {
+            @include minwidth_minheight(rem(120), rem(36));
+            background-color: var(--contact-user-bg);
+            color: var(--white);
+        }
+    }
+
+    main {
+        @include setDimension(100%, rem(576));
+        background-color: var(--bg-high);
+
+        .wrapper {
+            min-width: rem(520);
+            @include flex('', '', column, 0, 30);
+            @include setDimension(100%, 100%);
+
+            .employee_table {
+                flex-grow: 1;
+                max-height: rem(527);
+                @include flex(center, center, '', 0, 0);
+            }
+
+            footer {
+                @include setDimension(100%, rem(50));
+                @include flex(end, center, '', 10, 10);
+                color: var(--textColor);
+
+                .page_number {
+                    padding: rem(0) rem(38);
+                }
+
+                select {
+                    padding: rem(16);
+                    @include customize_radius(rem(20), transparent, var(--textColor));
+
+                    option {
+                        background-color: var(--bg);
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                }
+
+                i-feather {
+                    margin: rem(0) rem(5);
+                    color: var(--textColor-200);
+                }
+            }
+        }
+
+    }
+
+    .modal-dialog {
+        max-width: rem(576);
+        min-width: rem(308);
+    }
+
+    .modal-content {
+        max-height: 70vh;
+        overflow-y: auto;
+        background-color: var(--bg-high);
+        color: var(--textColor);
+
+        .modal-body {
+            @include flex('', center, '', 16, 16);
+            flex-wrap: wrap;
+
+            img {
+                @include rounded_icons(50, 50, '');
+            }
+
+            .input_file {
+                width: 75%;
+                @include customize_radius(rem(40), var(--outlined-btn-text), var(--white));
+                padding: rem(8) rem(30)
+            }
+
+            form {
+                @include flex('', '', '', 16, 0);
+                flex-wrap: wrap;
+                padding: 0 rem(16);
+
+                input {
+                    height: rem(54);
+                    border-radius: rem(40);
+                    padding-left: rem(16);
+                    color: var(--textColor-200);
+                    background-color: var(--bg-high);
+                    flex-grow: 1;
+                    ;
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    &::placeholder {
+                        color: var(--textColor-200);
+                    }
+                }
+
+                .close {
+                    height: rem(40);
+                    min-width: rem(80);
+                    @include customize_radius(rem(30), '', var(--red-hover-text));
+                    border: rem(1) solid var(--red-hover-text);
+                }
+
+                .add {
+                    @include customize_radius(rem(30), '', var(--white));
+                    background-color: var(--modal-input-palceholder-color);
+                    height: rem(40);
+                    min-width: rem(80);
+
+                }
+            }
+        }
+
+    }
+}
