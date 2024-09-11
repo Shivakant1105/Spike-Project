@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
     {
       name: 'Notes',
       icon: 'book-open',
-      route: 'menu/book-open',
+      route: 'menu/notes',
       className: 'green',
     },
     {

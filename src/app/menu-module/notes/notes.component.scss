@@ -1,0 +1,189 @@
+@import "../../../styles.scss";
+
+%notes_sidebar_common {
+  @include flex("", flex-start, column, 15, 20);
+  @include setDimension(rem(290), 100%);
+  border-right: rem(1) solid var(--input-border-color);
+  max-height: rem(700);
+  overflow-y: auto;
+  overflow-x: hidden;
+  & {
+    @include custom-scrollbar(rem(4), "", #cccccc, "");
+  }
+
+  .seach_wrapper {
+    @include setDimension(rem(246), rem(55));
+    @include flex(space-between, center, "", 0, 0);
+    border: rem(1) solid var(--input-border-color);
+    padding: 0 rem(15);
+    min-height: rem(55);
+    &:hover {
+      border: rem(2) solid var(--input-modal-outline-color);
+    }
+    & input {
+      background-color: var(--bg-high);
+      color: var(--text-color-600);
+      border: none;
+      outline: none;
+
+      &::placeholder {
+        font-size: rem(15);
+      }
+    }
+  }
+  .Notes_heading {
+    color: var(--text-color-600);
+    font-weight: 600;
+  }
+
+  .notes_card {
+    @include setDimension(rem(243), rem(84));
+    background-color: var(--notes-page-bg-color);
+    padding: rem(10) rem(15);
+    min-height: rem(84);
+    border-radius: rem(18);
+    .f16 {
+      color: var(--text-color-600);
+      font-weight: 500;
+    }
+    .f12 {
+      color: var(--textColor-200);
+    }
+
+    .date_icon_wrapper {
+      @include flex(space-between, center, "", 0, 0);
+      & :nth-child(2) {
+        cursor: pointer;
+        color: var(--text-color-600);
+      }
+    }
+  }
+}
+.notes_parent {
+  @include flex("", "", column, 32, 0);
+
+  .notes_top_header {
+    @include flex(space-between, center, "", 0, 0);
+    padding: 0 rem(25);
+    @include setDimension(100%, rem(82));
+    background-color: var(--bg-high);
+
+    .left_items {
+      color: var(--text-color-600);
+      font-weight: 600;
+    }
+
+    .right_wrapper {
+      @include flex("", center, "", 15, 0);
+      .circle {
+        @include rounded_icons(5, 5, var(--text-color-600));
+      }
+      .item1 {
+        color: var(--contact-user-bg);
+        cursor: pointer;
+      }
+      .item2 {
+        color: var(--text-color-600);
+      }
+    }
+  }
+
+  .notes_wrapper {
+    @include flex("", "", "", 0, 0);
+    @include setDimension(100%, rem(710));
+    background-color: var(--bg-high);
+
+    .notes_sidebar {
+      @extend %notes_sidebar_common;
+    }
+
+    .notes_body {
+      flex-grow: 1;
+
+      .notes_header {
+        @include flex(space-between, center, "", 0, 0);
+        @include setDimension(100%, rem(63));
+        border-bottom: rem(1) solid var(--input-border-color);
+        padding: 0 rem(25);
+        .menu {
+          color: var(--text-color-400);
+          cursor: pointer;
+        }
+        .notes_btn {
+          @include setDimension(rem(102), rem(34));
+          background-color: var(--course-page-header-blue);
+          color: var(--white);
+          font-weight: 500;
+          border: 0;
+        }
+      }
+
+      .notes_content {
+        @include flex("", "", column, 15, 0);
+        padding: rem(40) rem(30);
+        max-height: rem(600);
+        overflow-y: auto;
+        position: relative;
+        top: rem(-700);
+        & .f16 {
+          font-weight: 600;
+          color: var(--text-color-600);
+        }
+
+        .text_area {
+          display: flex;
+          @include setDimension(100%, rem(160));
+          min-height: rem(160);
+          border: rem(2) solid var(--input-border-color);
+          padding: rem(26) 0 0 rem(35);
+          background-color: var(--bg-high);
+          color: var(--text-color-600);
+          resize: none;
+          outline: none;
+          cursor: pointer;
+          &:focus {
+            border: rem(2) solid var(--course-page-header-blue);
+          }
+        }
+        .ball {
+          @include rounded_icons(18, 18, "");
+          cursor: pointer;
+        }
+        .blue {
+          background-color: var(--course-page-header-blue);
+        }
+        .yellow {
+          background-color: var(--course-page-header-yellow);
+        }
+        .grey {
+          background-color: var(--course-page-header-grey);
+        }
+        .salmon {
+          background-color: var(--course-page-header-salmon);
+        }
+        .green {
+          background-color: var(--proccessing-text);
+        }
+      }
+    }
+  }
+}
+
+.notes_body {
+  .offcanvas {
+    position: relative;
+    @include setDimension(rem(290), auto);
+    overflow-y: auto;
+    top: rem(-63);
+    background-color: var(--bg-high);
+    border-radius: rem(18) 0 0 rem(18);
+    border-right: unset;
+
+    .notes_body {
+      padding: 0;
+      .notes_sidebar_small {
+        @extend %notes_sidebar_common;
+      }
+    }
+  }
+}

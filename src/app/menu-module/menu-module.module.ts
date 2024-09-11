@@ -12,6 +12,7 @@ import { ChatComponent } from './chat/chat.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CalendarComponent,
     CourseComponent,
     EmployeeComponent,
-    ChatComponent
+    ChatComponent,
+    NotesComponent
   ],
   imports: [
     CommonModule,
