@@ -60,3 +60,7 @@ html {
 .dark-theme:has(.dark_img) .dark-logo {
   display: none;
 }
+
+.modal-backdrop{
+  position: unset !important;
+}

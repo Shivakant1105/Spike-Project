@@ -1,4 +1,4 @@
-@import '../styles.scss';
+@import "../styles.scss";
 
 %hover_circle_shape {
   border-radius: 50%;
@@ -28,7 +28,6 @@
 .header_body {
   @include flex(space-between, center, "", 0, 16);
   background-color: var(--bg-high);
-   
   .header_left_container {
     margin-left: rem(10);
 
@@ -290,7 +289,6 @@
 
 // User Profile
 .User_profile_container {
-
   .f16,
   .f18 {
     color: var(--text-color-600);
@@ -645,4 +643,71 @@
 .offcanvas-start {
   @include setDimension(auto, 100vh);
   background-color: transparent;
+}
+
+// Search modal
+.modal_dialogs {
+  margin-top: 6.5%;
+  .modal_contents {
+    @include minwidth_minheight(rem(550), rem(650));
+    background-color: var(--search-modal-bg);
+    box-shadow: var(--message-madal-box-shadow);
+  }
+
+  .input_filed_container {
+    @include setDimension(100%, rem(100));
+    @include flex(space-between, center, "", 15, 0);
+    padding: 0 rem(38);
+    border-bottom: rem(1) solid var(--input-border-color);
+
+    input {
+      height: rem(51);
+      box-shadow: none;
+      background-color: var(--search-modal-bg);
+      border: rem(1) solid var(--input-border-color);
+      color: var(--white);
+      color: var(--text-color-600);
+
+      &:focus {
+        border: rem(2) solid var(--input-modal-outline-color);
+      }
+
+      &::placeholder {
+        color: var(--textColor-200);
+        font-weight: 500;
+      }
+    }
+  }
+
+  .search_modal_body {
+    & :nth-child(2) {
+      margin-top: rem(32);
+    }
+
+    .search_modal_heading {
+      color: var(--text-color-600);
+    }
+
+    max-height: rem(500);
+    overflow-y: auto;
+    padding: rem(9) 0 0 rem(24) !important;
+
+    .heading {
+      font-size: rem(14);
+      color: var(--text-color-600);
+      font-weight: 500;
+    }
+
+    .summary {
+      font-size: rem(12);
+      color: var(--text-color-400);
+      font-weight: 500;
+      display: block;
+    }
+
+    // Mixin for scrollbar
+    & {
+      @include custom-scrollbar(rem(6), "", var(--border-color-lighter), "");
+    }
+  }
 }
