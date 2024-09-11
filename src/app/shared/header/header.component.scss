@@ -203,7 +203,7 @@
     border: none;
     color: var(--textColor-200);
     @include minwidth_minheight(rem(360), rem(533));
-    transform: translate(66rem(2), rem(55));
+    transform: translate(rem(662), rem(55));
   }
 }
 
