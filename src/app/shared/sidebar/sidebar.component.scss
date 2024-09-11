@@ -104,9 +104,10 @@
       right: 15%;
     }
 
-    div{
+    div {
       width: rem(220);
-      i-feather{
+
+      i-feather {
         cursor: pointer;
       }
     }
@@ -138,36 +139,47 @@
         padding-left: rem(25) !important;
 
         &.red:hover {
+          color: var(--red-hover-text);
+
           &::after {
-            @include activeStyles(var(--red-hover-text), var(--red-hover));
+            background-color: var(--red-hover);
             @extend %sidebar_menu_hover;
+
           }
         }
 
         &.green:hover {
+          color: var(--green-hover-text);
+
           &::after {
-            @include activeStyles(var(--green-hover-text), var(--green-hover));
+            background-color: var(--green-hover);
             @extend %sidebar_menu_hover;
           }
         }
 
         &.blue:hover {
+          color: var(--blue-hover-text);
+
           &::after {
-            @include activeStyles(var(--blue-hover-text), var(--blue-hover));
+            background-color: var(--blue-hover);
             @extend %sidebar_menu_hover;
           }
         }
 
         &.orange:hover {
+          color: var(--orange-hover-text);
+
           &::after {
-            @include activeStyles(var(--orange-hover-text), var(--orange-hover));
+            background-color: var(--orange-hover);
             @extend %sidebar_menu_hover;
           }
         }
 
         &.grey:hover {
+          color: var(--grey-hover-text);
+
           &::after {
-            @include activeStyles(var(--grey-hover-text), var(--grey-hover));
+            background-color: var(--grey-hover);
             @extend %sidebar_menu_hover;
           }
         }
@@ -198,10 +210,6 @@
 
       .dash1 .f15 {
         color: var(--quick-link-hover-color);
-      }
-
-      .f15 {
-        color: var(--textColor-200);
       }
 
       .disabled_menu {
@@ -244,12 +252,15 @@
 .hover_sidecontainer {
   transition: 0.3s ease-in-out;
   width: rem(80);
+
   .side_header {
+
     .dark_logo,
     .light_logo {
       display: none !important;
       position: relative;
     }
+
     img {
       width: rem(205);
     }

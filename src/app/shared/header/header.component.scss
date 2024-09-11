@@ -282,7 +282,7 @@
     border: none;
     color: var(--textColor-200);
     @include minwidth_minheight(rem(360), rem(533));
-    transform: translate(66rem(2), rem(55));
+    transform: translate(rem(662), rem(55));
     background-color: var(--message-madal-bg);
     box-shadow: var(--message-madal-box-shadow);
   }
@@ -486,9 +486,8 @@
   .dropdown-menu.show {
     position: absolute;
     inset: 0 auto auto 0;
-    margin:rem( 0);
+    margin:rem(0);
     @include minwidth_minheight(rem(310), rem(449));
-    // transform: translate(7rem(45), rem(59));
     background-color: var(--shortcuts-bg);
   }
 }

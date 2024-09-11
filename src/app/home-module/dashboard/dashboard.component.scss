@@ -30,9 +30,11 @@
       @include flex("", "", column, 0, 0);
       background-color: var(--bg-high);
       color: var(--textColor);
-
-      select {
+      select{
+        color: var(--textColor);
+        background-color: var(--bg);
         height: rem(50);
+        outline: none;
       }
 
       .f14 {

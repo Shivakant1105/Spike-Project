@@ -47,7 +47,6 @@
 
  i-feather {
     &.f24 {
-        color: var(--textColor-200);
         @include setDimension(rem(18), rem(18));
         @include flex(center,center,'',0,0);
     }
