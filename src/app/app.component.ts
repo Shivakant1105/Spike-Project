@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,13 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild('theme') themeElem!: ElementRef<any>
+
   title = 'spike-project';
   isLogIn: boolean = true;
-  isLightTheme!: boolean;
+
+  isTheme: string = '';
   /*
    * @description Monitors router events and sets the login state based on the current URL.
    * @author Gautam Yadav
@@ -26,25 +30,39 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  ngOnInit(): void {
+
+  }
+
   /**  
     * @description This is a theme function.  
     * @author Shiva Kant Mishra
   */
+  ngAfterViewInit() {
+    this.isTheme = localStorage.getItem('theme') as string;
 
-  ngOnInit(): void {
-
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      this.isLightTheme = storedTheme === 'light';
+    if (this.isTheme == null) {
+      this.themeElem.nativeElement.classList.add("light-theme");
+      localStorage.setItem('theme', "light-theme");
+      console.log(this.isTheme)
     } else {
-
-      this.isLightTheme = true;
+      this.themeElem?.nativeElement.classList.add(this.isTheme);
     }
   }
 
   toggleTheme() {
-    this.isLightTheme = !this.isLightTheme;
-    localStorage.setItem('theme', this.isLightTheme ? 'light' : 'dark');
-  }
+    if (this.themeElem.nativeElement.classList.contains('dark-theme')) {
+      this.themeElem.nativeElement.classList.replace("dark-theme", "light-theme");
+      console.log(this.isTheme);
+      this.isTheme = 'light-theme';
 
+    } else {
+      this.themeElem.nativeElement.classList.replace("light-theme", "dark-theme");
+      this.isTheme = 'dark-theme'
+      console.log(this.themeElem.nativeElement.classList);
+    }
+
+    localStorage.setItem('theme', this.isTheme);
+  }
 }

@@ -1,10 +1,4 @@
-<main
-  [ngClass]="{
-    'd-flex': true,
-    'light-theme': isLightTheme,
-    'dark-theme': !isLightTheme
-  }"
->
+<main #theme class="d-flex">
   <aside *ngIf="!isLogIn">
     <app-sidebar></app-sidebar>
   </aside>
@@ -25,7 +19,7 @@
 
   <i-feather
     class="setting"
-    [name]="isLightTheme ? 'moon' : 'sun'"
+    [name]="isTheme == 'light-theme' ? 'moon' : 'sun'"
     (click)="toggleTheme()"
   ></i-feather>
 </main>

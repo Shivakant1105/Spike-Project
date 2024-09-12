@@ -13,7 +13,7 @@ export class NotesComponent implements OnInit {
   }
 
   /**  
-    * @description This is a theme function.  
+    * @description This is a notesSidebar.  
     * @author Shiva Kant Mishra
     */
 
