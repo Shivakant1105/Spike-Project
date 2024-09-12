@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { CommonService } from 'src/service/common.service';
+import { CommonService } from 'src/app/service/common.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
     {
       name: 'Notes',
       icon: 'book-open',
-      route: 'menu/notes',
+      route: 'menu/book-open',
       className: 'green',
     },
     {

@@ -112,6 +112,7 @@ export class PieChartComponent implements AfterViewInit {
       series.labels.template.set('visible', false);
       series.ticks.template.set('visible', false);
       series.slices.template.set('tooltipText', '');
+      series.slices.template.states.create('active',{shiftRadius:3,})
     });
   }
 }

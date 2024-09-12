@@ -1,11 +1,11 @@
-<main *ngIf="authService.isLogin | async" class="d-flex dark-theme">
-  <aside>
+<main  class="d-flex dark-theme">
+  <aside  *ngIf="!isLogIn" >
     <app-sidebar></app-sidebar>
   </aside>
 
   <section>
     <div class="wrapper container-lg">
-      <header class="sticky-top custome_radius box_shadow">
+      <header  *ngIf="!isLogIn"  class="sticky-top custome_radius box_shadow">
         <div class="w-100">
           <app-header></app-header>
         </div>
@@ -19,5 +19,3 @@
   
   <i-feather class="setting" name="settings"></i-feather>
 </main>
-
-<router-outlet *ngIf="!(authService.isLogin | async)"></router-outlet>
