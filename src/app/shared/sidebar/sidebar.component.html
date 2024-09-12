@@ -1,13 +1,24 @@
-<div [ngClass]="toggle ? 'hover_sidecontainer' : ''" class="sidebar_container custome_radius box_shadow">
+<div
+  [ngClass]="toggle ? 'hover_sidecontainer' : ''"
+  class="sidebar_container custome_radius box_shadow"
+>
   <div class="side_header">
-    <img class="dark-logo light_img me-2"
-      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg" alt="" />
+    <img
+      class="dark-logo light_img me-2"
+      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg"
+      alt=""
+    />
 
     <!-- image in dark theme -->
-    <img class="light-logo dark_img me-2"
-      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg" alt="" />
+    <img
+      class="light-logo dark_img me-2"
+      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg"
+      alt=""
+    />
 
-    <div class="justify-content-end d-flex d-xl-none d-lg-none d-md-none"><i-feather class="f24 cross" name="x"></i-feather></div>
+    <div class="justify-content-end d-flex d-xl-none d-lg-none d-md-none">
+      <i-feather class="f24 cross" name="x"></i-feather>
+    </div>
   </div>
 
   <div class="side_overview">
@@ -16,11 +27,13 @@
       <span class="f12">HOME</span>
 
       <div class="home_menu_items dash1 blue" routerLink="home/dashboard">
-        <i-feather class="f24" name="grid"></i-feather><span class="f15">Dashboard1</span>
+        <i-feather class="f24" name="grid"></i-feather
+        ><span class="f15">Dashboard1</span>
       </div>
 
       <div class="home_menu_items dash2 grey">
-        <i-feather class="f24" name="grid"></i-feather><span class="f15">Dashboard2</span>
+        <i-feather class="f24" name="grid"></i-feather
+        ><span class="f15">Dashboard2</span>
       </div>
     </div>
 
@@ -28,26 +41,42 @@
     <div class="home_menu_container">
       <span class="f12">APPS</span>
 
-      <div *ngFor="let sidebar of listOfSidebar; trackBy: identify" class="home_menu_items  {{ sidebar.className }}"
-        routerLink="{{ sidebar.route }}" routerLinkActive="active">
-        <i-feather class="f24" name="{{ sidebar.icon }}"></i-feather><span class="f15">{{ sidebar.name }}</span>
+      <div
+        *ngFor="let sidebar of listOfSidebar; trackBy: identify"
+        class="home_menu_items  {{ sidebar.className }}"
+        routerLink="{{ sidebar.route }}"
+        routerLinkActive="active"
+      >
+        <i-feather class="f24" name="{{ sidebar.icon }}"></i-feather
+        ><span class="f15">{{ sidebar.name }}</span>
       </div>
 
       <!-- for the Blog -->
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              <i-feather class="f24" name="life-buoy"></i-feather><span class="f15">Blog</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              <i-feather class="f24" name="life-buoy"></i-feather
+              ><span class="f15">Blog</span>
             </button>
           </div>
 
-          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionFlushExample"
+          >
             <div class="accordion-body">
               <ul>
                 <li routerLink="menu/post">Post</li>
-                <li routerLink="menu/detail">Detail</li>
+                <li routerLink="menu/details">Detail</li>
               </ul>
             </div>
           </div>
@@ -60,45 +89,61 @@
       <span class="f12">PAGES</span>
       <!-- Roll base access -->
       <div class="home_menu_items">
-        <i-feather class="f24" name="lock"></i-feather><span class="f15">Roll Base Access</span>
+        <i-feather class="f24" name="lock"></i-feather
+        ><span class="f15">Roll Base Access</span>
       </div>
 
       <!-- Tree view -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="git-merge"></i-feather><span class="f15">Treeview</span>
+        <i-feather class="f24" name="git-merge"></i-feather
+        ><span class="f15">Treeview</span>
       </div>
 
       <!-- Pricing -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="dollar-sign"></i-feather><span class="f15">Pricing</span>
+        <i-feather class="f24" name="dollar-sign"></i-feather
+        ><span class="f15">Pricing</span>
       </div>
 
       <!-- Account setting -->
       <div routerLink="home/account-setting" class="home_menu_items dash2">
-        <i-feather class="f24" name="user"></i-feather><span class="f15">Account Setting</span>
+        <i-feather class="f24" name="user"></i-feather
+        ><span class="f15">Account Setting</span>
       </div>
 
       <!-- FAQ -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="help-circle"></i-feather><span class="f15">FAQ</span>
+        <i-feather class="f24" name="help-circle"></i-feather
+        ><span class="f15">FAQ</span>
       </div>
 
       <!-- Landingpage -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="tablet"></i-feather><span class="f15">Landingpage</span>
+        <i-feather class="f24" name="tablet"></i-feather
+        ><span class="f15">Landingpage</span>
       </div>
 
       <!-- for the Weight -->
       <div class="accordion accordion-flush" id="weight_menubar">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#weight" aria-controls="weight">
-              <i-feather class="f24" name="command"></i-feather><span class="f15">Weight</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#weight"
+              aria-controls="weight"
+            >
+              <i-feather class="f24" name="command"></i-feather
+              ><span class="f15">Weight</span>
             </button>
           </div>
 
-          <div id="weight" class="accordion-collapse collapse" data-bs-parent="#weight_menubar">
+          <div
+            id="weight"
+            class="accordion-collapse collapse"
+            data-bs-parent="#weight_menubar"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Card</li>
@@ -119,13 +164,24 @@
       <div class="accordion accordion-flush" id="form_elements">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#form" aria-expanded="false" aria-controls="flush-collapseOne">
-              <i-feather class="f24" name="life-buoy"></i-feather><span class="f15">Form elements</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#form"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              <i-feather class="f24" name="life-buoy"></i-feather
+              ><span class="f15">Form elements</span>
             </button>
           </div>
 
-          <div id="form" class="accordion-collapse collapse" data-bs-parent="#form_elements">
+          <div
+            id="form"
+            class="accordion-collapse collapse"
+            data-bs-parent="#form_elements"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Autocomplete</li>
@@ -141,17 +197,20 @@
 
       <!-- Form Horizontal -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="sidebar"></i-feather><span class="f15">Form Horizontal</span>
+        <i-feather class="f24" name="sidebar"></i-feather
+        ><span class="f15">Form Horizontal</span>
       </div>
 
       <!-- Form Vertical -->
       <div class="home_menu_items dash2 mx-1">
-        <i-feather class="f24 sidebar" name="sidebar"></i-feather><span class="f15">Form Vertical</span>
+        <i-feather class="f24 sidebar" name="sidebar"></i-feather
+        ><span class="f15">Form Vertical</span>
       </div>
 
       <!-- form Wizard -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="copy"></i-feather><span class="f15">Form Wizard</span>
+        <i-feather class="f24" name="copy"></i-feather
+        ><span class="f15">Form Wizard</span>
       </div>
     </div>
 
@@ -163,13 +222,24 @@
       <div class="accordion accordion-flush" id="table_menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#table" aria-expanded="false" aria-controls="table">
-              <i-feather class="f24" name="life-buoy"></i-feather><span class="f15">Tables</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#table"
+              aria-expanded="false"
+              aria-controls="table"
+            >
+              <i-feather class="f24" name="life-buoy"></i-feather
+              ><span class="f15">Tables</span>
             </button>
           </div>
 
-          <div id="table" class="accordion-collapse collapse" data-bs-parent="#table_menu">
+          <div
+            id="table"
+            class="accordion-collapse collapse"
+            data-bs-parent="#table_menu"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Basic Table</li>
@@ -193,7 +263,8 @@
       </div>
 
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="maximize"></i-feather><span class="f15">Data table</span>
+        <i-feather class="f24" name="maximize"></i-feather
+        ><span class="f15">Data table</span>
       </div>
     </div>
 
@@ -203,37 +274,44 @@
 
       <!-- for line -->
       <div class="home_menu_items dash1">
-        <i-feather class="f24" name="activity"></i-feather><span class="f15">Line</span>
+        <i-feather class="f24" name="activity"></i-feather
+        ><span class="f15">Line</span>
       </div>
 
       <!-- for the Gradient -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="aperture"></i-feather><span class="f15">Gradient</span>
+        <i-feather class="f24" name="aperture"></i-feather
+        ><span class="f15">Gradient</span>
       </div>
 
       <!-- for the area -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="zap"></i-feather><span class="f15">Area</span>
+        <i-feather class="f24" name="zap"></i-feather
+        ><span class="f15">Area</span>
       </div>
 
       <!-- candlestick -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="wind"></i-feather><span class="f15">Candlestick</span>
+        <i-feather class="f24" name="wind"></i-feather
+        ><span class="f15">Candlestick</span>
       </div>
 
       <!-- for the column -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="columns"></i-feather><span class="f15">Column</span>
+        <i-feather class="f24" name="columns"></i-feather
+        ><span class="f15">Column</span>
       </div>
 
       <!-- for th eDoughnut -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="chrome"></i-feather><span class="f15">Doughnut & Pie</span>
+        <i-feather class="f24" name="chrome"></i-feather
+        ><span class="f15">Doughnut & Pie</span>
       </div>
 
       <!-- for the Radialbar -->
       <div class="home_menu_items dash2">
-        <i-feather class="f24" name="box"></i-feather><span class="f15">Radialbar & Radar</span>
+        <i-feather class="f24" name="box"></i-feather
+        ><span class="f15">Radialbar & Radar</span>
       </div>
     </div>
 
@@ -243,12 +321,23 @@
       <div class="accordion accordion-flush" id="UI_menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ui"
-              aria-expanded="false" aria-controls="ui">
-              <i-feather class="f24" name="life-buoy"></i-feather><span class="f15">Ui Components</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#ui"
+              aria-expanded="false"
+              aria-controls="ui"
+            >
+              <i-feather class="f24" name="life-buoy"></i-feather
+              ><span class="f15">Ui Components</span>
             </button>
           </div>
-          <div id="ui" class="accordion-collapse collapse" data-bs-parent="#UI_menu">
+          <div
+            id="ui"
+            class="accordion-collapse collapse"
+            data-bs-parent="#UI_menu"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Badge</li>
@@ -283,13 +372,24 @@
       <div class="accordion accordion-flush" id="login_menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#login" aria-expanded="false" aria-controls="login">
-              <i-feather class="f24" name="log-in"></i-feather><span class="f15">Login</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#login"
+              aria-expanded="false"
+              aria-controls="login"
+            >
+              <i-feather class="f24" name="log-in"></i-feather
+              ><span class="f15">Login</span>
             </button>
           </div>
 
-          <div id="login" class="accordion-collapse collapse" data-bs-parent="#login_menu">
+          <div
+            id="login"
+            class="accordion-collapse collapse"
+            data-bs-parent="#login_menu"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Login</li>
@@ -304,13 +404,24 @@
       <div class="accordion accordion-flush" id="register_menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#register" aria-expanded="false" aria-controls="register">
-              <i-feather class="f24" name="user-plus"></i-feather><span class="f15">Register</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#register"
+              aria-expanded="false"
+              aria-controls="register"
+            >
+              <i-feather class="f24" name="user-plus"></i-feather
+              ><span class="f15">Register</span>
             </button>
           </div>
 
-          <div id="register" class="accordion-collapse collapse" data-bs-parent="#register_menu">
+          <div
+            id="register"
+            class="accordion-collapse collapse"
+            data-bs-parent="#register_menu"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Register</li>
@@ -325,13 +436,22 @@
       <div class="accordion accordion-flush" id="forgate_menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#forgote">
-              <i-feather class="f24" name="refresh-ccw"></i-feather><span class="f15">Forgote</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#forgote"
+            >
+              <i-feather class="f24" name="refresh-ccw"></i-feather
+              ><span class="f15">Forgote</span>
             </button>
           </div>
 
-          <div id="forgote" class="accordion-collapse collapse" data-bs-parent="#forgate_menu">
+          <div
+            id="forgote"
+            class="accordion-collapse collapse"
+            data-bs-parent="#forgate_menu"
+          >
             <div class="accordion-body">
               <ul class="f14">
                 <li>Side Forgote Password</li>
@@ -346,13 +466,22 @@
       <div class="accordion accordion-flush" id="forgate_menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#twosteps">
-              <i-feather class="f24" name="refresh-ccw"></i-feather><span class="f15">Two Steps</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#twosteps"
+            >
+              <i-feather class="f24" name="refresh-ccw"></i-feather
+              ><span class="f15">Two Steps</span>
             </button>
           </div>
 
-          <div id="twosteps" class="accordion-collapse collapse" data-bs-parent="#forgate_menu">
+          <div
+            id="twosteps"
+            class="accordion-collapse collapse"
+            data-bs-parent="#forgate_menu"
+          >
             <div class="accordion-body">
               <ul class="f14">
                 <li>Side Two Steps</li>
@@ -365,12 +494,14 @@
 
       <!-- for Error -->
       <div class="home_menu_items">
-        <i-feather class="f24" name="x-octagon"></i-feather><span class="f15">Error</span>
+        <i-feather class="f24" name="x-octagon"></i-feather
+        ><span class="f15">Error</span>
       </div>
 
       <!-- for Maintenance -->
       <div class="home_menu_items">
-        <i-feather class="f24" name="settings"></i-feather><span class="f15">Maintenance</span>
+        <i-feather class="f24" name="settings"></i-feather
+        ><span class="f15">Maintenance</span>
       </div>
     </div>
 
@@ -382,13 +513,24 @@
       <div class="accordion accordion-flush" id="menu_level-menu">
         <div class="accordion-item">
           <div class="wrapper">
-            <button class="accordion-button1 p-3 collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#manual_level" aria-expanded="false" aria-controls="manual_level">
-              <i-feather class="f24" name="copy"></i-feather><span class="f15">Menu Level</span>
+            <button
+              class="accordion-button1 p-3 collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#manual_level"
+              aria-expanded="false"
+              aria-controls="manual_level"
+            >
+              <i-feather class="f24" name="copy"></i-feather
+              ><span class="f15">Menu Level</span>
             </button>
           </div>
 
-          <div id="manual_level" class="accordion-collapse collapse" data-bs-parent="#menu_level-menu">
+          <div
+            id="manual_level"
+            class="accordion-collapse collapse"
+            data-bs-parent="#menu_level-menu"
+          >
             <div class="accordion-body">
               <ul>
                 <li>Menu 1</li>
@@ -401,12 +543,14 @@
 
       <!-- disabled -->
       <div class="home_menu_items">
-        <i-feather class="f24 disabled_menu" name="slash"></i-feather><span class="f15 disabled_menu">Disabled</span>
+        <i-feather class="f24 disabled_menu" name="slash"></i-feather
+        ><span class="f15 disabled_menu">Disabled</span>
       </div>
 
       <!-- for the chip -->
       <div class="home_menu_items">
-        <i-feather class="f24" name="meh"></i-feather><span class="f15 chip">Chip</span>
+        <i-feather class="f24" name="meh"></i-feather
+        ><span class="f15 chip">Chip</span>
         <div class="chip_box chip flex-grow-1 text-end px-3">
           <span class="f12 bg-primary">9</span>
         </div>
@@ -424,18 +568,24 @@
 
       <!-- for the External Link-->
       <div class="home_menu_items">
-        <span class="text-center"><i-feather class="f24" name="star"></i-feather></span><span class="f15">External
-          Link</span>
+        <span class="text-center"
+          ><i-feather class="f24" name="star"></i-feather></span
+        ><span class="f15">External Link</span>
       </div>
     </div>
   </div>
 
   <div class="side_footer container">
     <div class="wrapper col-md-10 h-100 custome_radius p-2">
-      <img class="img-fluid" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user5.jpg" alt="" />
+      <img
+        class="img-fluid"
+        src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user5.jpg"
+        alt=""
+      />
 
       <div class="login_user">
-        <span class="f18"><strong>Mike</strong></span><span class="f14">Admin</span>
+        <span class="f18"><strong>Mike</strong></span
+        ><span class="f14">Admin</span>
       </div>
 
       <i-feather routerLink="/auth/login" name="power"></i-feather>

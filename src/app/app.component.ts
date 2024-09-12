@@ -9,7 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'spike-project';
   isLogIn: boolean = true;
-
+  isLightTheme!: boolean;
   /*
    * @description Monitors router events and sets the login state based on the current URL.
    * @author Gautam Yadav
@@ -26,5 +26,25 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+  /**  
+    * @description This is a theme function.  
+    * @author Shiva Kant Mishra
+  */
+
+  ngOnInit(): void {
+
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      this.isLightTheme = storedTheme === 'light';
+    } else {
+
+      this.isLightTheme = true;
+    }
+  }
+
+  toggleTheme() {
+    this.isLightTheme = !this.isLightTheme;
+    localStorage.setItem('theme', this.isLightTheme ? 'light' : 'dark');
+  }
+
 }
