@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/service/auth.service';
-import { CommonService } from 'src/service/common.service';
+import { CommonService } from 'src/app/service/common.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +11,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
-    private authService: AuthService
   ) {}
   /*
    * @description This is a toggle button.
@@ -24,12 +22,5 @@ export class HeaderComponent implements OnInit {
     this.commonService.setSideBarToggleBtn(this.toggle);
   }
   ngOnInit(): void {}
-  /*
-   * @description This is a logout method.
-   *  @author Gautam Yadav
-   * @return {void} Return a void
-   */
-  onLogout(): void {
-    this.authService.logout(false);
-  }
+
 }

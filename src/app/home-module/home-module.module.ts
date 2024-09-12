@@ -10,11 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-
-    AccountSettingComponent,
-  ],
+  declarations: [DashboardComponent, AccountSettingComponent],
   imports: [
     CommonModule,
     HomeModuleRoutingModule,
@@ -22,4 +18,4 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     SharedModule,
   ],
 })
-export class HomeModuleModule { }
+export class HomeModuleModule {}
