@@ -144,7 +144,6 @@
           &::after {
             background-color: var(--red-hover);
             @extend %sidebar_menu_hover;
-
           }
         }
 
@@ -244,6 +243,9 @@
       .login_user {
         @include flex(center, center, column, 1, 0);
       }
+      .logout_icon {
+        color: #0085db;
+      }
     }
   }
 }
@@ -254,7 +256,6 @@
   width: rem(80);
 
   .side_header {
-
     .dark_logo,
     .light_logo {
       display: none !important;
@@ -292,7 +293,6 @@
     .outline_text {
       display: none !important;
     }
-
   }
 
   &:hover {
