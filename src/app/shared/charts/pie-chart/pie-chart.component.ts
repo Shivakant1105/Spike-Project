@@ -8,7 +8,7 @@ import * as am5percent from '@amcharts/amcharts5/percent';
   styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent implements AfterViewInit {
-  constructor(private zone: NgZone) {}
+  constructor(private zone: NgZone) { }
   private root: am5.Root | undefined;
 
   /**
@@ -86,7 +86,6 @@ export class PieChartComponent implements AfterViewInit {
           }
           if (slice == ev.target) {
             currentColor = slice.get('fill');
-            console.log(currentColor);
 
             if (currentColor) {
               const darkColor = am5.Color.lighten(currentColor, -0.5);
@@ -112,7 +111,7 @@ export class PieChartComponent implements AfterViewInit {
       series.labels.template.set('visible', false);
       series.ticks.template.set('visible', false);
       series.slices.template.set('tooltipText', '');
-      series.slices.template.states.create('active',{shiftRadius:3,})
+      series.slices.template.states.create('active', { shiftRadius: 3, })
     });
   }
 }

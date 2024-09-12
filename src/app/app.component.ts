@@ -45,7 +45,6 @@ export class AppComponent implements OnInit {
     if (this.isTheme == null) {
       this.themeElem.nativeElement.classList.add("light-theme");
       localStorage.setItem('theme', "light-theme");
-      console.log(this.isTheme)
     } else {
       this.themeElem?.nativeElement.classList.add(this.isTheme);
     }
@@ -54,13 +53,11 @@ export class AppComponent implements OnInit {
   toggleTheme() {
     if (this.themeElem.nativeElement.classList.contains('dark-theme')) {
       this.themeElem.nativeElement.classList.replace("dark-theme", "light-theme");
-      console.log(this.isTheme);
       this.isTheme = 'light-theme';
 
     } else {
       this.themeElem.nativeElement.classList.replace("light-theme", "dark-theme");
       this.isTheme = 'dark-theme'
-      console.log(this.themeElem.nativeElement.classList);
     }
 
     localStorage.setItem('theme', this.isTheme);
