@@ -1,11 +1,11 @@
-<main class="d-flex light-theme">
-  <aside  *ngIf="!isLogIn" >
+<main #theme class="d-flex">
+  <aside *ngIf="!isLogIn">
     <app-sidebar></app-sidebar>
   </aside>
 
   <section>
     <div class="wrapper container-lg">
-      <header  *ngIf="!isLogIn"  class="sticky-top custome_radius box_shadow">
+      <header *ngIf="!isLogIn" class="sticky-top custome_radius box_shadow">
         <div class="w-100">
           <app-header></app-header>
         </div>
@@ -16,6 +16,10 @@
       </div>
     </div>
   </section>
-  
-  <i-feather class="setting" name="settings"></i-feather>
+
+  <i-feather
+    class="setting"
+    [name]="isTheme == 'light-theme' ? 'moon' : 'sun'"
+    (click)="toggleTheme()"
+  ></i-feather>
 </main>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,13 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild('theme') themeElem!: ElementRef<any>
+
   title = 'spike-project';
   isLogIn: boolean = true;
 
+  isTheme: string = '';
   /*
    * @description Monitors router events and sets the login state based on the current URL.
    * @author Gautam Yadav
@@ -26,5 +30,36 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+
+  }
+
+  /**  
+    * @description This is a theme function.  
+    * @author Shiva Kant Mishra
+  */
+  ngAfterViewInit() {
+    this.isTheme = localStorage.getItem('theme') as string;
+
+    if (this.isTheme == null) {
+      this.themeElem.nativeElement.classList.add("light-theme");
+      localStorage.setItem('theme', "light-theme");
+    } else {
+      this.themeElem?.nativeElement.classList.add(this.isTheme);
+    }
+  }
+
+  toggleTheme() {
+    if (this.themeElem.nativeElement.classList.contains('dark-theme')) {
+      this.themeElem.nativeElement.classList.replace("dark-theme", "light-theme");
+      this.isTheme = 'light-theme';
+
+    } else {
+      this.themeElem.nativeElement.classList.replace("light-theme", "dark-theme");
+      this.isTheme = 'dark-theme'
+    }
+
+    localStorage.setItem('theme', this.isTheme);
+  }
 }

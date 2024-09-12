@@ -10,7 +10,7 @@
   </div>
 
   <div class="notes_wrapper custome_radius">
-    <div class="notes_sidebar mb-4">
+    <div [class.open]="!toggle" class="notes_sidebar mb-4">
       <div class="seach_wrapper custome_radius mt-1">
         <input type="text" placeholder="Search Notes" />
         <i-feather class="f24 search_icon" name="search"></i-feather>
@@ -76,7 +76,11 @@
 
     <div class="notes_body">
       <div class="notes_header">
-        <i-feather class="menu large_toggle_menu" name="align-justify">
+        <i-feather
+          class="menu large_toggle_menu"
+          name="align-justify"
+          (click)="notesSidebar()"
+        >
         </i-feather>
 
         <i-feather
