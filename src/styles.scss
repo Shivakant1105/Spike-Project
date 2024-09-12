@@ -44,13 +44,12 @@ html {
 }
 
 ::-webkit-scrollbar {
-
-  @include setDimension(rem(6), rem(1));
+  @include setDimension(rem(4), rem(1));
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--sidebar-hover-bg);
-  border-radius: rem(10);
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: rem(20);
 }
 
 .light-theme:has(.light_img) .light-logo {

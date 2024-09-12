@@ -30,7 +30,6 @@ $largeDesktop: rem(1920);
       .sidebar_container {
         display: flex !important;
       }
-
     }
   }
 
@@ -40,7 +39,6 @@ $largeDesktop: rem(1920);
 }
 
 @include width-range(rem(0), $tablet - rem(1)) {
-
   // Course setion
   .course_container {
     .search_section {
@@ -110,18 +108,18 @@ $largeDesktop: rem(1920);
     .items {
       width: 100% !important;
     }
+  }
 
-    .login_section {
-      section {
-        flex-grow: 1;
+  // login page
+  .login_section {
+    section {
+      flex-grow: 1;
 
-        .left {
-          display: none;
-        }
+      .login_content .left {
+        display: none;
       }
     }
   }
-
   // Course page
   .course_container {
     .search_section {
@@ -152,11 +150,13 @@ $largeDesktop: rem(1920);
   .login_section {
     section {
       width: 100% !important;
-      height: rem(790) !important;
+      height: rem(800) !important;
 
       .login_content .right {
         padding: rem(24) !important;
-
+        .underline_container {
+          gap: rem(16) !important;
+        }
         .icon_container {
           flex-direction: column !important;
           gap: rem(18) !important;
@@ -211,7 +211,6 @@ $largeDesktop: rem(1920);
 }
 
 @include width-range(rem(0), $mobile - rem(1)) {
-
   .dashboard_section {
     .right {
       .circle,
@@ -219,6 +218,23 @@ $largeDesktop: rem(1920);
         display: none;
       }
     }
+  }
+  .login_section {
+    section {
+      width: 100% !important;
+      height: rem(816) !important;
+
+      .left > img {
+        display: none;
+      }
+      .light_img,
+      .dark_img {
+        display: none !important;
+      }
+    }
+  }
+  main section .wrapper {
+    padding: rem(24) 0 !important;
   }
 }
 
