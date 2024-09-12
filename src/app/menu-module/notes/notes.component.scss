@@ -7,10 +7,7 @@
   max-height: rem(700);
   overflow-y: auto;
   overflow-x: hidden;
-  & {
-    @include custom-scrollbar(rem(4), "", #cccccc, "");
-  }
-
+ 
   .seach_wrapper {
     @include setDimension(rem(246), rem(55));
     @include flex(space-between, center, "", 0, 0);
@@ -25,10 +22,16 @@
       color: var(--text-color-600);
       border: none;
       outline: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &::placeholder {
         font-size: rem(15);
       }
+    }
+    .search_icon {
+      color: var(--text-color-400);
     }
   }
   .Notes_heading {

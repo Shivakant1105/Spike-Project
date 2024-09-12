@@ -12,7 +12,7 @@ main {
     z-index: 1;
 
     .wrapper {
-      @include flex(center, center, column, 16, 25);
+      @include flex(center, center, column, 16, 19);
 
       header {
         @include setDimension(100%, rem(70));
