@@ -210,7 +210,6 @@
 .country_logo {
   .dropdown-menu.show {
     @include minwidth_minheight(rem(116), rem(211));
-    box-shadow: var(--message-madal-box-shadow);
     max-height: rem(220);
     overflow-y: auto;
   }
@@ -285,8 +284,7 @@
     @include minwidth_minheight(rem(360), rem(515));
     transform: translate(rem(662), rem(55));
     background-color: var(--message-madal-bg);
-    box-shadow: var(--message-madal-box-shadow);
-    max-height: rem(533);
+    max-height: rem(546);
     overflow-y: auto;
   }
 }
@@ -310,7 +308,7 @@
     .user_profile_item2 {
       height: rem(128);
       @include flex(flex-start, center, "", 25, 0);
-      border-bottom: rem(1) solid #cccccc;
+      border-bottom: rem(1) solid var(--input-border-color);
       cursor: pointer;
 
       .user_details {
@@ -381,7 +379,7 @@
       border-radius: rem(18);
       color: var(--white);
       cursor: pointer;
-      margin-bottom: rem(20);
+      margin-bottom: rem(5);
     }
   }
 
@@ -389,7 +387,7 @@
     @include minwidth_minheight(rem(360), rem(495));
     transform: translate(rem(-11), rem(65));
     background-color: var(--message-madal-bg);
-    max-height: rem(495);
+    max-height: rem(522);
     overflow-y: auto;
   }
 }
@@ -721,6 +719,9 @@
       color: var(--text-color-400);
       font-weight: 500;
       display: block;
+    }
+    & {
+      @include custom-scrollbar(rem(4), "", #C1C1C1, "");
     }
   }
 }

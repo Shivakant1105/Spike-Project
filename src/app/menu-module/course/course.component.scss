@@ -52,6 +52,7 @@
         cursor: pointer;
       }
       input {
+        color: var(--text-color-600);
         width: rem(300);
         background-color: transparent;
         border: 0;
@@ -85,6 +86,9 @@
     .right_selection {
       @include flex(space-between, center, "", 0, 0);
 
+      .form-select {
+        
+      }
       .custome_radius {
         @include setDimension(rem(360), rem(52));
         border: rem(1) solid var(--textColor-400);

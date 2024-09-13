@@ -100,13 +100,13 @@
       width: 0;
       padding: 0;
       border-right: none;
-      transition: all 0.3s;
+      transition: width 0.3s ease-in-out;
       @extend %notes_sidebar_common;
     }
 
     .open{
       border-right: 0.0625rem solid var(--input-border-color);
-      transition: all 0.3s;
+      transition: width 0.3s ease-in-out;
       padding: 1.25rem;
       width: 18.125rem;
     }
