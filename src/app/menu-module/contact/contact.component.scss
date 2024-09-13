@@ -53,8 +53,13 @@ main {
       .left_items {
         @include setDimension(rem(360), rem(52));
         @include flex(space-between, center, "", 0, 0);
-        border: rem(1) solid var(--input-search-color);
+        border: rem(1) solid var(--textColor-400);
         padding-right: rem(18);
+
+        &:hover {
+          border: rem(2) solid var(--contact-user-bg);
+          cursor: pointer;
+        }
 
         & input {
           @include setDimension(rem(360), rem(50));
@@ -64,7 +69,11 @@ main {
           border-top-left-radius: rem(18);
           border-bottom-left-radius: rem(18);
           padding-left: rem(15);
-
+          &:hover {
+            border: rem(1) solid var(--contact-user-bg);
+            border-width: rem(1) 0;
+            cursor: pointer;
+          }
           &:focus {
             outline: 0;
           }
@@ -130,7 +139,7 @@ main {
         .footer {
           @include flex(space-between, center, "", 0, 0);
           @include setDimension(100%, rem(40));
-          border-top: rem(1) solid var(--inline-shadow);
+          border-top: rem(1) solid var(--input-border-color);
           padding: 0 rem(30);
 
           .social {
