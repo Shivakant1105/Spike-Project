@@ -46,7 +46,7 @@ export class AuthService {
  * @param {any} data The data to store in local storage.
  * @returns {void} Does not return a value.
  */
-  setDataInLocalStorage(variableName: string, data: any):void {
+  setDataInLocalStorage(variableName: string, data: string):void {
     localStorage.setItem(variableName, data);
   }
 
