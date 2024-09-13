@@ -37,6 +37,14 @@
         position: relative;
         z-index: 1;
         padding-left: rem(10) !important;
+        span {
+            color: var(--textColor);
+            max-width: rem(130);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        
         @extend %sidebar_menu_hover;
 
         .accordion-button1 {
@@ -122,6 +130,7 @@
     flex-grow: 1;
     margin-bottom: rem(30);
     overflow-y: auto;
+    margin-right: rem(2);
 
     .home_menu_container {
       margin-bottom: rem(10);
