@@ -29,6 +29,14 @@ html {
   border-bottom: rem(1) solid var(--border-color-lighter);
 }
 
+span {
+  color: var(--textColor);
+  max-width: rem(130);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .custome_radius,
 .dropdown-menu.show {
   border-radius: rem(18) !important;
