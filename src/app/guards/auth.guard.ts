@@ -13,7 +13,7 @@ import { AuthService } from '../service/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auhtService: AuthService, private route: Router) {}
+  constructor(private authService: AuthService, private route: Router) {}
   canActivate(
     _route: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.auhtService.getToken()) {
+    if (this.authService.getToken()) {
       return true;
     }
 
