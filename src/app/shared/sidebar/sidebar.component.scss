@@ -37,6 +37,13 @@
         position: relative;
         z-index: 1;
         padding-left: rem(10) !important;
+        span {
+            color: var(--textColor);
+            max-width: rem(130);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         
         @extend %sidebar_menu_hover;
 
