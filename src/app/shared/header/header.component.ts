@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 import { CommonService } from 'src/app/service/common.service';
 
 @Component({
@@ -11,10 +13,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
+    private authService: AuthService,
+    private route: Router
   ) {}
-  /*
+  /**
    * @description This is a toggle button.
-   *   @author Gautam Yadav
+   * @author Gautam Yadav
    * @return {void} Return a void
    */
   toggleFn(): void {
@@ -22,5 +26,13 @@ export class HeaderComponent implements OnInit {
     this.commonService.setSideBarToggleBtn(this.toggle);
   }
   ngOnInit(): void {}
-
+  /**
+   * @description This is a logout button and here we re-direct to login page.
+   * @author Gautam Yadav
+   * @return {void} Return a void
+   */
+  logout(): void {
+    this.authService.clearStorage();
+    this.route.navigateByUrl('/auth/login');
+  }
 }
