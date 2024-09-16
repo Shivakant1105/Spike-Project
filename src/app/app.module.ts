@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,7 +17,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FeatherModule.pick(allIcons),
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:JwtInterceptor,
+    multi:true,
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
