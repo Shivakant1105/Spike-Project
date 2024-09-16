@@ -16,10 +16,12 @@ $largeDesktop: rem(1920);
 @include width-range(rem(0), $large - rem(1)) {
   main {
     padding-top: 0 !important;
+
     aside {
       .sidebar_container {
         display: none !important;
       }
+
       .sidebar_container {
         position: absolute;
         z-index: 10;
@@ -39,6 +41,7 @@ $largeDesktop: rem(1920);
 }
 
 @include width-range(rem(0), $tablet - rem(1)) {
+
   // Course setion
   .course_container {
     .search_section {
@@ -66,13 +69,16 @@ $largeDesktop: rem(1920);
       width: unset !important;
     }
   }
+
   // Notes Page
   .notes_sidebar {
     display: none !important;
   }
+
   .large_toggle_menu {
     display: none !important;
   }
+
   .small_toggle_menu {
     display: block !important;
     color: var(--bg-high);
@@ -82,6 +88,18 @@ $largeDesktop: rem(1920);
 @include width-range(rem(0), $desktop - rem(1)) {
   .dashboard_details {
     flex-wrap: wrap;
+  }
+
+  // for the blog
+  .blog_container {
+    .blog{
+      width: 100% !important;
+      max-width: unset !important;
+      min-width: unset !important;
+      .first_post{
+        max-width: unset !important;
+      }
+    }
   }
 
   .details,
@@ -95,7 +113,6 @@ $largeDesktop: rem(1920);
   }
 
   .account_main {
-    // padding: 0 !important;
     #change_profile,
     .change_password,
     .profile_details {
@@ -120,6 +137,7 @@ $largeDesktop: rem(1920);
       }
     }
   }
+
   // Course page
   .course_container {
     .search_section {
@@ -154,9 +172,11 @@ $largeDesktop: rem(1920);
 
       .login_content .right {
         padding: rem(24) !important;
+
         .underline_container {
           gap: rem(16) !important;
         }
+
         .icon_container {
           flex-direction: column !important;
           gap: rem(18) !important;
@@ -213,20 +233,23 @@ $largeDesktop: rem(1920);
 @include width-range(rem(0), $mobile - rem(1)) {
   .dashboard_section {
     .right {
+
       .circle,
       .contact {
         display: none;
       }
     }
   }
+
   .login_section {
     section {
       width: 100% !important;
       height: rem(816) !important;
 
-      .left > img {
+      .left>img {
         display: none;
       }
+
       .light_img,
       .dark_img {
         display: none !important;
@@ -239,6 +262,7 @@ $largeDesktop: rem(1920);
       }
     }
   }
+
   main section .wrapper {
     padding: rem(24) rem(19) !important;
   }

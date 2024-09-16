@@ -37,14 +37,15 @@
         position: relative;
         z-index: 1;
         padding-left: rem(10) !important;
+
         span {
-            color: var(--textColor);
-            max-width: rem(130);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        
+          color: var(--textColor);
+          max-width: rem(130);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
         @extend %sidebar_menu_hover;
 
         .accordion-button1 {
@@ -82,17 +83,21 @@
 
       .accordion-collapse {
         .accordion-body {
-          ul li {
-            padding: 0 rem(16) rem(16) rem(16);
-            margin-bottom: rem(0);
-            text-wrap: nowrap;
+          ul {
+            padding-left: rem(25);
 
-            &:hover span {
-              color: var(--textColor);
-            }
+            li {
+              padding: 0 rem(16) rem(16) rem(16);
+              margin-bottom: rem(0);
+              text-wrap: nowrap;
 
-            &::marker {
-              color: var(--textColor);
+              &:hover span {
+                color: var(--textColor);
+              }
+
+              &::marker {
+                color: var(--textColor);
+              }
             }
           }
         }
@@ -252,6 +257,7 @@
       .login_user {
         @include flex(center, center, column, 1, 0);
       }
+
       .logout_icon {
         color: #0085db;
       }
@@ -265,6 +271,7 @@
   width: rem(80);
 
   .side_header {
+
     .dark_logo,
     .light_logo {
       display: none !important;
@@ -291,6 +298,19 @@
     .wrapper {
       .accordion-button1 {
         display: none !important;
+      }
+    }
+
+    .accordion-collapse {
+      .accordion-body {
+        ul {
+          padding-left: rem(35) !important;
+          li {
+            span {
+              display: none !important;
+            }
+          }
+        }
       }
     }
   }
@@ -336,6 +356,19 @@
     .wrapper {
       .accordion-button1 {
         display: flex !important;
+      }
+    }
+
+    .accordion-collapse {
+      .accordion-body {
+        ul {
+          padding-left: rem(25) !important;
+          li {
+              span {
+                display: block !important;
+              }
+            }
+        }
       }
     }
   }
