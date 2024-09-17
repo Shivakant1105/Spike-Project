@@ -13,6 +13,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesComponent } from './notes/notes.component';
+import { DetailComponent } from './blog/detail/detail.component';
+import { PostComponent } from './blog/post/post.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NotesComponent } from './notes/notes.component';
     CourseComponent,
     EmployeeComponent,
     ChatComponent,
-    NotesComponent
+    NotesComponent,
+    DetailComponent,
+    PostComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +37,6 @@ import { NotesComponent } from './notes/notes.component';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-  ]
+  ],
 })
-export class MenuModuleModule { }
+export class MenuModuleModule {}

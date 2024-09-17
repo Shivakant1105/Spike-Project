@@ -52,7 +52,8 @@
       outline: none;
       color: var(--textColor);
       @include customize_radius(rem(40), '', '');
-      border: rem(1) solid var(--border-color-lighter);
+      border: rem(1) solid var(--border-color-light);
+      
    }
 
    .sub_header {
