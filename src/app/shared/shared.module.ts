@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SmoothedLineSeriesComponent } from './charts/smoothed-line-series/smoothed-line-series.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { MapComponent } from './charts/map/map.component';
+import { LoggerComponent } from './logger/logger.component';
 
 const declared = [
   HeaderComponent,
@@ -20,6 +21,7 @@ const declared = [
 @NgModule({
   declarations: [
     ...declared,
+    LoggerComponent,
    
   ],
   imports: [
