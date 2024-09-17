@@ -53,6 +53,7 @@ export class AccountSettingComponent implements OnInit {
 
 /**
  * @description Custom validator that checks if the new password and confirm password fields match, and ensures the new password is not the same as the old password.
+ * @author Abhilasha Singh
  * This validator returns errors for the following conditions:
  * - `sameAsOldPassword`: The new password cannot be the same as the old password.
  * - `passwordsMismatch`: The new password and confirm password must match.
