@@ -27,6 +27,10 @@
             margin-bottom: rem(20);
             color: var(--red);
             line-height: rem(10);
+            max-width: rem(210);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
          }
 
          input,
@@ -45,6 +49,7 @@
    input,
    select {
       height: rem(54);
+      max-height: rem(54);
       box-shadow: none;
       background-color: var(--bg-high);
       font-size: rem(14);
@@ -53,7 +58,7 @@
       color: var(--textColor);
       @include customize_radius(rem(40), '', '');
       border: rem(1) solid var(--border-color-light);
-      
+
    }
 
    .sub_header {
