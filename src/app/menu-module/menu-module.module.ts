@@ -13,8 +13,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesComponent } from './notes/notes.component';
-import { DetailComponent } from './blog/detail/detail.component';
 import { PostComponent } from './blog/post/post.component';
+import { DetailComponent } from './blog/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { PostComponent } from './blog/post/post.component';
     EmployeeComponent,
     ChatComponent,
     NotesComponent,
-    DetailComponent,
     PostComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,
