@@ -8,9 +8,11 @@
         @include setDimension(100%, rem(81));
         @include flex('', center, '', 20, 16);
         background-color: var(--bg-high);
-        ul{
+
+        ul {
             margin-top: rem(16);
         }
+
         h4 {
             flex-grow: 1;
             font-weight: 600;
@@ -141,25 +143,56 @@
                 @include flex('', '', '', 16, 0);
                 flex-wrap: wrap;
                 padding: 0 rem(16);
-
-                input {
-                    height: rem(54);
-                    border-radius: rem(40);
-                    padding-left: rem(16);
-                    color: var(--textColor-200);
-                    background-color: var(--bg-high);
-                    flex-grow: 1;
-                    ;
-
-                    &:focus {
-                        outline: none;
-                    }
-
-                    &::placeholder {
-                        color: var(--textColor-200);
-                    }
+                color: var(--textColor-200);
+                .trash {
+                    cursor: pointer;
                 }
 
+                .form_items {
+                    flex-grow: 1;
+                    @include flex('', '', column, 0, 0);
+                    p {
+                        display: none;
+                    }
+
+                    &.error {
+                        p {
+                            display: block;
+                            height: rem(20);
+                            margin-left: rem(16);
+                            margin-bottom: rem(20);
+                            color: var(--red);
+                            line-height: rem(10);
+                        }
+                        input,
+                        select {
+                            border: rem(1) solid var(--red);
+                            color: var(--red);
+                        }
+                    }
+                    input,
+                    select {
+                        height: rem(54);
+                        max-height: rem(54);
+                        min-width: rem(241);
+                        max-width: rem(496);
+                        @include customize_radius(rem(40),var(--bg-high),var(--textColor-200));
+                        padding-left: rem(16);
+                        flex-grow: 1;
+                        font-size: rem(14);
+                        box-shadow: none;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        border: rem(1) solid var(--border-color-light);
+                        &:focus {
+                            outline: none;
+                        }
+                        &::placeholder {
+                            color: var(--textColor-200);
+                        }
+                    }
+                }
                 .close {
                     height: rem(40);
                     min-width: rem(80);

@@ -1,11 +1,17 @@
 <div class="login_section">
   <section class="p-2 box_shadow custome_radius">
-
-    <img class="dark-logo light_img me-2"
-      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg" alt="" />
+    <img
+      class="dark-logo light_img me-2"
+      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg"
+      alt=""
+    />
     <!-- image in dark theme -->
-    <img id="dark_img" class="img-fluid light-logo dark_img me-2"
-      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg" alt="" />
+    <img
+      id="dark_img"
+      class="img-fluid light-logo dark_img me-2"
+      src="https://spike-angular-pro-main.netlify.app/assets/images/logos/light-logo.svg"
+      alt=""
+    />
 
     <div class="login_content d-flex">
       <div class="left items">
@@ -35,20 +41,67 @@
           <span class="underline"></span>
         </div>
 
-        <form class="form_wrapper">
+        <form
+          class="form_wrapper"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+        >
           <div class="form-group username_cnt gap-2 d-flex flex-column">
             <label for="username">Username</label>
-            <input type="email" class="form-control custome_radius" id="username" />
+            <input
+              type="email"
+              class="form-control custome_radius"
+              id="username"
+              formControlName="username"
+              [ngClass]="{
+                'is-invalid':
+                  loginForm.get('username')?.invalid &&
+                  loginForm.get('username')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                loginForm.get('username')?.invalid &&
+                loginForm.get('username')?.touched
+              "
+              class="text-danger"
+            >
+              Username is required
+            </div>
           </div>
 
           <div class="form-group password_cnt gap-2 d-flex flex-column">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control custome_radius" id="password" />
+            <input
+              type="password"
+              class="form-control custome_radius"
+              id="password"
+              formControlName="password"
+              [ngClass]="{
+                'is-invalid':
+                  loginForm.get('password')?.invalid &&
+                  loginForm.get('password')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+              "
+              class="text-danger"
+            >
+              Password is required
+            </div>
           </div>
 
           <div class="checkbox_forget_page">
             <div class="d-flex align-items-center gap-3">
-              <input class="form-check-input" type="checkbox" value="" id="checkbox" />
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="checkbox"
+              />
               <label class="form-check-label f14" for="checkbox">
                 Remember this Device
               </label>
@@ -56,7 +109,14 @@
             <span class="f14 forget">Forgot Password ?</span>
           </div>
 
-          <button type="button" class="custome_radius signin_btn" routerLink="/menu/course">Sign In</button>
+          <button
+            type="submit"
+            class="custome_radius signin_btn text-white "
+            [disabled]="loginForm.invalid"
+            [ngClass]="{'valid_btn': loginForm.valid}" 
+          >
+            Sign In
+          </button>
           <p class="f14 spike">
             New to Spike?
             <span class="f14 create_account">Create an account</span>
