@@ -20,7 +20,7 @@
   padding: rem(20);
   background-color: var(--bg);
   section {
-    @include setDimension(rem(1130), rem(715));
+    @include setDimension(rem(1130), auto);
     background-color: var(--bg-high);
     @include flex("", "", column, 0, 0);
 
@@ -44,6 +44,7 @@
       }
 
       .right {
+        height: auto;
         @extend .left;
         flex-grow: 1;
         @include flex(flex-start, "", column, 25, 57);
@@ -89,21 +90,27 @@
         .form_wrapper {
           @include flex("", "", column, 25, 0);
           .username_cnt,
-          .password_cnt {
-            color: var(--text-color-400);
-            & input {
-              height: rem(50);
-              box-shadow: none;
-              padding-left: rem(16);
-              border: rem(1) solid var(--icons-outline-color);
-              background-color: var(--bg-high);
+            .password_cnt {
               color: var(--text-color-400);
-              cursor: pointer;
-              &:focus {
-                border: rem(1) solid #465670;
+              & input {
+                min-height: rem(50);
+                box-shadow: none;
+                padding-left: rem(16);
+                border: rem(1) solid var(--icons-outline-color);
+                background-color: var(--bg-high);
+                color: var(--text-color-400);
+                cursor: pointer;
+                &:focus {
+                  border: rem(1) solid #465670;
+                }
+  
               }
+          
+              .is-invalid {
+                border: 2px solid red;
+              }
+           
             }
-          }
 
           .checkbox_forget_page {
             @include flex(space-between, center, "", 0, 0);
@@ -129,16 +136,21 @@
             outline: none;
             border: 0;
             @include setDimension("", rem(36));
-            background-color: var(--btn-bg-color);
+            background-color:var(--btn-bg-color);
             color: var(--text-color-600);
             @include flex(center, center, "", 0, 16);
           }
+
           .spike {
             color: var(--text-color-600);
           }
           .create_account {
             color: #007edb;
             cursor: pointer;
+          }
+
+          .valid_btn{
+            background-color: var(--payment-textColor) !important
           }
         }
       }
