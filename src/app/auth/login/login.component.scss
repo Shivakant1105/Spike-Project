@@ -15,12 +15,12 @@
 }
 
 .login_section {
-  @include setDimension(100%, 94vh);
+  // @include setDimension(100%, 94vh);
   @include flex(center, center, "", 0, 0);
   padding: rem(20);
   background-color: var(--bg);
   section {
-    @include setDimension(rem(1130), rem(715));
+    @include setDimension(rem(1130), auto);
     background-color: var(--bg-high);
     @include flex("", "", column, 0, 0);
 
@@ -44,6 +44,7 @@
       }
 
       .right {
+        height: auto;
         @extend .left;
         flex-grow: 1;
         @include flex(flex-start, "", column, 25, 57);
