@@ -10,6 +10,7 @@ import { SmoothedLineSeriesComponent } from './charts/smoothed-line-series/smoot
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { MapComponent } from './charts/map/map.component';
 import { LoggerComponent } from './logger/logger.component';
+import { PaymentsComponent } from './charts/payments/payments.component';
 
 const declared = [
   HeaderComponent,
@@ -17,12 +18,13 @@ const declared = [
   SmoothedLineSeriesComponent, 
   PieChartComponent,
   MapComponent,
+  PaymentsComponent,
+  LoggerComponent,
 ]
+  
 @NgModule({
   declarations: [
-    ...declared,
-    LoggerComponent,
-   
+    ...declared, 
   ],
   imports: [
     CommonModule,
