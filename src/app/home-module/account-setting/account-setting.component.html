@@ -16,7 +16,11 @@
             <p class="f14">Change your profile picture from here</p>
             <img src="./assets/account/user-1.jpg" alt="">
             <div class="btn_group">
-                <button class="btn upload">Upload</button>
+
+                <div class="file-upload">
+                    <label for="file-input" class="custom-button">Upload</label>
+                    <input type="file" id="file-input" class="file-input">
+                </div>
                 <button class="btn reset">Reset</button>
                 <p class="w-100 text-center">Allowed JPG, GIF or PNG. Max size of 800K</p>
             </div>
@@ -28,15 +32,15 @@
             <p class="f14">To change your personal detail , edit and save from here</p>
             <form class="f14 mt-3">
                 <!-- for the current password -->
-                <div class="form_items">
+                <div class="form_items error">
                     <label>Current Password</label>
-                    <input type="password" class="form-control mb-3" required>
+                    <input type="password" class="form-control" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
                 <div class="form_items">
                     <label>New Password</label>
-                    <input type="password" class="form-control mb-3" required>
+                    <input type="password" class="form-control" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
@@ -57,21 +61,21 @@
                 <!-- for the Your name -->
                 <div class="form_items">
                     <label class="w-100">Your Name</label>
-                    <input type="text" class="form-control flex-grow-1 mb-3" required>
+                    <input type="text" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
                 <!-- for the Store name -->
                 <div class="form_items">
                     <label class="w-100">Store Name</label>
-                    <input type="text" class="form-control flex-grow-1 mb-3" required>
+                    <input type="text" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
                 <!-- for the Location -->
                 <div class="form_items">
                     <label>Location</label>
-                    <select class="form-select mb-3" required>
+                    <select class="form-select" required>
                         <option selected>India</option>
                         <option value="1">USA</option>
                         <option value="2">UK</option>
@@ -83,7 +87,7 @@
                 <!-- for the Currency -->
                 <div class="form_items">
                     <label>Currency</label>
-                    <select class="form-select mb-3" required>
+                    <select class="form-select" required>
                         <option selected>India</option>
                         <option value="1">USA</option>
                         <option value="2">UK</option>
@@ -93,14 +97,14 @@
                 </div>
 
                 <!-- for the Email -->
-                <div class="form_items mb-3">
+                <div class="form_items error">
                     <label class="">Email</label>
                     <input type="email" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
                 <!-- for the Phone -->
-                <div class="d-flex flex-column form_items mb-3">
+                <div class="d-flex flex-column form_items">
                     <label class="">Phone</label>
                     <input type="number" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>

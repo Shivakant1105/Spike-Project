@@ -144,39 +144,47 @@
                 flex-wrap: wrap;
                 padding: 0 rem(16);
                 color: var(--textColor-200);
+
                 .trash {
                     cursor: pointer;
+                    margin-top: rem(20);
                 }
 
                 .form_items {
                     flex-grow: 1;
                     @include flex('', '', column, 0, 0);
+                    margin-bottom: rem(20);
+
                     p {
                         display: none;
                     }
 
                     &.error {
                         p {
+
                             display: block;
                             height: rem(20);
+                            margin-top: rem(10);
                             margin-left: rem(16);
-                            margin-bottom: rem(20);
                             color: var(--red);
-                            line-height: rem(10);
+                            line-height: rem(17);
+                            word-break: break-all;
                         }
+
                         input,
                         select {
                             border: rem(1) solid var(--red);
                             color: var(--red);
                         }
                     }
+
                     input,
                     select {
                         height: rem(54);
                         max-height: rem(54);
                         min-width: rem(241);
                         max-width: rem(496);
-                        @include customize_radius(rem(40),var(--bg-high),var(--textColor-200));
+                        @include customize_radius(rem(40), var(--bg-high), var(--textColor-200));
                         padding-left: rem(16);
                         flex-grow: 1;
                         font-size: rem(14);
@@ -185,14 +193,17 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                         border: rem(1) solid var(--border-color-light);
+
                         &:focus {
                             outline: none;
                         }
+
                         &::placeholder {
                             color: var(--textColor-200);
                         }
                     }
                 }
+
                 .close {
                     height: rem(40);
                     min-width: rem(80);
@@ -205,6 +216,59 @@
                     background-color: var(--modal-input-palceholder-color);
                     height: rem(40);
                     min-width: rem(80);
+
+                }
+            }
+
+            .department {
+                min-width: rem(240);
+                height: rem(52);
+                padding: rem(10) !important;
+                @include flex(center, center, column, 0, 0);
+                position: relative;
+                border-radius: rem(40);
+
+                .input_box {
+                    @include flex('', center, '', 10, 0);
+                    width: 100%;
+
+                    .input_div {
+                        @include flex('', '', '', 6, 0);
+                        flex-grow: 1;
+
+                        .selected_items {
+                            padding: rem(5);
+                            @include customize_radius(rem(40), var(--contact-user-bg), var(--white));
+                            display: block;
+                            text-align: center;
+                            max-width: rem(50);
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+
+                .option_body {
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    max-height: rem(200);
+                    overflow-y: auto;
+                    @include customize_radius(rem(10), var(--bg-high), var(--textColor));
+                    top: rem(58);
+                    @include flex('', '', column, 0, 10);
+
+                    .option {
+                        @include flex('', center, '', 10, 10);
+
+                        label {
+                            max-width: rem(200);
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
 
                 }
             }

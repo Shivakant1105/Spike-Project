@@ -58,31 +58,31 @@
 
                         <!-- for the name -->
                         <div class="form_items">
-                            <input type="text" placeholder="Name" class="form-control mb-3" required>
+                            <input type="text" placeholder="Name" class="form-control" required>
                             <p>Oops! Something Went Wrong</p>
                         </div>
 
                         <!-- Position -->
                         <div class="form_items">
-                            <input type="text" placeholder="Position" class="form-control mb-3" required>
+                            <input type="text" placeholder="Position" class="form-control" required>
                             <p>Oops! Something Went Wrong</p>
                         </div>
 
                         <!-- for the Email -->
                         <div class="form_items">
-                            <input type="email" placeholder="Email" class="form-control mb-3" required>
+                            <input type="email" placeholder="Email" class="form-control " required>
                             <p>Oops! Something Went Wrong</p>
                         </div>
 
                         <!-- for the  designation-->
                         <div class="form_items">
-                            <input type="text" placeholder="designation" class="form-control mb-3" required>
+                            <input type="text" placeholder="designation" class="form-control " required>
                             <p>Oops! Something Wrong</p>
                         </div>
 
                         <!-- for the  role-->
                         <div class="form_items">
-                            <select name="" id="" class="mb-3">
+                            <select name="" id="">
                                 <option value="">Select Role</option>
                                 <option value="Admin">Admin</option>
                                 <option value="">Employee</option>
@@ -92,64 +92,87 @@
                         </div>
 
                         <!-- for the  Department-->
+                        <div class="custome_border department flex-grow-1">
+                            <div class="input_box">
+                                <div class="input_div">
+                                    <span class="selected_items">Java</span>
+                                    <span class="selected_items">Javsda</span>
+                                    <span class="selected_items">Java</span>
+
+                                    <span>3+</span>
+                                </div>
+                                <i-feather name="chevron-down"></i-feather>
+                            </div>
+
+                            <div class="option_body custome_border">
+                                <div class="option">
+                                    <input type="checkbox">
+                                    <label for="">Java</label>
+                                </div>
+                                <div class="option">
+                                    <input type="checkbox">
+                                    <label for="">c++</label>
+                                </div>
+                                <div class="option">
+                                    <input type="checkbox">
+                                    <label for="">Java</label>
+                                </div>
+                                <div class="option">
+                                    <input type="checkbox">
+                                    <label for="">Java</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- for the Mobile -->
                         <div class="form_items">
-                            <select name="" id="" class="mb-3">
-                                <option value="">Select Department</option>
-                                <option value="Java">Java</option>
-                                <option value="JavaScript">JavaScript</option>
-                                <option value="AI">AI</option>
-                            </select>
+                            <input type="number" placeholder="Mobile" class="form-control " required>
                             <p>Oops! Something Went Wrong</p>
                         </div>
 
                         <!-- for the Mobile -->
                         <div class="form_items">
-                            <input type="number" placeholder="Mobile" class="form-control mb-3" required>
-                            <p>Oops! Something Went Wrong</p>
-                        </div>
-
-                        <!-- for the Mobile -->
-                        <div class="form_items">
-                            <input type="number" placeholder="Primary Mobile" class="form-control mb-3" required>
+                            <input type="number" placeholder="Primary Mobile" class="form-control " required>
                             <p>Oops! Something Went Wrong</p>
                         </div>
 
                         <!-- for the DOB,SALARY,and Projects -->
                         <div class="d-flex gap-2 flex-wrap">
                             <!-- for the DOB -->
-                            <div class="form_items">
-                                <input type="date" placeholder="DD-MM-VVVV" class="form-control mb-3" required>
+                            <div class="form_items error">
+                                <input type="date" placeholder="DD-MM-VVVV" class="form-control " required>
                                 <p>Oops! Something Went Wrong</p>
                             </div>
 
                             <!-- for the Salary -->
-                            <div class="form_items">
-                                <input type="number" placeholder="Salary" class="form-control mb-3" required>
+                            <div class="form_items error">
+                                <input type="number" placeholder="Salary" class="form-control " required>
                                 <p>Oops! Something Went Wrong</p>
                             </div>
 
                             <!-- for the projects -->
                             <div class="form_items">
-                                <input type="text" placeholder="Projects" class="form-control mb-3" required>
+                                <input type="text" placeholder="Projects" class="form-control " required>
                                 <p>Oops! Something Went Wrong</p>
                             </div>
 
                         </div>
 
-                        <!-- for the Address -->
-                        <div class="w-100 d-flex gap-2 align-items-center">
-                            <div class="form_items">
-                                <input type="text" placeholder="Address1" class="form-control mb-3" required>
-                                <p>Oops! Something Went Wrong</p>
+                        <!-- for the Temporary address -->
+                        <div class="address_container w-100 d-flex flex-wrap gap-3">
+                            <!-- for the address -->
+                            <p class="fw-bold">Temporary Address</p>
+                            <div class="w-100 d-flex gap-2">
+                                <div class="form_items">
+                                    <input type="text" placeholder="Line1" class="form-control " required>
+                                    <p>Oops! Something Went Wrong</p>
+                                </div>
                             </div>
-                            <i-feather class="f24 trash" name="trash"></i-feather>
-                        </div>
 
-                        <!-- for the state,country and zip -->
-                        <div class="d-flex gap-2 flex-wrap">
-                            <!-- for the state -->
                             <div class="form_items flex-grow-1">
-                                <select class="mb-3">
+                                <select>
                                     <option value="">Choose State</option>
                                     <option value="Bihar">Bihar</option>
                                     <option value="Delhi">Delhi</option>
@@ -160,7 +183,7 @@
 
                             <!-- for the Country -->
                             <div class="form_items flex-grow-1">
-                                <select class="mb-3">
+                                <select>
                                     <option value="">Choose Country</option>
                                     <option value="India">India</option>
                                     <option value="USA">USA</option>
@@ -171,23 +194,65 @@
 
                             <!-- for the zip -->
                             <div class="form_items flex-grow-1">
-                                <input type="text" class="mb-3" placeholder="Zip">
+                                <input type="text" placeholder="Zip">
                                 <p>Oops! Something Went Wrong</p>
                             </div>
 
                             <!-- for the city -->
                             <div class="form_items flex-grow-1">
-                                <input type="text" class="mb-3" placeholder="City">
+                                <input type="text" placeholder="City">
                                 <p>Oops! Something Went Wrong</p>
                             </div>
 
                         </div>
 
-                        <div class="d-flex gap-3">
-                            <button class="btn add">Save</button>
-                            <button class="btn close" data-bs-dismiss="modal">Cancel</button>
+                        <!-- for the Permanenet address -->
+                        <div class="address_container w-100 d-flex flex-wrap gap-3">
+                            <!-- for the address -->
+                            <p class="fw-bold">Permanent Address</p>
+                            <div class="w-100 d-flex gap-2">
+                                <div class="form_items">
+                                    <input type="text" placeholder="Line1" class="form-control " required>
+                                    <p>Oops! Something Went Wrong</p>
+                                </div>
+                            </div>
+
+                            <div class="form_items flex-grow-1">
+                                <select>
+                                    <option value="">Choose State</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="UP">UP</option>
+                                </select>
+                                <p>Oops! Something Went Wrong</p>
+                            </div>
+
+                            <!-- for the Country -->
+                            <div class="form_items flex-grow-1">
+                                <select>
+                                    <option value="">Choose Country</option>
+                                    <option value="India">India</option>
+                                    <option value="USA">USA</option>
+                                    <option value="UK">UK</option>
+                                </select>
+                                <p>Oops! Something Went Wrong</p>
+                            </div>
+
+                            <!-- for the zip -->
+                            <div class="form_items flex-grow-1">
+                                <input type="text" placeholder="Zip">
+                                <p>Oops! Something Went Wrong</p>
+                            </div>
+
+                            <!-- for the city -->
+                            <div class="form_items flex-grow-1">
+                                <input type="text" placeholder="City">
+                                <p>Oops! Something Went Wrong</p>
+                            </div>
+
                         </div>
 
+                        <button class="btn btn-warning custome_radius">Save as Default</button>
                     </form>
                 </div>
             </div>
