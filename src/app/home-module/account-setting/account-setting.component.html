@@ -2,9 +2,7 @@
     <header class="sub_header custome_radius box_shadow">
         <h4 class="f20">Account Settings</h4>
         <span class="f14">Dashboard</span>
-        <ul>
-            <li class="f14">Account Settings</li>
-        </ul>
+        <ul><li class="f14">Account Settings</li></ul>
     </header>
 
     <main class="mt-4 account_main custome_radius box_shadow">
@@ -18,11 +16,7 @@
             <p class="f14">Change your profile picture from here</p>
             <img src="./assets/account/user-1.jpg" alt="">
             <div class="btn_group">
-
-                <div class="file-upload">
-                    <label for="file-input" class="custom-button">Upload</label>
-                    <input type="file" id="file-input" class="file-input">
-                </div>
+                <button class="btn upload">Upload</button>
                 <button class="btn reset">Reset</button>
                 <p class="w-100 text-center">Allowed JPG, GIF or PNG. Max size of 800K</p>
             </div>
@@ -32,144 +26,70 @@
         <div class="change_password custome_radius custome_border">
             <h5 class="mb-2">Change Password</h5>
             <p class="f14">To change your personal detail , edit and save from here</p>
-            <form class="f14 mt-3">
+            <form class="f14 mt-3" [formGroup]="resetPasswordForm">
                 <!-- for the current password -->
-                <div class="form_items error">
+                <div class="form_items mb-3">
                     <label>Current Password</label>
-                    <input type="password" class="form-control" required>
-                    <p>Oops! Something Went Wrong</p>
+                    <input type="password" class="form-control" formControlName="oldPassword">
+                    <div *ngIf="resetPasswordForm.get('oldPassword')?.hasError('required')&& resetPasswordForm.get('oldPassword')?.touched" class="text-danger">
+                        Current Password is required.
+                      </div>
                 </div>
 
-                <div class="form_items">
+                <div class="form_items mb-3">
                     <label>New Password</label>
-                    <input type="password" class="form-control" required>
-                    <p>Oops! Something Went Wrong</p>
+                    <input type="password" class="form-control" formControlName="newPassword">
+                    <div *ngIf="resetPasswordForm.get('newPassword')?.hasError('required') && resetPasswordForm.get('newPassword')?.touched" class="text-danger">
+                        New Password is required.
+                    </div>
+                    <div *ngIf="resetPasswordForm.errors?.['sameAsOldPassword'] " class="text-danger">
+                        The new password cannot be the same as the old password.
+                    </div>
                 </div>
+            
 
                 <div class="form_items">
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control" required>
-                    <p>Oops! Something Went Wrong</p>
+                    <input type="password" class="form-control" formControlName="confirmPassword">
+                    <div *ngIf="resetPasswordForm.get('confirmPassword')?.hasError('required') && resetPasswordForm.get('confirmPassword')?.touched" class="text-danger">
+                        Confirm Password is required.
+                      </div>
+                      <div *ngIf="resetPasswordForm.errors?.['passwordsMismatch'] " class="text-danger">
+                        New Password and Confirm Password do not match.
+                      </div>
                 </div>
-
+  
             </form>
+
+            <div class="action_buttons w-100 d-flex gap-3 justify-content-end mt-3">
+                <button class="btn save_btn" (click)="save()">save</button>
+              
+            </div>
         </div>
 
         <!-- profile details -->
         <div class="profile_details custome_radius custome_border f14">
             <h5 class="mb-1">Change Password</h5>
             <p class="f14">To change your password please confirm here</p>
-            <form>
+            <form >
                 <!-- for the Your name -->
                 <div class="form_items">
                     <label class="w-100">Your Name</label>
-                    <input type="text" class="form-control flex-grow-1" required>
+                    <input type="text" class="form-control flex-grow-1 mb-3" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
                 <!-- for the Store name -->
                 <div class="form_items">
-                    <label class="w-100">Email</label>
-                    <input type="email" class="form-control flex-grow-1" required>
+                    <label class="w-100">Store Name</label>
+                    <input type="text" class="form-control flex-grow-1 mb-3" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Your Position -->
+                <!-- for the Location -->
                 <div class="form_items">
-                    <label class="w-100">Your Position</label>
-                    <input type="text" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
-                </div>
-
-                <!-- for the Designation name -->
-                <div class="form_items">
-                    <label class="w-100">Designation</label>
-                    <input type="text" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
-
-                </div>
-
-                <!-- for the Role -->
-                <div class="form_items">
-                    <label>Select Role</label>
-                    <select class="form-select" required>
-                        <option selected>Admin</option>
-                        <option value="1">Employee</option>
-                        <option value="2">...</option>
-                    </select>
-                    <p>Oops! Something Went Wrong</p>
-                </div>
-
-                <!-- for the  Department-->
-                <div class="form_items">
-                    <label class="w-100">Select Department</label>
-                    <div class="custome_border department flex-grow-1">
-                        <div class="input_box">
-                            <div class="input_div">
-                                <span class="selected_items">Java</span>
-                                <span class="selected_items">Javsda</span>
-                                <span class="selected_items">Java</span>
-
-                                <span>3+</span>
-                            </div>
-                            <i-feather name="chevron-down"></i-feather>
-                        </div>
-
-                        <div class="option_body custome_border">
-                            <div class="option">
-                                <input type="checkbox">
-                                <label for="">Java</label>
-                            </div>
-                            <div class="option">
-                                <input type="checkbox">
-                                <label for="">c++</label>
-                            </div>
-                            <div class="option">
-                                <input type="checkbox">
-                                <label for="">Java</label>
-                            </div>
-                            <div class="option">
-                                <input type="checkbox">
-                                <label for="">Java</label>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- for the mobile -->
-                <div class="form_items">
-                    <label class="">Mobile</label>
-                    <input type="number" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
-                </div>
-
-                <!-- for the Alternative Mobile -->
-                <div class="form_items">
-                    <label class="">Alternative Mobile</label>
-                    <input type="number" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
-                </div>
-
-                <!-- for the DOB -->
-                <div class="form_items">
-                    <label class="">DOB</label>
-                    <input type="date" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
-                </div>
-
-                <!-- for the salary -->
-                <div class="form_items">
-                    <label class="">Salary</label>
-                    <input type="number" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
-                </div>
-
-                <!-- for the Currency -->
-                <div class="form_items">
-                    <label>Currency</label>
-                    <select class="form-select" required>
+                    <label>Location</label>
+                    <select class="form-select mb-3" required>
                         <option selected>India</option>
                         <option value="1">USA</option>
                         <option value="2">UK</option>
@@ -178,115 +98,44 @@
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Projects -->
+                <!-- for the Currency -->
                 <div class="form_items">
-                    <label class="">Projects</label>
-                    <input type="text" class="form-control flex-grow-1" required>
+                    <label>Currency</label>
+                    <select class="form-select mb-3" required>
+                        <option selected>India</option>
+                        <option value="1">USA</option>
+                        <option value="2">UK</option>
+                        <option value="3">China</option>
+                    </select>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Peramanent address -->
-                <div class="address">
-                    <!-- for the line one -->
-                    <div class="w-100 form_items">
-                        <label class="">Permanent Address</label>
-                        <input type="text" placeholder="line1" class="form-control flex-grow-1" required>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the State -->
-                    <div class="form_items">
-                        <label>Choose State</label>
-                        <select class="form-select" required>
-                            <option selected>Delhi</option>
-                            <option value="1">UP</option>
-                            <option value="2">Bihar</option>
-                            <option value="3">Bhopal</option>
-                        </select>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the Country -->
-                    <div class="form_items">
-                        <label>Choose Country</label>
-                        <select class="form-select" required>
-                            <option selected>India</option>
-                            <option value="1">UK</option>
-                            <option value="2">USA</option>
-                            <option value="3">....</option>
-                        </select>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the City -->
-                    <div class="form_items">
-                        <label>City</label>
-                        <input type="text" class="form-control flex-grow-1" required>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the Zip -->
-                    <div class="form_items">
-                        <label>Zip</label>
-                        <input type="text" class="form-control flex-grow-1" required>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
+                <!-- for the Email -->
+                <div class="form_items mb-3">
+                    <label class="">Email</label>
+                    <input type="email" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Temporary address -->
-                <div class="address">
-                    <!-- for the line one -->
-                    <div class="w-100 form_items">
-                        <label class="">Temporary Address</label>
-                        <input type="text" placeholder="line2" class="form-control flex-grow-1" required>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the State -->
-                    <div class="form_items">
-                        <label>Choose State</label>
-                        <select class="form-select" required>
-                            <option selected>Delhi</option>
-                            <option value="1">UP</option>
-                            <option value="2">Bihar</option>
-                            <option value="3">Bhopal</option>
-                        </select>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the Country -->
-                    <div class="form_items">
-                        <label>Choose Country</label>
-                        <select class="form-select" required>
-                            <option selected>India</option>
-                            <option value="1">UK</option>
-                            <option value="2">USA</option>
-                            <option value="3">....</option>
-                        </select>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the City -->
-                    <div class="form_items">
-                        <label>City</label>
-                        <input type="text" class="form-control flex-grow-1" required>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
-
-                    <!-- for the Zip -->
-                    <div class="form_items">
-                        <label>Zip</label>
-                        <input type="text" class="form-control flex-grow-1" required>
-                        <p>Oops! Something Went Wrong</p>
-                    </div>
+                <!-- for the Phone -->
+                <div class="d-flex flex-column form_items mb-3">
+                    <label class="">Phone</label>
+                    <input type="number" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- buttons for save and cancel -->
-                <div class="action_buttons w-100 d-flex gap-3 justify-content-end">
-                    <button class="btn save_btn">save</button>
-                    <button type="reset" class="btn cancel_btn">cancel</button>
+                <div class="d-flex flex-column form_items">
+                    <label>Address</label>
+                    <input type="text" class="form-control">
+                    <p>Oops! Something Went Wrong</p>
                 </div>
             </form>
+        </div>
+
+        <!-- buttons for save and cancel -->
+        <div class="action_buttons w-100 d-flex gap-3 justify-content-end">
+            <button class="btn save_btn">save</button>
+            <button type="reset" class="btn cancel_btn">cancel</button>
         </div>
 
     </main>

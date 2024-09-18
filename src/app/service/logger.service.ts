@@ -12,7 +12,7 @@ export class LoggerService {
    * @param {string} message - The message to display in the success alert.
    */
   alertWithSuccess(message: string) {
-    Swal.fire('Thank you...', message, 'success');
+    Swal.fire('Password Updated', message, 'success');
   }
 
   /**
