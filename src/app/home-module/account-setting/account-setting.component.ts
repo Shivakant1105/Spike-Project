@@ -47,7 +47,7 @@ export class AccountSettingComponent implements OnInit {
  * This validator returns errors for the following conditions:
  * - `sameAsOldPassword`: The new password cannot be the same as the old password.
  * - `passwordsMismatch`: The new password and confirm password must match.
- * * @author Abhilasha Singh
+ *  @author Abhilasha Singh
  * @param {FormGroup} formGroup - The form group containing the password fields. 
  * @returns {{ [key: string]: any } | null} - Returns an object with validation errors if the conditions are not met, otherwise returns null.
  */
