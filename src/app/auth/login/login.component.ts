@@ -29,10 +29,6 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         if (res.data.token) {
           this.authService.setDataInLocalStorage(
-            'userData',
-            JSON.stringify(res)
-          );
-          this.authService.setDataInLocalStorage(
             'tkn',
             JSON.stringify(res.data.token)
           );
