@@ -64,7 +64,7 @@ export class JwtInterceptor implements HttpInterceptor {
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
 
-        this.loggerService.erroalert(errorMessage);
+        this.loggerService.erroAlert(errorMessage);
         return throwError(() => new Error(errorMessage));
       })
     );

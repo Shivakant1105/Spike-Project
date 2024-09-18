@@ -20,7 +20,7 @@ export class LoggerService {
    * @author : vivekSengar
    * @param {string} errorMessage - string
    */
-  erroalert(errorMessage: string) {
+  erroAlert(errorMessage: string) {
     Swal.fire({
       icon: 'error',
       title: 'Opsss...',
