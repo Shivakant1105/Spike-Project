@@ -19,9 +19,7 @@ export class AccountSettingComponent implements OnInit {
       oldPassword: ['', Validators.required],
       newPassword: ['', Validators.required],
       confirmPassword: ['', Validators.required]
-    }, { validator: this.customValidator });
-
-  
+    }, { validator: this.customValidator });  
   }
 
 /**
@@ -34,29 +32,21 @@ export class AccountSettingComponent implements OnInit {
     Object.values(this.resetPasswordForm.controls).forEach((control) => {
       control.markAsTouched();
     });
-    if(this.resetPasswordForm.valid){
-      console.log(this.resetPasswordForm.valid);
-      
+    if(this.resetPasswordForm.valid){      
     const { oldPassword, newPassword } = this.resetPasswordForm.value;    
-    this.commonService.resetPassword(oldPassword, newPassword).subscribe((res:any)=>{
-      console.log(res);
-      
+    this.commonService.resetPassword(oldPassword, newPassword).subscribe(()=>{      
       alert("Password has been changed successfully");    
       this.route.navigate(['/auth/login']);       
     })          
-    }
-    else {
-      console.log("form invalid");
-      
-    }
+    } 
   }
 
 /**
- * @description Custom validator that checks if the new password and confirm password fields match, and ensures the new password is not the same as the old password.
- * @author Abhilasha Singh
+ * @description Custom validator that checks if the new password and confirm password fields match, and ensures the new password is not the same as the old password. 
  * This validator returns errors for the following conditions:
  * - `sameAsOldPassword`: The new password cannot be the same as the old password.
  * - `passwordsMismatch`: The new password and confirm password must match.
+ * * @author Abhilasha Singh
  * @param {FormGroup} formGroup - The form group containing the password fields. 
  * @returns {{ [key: string]: any } | null} - Returns an object with validation errors if the conditions are not met, otherwise returns null.
  */

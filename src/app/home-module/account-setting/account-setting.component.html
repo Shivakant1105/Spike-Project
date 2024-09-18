@@ -62,7 +62,7 @@
             </form>
 
             <div class="action_buttons w-100 d-flex gap-3 justify-content-end mt-3">
-                <button class="btn save_btn" (click)="save()">save</button>
+                <button  [disabled]="!resetPasswordForm.valid"  class="btn save_btn" (click)="save()">save</button>
               
             </div>
         </div>

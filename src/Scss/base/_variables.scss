@@ -19,7 +19,7 @@
   --hold-text: #f8c076;
   --delivered-text: #4cccec;
   --dashboard-color: #9fc1ea;
-  --red:#f50707;
+  --red: #f50707;
 }
 
 .light-theme {
@@ -50,6 +50,8 @@
   --quick-link-hover-color: #0281d5;
   --contact-page-btn-color: #e0e0e0;
   --notes-page-bg-color: #e5f3fa;
+  --blog-details-comment-bg: #1b8add;
+  --gadget-btn-bg-color: #d7d7d7;
 
   // for the order summary
   --processing-bg: #dffef3;
@@ -105,7 +107,7 @@
   --grey-hover: #f0f1f2;
 
   // post
-  --top-blog:#222224;
+  --top-blog: #222224;
 }
 
 .dark-theme {
@@ -137,6 +139,8 @@
   --quick-link-hover-color: #0281d5;
   --contact-page-btn-color: #454d5d;
   --notes-page-bg-color: #143351;
+  --blog-details-comment-bg: #242e3e;
+  --gadget-btn-bg-color: #3b475c;
 
   //seach modal
   --search-modal-bg: #2a3447;

@@ -15,7 +15,7 @@
 }
 
 .login_section {
-  @include setDimension(100%, 94vh);
+  // @include setDimension(100%, 94vh);
   @include flex(center, center, "", 0, 0);
   padding: rem(20);
   background-color: var(--bg);
