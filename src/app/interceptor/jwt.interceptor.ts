@@ -52,9 +52,8 @@ export class JwtInterceptor implements HttpInterceptor {
           case 403:
             errorMessage = error.error.data;
             this.authService.clearStorageByKey('tkn');
-            if (!request.url.includes('/login')) {
-              this.router.navigate(['/auth/login']);
-            }
+            this.router.navigate(['/auth/login']);
+
             break;
           case 500:
             errorMessage = 'Internal Server Error. Please try again later.';
@@ -64,7 +63,7 @@ export class JwtInterceptor implements HttpInterceptor {
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
 
-        this.loggerService.erroAlert(errorMessage);
+        this.loggerService.errorAlert(errorMessage);
         return throwError(() => new Error(errorMessage));
       })
     );
