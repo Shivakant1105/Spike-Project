@@ -2,7 +2,9 @@
     <header class="sub_header custome_radius box_shadow">
         <h4 class="f20">Account Settings</h4>
         <span class="f14">Dashboard</span>
-        <ul><li class="f14">Account Settings</li></ul>
+        <ul>
+            <li class="f14">Account Settings</li>
+        </ul>
     </header>
 
     <main class="mt-4 account_main custome_radius box_shadow">
@@ -67,20 +69,100 @@
 
                 <!-- for the Store name -->
                 <div class="form_items">
-                    <label class="w-100">Store Name</label>
+                    <label class="w-100">Email</label>
+                    <input type="email" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <!-- for the Your Position -->
+                <div class="form_items">
+                    <label class="w-100">Your Position</label>
                     <input type="text" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Location -->
+                <!-- for the Designation name -->
                 <div class="form_items">
-                    <label>Location</label>
+                    <label class="w-100">Designation</label>
+                    <input type="text" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+
+                </div>
+
+                <!-- for the Role -->
+                <div class="form_items">
+                    <label>Select Role</label>
                     <select class="form-select" required>
-                        <option selected>India</option>
-                        <option value="1">USA</option>
-                        <option value="2">UK</option>
-                        <option value="3">China</option>
+                        <option selected>Admin</option>
+                        <option value="1">Employee</option>
+                        <option value="2">...</option>
                     </select>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <!-- for the  Department-->
+                <div class="form_items">
+                    <label class="w-100">Select Department</label>
+                    <div class="custome_border department flex-grow-1">
+                        <div class="input_box">
+                            <div class="input_div">
+                                <span class="selected_items">Java</span>
+                                <span class="selected_items">Javsda</span>
+                                <span class="selected_items">Java</span>
+
+                                <span>3+</span>
+                            </div>
+                            <i-feather name="chevron-down"></i-feather>
+                        </div>
+
+                        <div class="option_body custome_border">
+                            <div class="option">
+                                <input type="checkbox">
+                                <label for="">Java</label>
+                            </div>
+                            <div class="option">
+                                <input type="checkbox">
+                                <label for="">c++</label>
+                            </div>
+                            <div class="option">
+                                <input type="checkbox">
+                                <label for="">Java</label>
+                            </div>
+                            <div class="option">
+                                <input type="checkbox">
+                                <label for="">Java</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- for the mobile -->
+                <div class="form_items">
+                    <label class="">Mobile</label>
+                    <input type="number" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <!-- for the Alternative Mobile -->
+                <div class="form_items">
+                    <label class="">Alternative Mobile</label>
+                    <input type="number" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <!-- for the DOB -->
+                <div class="form_items">
+                    <label class="">DOB</label>
+                    <input type="date" class="form-control flex-grow-1" required>
+                    <p>Oops! Something Went Wrong</p>
+                </div>
+
+                <!-- for the salary -->
+                <div class="form_items">
+                    <label class="">Salary</label>
+                    <input type="number" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
@@ -96,32 +178,115 @@
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Email -->
-                <div class="form_items error">
-                    <label class="">Email</label>
-                    <input type="email" class="form-control flex-grow-1" required>
+                <!-- for the Projects -->
+                <div class="form_items">
+                    <label class="">Projects</label>
+                    <input type="text" class="form-control flex-grow-1" required>
                     <p>Oops! Something Went Wrong</p>
                 </div>
 
-                <!-- for the Phone -->
-                <div class="d-flex flex-column form_items">
-                    <label class="">Phone</label>
-                    <input type="number" class="form-control flex-grow-1" required>
-                    <p>Oops! Something Went Wrong</p>
+                <!-- for the Peramanent address -->
+                <div class="address">
+                    <!-- for the line one -->
+                    <div class="w-100 form_items">
+                        <label class="">Permanent Address</label>
+                        <input type="text" placeholder="line1" class="form-control flex-grow-1" required>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the State -->
+                    <div class="form_items">
+                        <label>Choose State</label>
+                        <select class="form-select" required>
+                            <option selected>Delhi</option>
+                            <option value="1">UP</option>
+                            <option value="2">Bihar</option>
+                            <option value="3">Bhopal</option>
+                        </select>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the Country -->
+                    <div class="form_items">
+                        <label>Choose Country</label>
+                        <select class="form-select" required>
+                            <option selected>India</option>
+                            <option value="1">UK</option>
+                            <option value="2">USA</option>
+                            <option value="3">....</option>
+                        </select>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the City -->
+                    <div class="form_items">
+                        <label>City</label>
+                        <input type="text" class="form-control flex-grow-1" required>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the Zip -->
+                    <div class="form_items">
+                        <label>Zip</label>
+                        <input type="text" class="form-control flex-grow-1" required>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
                 </div>
 
-                <div class="d-flex flex-column form_items">
-                    <label>Address</label>
-                    <input type="text" class="form-control">
-                    <p>Oops! Something Went Wrong</p>
+                <!-- for the Temporary address -->
+                <div class="address">
+                    <!-- for the line one -->
+                    <div class="w-100 form_items">
+                        <label class="">Temporary Address</label>
+                        <input type="text" placeholder="line2" class="form-control flex-grow-1" required>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the State -->
+                    <div class="form_items">
+                        <label>Choose State</label>
+                        <select class="form-select" required>
+                            <option selected>Delhi</option>
+                            <option value="1">UP</option>
+                            <option value="2">Bihar</option>
+                            <option value="3">Bhopal</option>
+                        </select>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the Country -->
+                    <div class="form_items">
+                        <label>Choose Country</label>
+                        <select class="form-select" required>
+                            <option selected>India</option>
+                            <option value="1">UK</option>
+                            <option value="2">USA</option>
+                            <option value="3">....</option>
+                        </select>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the City -->
+                    <div class="form_items">
+                        <label>City</label>
+                        <input type="text" class="form-control flex-grow-1" required>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+
+                    <!-- for the Zip -->
+                    <div class="form_items">
+                        <label>Zip</label>
+                        <input type="text" class="form-control flex-grow-1" required>
+                        <p>Oops! Something Went Wrong</p>
+                    </div>
+                </div>
+
+                <!-- buttons for save and cancel -->
+                <div class="action_buttons w-100 d-flex gap-3 justify-content-end">
+                    <button class="btn save_btn">save</button>
+                    <button type="reset" class="btn cancel_btn">cancel</button>
                 </div>
             </form>
-        </div>
-
-        <!-- buttons for save and cancel -->
-        <div class="action_buttons w-100 d-flex gap-3 justify-content-end">
-            <button class="btn save_btn">save</button>
-            <button type="reset" class="btn cancel_btn">cancel</button>
         </div>
 
     </main>

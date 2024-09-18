@@ -179,6 +179,69 @@
                @include flex('', '', '', 0, 0);
                width: rem(450);
             }
+
+            .address{
+               @include flex('','','',10,0);
+               width: 100%;
+               flex-wrap: wrap;
+               .form_items{
+                  width: unset;
+               }
+            }
+         }
+      }
+
+      .department {
+         min-width: rem(240);
+         height: rem(52);
+         padding: rem(10) !important;
+         @include flex(center, center, column, 0, 0);
+         position: relative;
+         border-radius: rem(40);
+
+         .input_box {
+            @include flex('', center, '', 10, 0);
+            width: 100%;
+
+            .input_div {
+               @include flex('', '', '', 6, 0);
+               flex-grow: 1;
+
+               .selected_items {
+                  padding: rem(5);
+                  @include customize_radius(rem(40), var(--contact-user-bg), var(--white));
+                  display: block;
+                  text-align: center;
+                  max-width: rem(50);
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+               }
+            }
+         }
+
+         .option_body {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            max-height: rem(200);
+            overflow-y: auto;
+            @include customize_radius(rem(10), var(--bg-high), var(--textColor));
+            top: rem(58);
+            @include flex('', '', column, 0, 10);
+
+            .option {
+               @include flex('', center, '', 10, 0);
+               height: rem(30);
+
+               label {
+                  max-width: rem(200);
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+               }
+            }
+
          }
       }
    }
