@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
    * @return {void} Return a void
    */
   logout(): void {
-    this.authService.clearStorage();
+    this.authService.clearStorageByKey('tkn');
     this.route.navigateByUrl('/auth/login');
   }
 }
