@@ -8,17 +8,18 @@ import { ChatComponent } from './chat/chat.component';
 import { NotesComponent } from './notes/notes.component';
 import { DetailComponent } from './blog/detail/detail.component';
 import { PostComponent } from './blog/post/post.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'course', pathMatch: 'full' },
-  { path: 'calender', component: CalendarComponent },
-  { path: 'contacts', component: ContactComponent },
-  { path: 'course', component: CourseComponent },
-  { path: 'chat', component: ChatComponent },
-  { path: 'employee', component: EmployeeComponent },
-  { path: 'notes', component: NotesComponent },
-  { path: 'details', component: DetailComponent },
-  { path: 'post', component: PostComponent }
+  { path: 'calender', component: CalendarComponent , canActivate:[AuthGuard] },
+  { path: 'contacts', component: ContactComponent , canActivate:[AuthGuard]},
+  { path: 'course', component: CourseComponent , canActivate:[AuthGuard]},
+  { path: 'chat', component: ChatComponent , canActivate:[AuthGuard]},
+  { path: 'employee', component: EmployeeComponent , canActivate:[AuthGuard]},
+  { path: 'notes', component: NotesComponent , canActivate:[AuthGuard]},
+  { path: 'details', component: DetailComponent , canActivate:[AuthGuard]},
+  { path: 'post', component: PostComponent, canActivate:[AuthGuard] }
 
 ];
 
