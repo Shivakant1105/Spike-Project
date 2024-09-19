@@ -8,6 +8,7 @@ import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from '../shared/shared.module';
 
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent, AccountSettingComponent],
@@ -16,6 +17,7 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
     HomeModuleRoutingModule,
     FeatherModule.pick(allIcons),
     SharedModule,
+    ReactiveFormsModule
   ],
 })
 export class HomeModuleModule {}
