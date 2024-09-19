@@ -1,15 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import { Subject } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let mockRouter: any;
+  let mockRouterEvents: Subject<any>;
 
   beforeEach(async () => {
+    mockRouterEvents = new Subject<any>();
+
+    mockRouter = {
+      events: mockRouterEvents.asObservable(),
+    };
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule,SharedModule],
       declarations: [AppComponent],
+      providers: [{ provide: Router, useValue: mockRouter }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -31,6 +42,16 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should set isLogIn to true when URL is /auth/login', () => {
+    mockRouterEvents.next(new NavigationEnd(1, '/auth/login', '/auth/login'));
+    expect(component.isLogIn).toBeTrue();
+  });
+
+  it('should set isLogIn to false when URL is not /auth/login', () => {
+    mockRouterEvents.next(new NavigationEnd(1, '/home', '/home'));
+    expect(component.isLogIn).toBeFalse();
+  });
+  
   it(`should have as title 'spike-project'`, () => {
     expect(component.title).toEqual('spike-project');
   });

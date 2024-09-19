@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+    baseUrl:"http://99.99.99.185:8089/spike"
 };
