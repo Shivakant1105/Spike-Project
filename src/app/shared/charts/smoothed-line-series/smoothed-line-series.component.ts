@@ -19,7 +19,7 @@ export class SmoothedLineSeriesComponent implements OnInit {
 
     // Create root element
     this.root = am5.Root.new("chartdiv");
-    this.root._logo?.dispose()
+    this.root._logo!.dispose()
 
     // Set themes
     this.root.setThemes([
