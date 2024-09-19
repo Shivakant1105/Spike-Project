@@ -1,2 +1,292 @@
-<p>chat works!</p>
-<i-feather name="X"></i-feather>
+<section class="chat_container custome_radius">
+
+    <header class="sub_header custome_radius box_shadow">
+        <h4 class="f20">Chat</h4>
+        <span class="f14">Dashboard</span>
+        <ul>
+            <li class="f14">Chat</li>
+        </ul>
+    </header>
+
+    <div class="chat_section  box_shadow custome_radius">
+
+        <!-- showing all chat friends -->
+        <div class="chat_list custome_right_border">
+
+            <!-- for the header -->
+            <div class="chat_header chat_list_item">
+                <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                <div class="chat_user_name_div">
+                    <p class="f16">Shubham</p>
+                    <span class="f12">Admin</span>
+                </div>
+            </div>
+
+            <!-- for the search contacts -->
+            <input class="search_for_chat f14 custome_radius custome_border chat_list_item"
+                placeholder="Search Contacts" type="text">
+
+            <!-- for filter Contacts -->
+            <div class="dropdown recent_chat_btn chat_list_item">
+                <button class="btn dropdown-toggle f14" type="button" data-bs-toggle="dropdown">
+                    Recent Chats
+                </button>
+                <ul class="dropdown-menu p-2 f14">
+                    <li class="dropdown-item">Sort by Time</li>
+                    <li class="dropdown-item">Sort by Unread</li>
+                    <li class="dropdown-item">Sort by Time</li>
+                </ul>
+            </div>
+
+            <!-- for the contact -->
+            <div class="contact_list chat_list_item">
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+
+                <div class="contact_items custome_radius">
+                    <img class="chat_user_img" src="./assets/user.jpg" alt="">
+                    <div class="chat_user_name_div">
+                        <p class="f16">Steve Jobs</p>
+                        <span class="f14">How are You?</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- for the Chat Screen -->
+        <div class="chat_screen">
+            <div class="chat_screen_header custome_bottom_border px-3">
+                <i-feather name="align-center" class="f24"></i-feather>
+                <img src="./assets/user.jpg" class="chat_user_img" alt="">
+
+                <!-- for showing user status -->
+                <div class="active_status">
+                    <p class="f16">Steve Jobs</p>
+                    <p class="active f12">Last Seen: <span>02:20PM</span></p>
+                    <span class="active f12">Online</span>
+                    <span class="active typing f12">typing...</span>
+                </div>
+
+                <!-- menu -->
+                <div class="dropdown">
+                    <i-feather data-bs-toggle="dropdown" class="f24" name="more-vertical"></i-feather>
+
+                    <ul class="dropdown-menu f14">
+                        <li class="dropdown-item">Mute</li>
+                        <li class="dropdown-item">Delete Chats</li>
+                        <li class="dropdown-item text-danger">Block</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="message_container">
+
+                <div class="incoming">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="not_seen f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="incoming">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items now_seen">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+
+                <div class="outgoing">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, neque?
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="not_seen f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+
+                <div class="incoming">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="not_seen f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+
+                <div class="outgoing">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Commodi, neque?
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items now_seen">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+
+                <div class="outgoing">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Commodi, neque?
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items now_seen">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+
+                <div class="incoming">
+                    <div class="msg1">
+                        <p class="mssg_content">How Are You? Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Commodi, neque?
+                        </p>
+                        <div class="seen_status_container">
+                            <i-feather name="check" class="f24 seen_status_items"></i-feather>
+                            <div class="seen_status_items now_seen">
+                                <i-feather name="check" class="seen f24"></i-feather>
+                                <i-feather name="check" class="seen1 f24"></i-feather>
+                            </div>
+                            <div class="f9 m-1 message_timing">
+                                <i-feather class="f10" name="clock"></i-feather>
+                                <span>02:22 PM</span>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="send_container">
+                <div class="send_container_wrapper custome_border custome_radius">
+                    <input type="text" class="form-control h-100" placeholder="Write Message...">
+                    <i-feather name="navigation"></i-feather>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
