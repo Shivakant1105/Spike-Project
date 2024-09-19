@@ -8,9 +8,9 @@ describe('NotesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesComponent ]
+      declarations: [NotesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +21,13 @@ describe('NotesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should toggle the toggle property', () => {
+    expect(component.toggle).toBe(false);
+    component.notesSidebar();
+    expect(component.toggle).toBe(true);
+    component.notesSidebar();
+    expect(component.toggle).toBe(false);
   });
 });
