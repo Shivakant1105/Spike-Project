@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesComponent } from './notes/notes.component';
 import { PostComponent } from './blog/post/post.component';
 import { DetailComponent } from './blog/detail/detail.component';
+import { EmailComponent } from './email/email.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DetailComponent } from './blog/detail/detail.component';
     ChatComponent,
     NotesComponent,
     PostComponent,
-    DetailComponent
+    DetailComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,
