@@ -104,7 +104,7 @@
       .compose_wrapper {
         @include flex("", "", column, 10, 0);
         @include setDimension(rem(290), 100%);
-        max-height: rem(680);
+        max-height: auto;
         overflow-y: auto;
         // padding: rem(15);
         border-right: rem(1) solid var(--input-border-color);
@@ -147,7 +147,7 @@
         overflow-y: auto;
 
         .inbox_wrapper {
-          min-width: rem(350);
+          min-width: rem(360);
           flex-grow: 1;
           .inbox_header {
             @include flex(space-between, center, "", 0, 0);
@@ -266,7 +266,7 @@
               position: relative;
               .more_data {
                 @include setDimension(rem(153), rem(160));
-                @include flex("", center, column, 10, 0);
+                @include flex("", center, column, 0, 0);
                 background-color: var(--bg);
                 position: absolute;
                 z-index: 2;
