@@ -218,7 +218,8 @@
                 }
 
                 .outgoing {
-                    @include flex(end,'','',0,0);
+                    @include flex(end, '', '', 0, 0);
+
                     .msg1 {
                         @include flex('', center, column, 5, 10);
                         width: auto;
@@ -326,6 +327,18 @@
 
     .chat_user_img {
         @include rounded_icons(40, 40, '');
+    }
+
+    ul {
+        background-color: var(--bg);
+
+        li {
+            color: var(--textColor);
+
+            &:hover {
+                background-color: var(--bg-high);
+            }
+        }
     }
 
     // for the hide contacts
