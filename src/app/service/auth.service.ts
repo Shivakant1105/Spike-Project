@@ -28,17 +28,6 @@ export class AuthService {
     localStorage.removeItem(key);
   }
 
-  /**
-   * @description Retrieves user details from local storage if available.
-   * @author Gautam Yadav
-   * @returns {string | null} Returns the user data as a string, or null if not found.
-   */
-  getUserDetails() {
-    if (localStorage.getItem('userData')) {
-      return localStorage.getItem('userData');
-    }
-    return null;
-  }
 
   /**
    * @description Stores data in local storage under a specified variable name.
