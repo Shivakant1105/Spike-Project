@@ -1,0 +1,370 @@
+@import "../../../styles.scss";
+%icon-text-common {
+  @include flex(flex-start, center, "", 10, 12);
+  @include setDimension(100%, rem(50));
+  min-height: rem(50);
+  border-radius: rem(18);
+  color: var(--text-color-400);
+  transition: background-color 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+%mail-box-common-btn {
+  @include setDimension(100%, rem(22));
+  @include flex(center, center, "", 0, 0);
+  border-radius: rem(18);
+  color: var(--white);
+  padding: rem(12);
+  font-size: rem(12);
+  font-weight: 500;
+  letter-spacing: rem(0.6);
+  border: 0;
+}
+%mail-checkbox-common {
+  @include setDimension(rem(35), rem(35));
+  background-color: var(--input-border-color);
+  @include flex(center, center, "", 0, 0);
+  border-radius: 50%;
+}
+%rounded-bg-hover {
+  @include flex(center, center, "", 0, 0);
+  @include rounded_icons(45, 45, "");
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--btn-hover-color);
+  }
+}
+.email_wrapper {
+  @include flex("", "", column, 25, 0);
+
+  // email header
+  .email_header {
+    @include setDimension(100%, rem(81));
+    min-height: rem(81);
+    background-color: var(--bg-high);
+    @include flex(space-between, center, "", 0, 1);
+    padding: 0 rem(30);
+
+    .left_item {
+      color: var(--text-color-600);
+      font-weight: 600;
+    }
+
+    .right_items {
+      @include flex(center, center, "", 15, 0);
+
+      & :first-child {
+        color: var(--quick-link-hover-color);
+        cursor: pointer;
+      }
+
+      & :nth-child(2) {
+        @include setDimension(rem(5), rem(5));
+        background-color: var(--textColor);
+        border-radius: 50%;
+      }
+
+      & :nth-child(3) {
+        color: var(--textColor);
+        cursor: pointer;
+      }
+    }
+  }
+
+  // email body
+  .email_body {
+    @include setDimension(100%, rem(680));
+    background-color: var(--bg-high);
+    @include flex("", "", column, 0, 0);
+    border: rem(1) solid var(--input-border-color);
+
+    .email_body_header {
+      @include flex(flex-start, center, "", 30, 0);
+      @include setDimension(100%, rem(70));
+      min-height: rem(70);
+      background-color: var(--course-page-header-blue);
+      border-radius: rem(18) rem(18) 0 0;
+      padding: 0 0 0 rem(25);
+      display: none;
+
+      & :first-child,
+      :nth-child(2) {
+        color: var(--white);
+        cursor: pointer;
+      }
+    }
+
+    .email_container {
+      display: flex;
+      flex-grow: 1;
+      max-height: 100%;
+      border-radius: rem(18) rem(18) 0 0;
+      overflow-y: auto;
+
+      .compose_wrapper {
+        @include flex("", "", column, 10, 0);
+        @include setDimension(rem(290), 100%);
+        max-height: auto;
+        overflow-y: auto;
+        // padding: rem(15);
+        border-right: rem(1) solid var(--input-border-color);
+
+        .compose_btn {
+          @include setDimension(100%, rem(36));
+          background-color: var(--course-page-header-blue);
+          color: var(--white);
+        }
+
+        .icon_mail_wrapper {
+          @extend %icon-text-common;
+          &:hover {
+            background-color: var(--bg);
+          }
+        }
+        .icon_mail_wrapper.first {
+          background-color: var(--bg);
+        }
+
+        .sorted_wrapper {
+          padding: rem(15);
+          @include flex("", flex-start, column, 0, 0);
+          border-top: rem(1) solid var((--input-border-color));
+          //   border-bottom: rem(1) solid var((--input-border-color));
+          width: 100%;
+          padding-bottom: rem(14);
+          h6 {
+            padding: 20px 26px;
+            color: var(--text-color-600);
+          }
+        }
+      }
+
+      .email_wrapp_body {
+        width: 100%;
+        display: flex;
+        color: var(--text-color-600);
+        margin-right: rem(3);
+        overflow-y: auto;
+
+        .inbox_wrapper {
+          min-width: rem(360);
+          flex-grow: 1;
+          .inbox_header {
+            @include flex(space-between, center, "", 0, 0);
+            @include setDimension(100%, rem(60));
+            padding: 0 rem(25);
+            border-bottom: rem(1) solid var(--input-border-color);
+            border-right: rem(1) solid var(--input-border-color);
+
+            & :first-child {
+              color: var(--text-color-400);
+            }
+            .inbox_right {
+              @include flex("", center, row, 20, 0);
+              cursor: pointer;
+              .active {
+                @include flex(center, center, "", 0, 0);
+                @include rounded_icons(25, 25, var(--course-page-header-blue));
+                color: var(--white);
+              }
+            }
+          }
+        }
+
+        .mailbox_wrapper {
+          @include flex(space-between, center, "", 0, 0);
+          @include setDimension(100%, rem(118));
+          border-bottom: rem(1) solid var(--input-border-color);
+          border-right: rem(1) solid var(--input-border-color);
+          padding: 0 rem(25);
+          cursor: pointer;
+
+          .left_mail_items {
+            .input_check {
+              input[type="checkbox"] {
+                @include setDimension(rem(20), rem(20));
+                border: rem(1) solid var(--input-border-color);
+                border-radius: rem(4);
+                box-shadow: none;
+                background-color: var(--bg);
+                position: relative;
+                cursor: pointer;
+
+                &:checked {
+                  background-color: var(--course-page-header-grey);
+                }
+              }
+              // @extend %mail-checkbox-common;
+            }
+            .mail_username_heading {
+              color: var(--text-color-600);
+              font-weight: 700;
+            }
+            .user_message {
+              color: var(--text-color-400);
+            }
+            i-feather {
+              cursor: pointer;
+            }
+          }
+          .right_mail_items {
+            .mail_btn {
+              @extend %mail-box-common-btn;
+              background-color: var(--course-page-header-blue);
+            }
+            .mail_btn.salmon {
+              background-color: var(--course-page-header-yellow);
+            }
+            .mail_btn.yellow {
+              background-color: var(--course-page-header-salmon);
+            }
+            .mail_btn.grey {
+              background-color: var(--course-page-header-grey);
+            }
+          }
+        }
+
+        .img_wrapper {
+          @include flex(center, center, column, 10, 0);
+          display: none !important;
+          width: 100%;
+          padding: rem(15);
+
+          .mail_headings {
+            color: var(--text-color-400);
+            font-weight: 600;
+          }
+
+          & img {
+            width: rem(250);
+          }
+        }
+
+        // Mail Body
+        .mail_body {
+          width: 100%;
+
+          .mail_body_header {
+            @include flex(space-between, center, "", 0, 0);
+            @include setDimension(100%, rem(60));
+            min-height: rem(60);
+            border-bottom: rem(1) solid var(--input-border-color);
+            padding: 0 rem(25);
+            position: relative;
+
+            .mail_body_left {
+              @include flex(center, center, "", 0, 0);
+              i-feather {
+                cursor: pointer;
+              }
+              .roundeds {
+                @extend %rounded-bg-hover;
+              }
+            }
+            .roundeds_more {
+              @extend %rounded-bg-hover;
+              cursor: pointer;
+              position: relative;
+              .more_data {
+                @include setDimension(rem(153), rem(160));
+                @include flex("", center, column, 0, 0);
+                background-color: var(--bg-high);
+                position: absolute;
+                z-index: 2;
+                top: 43px;
+                right: 0;
+
+                .more_data_item {
+                  @include setDimension(100%, rem(50));
+                  @include flex("", center, "", 10, 0);
+                  padding: 0 rem(20);
+                  transition: background-color 0.3s ease-in-out;
+                  &:hover {
+                    background-color: var(--sidebar-hover-bg);
+                  }
+                }
+                .more_data_item.first {
+                  border-radius: rem(10) rem(10) 0 0;
+                }
+                .more_data_item.last {
+                  border-radius: 0 0 rem(10) rem(10);
+                }
+              }
+            }
+          }
+
+          .mail-content {
+            @include flex("", "", column, 40, 0);
+            @include setDimension(100%, 100%);
+            padding: rem(20) rem(25);
+            color: var(--text-color-600);
+
+            .user-img {
+              @include setDimension(rem(40), rem(40));
+              border-radius: 50%;
+            }
+
+            .work_btn {
+              @include setDimension(rem(60), rem(30));
+              @include flex(center, center, "", 0, 0);
+              background-color: var(--course-page-header-grey);
+              font-weight: 500;
+              color: var(--white);
+            }
+
+            .reply_forward_btn {
+              .reply_btn {
+                @extend .work_btn;
+                @include setDimension(rem(80), rem(34));
+                background-color: var(--course-page-header-blue);
+              }
+              .forward_btn {
+                @extend .work_btn;
+                background-color: unset;
+                @include setDimension(rem(100), rem(34));
+                border: rem(1) solid var(--course-page-header-blue);
+                color: var(--course-page-header-blue);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.input-container {
+  position: relative;
+
+  #textarea {
+    background-color: var(--bg-high);
+    border: rem(1) solid var(--input-border-color);
+    color: var(--text-color-400);
+    padding: rem(15);
+    transition: padding-top 0.3s ease;
+    resize: none;
+
+    &:focus {
+      border: rem(2) solid var(--input-modal-outline-color);
+    }
+  }
+
+  .floating_label {
+    position: absolute;
+    left: rem(23);
+    top: rem(22);
+    transition: all 0.2s ease;
+  }
+
+  #textarea:focus + .floating_label,
+  #textarea:not(:placeholder-shown) + .floating_label {
+    top: rem(-10);
+    color: var(--course-page-header-blue);
+    background-color: var(--bg-high);
+    font-size: rem(13);
+  }
+
+  #textarea:focus {
+    padding-top: rem(16);
+  }
+}
