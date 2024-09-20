@@ -165,6 +165,7 @@
               .active {
                 @include flex(center, center, "", 0, 0);
                 @include rounded_icons(25, 25, var(--course-page-header-blue));
+                color: var(--white);
               }
             }
           }
@@ -225,7 +226,7 @@
 
         .img_wrapper {
           @include flex(center, center, column, 10, 0);
-          display: none;
+          display: none !important;
           width: 100%;
           padding: rem(15);
 
@@ -267,7 +268,7 @@
               .more_data {
                 @include setDimension(rem(153), rem(160));
                 @include flex("", center, column, 0, 0);
-                background-color: var(--bg);
+                background-color: var(--bg-high);
                 position: absolute;
                 z-index: 2;
                 top: 43px;
@@ -279,7 +280,7 @@
                   padding: 0 rem(20);
                   transition: background-color 0.3s ease-in-out;
                   &:hover {
-                    background-color: var(--shortcuts-hover-bg);
+                    background-color: var(--sidebar-hover-bg);
                   }
                 }
                 .more_data_item.first {
@@ -310,21 +311,60 @@
               font-weight: 500;
               color: var(--white);
             }
-            .reply_btn {
-              @extend .work_btn;
-              @include setDimension(rem(80), rem(34));
-              background-color: var(--course-page-header-blue);
-            }
-            .forward_btn {
-              @extend .work_btn;
-              background-color: unset;
-              @include setDimension(rem(100), rem(34));
-              border: rem(1) solid var(--course-page-header-blue);
-              color: var(--course-page-header-blue);
+
+            .reply_forward_btn {
+              .reply_btn {
+                @extend .work_btn;
+                @include setDimension(rem(80), rem(34));
+                background-color: var(--course-page-header-blue);
+              }
+              .forward_btn {
+                @extend .work_btn;
+                background-color: unset;
+                @include setDimension(rem(100), rem(34));
+                border: rem(1) solid var(--course-page-header-blue);
+                color: var(--course-page-header-blue);
+              }
             }
           }
         }
       }
     }
+  }
+}
+
+.input-container {
+  position: relative;
+
+  #textarea {
+    background-color: var(--bg-high);
+    border: rem(1) solid var(--input-border-color);
+    color: var(--text-color-400);
+    padding: rem(15);
+    transition: padding-top 0.3s ease;
+    resize: none;
+
+    &:focus {
+      border: rem(2) solid var(--input-modal-outline-color);
+    }
+  }
+
+  .floating_label {
+    position: absolute;
+    left: rem(23);
+    top: rem(22);
+    transition: all 0.2s ease;
+  }
+
+  #textarea:focus + .floating_label,
+  #textarea:not(:placeholder-shown) + .floating_label {
+    top: rem(-10);
+    color: var(--course-page-header-blue);
+    background-color: var(--bg-high);
+    font-size: rem(13);
+  }
+
+  #textarea:focus {
+    padding-top: rem(16);
   }
 }
