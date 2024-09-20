@@ -55,4 +55,18 @@ describe('CommonService', () => {
       expect(response).toEqual(mockResponse);
     });
   });
+  it('should fetch all contacts', () => {
+    const mockContacts = [
+      { id: 1, name: 'John Doe' },
+      { id: 2, name: 'Jane Doe' },
+    ];
+
+    service.getAllContacts().subscribe((contacts) => {
+      expect(contacts).toEqual(mockContacts);
+    });
+
+    const req = httpMock.expectOne(`${service.baseUrl}/user/contacts`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockContacts);
+  });
 });

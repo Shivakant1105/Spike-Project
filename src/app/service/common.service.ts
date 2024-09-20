@@ -7,12 +7,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CommonService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   baseUrl: string = environment.baseUrl
 
   sideBarTogglebtn = new BehaviorSubject(false);
-  /* @description This is a toggle button for sidebar.
+  /** @description This is a toggle button for sidebar.
    * @author Gautam Yadav
    * @params {flag:boolean}
    * @return {void} Return a void
@@ -21,16 +21,26 @@ export class CommonService {
     this.sideBarTogglebtn.next(flag);
   }
 
-    /**
- * @description This method allows a user to reset their password.
- * @author Abhilasha Singh
- * @param {string} oldPassword - The user's current password that needs to be verified before setting the new password.
- * @param {string} newPassword - The user's desired new password.
- * @returns {Observable<any>} An observable that emits the server's response.
- */
+  /**
+* @description This method allows a user to reset their password.
+* @author Abhilasha Singh
+* @param {string} oldPassword - The user's current password that needs to be verified before setting the new password.
+* @param {string} newPassword - The user's desired new password.
+* @returns {Observable<any>} An observable that emits the server's response.
+*/
 
-    resetPassword( oldPassword: string, newPassword: string): Observable <any> {  
-      const body = { oldPassword, newPassword };
-      return this.http.put(`${this.baseUrl}/user/reset-password`,body)
-    }
+  resetPassword(oldPassword: string, newPassword: string): Observable<any> {
+    const body = { oldPassword, newPassword };
+    return this.http.put(`${this.baseUrl}/user/reset-password`, body)
+  }
+
+  /**
+   * @description This is get all contacts details method
+   * @author Shiva Kant
+   * @returns  {Observable<any>} 
+   */
+
+  getAllContacts(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/contacts`)
+  }
 }

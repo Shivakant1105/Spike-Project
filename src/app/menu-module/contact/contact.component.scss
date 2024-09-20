@@ -105,12 +105,12 @@ main {
       .card {
         @include setDimension(rem(408), rem(433));
         background-color: var(--bg-high);
-        flex-grow: 1;
+        // flex-grow: 1;
 
         .card_items {
           @include flex(center, center, column, 13, 36);
           color: var(--text-color-600);
-          flex-grow: 1;
+          // flex-grow: 1;
 
           .mb-3 {
             margin-top: rem(-7);
