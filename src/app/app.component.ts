@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
       this.themeElem.nativeElement.classList.add("light-theme");
       localStorage.setItem('theme', "light-theme");
     } else {
-      this.themeElem?.nativeElement.classList.add(this.isTheme);
+      this.themeElem.nativeElement.classList.add(this.isTheme);
     }
   }
 
