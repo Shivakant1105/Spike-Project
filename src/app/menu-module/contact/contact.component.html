@@ -26,203 +26,45 @@
     </div>
 
     <div class="user_profile">
-      <div class="card custome_radius box_shadow">
+      <div
+        *ngFor="let contact of contacts; trackBy: trackByContactId"
+        class="card custome_radius box_shadow"
+      >
         <div class="card-body card_items">
-          <img src="../../../assets/mesage_user.jpg" alt="user-img" />
-          <p class="f18">Johnathan Doe</p>
-          <p class="f14 mb-3">Web Designer</p>
+          <img [src]="contact.profilePicture" alt="user-img" />
+
+          <p class="f18">{{ contact.name }}</p>
+          <p class="f14 mb-3">{{ contact.designation }}</p>
           <div class="chat-follow d-flex gap-2">
             <button class="btn btn1 custome_radius f14">Chat</button>
             <button class="btn btn2 custome_radius f14">Follow</button>
           </div>
           <p class="text-center f14">
-            795 Folsom Ave, Suite 600 San Francisco, NY, 10003
+            {{ contact.addresses[0]?.line1 }}, {{ contact.addresses[0]?.city }},
+            {{ contact.addresses[0]?.state }}
+            {{ contact.addresses[0]?.country }}
+            {{ contact.addresses[0]?.zip }}
           </p>
-          <p class="text-center f14">Mo: (123) 456-7890</p>
+          <p class="text-center f14">{{ contact.primaryMobile }}</p>
         </div>
         <div class="footer text-light">
           <div class="social">
             <i-feather class="f24" name="instagram"></i-feather>
-            <span class="f14">254</span>
+            <span class="f14"></span>
           </div>
           <div class="social">
             <i-feather class="f24" name="linkedin"></i-feather>
-            <span class="f14">38</span>
+            <span class="f14"></span>
           </div>
           <div class="social">
             <i-feather class="f24" name="facebook"></i-feather>
-            <span class="f14">178</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card custome_radius box_shadow">
-        <div class="card-body card_items">
-          <img
-            src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-8.jpg"
-            alt="user-img"
-          />
-          <p class="f18">Johnathan Doe</p>
-          <p class="f14 mb-3">Theme Designer</p>
-          <div class="chat-follow d-flex gap-2">
-            <button class="btn btn1 custome_radius f14">Chat</button>
-            <button class="btn btn2 custome_radius f14">Follow</button>
-          </div>
-          <p class="text-center f14">
-            795 Folsom Ave, Suite 600 San Francisco, NY, 10003
-          </p>
-          <p class="text-center f14">Mo: (123) 456-7890</p>
-        </div>
-        <div class="footer text-light">
-          <div class="social">
-            <i-feather class="f24" class="f24" name="instagram"></i-feather>
-            <span class="f14">254</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" class="f24" name="linkedin"></i-feather>
-            <span class="f14">38</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" class="f24" name="facebook"></i-feather>
-            <span class="f14">178</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card custome_radius box_shadow">
-        <div class="card-body card_items">
-          <img
-            src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-3.jpg"
-            alt="user-img"
-          />
-          <p class="f18">Johnathan Doe</p>
-          <p class="f14 mb-3">Frontend Developer</p>
-          <div class="chat-follow d-flex gap-2">
-            <button class="btn btn1 custome_radius f14">Chat</button>
-            <button class="btn btn2 custome_radius f14">Follow</button>
-          </div>
-          <p class="text-center f14">
-            795 Folsom Ave, Suite 600 San Francisco, NY, 10003
-          </p>
-          <p class="text-center f14">Mo: (123) 456-7890</p>
-        </div>
-        <div class="footer text-light">
-          <div class="social">
-            <i-feather class="f24" name="instagram"></i-feather>
-            <span class="f14">254</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" name="linkedin"></i-feather>
-            <span class="f14">38</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" name="facebook"></i-feather>
-            <span class="f14">178</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card custome_radius box_shadow">
-        <div class="card-body card_items">
-          <img
-            src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-5.jpg"
-            alt="user-img"
-          />
-          <p class="f18">Johnathan Doe</p>
-          <p class="f14 mb-3">DevOps Engineer</p>
-          <div class="chat-follow d-flex gap-2">
-            <button class="btn btn1 custome_radius f14">Chat</button>
-            <button class="btn btn2 custome_radius f14">Follow</button>
-          </div>
-          <p class="text-center f14">
-            795 Folsom Ave, Suite 600 San Francisco, NY, 10003
-          </p>
-          <p class="text-center f14">Mo: (123) 456-7890</p>
-        </div>
-        <div class="footer text-light">
-          <div class="social">
-            <i-feather class="f24" name="instagram"></i-feather>
-            <span class="f14">254</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" name="linkedin"></i-feather>
-            <span class="f14">38</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" name="facebook"></i-feather>
-            <span class="f14">178</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card custome_radius box_shadow">
-        <div class="card-body card_items">
-          <img
-            src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-6.jpg"
-            alt="user-img"
-          />
-          <p class="f18">Johnathan Doe</p>
-          <p class="f14 mb-3">Backend Developer</p>
-          <div class="chat-follow d-flex gap-2">
-            <button class="btn btn1 custome_radius f14">Chat</button>
-            <button class="btn btn2 custome_radius f14">Follow</button>
-          </div>
-          <p class="text-center f14">
-            795 Folsom Ave, Suite 600 San Francisco, NY, 10003
-          </p>
-          <p class="text-center f14">Mo: (123) 456-7890</p>
-        </div>
-        <div class="footer text-light">
-          <div class="social">
-            <i-feather class="f24" class="f24" name="instagram"></i-feather>
-            <span class="f14">254</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" class="f24" name="linkedin"></i-feather>
-            <span class="f14">38</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" class="f24" name="facebook"></i-feather>
-            <span class="f14">178</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card custome_radius box_shadow">
-        <div class="card-body card_items">
-          <img
-            src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-7.jpg    "
-            alt="user-img"
-          />
-          <p class="f18">Johnathan Doe</p>
-          <p class="f14 mb-3">Graphics Designer</p>
-          <div class="chat-follow d-flex gap-2">
-            <button class="btn btn1 custome_radius f14">Chat</button>
-            <button class="btn btn2 custome_radius f14">Follow</button>
-          </div>
-          <p class="text-center f14">
-            795 Folsom Ave, Suite 600 San Francisco, NY, 10003
-          </p>
-          <p class="text-center f14">Mo: (123) 456-7890</p>
-        </div>
-        <div class="footer text-light">
-          <div class="social">
-            <i-feather class="f24" name="instagram"></i-feather>
-            <span class="f14">254</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" name="linkedin"></i-feather>
-            <span class="f14">38</span>
-          </div>
-          <div class="social">
-            <i-feather class="f24" name="facebook"></i-feather>
-            <span class="f14">178</span>
+            <span class="f14"></span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
   <!-- Contact page modal -->
   <div
     class="modal fade"
@@ -276,5 +118,4 @@
       </div>
     </div>
   </div>
-  
 </main>
