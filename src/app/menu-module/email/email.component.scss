@@ -1,12 +1,24 @@
 @import "../../../styles.scss";
 %icon-text-common {
-  @include flex(flex-start, center, "", 10, 12);
+  @include flex(flex-start, center, "", 14, 12);
   @include setDimension(100%, rem(50));
   min-height: rem(50);
   border-radius: rem(18);
   color: var(--text-color-400);
   transition: background-color 0.4s ease-in-out;
   cursor: pointer;
+  .payment {
+    color: var(--course-page-header-salmon);
+  }
+  .account {
+    color: var(--course-page-header-yellow);
+  }
+  .personal {
+    color: var(--proccessing-text);
+  }
+  .work {
+    color: var(--proccessing-text);
+  }
 }
 
 %mail-box-common-btn {
@@ -32,6 +44,43 @@
   transition: background-color 0.3s ease-in-out;
   &:hover {
     background-color: var(--btn-hover-color);
+  }
+}
+
+%compose-section-common {
+  @include flex("", "", column, 10, 0);
+  @include setDimension(rem(290), 100%);
+  max-height: auto;
+  overflow-y: auto;
+  border-right: rem(1) solid var(--input-border-color);
+
+  .compose_btn {
+    @include setDimension(100%, rem(36));
+    background-color: var(--course-page-header-blue);
+    color: var(--white);
+  }
+
+  .icon_mail_wrapper {
+    @extend %icon-text-common;
+    color: var(--text-color-400);
+    &:hover {
+      background-color: var(--bg);
+    }
+  }
+  .icon_mail_wrapper.first {
+    background-color: var(--bg);
+  }
+
+  .sorted_wrapper {
+    padding: rem(15);
+    @include flex("", flex-start, column, 0, 0);
+    border-top: rem(1) solid var((--input-border-color));
+    width: 100%;
+    padding-bottom: rem(14);
+    h6 {
+      padding: 20px 26px;
+      color: var(--text-color-600);
+    }
   }
 }
 .email_wrapper {
@@ -89,7 +138,6 @@
 
       & :first-child,
       :nth-child(2) {
-        color: var(--white);
         cursor: pointer;
       }
     }
@@ -102,41 +150,7 @@
       overflow-y: auto;
 
       .compose_wrapper {
-        @include flex("", "", column, 10, 0);
-        @include setDimension(rem(290), 100%);
-        max-height: auto;
-        overflow-y: auto;
-        // padding: rem(15);
-        border-right: rem(1) solid var(--input-border-color);
-
-        .compose_btn {
-          @include setDimension(100%, rem(36));
-          background-color: var(--course-page-header-blue);
-          color: var(--white);
-        }
-
-        .icon_mail_wrapper {
-          @extend %icon-text-common;
-          &:hover {
-            background-color: var(--bg);
-          }
-        }
-        .icon_mail_wrapper.first {
-          background-color: var(--bg);
-        }
-
-        .sorted_wrapper {
-          padding: rem(15);
-          @include flex("", flex-start, column, 0, 0);
-          border-top: rem(1) solid var((--input-border-color));
-          //   border-bottom: rem(1) solid var((--input-border-color));
-          width: 100%;
-          padding-bottom: rem(14);
-          h6 {
-            padding: 20px 26px;
-            color: var(--text-color-600);
-          }
-        }
+        @extend %compose-section-common;
       }
 
       .email_wrapp_body {
@@ -194,7 +208,6 @@
                   background-color: var(--course-page-header-grey);
                 }
               }
-              // @extend %mail-checkbox-common;
             }
             .mail_username_heading {
               color: var(--text-color-600);
@@ -325,6 +338,10 @@
                 border: rem(1) solid var(--course-page-header-blue);
                 color: var(--course-page-header-blue);
               }
+              .forward_btn.discard {
+                color: var(--course-page-header-salmon);
+                border: rem(1) solid var(--course-page-header-salmon);
+              }
             }
           }
         }
@@ -340,9 +357,10 @@
     background-color: var(--bg-high);
     border: rem(1) solid var(--input-border-color);
     color: var(--text-color-400);
-    padding: rem(15);
+    padding: rem(15) rem(23);
     transition: padding-top 0.3s ease;
     resize: none;
+    cursor: pointer;
 
     &:focus {
       border: rem(2) solid var(--input-modal-outline-color);
@@ -354,6 +372,7 @@
     left: rem(23);
     top: rem(22);
     transition: all 0.2s ease;
+    cursor: pointer;
   }
 
   #textarea:focus + .floating_label,
@@ -361,10 +380,24 @@
     top: rem(-10);
     color: var(--course-page-header-blue);
     background-color: var(--bg-high);
-    font-size: rem(13);
+    font-size: rem(14);
   }
 
   #textarea:focus {
     padding-top: rem(16);
+  }
+}
+
+.offcanvas {
+  position: absolute;
+  @include setDimension(rem(270), 100%);
+  border-radius: rem(18) 0 0 rem(18);
+
+  .compose_section {
+    border: rem(1) solid var(--input-border-color);
+    border-radius: rem(18) 0 0 rem(18);
+    @include setDimension(rem(270), 100%);
+    background-color: var(--bg-high);
+    @extend %compose-section-common;
   }
 }
