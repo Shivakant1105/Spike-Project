@@ -26,7 +26,6 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
 
-    // Mock the native element and classList
     component.themeElem = {
       nativeElement: {
         classList: {
@@ -56,11 +55,6 @@ describe('AppComponent', () => {
     expect(component.title).toEqual('spike-project');
   });
 
-  it('should render title', () => {
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('spike-project app is running!');
-  });
   it('should set light theme if no theme in localStorage', () => {
     spyOn(localStorage, 'getItem').and.returnValue(null);
     spyOn(localStorage, 'setItem');

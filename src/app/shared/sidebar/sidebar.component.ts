@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { AuthService } from "src/app/service/auth.service";
@@ -9,7 +9,7 @@ import { CommonService } from "src/app/service/common.service";
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent  {
   toggle!: boolean;
   unSub = new Subject();
 
@@ -96,13 +96,9 @@ export class SidebarComponent implements OnInit {
       next: (data) => {
         this.toggle = data;
       },
-      error: (e) => {
-        throw new Error(e);
-      },
+   
     });
   }
-
-  ngOnInit(): void {}
 
   /**
    * @description This is a trackBy function.
