@@ -20,9 +20,11 @@
   --delivered-text: #4cccec;
   --dashboard-color: #9fc1ea;
   --red: #f50707;
-  --green:#42d90b;
-  --incoming-chat-Box:rgba(173, 216, 230, 0.343);
-  --outgoin-chat-Box:rgba(64, 83, 89, 0.325);
+  --green: #42d90b;
+  --incoming-chat-Box: rgba(173, 216, 230, 0.343);
+  --outgoin-chat-Box: rgba(64, 83, 89, 0.325);
+  --custom-tables-bg: var(--bg-high);
+  --custome-table-color: var(--text-color-600);
 }
 
 .light-theme {
@@ -55,6 +57,10 @@
   --notes-page-bg-color: #e5f3fa;
   --blog-details-comment-bg: #1b8add;
   --gadget-btn-bg-color: #d7d7d7;
+  --ticket-dropdown-bg-color: #ebebeb;
+  --ticket-open-bg: #dffef3;
+  --ticket-inprocess-bg: #fff6ea;
+  --ticket-cloed-bg: #ffede9;
 
   // for the order summary
   --processing-bg: #dffef3;
@@ -144,6 +150,10 @@
   --notes-page-bg-color: #143351;
   --blog-details-comment-bg: #242e3e;
   --gadget-btn-bg-color: #3b475c;
+  --ticket-dropdown-bg-color: #363e4d;
+  --ticket-open-bg: #1a4040;
+  --ticket-inprocess-bg: #403d3c;
+  --ticket-cloed-bg: #40353d;
 
   //seach modal
   --search-modal-bg: #2a3447;
