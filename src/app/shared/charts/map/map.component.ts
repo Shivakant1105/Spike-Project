@@ -24,8 +24,6 @@ export class MapComponent {
     * @author Himmat
     */
 
-  private root!: am5.Root;
-
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private zone: NgZone
@@ -44,7 +42,6 @@ export class MapComponent {
     // Chart code goes in here
     this.browserOnly(() => {
       let root = am5.Root.new('map');
-
       root.setThemes([am5themes_Animated.new(root)]);
 
       if (root._logo) {
@@ -83,7 +80,7 @@ export class MapComponent {
         getFillFromSprite: false,
       });
       
-      tooltip.get("background")?.setAll({
+      tooltip.get("background")!.setAll({
         fill: am5.color(0xffffff),
         fillOpacity: 0.8
       });
@@ -125,7 +122,7 @@ export class MapComponent {
             previousPolygon.set('active', false); 
         }
 
-        if (e.target?.get('active') && e.target?.uid == previousPolygon?.uid) {
+        if (e.target?.get('active') && e.target.uid == previousPolygon?.uid) {
           e.target.set('active',false) 
         }
       
@@ -155,15 +152,6 @@ export class MapComponent {
 
       // Make stuff animate on load
       chart.appear(1000, 100);
-    });
-  }
-
-  ngOnDestroy() {
-    // Clean up chart when the component is removed
-    this.browserOnly(() => {
-      if (this.root) {
-        this.root.dispose();
-      }
     });
   }
 

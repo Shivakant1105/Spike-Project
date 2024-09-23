@@ -5,10 +5,13 @@ import {
   HttpTestingController,
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
+import { environment } from 'src/environments/environment';
 
 describe('CommonService', () => {
   let service: CommonService;
   let httpMock: HttpTestingController;
+  let baseUrl=environment.baseUrl;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -72,5 +75,55 @@ describe('CommonService', () => {
     const req = httpMock.expectOne(`${service.baseUrl}/user/contacts`);
     expect(req.request.method).toBe('GET');
     req.flush(mockContacts);
+  });
+
+
+  it('should get all department list', () => {
+    const mockDepartments = [{ id: 1, name: 'HR' }, { id: 2, name: 'Engineering' }];
+    service.getAllDepartments().subscribe(departments => {
+      expect(departments).toEqual(mockDepartments);
+    });
+
+    const req = httpMock.expectOne(`${baseUrl}/department/dropdown`);
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockDepartments);
+  });
+
+  it('should get all country list', () => {
+    const mockCountries = [{ id: 1, name: 'India' }, { id: 2, name: 'Oman' }];
+    service.getCountry().subscribe(countries => {
+      expect(countries).toEqual(mockCountries);
+    });
+
+    const req = httpMock.expectOne(`${baseUrl}/user/countries`);
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockCountries);
+  });
+
+  it('should get all state list based on country', () => {
+    const mockState = [{ name: 'Delhi',countryName:'India' }, { name: 'Mumbai',countryName:'India' }];
+    service.getState('India').subscribe(state => {
+      expect(state).toEqual(mockState);
+    });
+
+    const req = httpMock.expectOne(req => 
+      req.url === `${baseUrl}/user/states` && req.params.get('countryName') === 'India'
+    );
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockState);
+  });
+
+
+  it('should get all city list based on state', () => {
+    const mockCities = [{ name: 'Noida',stateName:'Uttar pradesh' }];
+    service.getCity('Delhi').subscribe(cities => {
+      expect(cities).toEqual(mockCities);
+    });
+
+    const req = httpMock.expectOne(req => 
+      req.url === `${baseUrl}/user/cities` && req.params.get('stateName') === 'Delhi'
+    );
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockCities);
   });
 });
