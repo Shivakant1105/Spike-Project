@@ -6,7 +6,7 @@ import { AuthService } from '../service/auth.service';
  
 class MockAuthService {
   getToken() {
-    return null; // Modify as needed for different tests
+    return null; 
   }
 }
  
@@ -36,13 +36,13 @@ describe('LoginGuard', () => {
   });
  
   it('should allow access if no token is present', () => {
-    spyOn(authService, 'getToken').and.returnValue(null); // Simulate no token
+    spyOn(authService, 'getToken').and.returnValue(null); 
     const result = guard.canActivate(new ActivatedRouteSnapshot(), {} as RouterStateSnapshot);
     expect(result).toBe(true);
   });
  
   it('should redirect to /menu if token is present', () => {
-    spyOn(authService, 'getToken').and.returnValue('mockToken'); // Simulate a token present
+    spyOn(authService, 'getToken').and.returnValue('mockToken'); 
     const navigateSpy = spyOn(router, 'navigateByUrl');
  
     guard.canActivate(new ActivatedRouteSnapshot(), {} as RouterStateSnapshot);

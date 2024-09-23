@@ -8,7 +8,6 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let commonService: jasmine.SpyObj<CommonService>;
-  // let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
@@ -34,7 +33,6 @@ describe('HeaderComponent', () => {
     commonService = TestBed.inject(
       CommonService
     ) as jasmine.SpyObj<CommonService>;
-    // authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
   });
 

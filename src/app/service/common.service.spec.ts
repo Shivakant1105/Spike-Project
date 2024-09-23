@@ -45,15 +45,19 @@ describe('CommonService', () => {
       done();
     });
   });
-
-  it('should reset password successfully', () => {
-    const oldPassword = 'oldPass123';
-    const newPassword = 'newPass123';
-    const mockResponse = { success: true };
-
+  it('should reset password', () => {
+    const oldPassword = 'oldPassword123';
+    const newPassword = 'newPassword123';
+    const mockResponse = { success: true, message: 'Password reset successfully' };
+ 
     service.resetPassword(oldPassword, newPassword).subscribe((response) => {
       expect(response).toEqual(mockResponse);
     });
+ 
+    const req = httpMock.expectOne(`${service.baseUrl}/user/reset-password`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual({ oldPassword, newPassword }); 
+    req.flush(mockResponse);
   });
   it('should fetch all contacts', () => {
     const mockContacts = [
