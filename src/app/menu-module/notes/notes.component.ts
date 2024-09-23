@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-  toggle!: boolean
+  toggle: boolean=false
 
   constructor() { }
 

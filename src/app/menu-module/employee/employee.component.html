@@ -53,73 +53,80 @@
                 </strong>
                 <div class="modal-body f14">
                     
-                    <form class="w-100">
+                    <form class="w-100" [formGroup]="employeeForm" (ngSubmit)="employeeFormSubmit()">
                         <img src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
                         <input class="input_file" type="file">
                         <!-- for the name -->
-                        <div class="form_items">
-                            <input type="text" placeholder="Name" class="form-control" required>
-                            <p>Oops! Something Went Wrong</p>
+                        <div class="form_items" [ngClass]="{error: checkError('name','required')}">
+                            <input type="text" placeholder="Name" class="form-control" formControlName="name">
+                            <p *ngIf="checkError('name','required') ">
+                                Name is required.
+                            </p>
                         </div>
 
                         <!-- Position -->
-                        <div class="form_items">
-                            <input type="text" placeholder="Position" class="form-control" required>
-                            <p>Oops! Something Went Wrong</p>
+                        <div class="form_items" [ngClass]="{error: checkError('designation','required') }">
+                            <input type="text" placeholder="Designation" class="form-control" formControlName="designation">
+                            <p *ngIf="checkError('designation','required') ">
+                                Designation is required.
+                            </p>
                         </div>
 
                         <!-- for the Email -->
-                        <div class="form_items">
-                            <input type="email" placeholder="Email" class="form-control " required>
-                            <p>Oops! Something Went Wrong</p>
+                        <div class="form_items" [ngClass]="{error: checkError('email','email') || checkError('email','required')}">
+                            <input type="email" placeholder="Email" class="form-control " formControlName="email">
+                            <p *ngIf="checkError('email','required') ">
+                                Email is required.
+                            </p>
+                            <p *ngIf="checkError('email','email') && !checkError('email','required')">
+                                Wrong Email.
+                            </p>
+                        </div>
+
+                        <!-- for the Employee code -->
+                        <div class="form_items" [ngClass]="{error: checkError('employeeCode','required')}">
+                            <input type="text" placeholder="Employee Code" class="form-control " formControlName="employeeCode">
+                            <p *ngIf="checkError('employeeCode','required') ">
+                                Employee code is required.
+                            </p>
                         </div>
 
                         <!-- for the  designation-->
-                        <div class="form_items">
-                            <input type="text" placeholder="designation" class="form-control " required>
-                            <p>Oops! Something Wrong</p>
+                        <div class="form_items" [ngClass]="{error: checkError('managerId','required')}">
+                            <input type="number" placeholder="Manager Id" class="form-control " formControlName="managerId">
+                            <p *ngIf="checkError('managerId','required') ">
+                                Manager Id is required.
+                            </p>
                         </div>
 
                         <!-- for the  role-->
-                        <div class="form_items">
-                            <select name="" id="">
+                        <div class="form_items" [ngClass]="{error: checkError('role','required')}">
+                            <select name="" id="" formControlName="role">
                                 <option value="">Select Role</option>
-                                <option value="Admin">Admin</option>
-                                <option value="">Employee</option>
-                                <option value="">...</option>
+                                <option value="MANAGER">MANAGER</option>
+                                <option value="EMPLOYEE">EMPLOYEE</option>
                             </select>
-                            <p>Oops! Something Went Wrong</p>
+                            <p *ngIf="checkError('role','required') ">
+                                Role is required.
+                            </p>
                         </div>
 
                         <!-- for the  Department-->
                         <div class="custome_border department flex-grow-1">
-                            <div class="input_box">
-                                <div class="input_div">
-                                    <span class="selected_items">Java</span>
-                                    <span class="selected_items">Javsda</span>
-                                    <span class="selected_items">Java</span>
+                            <div class="input_box" (click)="openDepartmentDropDown()">
+                                <div class="input_div align-items-center">
+                                    <span *ngIf="department.value.length==0">Department</span>
+                                    <span class="selected_items" *ngFor="let deptmnt of department.value.slice(0,3)">{{deptmnt}}</span>
 
-                                    <span>3+</span>
+                                    <span *ngIf="department.value.length>3" class=""  >{{department.value.length}}+</span>
                                 </div>
                                 <i-feather name="chevron-down"></i-feather>
                             </div>
 
-                            <div class="option_body custome_border">
-                                <div class="option">
-                                    <input type="checkbox">
-                                    <label for="">Java</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox">
-                                    <label for="">c++</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox">
-                                    <label for="">Java</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox">
-                                    <label for="">Java</label>
+                            <div class="option_body custome_border" *ngIf="departmentToggle">
+                                <div class="option" *ngFor="let deptmnt of allDepartments">
+                                    <input type="checkbox"  [checked]="department.value.includes(deptmnt.name)" (change)="addDepartment(deptmnt)">
+                                    <label for="">{{deptmnt.name}}</label>
                                 </div>
 
                             </div>
@@ -127,134 +134,167 @@
                         </div>
 
                         <!-- for the Mobile -->
-                        <div class="form_items">
-                            <input type="number" placeholder="Mobile" class="form-control " required>
-                            <p>Oops! Something Went Wrong</p>
+                        <div class="form_items" [ngClass]="{error: checkError('primaryMobileNumber','invalidMobile') || checkError('primaryMobileNumber','required')}">
+                            <input type="number" placeholder="Mobile" class="form-control " formControlName="primaryMobileNumber">
+                            <p *ngIf="checkError('primaryMobileNumber','required')">
+                                Mobile number is required
+                            </p>
+                            <p *ngIf="!checkError('primaryMobileNumber','required') && checkError('primaryMobileNumber','invalidMobile') ">
+                                Mobile Number Must be 10 digit.
+                            </p>
+                            <!-- <p>Oops! Something Went Wrong</p> -->
                         </div>
 
                         <!-- for the Mobile -->
                         <div class="form_items">
-                            <input type="number" placeholder="Primary Mobile" class="form-control " required>
+                            <input type="number" placeholder="Salary" class="form-control " formControlName="salary">
                             <p>Oops! Something Went Wrong</p>
                         </div>
 
                         <!-- for the DOB,SALARY,and Projects -->
                         <div class="d-flex gap-2 flex-wrap">
                             <!-- for the DOB -->
-                            <div class="form_items error">
-                                <input type="date" placeholder="DD-MM-YYYY" class="form-control " required>
-                                <p>Oops! Something Went Wrong</p>
+                            <div class="form_items" [ngClass]="{error: checkError('joiningDate','required')}">
+                                <input type="date" placeholder="Joining Date" class="form-control " formControlName="joiningDate">
+                                <p *ngIf="checkError('joiningDate','required') ">
+                                    Joining Date is required.
+                                </p>
                             </div>
 
-                            <!-- for the Salary -->
-                            <div class="form_items error">
-                                <input type="number" placeholder="Salary" class="form-control " required>
-                                <p>Oops! Something Went Wrong</p>
-                            </div>
-
-                            <!-- for the projects -->
+                            <!-- for the Linkdin Url -->
                             <div class="form_items">
-                                <input type="text" placeholder="Projects" class="form-control " required>
-                                <p>Oops! Something Went Wrong</p>
+                                <input type="text" placeholder="Linkdin Url" class="form-control " formControlName="linkedinUrl">
+                            </div>
+
+                            <!-- for the facebook Url -->
+                            <div class="form_items">
+                                <input type="text" placeholder="Facebook Url" class="form-control " formControlName="facebookUrl">
+                            </div>
+
+                            <!-- for the instgram Url -->
+                            <div class="form_items">
+                                <input type="text" placeholder="Instagram Url" class="form-control " formControlName="instagramUrl">
                             </div>
 
                         </div>
 
-                        <!-- for the Temporary address -->
-                        <div class="address_container w-100 d-flex flex-wrap gap-3">
+                        <!-- for the Current address -->
+                        <div class="address_container w-100 d-flex flex-wrap gap-3" formGroupName="currentAddress">
                             <!-- for the address -->
-                            <p class="fw-bold">Temporary Address</p>
+                            <p class="fw-bold">Current Address</p>
                             <div class="w-100 d-flex gap-2">
-                                <div class="form_items">
-                                    <input type="text" placeholder="Line1" class="form-control " required>
-                                    <p>Oops! Something Went Wrong</p>
+                                <div class="form_items" [ngClass]="{error: addressErrorCheck('CURRENT','line1','required')}">
+                                    <input type="text" placeholder="Line1" class="form-control " formControlName="line1">
+                                    <p *ngIf="addressErrorCheck('CURRENT','line1','required') ">
+                                        Line1 is required.
+                                    </p>
                                 </div>
                             </div>
-
-                            <div class="form_items flex-grow-1">
-                                <select>
-                                    <option value="">Choose State</option>
-                                    <option value="Bihar">Bihar</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="UP">UP</option>
-                                </select>
-                                <p>Oops! Something Went Wrong</p>
-                            </div>
-
+                            
                             <!-- for the Country -->
-                            <div class="form_items flex-grow-1">
-                                <select>
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('CURRENT','country','required')}">
+                                <select formControlName="country" (change)="countrySelect('CURRENT')">
                                     <option value="">Choose Country</option>
-                                    <option value="India">India</option>
-                                    <option value="USA">USA</option>
-                                    <option value="UK">UK</option>
+                                    <option [value]="country.name" *ngFor="let country of countryList">{{country.name}}</option>
                                 </select>
-                                <p>Oops! Something Went Wrong</p>
+                                <p *ngIf="addressErrorCheck('CURRENT','country','required') ">
+                                    Country is required.
+                                </p>
                             </div>
-
-                            <!-- for the zip -->
-                            <div class="form_items flex-grow-1">
-                                <input type="text" placeholder="Zip">
-                                <p>Oops! Something Went Wrong</p>
+                            
+                            <!-- for the state -->
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('CURRENT','state','required')}">
+                                <select formControlName="state" (change)="stateSelected('CURRENT')">
+                                    <option value="">Choose State</option>
+                                    <option [value]="state.name" *ngFor="let state of currentAddressStateList">{{state.name}}</option>
+                                </select>
+                                <p *ngIf="addressErrorCheck('CURRENT','state','required') ">
+                                    State is required.
+                                </p>
                             </div>
 
                             <!-- for the city -->
-                            <div class="form_items flex-grow-1">
-                                <input type="text" placeholder="City">
-                                <p>Oops! Something Went Wrong</p>
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('CURRENT','city','required')}">
+                                <select formControlName="city" >
+                                    <option value="">Choose City</option>
+                                    <option [value]="city.name" *ngFor="let city of currentAddressCityList">{{city.name}}</option>
+                                </select>
+                                <p *ngIf="addressErrorCheck('CURRENT','city','required') ">
+                                    City is required.
+                                </p>
                             </div>
+
+                            <!-- for the zip -->
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('CURRENT','zip','required')}">
+                                <input type="text" placeholder="Zip" formControlName="zip">
+                                <p *ngIf="addressErrorCheck('CURRENT','zip','required') ">
+                                    Zip is required.
+                                </p>
+                            </div>
+
 
                         </div>
 
                         <!-- for the Permanenet address -->
-                        <div class="address_container w-100 d-flex flex-wrap gap-3 align-items-center">
+                        <div class="address_container w-100 d-flex flex-wrap gap-3 align-items-center" formGroupName="permanentAddress">
                             <!-- for the address -->
                             <p class="fw-bold">Permanent Address</p>
-                            <button class="btn btn-warning custome_radius">Same as Current</button>
+                            <button type="button" class="btn btn-warning custome_radius" (click)="fillPermanentAddress()">Same as Current</button>
                             <div class="w-100 d-flex gap-2">
-                                <div class="form_items">
-                                    <input type="text" placeholder="Line1" class="form-control " required>
-                                    <p>Oops! Something Went Wrong</p>
+                                <div class="form_items" [ngClass]="{error: addressErrorCheck('PERMANENT','line1','required')}">
+                                    <input type="text" placeholder="Line1" class="form-control " formControlName="line1">
+                                    <p *ngIf="addressErrorCheck('PERMANENT','line1','required') ">
+                                        Line1 is required.
+                                    </p>
                                 </div>
                             </div>
 
-                            <div class="form_items flex-grow-1">
-                                <select>
-                                    <option value="">Choose State</option>
-                                    <option value="Bihar">Bihar</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="UP">UP</option>
-                                </select>
-                                <p>Oops! Something Went Wrong</p>
-                            </div>
-
                             <!-- for the Country -->
-                            <div class="form_items flex-grow-1">
-                                <select>
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('PERMANENT','country','required')}">
+                                <select formControlName="country" (change)="countrySelect('PERMANENT')">
                                     <option value="">Choose Country</option>
-                                    <option value="India">India</option>
-                                    <option value="USA">USA</option>
-                                    <option value="UK">UK</option>
+                                    <option [value]="country.name" *ngFor="let country of countryList">{{country.name}}</option>
                                 </select>
-                                <p>Oops! Something Went Wrong</p>
+                                <p *ngIf="addressErrorCheck('PERMANENT','country','required') ">
+                                    Country is required.
+                                </p>
                             </div>
 
-                            <!-- for the zip -->
-                            <div class="form_items flex-grow-1">
-                                <input type="text" placeholder="Zip">
-                                <p>Oops! Something Went Wrong</p>
+                            <!-- for the state -->
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('PERMANENT','state','required')}">
+                                <select formControlName="state" (change)="stateSelected('PERMANENT')">
+                                    <option value="">Choose State</option>
+                                    <option [value]="state.name" *ngFor="let state of permanentAddressStateList">{{state.name}}</option>
+                                </select>
+                                <p *ngIf="addressErrorCheck('PERMANENT','state','required') ">
+                                    State is required.
+                                </p>
                             </div>
 
                             <!-- for the city -->
-                            <div class="form_items flex-grow-1">
-                                <input type="text" placeholder="City">
-                                <p>Oops! Something Went Wrong</p>
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('PERMANENT','city','required')}">
+                                <select formControlName="city">
+                                    <option value="">Choose City</option>
+                                    <option [value]="city.name" *ngFor="let city of permanentAddressCityList">{{city.name}}</option>
+                                </select>
+                                <p *ngIf="addressErrorCheck('PERMANENT','city','required') ">
+                                    City is required.
+                                </p>
+                            </div>
+
+                            <!-- for the zip -->
+                            <div class="form_items flex-grow-1" [ngClass]="{error: addressErrorCheck('PERMANENT','zip','required')}">
+                                <input type="text" placeholder="Zip" formControlName="zip">
+                                <p *ngIf="addressErrorCheck('PERMANENT','zip','required') ">
+                                    Zip is required.
+                                </p>
                             </div>
 
                         </div>
 
-                        <button class="btn btn-warning custome_radius">Add</button>
-                        <button type="reset" class="btn btn-warning custome_radius">Reset</button>
+                        <button class="btn btn-warning custome_radius" type="submit" [disabled]="employeeForm.invalid"
+                        [ngClass]="{'disable': employeeForm.invalid}" data-bs-dismiss="modal">Add</button>
+                        <button type="reset" class="btn btn-warning custome_radius" (click)="reset()">Reset</button>
                     </form>
                 </div>
             </div>
