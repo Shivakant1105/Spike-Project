@@ -69,12 +69,10 @@
 }
 
 // Custom scrollbar mixin
-@mixin custom-scrollbar(
-  $width,
+@mixin custom-scrollbar($width,
   $track-color,
   $thumb-color,
-  $thumb-hover-color
-) {
+  $thumb-hover-color) {
   &::-webkit-scrollbar {
     width: $width;
   }
@@ -95,4 +93,11 @@
 @mixin activeStyles($color, $bg-color) {
   color: $color !important;
   background-color: $bg-color;
+}
+
+@mixin textTruncate($max-width) {
+  max-width: $max-width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

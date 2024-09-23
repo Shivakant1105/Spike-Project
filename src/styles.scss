@@ -29,6 +29,11 @@ html {
   border-bottom: rem(1) solid var(--border-color-lighter);
 }
 
+.custome_right_border {
+  border: none;
+  border-right: rem(1) solid var(--border-color-lighter);
+}
+
 .custome_radius,
 .dropdown-menu.show {
   border-radius: rem(18) !important;

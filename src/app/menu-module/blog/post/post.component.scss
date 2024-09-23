@@ -71,6 +71,13 @@
                 margin-left: rem(16);
             }
 
+            .user_name{
+                    position: absolute;
+                    z-index: 2;
+                    top: rem(237);
+                    margin-left: rem(80);
+            }
+
             .post_body {
                 height: 100%;
                 @include flex('', '', column, 20, 0);
