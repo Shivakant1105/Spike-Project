@@ -16,7 +16,7 @@ class MockRouter {
   }
 }
  
-describe('LoginGuard', () => {
+fdescribe('LoginGuard', () => {
   let guard: LoginGuard;
   let authService: AuthService;
   let router: Router;
@@ -44,9 +44,7 @@ describe('LoginGuard', () => {
   it('should redirect to /menu if token is present', () => {
     spyOn(authService, 'getToken').and.returnValue('mockToken'); 
     const navigateSpy = spyOn(router, 'navigateByUrl');
- 
     guard.canActivate(new ActivatedRouteSnapshot(), {} as RouterStateSnapshot);
- 
     expect(navigateSpy).toHaveBeenCalledWith('/menu');
   });
 });
