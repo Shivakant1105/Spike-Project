@@ -14,7 +14,7 @@
 
   <div class="side_overview">
     <!-- For Home menu -->
-    <div class="home_menu_container">
+    <div class="home_menu_container" *ngIf="userData.role=='ADMIN'">
       <span class="f12">HOME</span>
 
       <div class="home_menu_items dash1 blue" routerLink="home/dashboard">
@@ -436,10 +436,10 @@
 
   <div class="side_footer container">
     <div class="wrapper col-md-10 h-100 custome_radius p-2">
-      <img class="img-fluid" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user5.jpg" alt="" />
+      <img class="img-fluid"[src]='profilePicture' alt="" />
 
       <div class="login_user">
-        <span class="f18"><strong>Mike</strong></span><span class="f14">Admin</span>
+      <span class="f18"><strong>{{userName}}</strong></span><span class="f14">{{userData.role}}</span>
       </div>
 
       <i-feather (click)="logout()" name="power" class="logout_icon f24"></i-feather>

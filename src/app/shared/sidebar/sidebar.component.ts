@@ -1,4 +1,5 @@
-import { Component, } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { AuthService } from "src/app/service/auth.service";
@@ -9,8 +10,12 @@ import { CommonService } from "src/app/service/common.service";
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
 })
-export class SidebarComponent  {
+export class SidebarComponent implements OnInit {
   toggle!: boolean;
+  userData!: any;
+  tokenData!: any;
+  profilePicture: any;
+  userName!: string;
   unSub = new Subject();
 
   listOfSidebar: {
@@ -90,13 +95,33 @@ export class SidebarComponent  {
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private sanitizer: DomSanitizer
   ) {
     this.commonService.sideBarTogglebtn.pipe(takeUntil(this.unSub)).subscribe({
       next: (data) => {
         this.toggle = data;
       },
    
+    });
+  }
+
+  /**
+   * @description fetch id from the tokenData and get all user details by id 
+   * @author vivekSengar
+   */
+  ngOnInit(): void {
+    this.tokenData = this.authService.getTokenData();
+    this.commonService.getUserById(this.tokenData.id).subscribe({
+      next: (user: any) => {
+        this.userData = user.data;
+        this.userName = user.data.name.split(" ")[0];
+        this.profilePicture = user.data.profilePicture
+          ? this.sanitizer.bypassSecurityTrustResourceUrl(
+              "data:image/jpeg;base64," + user.data.profilePicture
+            )
+          : "../../../assets/mesage_user.jpg";
+      },
     });
   }
 
@@ -122,4 +147,5 @@ export class SidebarComponent  {
     this.unSub.next(null);
     this.unSub.complete();
   }
+
 }

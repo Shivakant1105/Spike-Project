@@ -12,13 +12,13 @@ const routes: Routes = [
     })
   },
   {
-    path: 'home', canActivate: [AuthGuard],
+    path: 'home', canActivate: [AuthGuard],data:{roles:['ADMIN']},
     loadChildren: () => import("./home-module/home-module.module").then((x) => {
       return x.HomeModuleModule
     })
   },
   {
-    path: 'menu', canActivate: [AuthGuard],
+    path: 'menu', canActivate: [AuthGuard],data:{roles:['ADMIN','EMPLOYEE','MANAGER']},
     loadChildren: () => import("./menu-module/menu-module.module").then((x) => {
       return x.MenuModuleModule
     })
