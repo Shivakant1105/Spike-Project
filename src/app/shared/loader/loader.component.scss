@@ -1,0 +1,13 @@
+@import "../styles.scss";
+.loader {
+  position: absolute;
+  @include setDimension(100%,100vh);
+  background-color: var(--loader-bg);
+  backdrop-filter: blur(rem(6));
+  z-index: 2;
+  @include flex(center,center,'',0,0);
+  .spinner-border {
+      @include setDimension(rem(50), rem(50));
+      color: var(--white);
+  }
+}
