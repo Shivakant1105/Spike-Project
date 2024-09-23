@@ -114,7 +114,6 @@ export class SidebarComponent implements OnInit {
     this.tokenData = this.authService.getTokenData();
     this.commonService.getUserById(this.tokenData.id).subscribe({
       next: (user: any) => {
-        console.log(user);
         this.userData = user.data;
         this.userName = user.data.name.split(" ")[0];
         this.profilePicture = user.data.profilePicture

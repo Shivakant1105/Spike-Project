@@ -16,7 +16,7 @@ class MockRouter {
   }
 }
  
-fdescribe('LoginGuard', () => {
+describe('LoginGuard', () => {
   let guard: LoginGuard;
   let authService: AuthService;
   let router: Router;
