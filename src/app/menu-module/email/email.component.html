@@ -10,11 +10,86 @@
   </div>
 
   <!-- Email body -->
-  <div class="email_body custome_radius">
+  <div class="email_body custome_radius position-relative">
     <div class="email_body_header">
-      <!-- <i-feather name="align-left" class="f24"></i-feather> -->
+      <i-feather
+        name="align-left"
+        class="f24 text-light"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#mailScrolling"
+        aria-controls="offcanvasExample"
+      >
+      </i-feather>
 
-      <span class="f18 fw-medium">Inbox</span>
+      <span class="f18 fw-medium text-light">Inbox</span>
+
+      <!-- Offcanvas -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="mailScrolling">
+        <div class="offcanvas-body compose_section">
+          <div class="p-3 d-flex flex-column gap-3">
+            <button class="btn compose_btn custome_radius border-0 f14">
+              Compose
+            </button>
+
+            <div class="icon_mail_wrapper first p-4">
+              <i-feather name="mail" class="f24"></i-feather>
+              <span class="f14 fw-medium">Inbox</span>
+            </div>
+
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="send" class="f24"></i-feather>
+              <span class="f14 fw-medium">Sent</span>
+            </div>
+
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="save" class="f24"></i-feather>
+              <span class="f14 fw-medium">Draft</span>
+            </div>
+
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="flag" class="f24"></i-feather>
+              <span class="f14 fw-medium">Spam</span>
+            </div>
+
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="trash" class="f24"></i-feather>
+              <span class="f14 fw-medium">Trash</span>
+            </div>
+          </div>
+
+          <div class="sorted_wrapper p-3">
+            <h6 class="text-nowrap f14 fw-bold">Sort By</h6>
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="star" class="f24"></i-feather>
+              <span class="f14 fw-medium">Star</span>
+            </div>
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="info" class="f24"></i-feather>
+              <span class="f14 fw-medium">Important</span>
+            </div>
+          </div>
+
+          <div class="sorted_wrapper p-3">
+            <h6 class="text-nowrap f16 fw-bold">Labels</h6>
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="file" class="f24"></i-feather>
+              <span class="f14 fw-medium">Persolanl</span>
+            </div>
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="file" class="f24"></i-feather>
+              <span class="f14 fw-medium">Work</span>
+            </div>
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="file" class="f24"></i-feather>
+              <span class="f14 fw-medium">Payment</span>
+            </div>
+            <div class="icon_mail_wrapper p-4">
+              <i-feather name="file" class="f24"></i-feather>
+              <span class="f14 fw-medium">Accounts</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="email_container">
@@ -26,60 +101,60 @@
           </button>
 
           <div class="icon_mail_wrapper first p-4">
-            <i-feather name="mail" class="f20"></i-feather>
-            <span class="f14">Inbox</span>
+            <i-feather name="mail" class="f24"></i-feather>
+            <span class="f14 fw-medium">Inbox</span>
           </div>
 
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="send" class="f20"></i-feather>
-            <span class="f14">Sent</span>
+            <i-feather name="send" class="f24"></i-feather>
+            <span class="f14 fw-medium">Sent</span>
           </div>
 
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="save" class="f20"></i-feather>
-            <span class="f14">Draft</span>
+            <i-feather name="save" class="f24"></i-feather>
+            <span class="f14 fw-medium">Draft</span>
           </div>
 
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="flag" class="f20"></i-feather>
-            <span class="f14">Spam</span>
+            <i-feather name="flag" class="f24"></i-feather>
+            <span class="f14 fw-medium">Spam</span>
           </div>
 
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="trash" class="f20"></i-feather>
-            <span class="f14">Trash</span>
+            <i-feather name="trash" class="f24"></i-feather>
+            <span class="f14 fw-medium">Trash</span>
           </div>
         </div>
 
         <div class="sorted_wrapper p-3">
           <h6 class="text-nowrap f14 fw-bold">Sort By</h6>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="star" class="f20"></i-feather>
-            <span class="f14">Star</span>
+            <i-feather name="star" class="f24"></i-feather>
+            <span class="f14 fw-medium">Star</span>
           </div>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="info" class="f20"></i-feather>
-            <span class="f14">Important</span>
+            <i-feather name="info" class="f24"></i-feather>
+            <span class="f14 fw-medium">Important</span>
           </div>
         </div>
 
         <div class="sorted_wrapper p-3">
-          <h6 class="text-nowrap f14 fw-bold">Labels</h6>
+          <h6 class="text-nowrap f16 fw-medium">Labels</h6>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="file" class="f20"></i-feather>
-            <span class="f14">Persolanl</span>
+            <i-feather name="file" class="f24 personal"></i-feather> 
+            <span class="f14 fw-medium">Personal</span>
           </div>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="file" class="f20"></i-feather>
-            <span class="f14">Work</span>
+            <i-feather name="file" class="f24 work"></i-feather>
+            <span class="f14 fw-medium">Work</span>
           </div>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="file" class="f20"></i-feather>
-            <span class="f14">Payment</span>
+            <i-feather name="file" class="f24 payment"></i-feather>
+            <span class="f14 fw-medium ">Payment</span>
           </div>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="file" class="f20"></i-feather>
-            <span class="f14">Accounts</span>
+            <i-feather name="file" class="f24 account"></i-feather>
+            <span class="f14 fw-medium">Accounts</span>
           </div>
         </div>
       </div>
@@ -310,12 +385,22 @@
               <span class="floating_label f14">Type your reply here</span>
             </div>
 
+            <!-- Reply and forward button -->
             <div class="reply_forward_btn d-flex gap-3">
               <button class="btn reply_btn custome_radius f14 p-3 border-0">
                 Reply
               </button>
               <button class="btn forward_btn custome_radius f14 p-3">
                 Forward
+              </button>
+            </div>
+            <!-- Reply and forward button -->
+            <div class="reply_forward_btn d-flex gap-3 d-none">
+              <button class="btn forward_btn custome_radius f16 p-3 discard">
+                Discard
+              </button>
+              <button class="btn reply_btn custome_radius f14 p-3 border-0">
+                Send
               </button>
             </div>
           </div>
