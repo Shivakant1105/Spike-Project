@@ -14,6 +14,79 @@
   padding: rem(2) rem(10);
   color: var(--text-color-600);
 }
+%cancel-add-btn {
+  @include setDimension(rem(80), rem(34));
+  @include flex(center, center, "", 0, 0);
+  border-radius: rem(18);
+  font-size: rem(14);
+}
+%modal-common {
+  position: relative;
+  top: rem(94);
+
+  .modal_content {
+    background-color: var(--bg-high);
+    .modal-body {
+      @include flex("", "", column, 22, 0);
+      @include setDimension(rem(496), auto);
+      overflow-y: auto;
+      padding: rem(20);
+      max-height: rem(550);
+
+      h6 {
+        color: var(--text-color-400);
+      }
+      & input {
+        min-height: rem(54);
+        box-shadow: none;
+        border-radius: rem(18);
+        background-color: var(--bg-high);
+        border: rem(1) solid var(--input-border-color);
+        color: var(--text-color-600);
+        cursor: pointer;
+        &::placeholder {
+          color: var(--text-color-400);
+          font-size: rem(14);
+        }
+        &:focus {
+          border: rem(2) solid var(--course-page-header-blue);
+        }
+      }
+      & select {
+        min-height: rem(54);
+        box-shadow: none;
+        border-radius: rem(18);
+        background-color: var(--bg-high);
+        border: rem(1) solid var(--input-border-color);
+        color: var(--text-color-600);
+        cursor: pointer;
+        &::placeholder {
+          color: var(--text-color-400);
+          font-size: rem(14);
+        }
+        &:focus {
+          border: rem(2) solid var(--course-page-header-blue);
+        }
+      }
+    }
+    .modal-footer {
+      @include flex(flex-start, center, "", 5, 0);
+      height: rem(80);
+      padding: 0 0 rem(15) rem(25);
+
+      .add {
+        @extend %cancel-add-btn;
+        background-color: var(--course-page-header-blue);
+        color: var(--white);
+      }
+      .cancel {
+        @extend %cancel-add-btn;
+        border: rem(1) solid var(--course-page-header-salmon);
+        color: var(--course-page-header-salmon);
+      }
+    }
+  }
+}
 
 .tickets_wrapper {
   @include flex("", "", column, 25, 0);
@@ -248,3 +321,45 @@
     }
   }
 }
+
+// Add ticket modal
+.addticket_modal {
+  @extend %modal-common;
+}
+
+// Edit ticket modal
+.edit_ticket_modal {
+  @extend %modal-common;
+}
+
+// Delete ticket modal
+.delete_ticket_dialog {
+  position: relative;
+  top: rem(326);
+  .delete_ticket_modal {
+    @include setDimension(rem(354), auto);
+    background-color: var(--bg-high);
+    color: var(--text-color-600);
+    padding: rem(7);
+
+    .delete_ticket_footer {
+      @include flex(flex-start, center, "", 0, 0);
+      @include setDimension(100%, rem(54));
+      padding: 0 0 rem(14) rem(14);
+
+      .delete {
+        @extend %cancel-add-btn;
+        background-color: var(--course-page-header-blue);
+        color: var(--white);
+      }
+      .cancel {
+        @extend %cancel-add-btn;
+        color: var(--course-page-header-salmon);
+        border: rem(1) solid var(--course-page-header-salmon);
+      }
+    }
+  }
+}
+
+//
+
