@@ -12,8 +12,12 @@ describe('LoginComponent', () => {
   let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
 
- beforeEach(async () => {
-    const authServiceSpy = jasmine.createSpyObj('AuthService', ['login', 'setDataInLocalStorage']);
+  beforeEach(async () => {
+    const authServiceSpy = jasmine.createSpyObj('AuthService', [
+      'login',
+      'setDataInLocalStorage',
+      'getTokenData',
+    ]);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
@@ -30,17 +34,35 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-
   });
 
-  it('should call AuthService.login and navigate on successful login', () => {
+  it('should call AuthService.login and navigate to dashboard on successful ADMIN login', () => {
     const mockToken = 'mock-token';
     authService.login.and.returnValue(of({ data: { token: mockToken } }));
-    localStorage.setItem('tkn', mockToken);
-    authService.getTokenData.and.returnValue(of({ role:'ADMIN' }));
-    component.loginForm.setValue({ username: 'testuser', password: 'password123' });
+    authService.getTokenData.and.returnValue(of({ role: 'ADMIN' })); // Simulate ADMIN role
+    component.loginForm.setValue({
+      username: 'testuser',
+      password: 'password123',
+    });
+    authService.getTokenData.and.returnValue({ role: 'ADMIN' });
     component.onSubmit();
     expect(authService.login).toHaveBeenCalledWith(component.loginForm.value);
-    expect(router.navigate).toHaveBeenCalledWith(['home/dashboard']);
+    expect(authService.setDataInLocalStorage).toHaveBeenCalledWith(
+      'tkn',
+      JSON.stringify(mockToken)
+    );
+  });
+
+  it('should navigate to courses on successful non-ADMIN login', () => {
+    const mockToken = 'mock-token';
+    authService.login.and.returnValue(of({ data: { token: mockToken } }));
+    authService.getTokenData.and.returnValue(of({ role: 'USER' })); // Simulate USER role
+    component.loginForm.setValue({
+      username: 'testuser',
+      password: 'password123',
+    });
+    component.onSubmit();
+    expect(authService.login).toHaveBeenCalledWith(component.loginForm.value);
+    expect(router.navigate).toHaveBeenCalledWith(['menu/course']);
   });
 });

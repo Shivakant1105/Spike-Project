@@ -4,7 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
-// import { of } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -76,15 +76,22 @@ describe('AuthService', () => {
     const req = httpMock.expectOne(`${service.baseUrl}/public/login`);
     req.flush('Unauthorized', { status: 401, statusText: 'Unauthorized' });
   });
-  it('shoul getTokenData', () => {
-    const token = 'mock-token';
-    localStorage.setItem('tkn', token);
-    service.getTokenData();
-    expect(token).toBe(token);
-  });
-  it('shoul getTokenData ang give token undefined', () => {
+
+  it('should return null when token is undefined or empty', () => {
     localStorage.setItem('tkn', '');
-    service.getTokenData();
-    expect('').toBe('');
+    expect(service.getTokenData()).toBeNull();
+    localStorage.removeItem('tkn');
+    expect(service.getTokenData()).toBeNull();
+  });
+
+  it('should return decoded data when a valid token is stored', () => {
+    const mockToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'; // A valid JWT for testing
+    localStorage.setItem('tkn', mockToken);
+
+    const decodedToken = jwtDecode(mockToken);
+    const result = service.getTokenData();
+
+    expect(result).toEqual(decodedToken);
   });
 });
