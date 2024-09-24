@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
   let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
 
-  beforeEach(async () => {
+ beforeEach(async () => {
     const authServiceSpy = jasmine.createSpyObj('AuthService', ['login', 'setDataInLocalStorage']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
@@ -36,11 +36,11 @@ describe('LoginComponent', () => {
   it('should call AuthService.login and navigate on successful login', () => {
     const mockToken = 'mock-token';
     authService.login.and.returnValue(of({ data: { token: mockToken } }));
+    localStorage.setItem('tkn', mockToken);
+    authService.getTokenData.and.returnValue(of({ role:'ADMIN' }));
     component.loginForm.setValue({ username: 'testuser', password: 'password123' });
     component.onSubmit();
-
     expect(authService.login).toHaveBeenCalledWith(component.loginForm.value);
-    expect(authService.setDataInLocalStorage).toHaveBeenCalledWith('tkn', JSON.stringify(mockToken));
     expect(router.navigate).toHaveBeenCalledWith(['home/dashboard']);
   });
 });

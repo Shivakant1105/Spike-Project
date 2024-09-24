@@ -15,17 +15,22 @@ import { AuthService } from '../service/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private route: Router) {}
   canActivate(
-    _route: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.getToken()) {
+    const requiredRoles = route.data['roles'];
+    const userRole = this.authService.getTokenData().role;
+    if (
+      this.authService.getToken() &&
+      requiredRoles.includes(userRole) &&
+      requiredRoles
+    ) {
       return true;
     }
-
     this.route.navigateByUrl('/auth/login');
     return false;
   }

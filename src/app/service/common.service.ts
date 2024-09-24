@@ -8,8 +8,7 @@ import { environment } from 'src/environments/environment';
 export class CommonService {
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = environment.baseUrl
-
+  baseUrl: string = environment.baseUrl;
   sideBarTogglebtn = new BehaviorSubject(false);
   /** @description This is a toggle button for sidebar.
    * @author Gautam Yadav
@@ -82,4 +81,15 @@ export class CommonService {
     let httpParams= new HttpParams().set('stateName',stateName);
     return this.http.get(`${this.baseUrl}/user/cities`,{params:httpParams})
   }
+  /**
+   * @description get fetch all userDetails by id
+   * @author vivekSengar
+   * @param {number}  id-userid
+   * @returns {Observable<any>} return observable
+   */
+  getUserById(id: number) {
+    return this.http.get(`${this.baseUrl}/user/self/${id}`);
+  }
+
 }
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent   {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -19,20 +19,28 @@ export class LoginComponent implements OnInit {
     username: ['', [Validators.required]],
     password: ['', [Validators.required]],
   });
-  ngOnInit(): void {}
+
   /*   @description  Handles the form submission for user login. Sends a login request with the form data,.
    *   @author vivekSengar
    * @return {void} Return a void
    */
   onSubmit(): void {
     this.authService.login(this.loginForm.value).subscribe({
-      next: (res) => {
+      next: (res) => {      
         if (res.data.token) {
           this.authService.setDataInLocalStorage(
             'tkn',
             JSON.stringify(res.data.token)
           );
-          this.router.navigate(['home/dashboard']);
+          
+        }
+        const userData=this.authService.getTokenData()
+        if(userData.role=='ADMIN')
+        {
+          this.router.navigate(['home/dashboard'])
+        }
+        else{
+          this.router.navigate(['menu/course'])
         }
       },
     });

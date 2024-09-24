@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -28,7 +28,6 @@ export class AuthService {
     localStorage.removeItem(key);
   }
 
-
   /**
    * @description Stores data in local storage under a specified variable name.
    * @author Gautam Yadav
@@ -52,5 +51,16 @@ export class AuthService {
         return res;
       })
     );
+  }
+  /**
+   * @description decode the token
+   * @author vivekSengar
+   */
+  getTokenData(): any {
+    const token = this.getToken();
+    if (token) {
+      return jwtDecode(token);
+    }
+    return null;
   }
 }
