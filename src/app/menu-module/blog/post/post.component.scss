@@ -57,31 +57,49 @@
                 margin-bottom: rem(16);
                 background-color: var(--bg-high);
                 color: var(--textColor-200);
+                @include textTruncate(rem(150));
+
             }
         }
 
         .post_content {
             flex-grow: 1;
-            @include flex('','',column,10,0);
+            @include flex('', '', column, 10, 0);
+
             .user_img {
-                @include rounded_icons(50,50,'');
+                @include rounded_icons(50, 50, '');
                 position: absolute;
                 z-index: 2;
                 top: rem(220);
                 margin-left: rem(16);
             }
 
-            .user_name{
-                    position: absolute;
-                    z-index: 2;
-                    top: rem(237);
-                    margin-left: rem(80);
+            .user_name {
+                position: absolute;
+                z-index: 2;
+                top: rem(237);
+                margin-left: rem(80);
+                @include textTruncate(rem(140))
             }
 
             .post_body {
-                height: 100%;
-                @include flex('', '', column, 20, 0);
-                padding: 0 rem(33) rem(33) rem(33);
+                @include setDimension(100%, 100%);
+                padding-top: rem(40);
+
+                .wrapper {
+                    @include setDimension(100%, 100%);
+                    @include flex(space-between, '', column, 10, 0);
+                    padding: 0 rem(30);
+
+                    p {
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 4;
+                        -webkit-box-orient: vertical;
+                        text-overflow: ellipsis;
+                    }
+                }
+
             }
 
             .first_post {
@@ -93,7 +111,7 @@
     .top_blog {
         flex-grow: 1 !important;
         position: relative;
-        @include setDimension(calc(100% - rem(408)),rem(404));
+        @include setDimension(calc(100% - rem(408)), rem(404));
         background-repeat: no-repeat;
         background-size: contain;
         color: var(--white);
@@ -112,6 +130,7 @@
         }
 
         flex-wrap: wrap;
+
         .blog_user_logo {
             z-index: 2;
             @include rounded_icons(50, 50, '')
@@ -127,13 +146,147 @@
             width: 100%;
             flex-wrap: 1;
             z-index: 2;
-            @include flex('', end, '', 0, 10);
+            @include flex(end, center, column, 10, 0);
             flex-wrap: wrap;
 
             p {
-                flex-grow: 1;
-                @include flex('', center, '', 2, 0);
+                overflow: hidden !important;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
             }
         }
     }
+}
+
+.modal-dialog {
+    max-width: rem(576);
+    min-width: rem(308);
+}
+
+.modal-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    background-color: var(--bg-high);
+    color: var(--textColor);
+
+    .modal_header {
+        @include setDimension(100%, rem(50));
+        @include flex('', center, '', 10, 10);
+
+        .post_status {
+            flex-grow: 1;
+            @include flex(end, center, '', 10, 0);
+
+            i-feather {
+                margin-top: rem(6);
+                color: var(--textColor-200);
+            }
+
+            .add {
+                color: var(--textColor-200)
+            }
+        }
+    }
+
+    .modal-body {
+        form {
+            @include flex('', '', '', 16, 0);
+            flex-wrap: wrap;
+            padding: 0 rem(16);
+            color: var(--textColor-200);
+
+            .form_items {
+                flex-grow: 1;
+                @include flex('', '', column, 0, 0);
+                margin-bottom: rem(20);
+
+                p {
+                    display: none !important;
+                }
+
+                &.error {
+                    p {
+                        display: block !important;
+                        height: rem(20);
+                        margin-top: rem(10);
+                        margin-left: rem(16);
+                        color: var(--red);
+                        line-height: rem(17);
+                        word-break: break-all;
+                    }
+
+                    input,
+                    textarea {
+                        border: rem(1) solid var(--red);
+                        color: var(--red);
+
+                        &::placeholder {
+                            color: var(--red);
+                        }
+                    }
+                }
+
+                textarea {
+                    min-height: rem(150) !important;
+                    padding: rem(16);
+                }
+
+                input,
+                select,
+                textarea {
+                    height: rem(54);
+                    max-height: rem(54);
+                    min-width: rem(241);
+                    @include customize_radius(rem(40), var(--bg-high), var(--textColor-200));
+                    padding-left: rem(16);
+                    flex-grow: 1;
+                    font-size: rem(14);
+                    box-shadow: none;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    border: rem(1) solid var(--border-color-light);
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    &::placeholder {
+                        color: var(--textColor-200);
+                    }
+                }
+
+            }
+
+            .media_container {
+                @include setDimension(100%, auto);
+                @include flex('', '', column, 0, 10);
+
+                img {
+                    width: rem(30);
+                }
+
+                .custom-file-upload {
+                    display: inline-block;
+                    cursor: pointer;
+                }
+
+                .custom-file-upload input[type="file"] {
+                    display: none;
+                }
+
+                .custom-file-upload img {
+                    @include setDimension(rem(30), auto);
+                }
+
+                .choose_img {
+                    @include setDimension(100%, rem(300));
+                }
+            }
+
+        }
+    }
+
 }
