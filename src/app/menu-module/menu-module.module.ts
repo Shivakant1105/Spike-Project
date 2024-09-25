@@ -17,6 +17,7 @@ import { PostComponent } from './blog/post/post.component';
 import { DetailComponent } from './blog/detail/detail.component';
 import { EmailComponent } from './email/email.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { SharedModule } from '../shared/shared.module';
 import { TaskboardComponent } from './taskboard/taskboard.component';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { TaskboardComponent } from './taskboard/taskboard.component';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    SharedModule,
   ],
 })
 export class MenuModuleModule {}

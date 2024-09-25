@@ -17,11 +17,13 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
     HttpClientModule,
     FeatherModule.pick(allIcons),
   ],
-  providers: [{
-    provide:HTTP_INTERCEPTORS,
-    useClass:JwtInterceptor,
-    multi:true,
-  }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
