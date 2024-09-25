@@ -6,11 +6,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ColDef } from 'ag-grid-community';
 import {
   city,
   country,
   departments,
   employee,
+  managerList,
   state,
 } from 'src/app/modal/user';
 import { CommonService } from 'src/app/service/common.service';
@@ -32,6 +34,9 @@ export class EmployeeComponent implements OnInit {
 
   formBuilder: any;
   userRole!: any;
+  base64String!: string;
+  data!: string;
+  image: any;
 
   allDepartments: departments[] = [];
   countryList: country[] = [];
@@ -40,6 +45,22 @@ export class EmployeeComponent implements OnInit {
   currentAddressCityList: city[] = [];
   permanentAddressCityList: city[] = [];
   departmentToggle: boolean = false;
+  managerList: managerList[] = [];
+  employeeList: any[] = [];
+
+  colDefs: ColDef[] = [
+    {
+      headerName: 'Id',
+      field: 'id',
+    },
+    {
+      headerName: 'Name',
+      field: 'name',
+    },
+    { headerName: 'email', field: 'email' },
+    { headerName: 'Mobile', field: 'primaryMobileNumber' },
+    { headerName: 'Designation', field: 'designation' },
+  ];
 
   ngOnInit(): void {
     this.commonService.getCountry().subscribe({
@@ -59,14 +80,36 @@ export class EmployeeComponent implements OnInit {
         this.userRole = user.data.role;
       },
     });
+
+    this.employeeService.getAllManagersList().subscribe({
+      next: (res: any) => {
+        this.managerList = res;
+      },
+    });
+
+    this.employeeService.getAllEmployee().subscribe({
+      next: (res: any) => {
+        this.employeeList = res.data;
+      },
+    });
   }
 
   employeeForm = this.fb.group({
+    profilePicture: [null],
     name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(
+          /[a-zA-Z0-9._-]{1,}@[a-zA-Z0-9.-]{2,}[.]{1}[a-zA-Z]{2,5}/
+        ),
+      ],
+    ],
     designation: ['', Validators.required],
     employeeCode: ['', Validators.required],
-    managerId: ['', Validators.required],
+    managerId: [''],
     role: ['', Validators.required],
     primaryMobileNumber: ['', [Validators.required, this.mobileValidator]],
     joiningDate: ['', Validators.required],
@@ -94,6 +137,38 @@ export class EmployeeComponent implements OnInit {
   });
 
   /**
+   * @description This is method to get input type file value and convert that in formData and assign to image property.
+   * @author Himmat
+   * @param {Event} event
+   */
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (file) {
+      this.convertFileToBase64(file);
+      this.image = new FormData();
+      this.image.append('file', file, file.name);
+    }
+  }
+
+  /**
+   * @description This is method to convert file into base64.
+   * @author Himmat
+   * @param {File} file
+   */
+  convertFileToBase64(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      const base64 = base64String.split(',')[1];
+      this.base64String = base64;
+      this.data = base64String;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  /**
    * @description This is custom validator for mobile number.
    * @author Himmat
    * @param {FormControl} control - The employee object.
@@ -103,6 +178,14 @@ export class EmployeeComponent implements OnInit {
     const regex = /^\d{10}$/; // Regex for 10-digit mobile number
     return regex.test(control.value) ? null : { invalidMobile: true };
   }
+
+  // customEmailValidator(): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const emailRegex = /[a-zA-Z0-9._-]{1,}@[a-zA-Z0-9.-].[a-zA-Z]{2,}$/;
+  //     const valid = emailRegex.test(control.value);
+  //     return valid ? null : { invalidEmail: { value: control.value } };
+  //   };
+  // }
 
   /**
    * @description This is method to check error in formcontrolls.
@@ -309,7 +392,7 @@ export class EmployeeComponent implements OnInit {
       email: formData.email,
       designation: formData.designation,
       employeeCode: formData.employeeCode,
-      managerId: formData.managerId,
+      managerId: formData.managerId ? formData.managerId : null,
       role: formData.role,
       primaryMobileNumber: formData.primaryMobileNumber.toString(),
       joiningDate: formData.joiningDate,
@@ -325,10 +408,16 @@ export class EmployeeComponent implements OnInit {
     } as employee;
 
     this.employeeService.createEmployee(data).subscribe({
-      next: (_res: any) => {},
+      next: (res: any) => {
+        this.employeeService
+          .uploadProfileImage(this.image, res.data.id)
+          .subscribe({
+            next: () => {},
+          });
+      },
     });
 
-    this.reset();
+    // this.reset();
   }
   /**
    * @description This method is responsible for reseting the form field value.
@@ -361,5 +450,15 @@ export class EmployeeComponent implements OnInit {
     this.currentAddressStateList = [];
     this.permanentAddressCityList = [];
     this.permanentAddressStateList = [];
+  }
+
+  /**
+   * @description This is a trackBy Method to track looping.
+   * @author Himmat
+   * @return {number}
+   */
+
+  trackById(value: any) {
+    return value.id;
   }
 }

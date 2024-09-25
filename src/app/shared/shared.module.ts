@@ -11,6 +11,8 @@ import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { MapComponent } from './charts/map/map.component';
 import { PaymentsComponent } from './charts/payments/payments.component';
 import { LoaderComponent } from './loader/loader.component';
+import { GridTableComponent } from './grid-table/grid-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 const declared = [
   HeaderComponent,
@@ -20,11 +22,18 @@ const declared = [
   MapComponent,
   PaymentsComponent,
   LoaderComponent,
+  GridTableComponent,
 ];
 
 @NgModule({
   declarations: [...declared],
-  imports: [CommonModule, RouterModule, FeatherModule.pick(allIcons)],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AgGridModule,
+
+    FeatherModule.pick(allIcons),
+  ],
   exports: [...declared],
 })
 export class SharedModule {}
