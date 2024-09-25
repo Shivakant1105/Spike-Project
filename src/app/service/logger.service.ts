@@ -12,7 +12,13 @@ export class LoggerService {
    * @param {string} message - The message to display in the success alert.
    */
   alertWithSuccess(message: string) {
-    Swal.fire('Password Updated', message, 'success');
+    Swal.fire({
+      icon: 'success',
+      title: 'Success...',
+      text: message,
+      background:
+        localStorage.getItem('theme') == 'dark-theme' ? '#111C2D' : '#FFFFFF',
+    });
   }
 
   /**
@@ -25,8 +31,8 @@ export class LoggerService {
       icon: 'error',
       title: 'Opsss...',
       text: errorMessage,
-      background:localStorage.getItem('theme')=='dark-theme'?'#111C2D':'#FFFFFF',
+      background:
+        localStorage.getItem('theme') == 'dark-theme' ? '#111C2D' : '#FFFFFF',
     });
   }
- 
 }

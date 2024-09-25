@@ -5,21 +5,50 @@ import { environment } from 'src/environments/environment';
 import { employee } from '../modal/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
+  baseUrl: string = environment.baseUrl;
 
-  baseUrl:string=environment.baseUrl;
+  /**
+   * @description This is method to create employee.
+   * @author Himmat
+   * @param {employee} data - The employee object.
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  createEmployee(data: employee): Observable<any> {
+    return this.http.post(`${this.baseUrl}/user/create`, data);
+  }
 
-    /**
- * @description This is method to create employee.
- * @author Himmat
- * @param {employee} data - The employee object.
- * @returns {Observable<any>} An observable that emits the server's response.
- */
-  createEmployee(data:employee):Observable<any>{
-    return this.http.post(`${this.baseUrl}/user/create`,data)
+  /**
+   * @description This is method to get all manager list.
+   * @author Himmat
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  getAllManagersList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/managers`);
+  }
+
+  /**
+   * @description This is method to post profile image of user.
+   * @author Himmat
+   * @param {FormData} data
+   * @param {number} id
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  uploadProfileImage(data: FormData, id: number) {
+    let url = `${this.baseUrl}/user/add/picture/${id}`;
+    return this.http.post(url, data);
+  }
+
+  /**
+   * @description This is method to get all employee.
+   * @author Himmat
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  getAllEmployee() {
+    return this.http.get(`${this.baseUrl}/user/employees`);
   }
 }

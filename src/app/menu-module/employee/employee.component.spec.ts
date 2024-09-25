@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { city, country, state } from 'src/app/modal/user';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from 'src/app/service/auth.service';
+import { HttpResponse } from '@angular/common/http';
 
 describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
@@ -23,10 +24,14 @@ describe('EmployeeComponent', () => {
       'getCity',
       'getUserById',
     ]);
+
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['getTokenData']);
     const employeeServiceSpy = jasmine.createSpyObj('EmployeeService', [
       'createEmployee',
+      'getAllManagersList',
+      'getAllEmployee',
+      'uploadProfileImage',
     ]);
-    authServiceSpy = jasmine.createSpyObj('AuthService', ['getTokenData']);
 
     await TestBed.configureTestingModule({
       declarations: [EmployeeComponent],
@@ -62,16 +67,48 @@ describe('EmployeeComponent', () => {
     const mockUser = { data: { role: 'admin' } };
     const mockUserId = 1;
 
+    const mockManagerList = [
+      { id: 1, name: 'Dept1' },
+      { id: 2, name: 'Dept2' },
+    ];
+
+    const mockEmployeeList = {
+      data: [
+        {
+          id: 47,
+          name: 'kfdifkdidf',
+          email: 'vivek@gmail.com',
+          designation: 'dev.pdfg',
+          primaryMobile: '2353254453',
+          salary: 2353,
+          profilePicture: 'fgsdfg',
+        },
+        {
+          id: 47,
+          name: 'ajay',
+          email: 'vivek@gmail.com',
+          designation: 'devdf.pdfg',
+          primaryMobile: '2353204453',
+          salary: 23535,
+          profilePicture: 'fdgs',
+        },
+      ],
+    };
+
     authServiceSpy.getTokenData.and.returnValue({ id: mockUserId });
+    commonServiceMock.getUserById.and.returnValue(of(mockUser));
     commonServiceMock.getCountry.and.returnValue(of(mockCountries));
     commonServiceMock.getAllDepartments.and.returnValue(of(mockDepartments));
-    commonServiceMock.getUserById.and.returnValue(of(mockUser));
+    employeeService.getAllManagersList.and.returnValue(of(mockManagerList));
+    employeeService.getAllEmployee.and.returnValue(of(mockEmployeeList));
 
     component.ngOnInit();
 
     expect(component.countryList).toEqual(mockCountries);
     expect(component.allDepartments).toEqual(mockDepartments.data);
     expect(component.userRole).toBe('admin');
+    expect(component.managerList).toEqual(mockManagerList);
+    expect(component.employeeList).toEqual(mockEmployeeList.data);
   });
 
   it('should validate mobile number', () => {
@@ -261,17 +298,17 @@ describe('EmployeeComponent', () => {
   });
 
   it('should not load cities if the state is empty for permanent address', () => {
-    component.permanentAddress.patchValue({ state: '' }); // No state set
+    component.permanentAddress.patchValue({ state: '' });
 
     component.stateSelected('PERMANENT');
-    expect(component.permanentAddressCityList).toEqual([]); // cities should not be loaded
+    expect(component.permanentAddressCityList).toEqual([]);
   });
 
   it('should not load cities if the state is empty for current address', () => {
-    component.currentAddress.patchValue({ state: '' }); // No state set
+    component.currentAddress.patchValue({ state: '' });
 
     component.stateSelected('CURRENT');
-    expect(component.currentAddressCityList).toEqual([]); // cities should not be loaded
+    expect(component.currentAddressCityList).toEqual([]);
   });
 
   it('should fill the permanent address with values from the current address', () => {
@@ -308,7 +345,6 @@ describe('EmployeeComponent', () => {
   });
 
   it('should submit employee form and call createEmployee service', () => {
-    // Initialize the form
     component.employeeForm = component.fb.group({
       name: [''],
       email: [''],
@@ -341,7 +377,6 @@ describe('EmployeeComponent', () => {
       }),
     });
 
-    // Set form values
     component.employeeForm.setValue({
       name: 'John Doe',
       email: 'john@example.com',
@@ -374,19 +409,19 @@ describe('EmployeeComponent', () => {
       },
     });
 
-    // component.department={clear:()=>{}}
-
-    // Add a department to the FormArray for testing
     component.department.push(component.fb.control('Engineering'));
-    spyOn(component, 'reset'); // Spy on the reset method
+    spyOn(component, 'reset');
 
-    employeeService.createEmployee.and.returnValue(of({ success: true }));
+    const mockUploadResponse = new HttpResponse({
+      status: 200,
+      body: { data: { id: 1 } },
+    });
 
-    // employeeService.createEmployee.and.returnValue(of({ success: true }));
+    employeeService.createEmployee.and.returnValue(of({ data: { id: 1 } }));
+    employeeService.uploadProfileImage.and.returnValue(of(mockUploadResponse));
     component.employeeFormSubmit();
-
     expect(employeeService.createEmployee).toHaveBeenCalled();
-    expect(component.reset).toHaveBeenCalled();
+    expect(employeeService.uploadProfileImage).toHaveBeenCalled();
   });
 
   it('should reset the form', () => {
@@ -395,5 +430,34 @@ describe('EmployeeComponent', () => {
 
     expect(component.employeeForm.value.role).toBe('');
     expect(component.department.length).toBe(0);
+  });
+
+  it('should convert file to base64 and append to FormData if file is present', () => {
+    // Arrange
+    const mockFile = new Blob(['file content'], { type: 'image/png' });
+    const event = {
+      target: {
+        files: [new File([mockFile], 'test.png')],
+      },
+    } as unknown as Event;
+
+    spyOn(component, 'convertFileToBase64').and.callThrough();
+
+    // Act
+    component.onFileChange(event);
+
+    // Assert
+    expect(component.image.has('file')).toBeTrue();
+    expect(component.image.get('file').name).toBe('test.png');
+    expect(component.convertFileToBase64).toHaveBeenCalledWith(
+      jasmine.any(File)
+    );
+  });
+
+  it('should return the correct contact id', () => {
+    const mockData: any = { id: 1, name: 'John Doe' };
+    const result = component.trackById(mockData);
+
+    expect(result).toBe(1);
   });
 });
