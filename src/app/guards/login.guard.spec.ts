@@ -1,22 +1,53 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 import { LoginGuard } from './login.guard';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AuthService } from '../service/auth.service';
+
+class MockAuthService {
+  getToken() {
+    return null;
+  }
+}
+
+class MockRouter {
+  navigateByUrl(url: string) {
+    return url;
+  }
+}
+
 describe('LoginGuard', () => {
   let guard: LoginGuard;
-  let httpMock: HttpTestingController;
+  let authService: AuthService;
+  let router: Router;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({imports:[HttpClientTestingModule,RouterTestingModule]});
-    guard = TestBed.inject(LoginGuard);
-    httpMock = TestBed.inject(HttpTestingController);
+    TestBed.configureTestingModule({
+      providers: [
+        LoginGuard,
+        { provide: AuthService, useClass: MockAuthService },
+        { provide: Router, useClass: MockRouter },
+      ],
+    });
 
+    guard = TestBed.inject(LoginGuard);
+    authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
   });
- 
-  afterEach(() => {
-    httpMock.verify(); 
+
+  it('should allow access if no token is present', () => {
+    spyOn(authService, 'getToken').and.returnValue(null);
+    const result = guard.canActivate(
+      new ActivatedRouteSnapshot(),
+      {} as RouterStateSnapshot
+    );
+    expect(result).toBe(true);
   });
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
+
+  it('should redirect to /menu if token is present', () => {
+    spyOn(authService, 'getToken').and.returnValue('mockToken');
+    const navigateSpy = spyOn(router, 'navigateByUrl');
+    guard.canActivate(new ActivatedRouteSnapshot(), {} as RouterStateSnapshot);
+    expect(navigateSpy).toHaveBeenCalledWith('/menu');
   });
 });

@@ -43,14 +43,14 @@ export class JwtInterceptor implements HttpInterceptor {
 
         switch (error.status) {
           case 401:
-            errorMessage = error.error.data;
+            errorMessage = error.error.error;
             this.authService.clearStorageByKey('tkn');
             if (!request.url.includes('/login')) {
               this.router.navigate(['/auth/login']);
             }
             break;
           case 403:
-            errorMessage = error.error.data;
+            errorMessage = error.error.error;
             this.authService.clearStorageByKey('tkn');
             this.router.navigate(['/auth/login']);
 
@@ -60,7 +60,7 @@ export class JwtInterceptor implements HttpInterceptor {
             break;
 
           default:
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.error}`;
         }
 
         this.loggerService.errorAlert(errorMessage);
