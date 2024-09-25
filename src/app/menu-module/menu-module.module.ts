@@ -17,6 +17,7 @@ import { PostComponent } from './blog/post/post.component';
 import { DetailComponent } from './blog/detail/detail.component';
 import { EmailComponent } from './email/email.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { TaskboardComponent } from './taskboard/taskboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TicketsComponent } from './tickets/tickets.component';
     PostComponent,
     DetailComponent,
     EmailComponent,
-    TicketsComponent
+    TicketsComponent,
+    TaskboardComponent,
   ],
   imports: [
     CommonModule,
