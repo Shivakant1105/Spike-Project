@@ -401,3 +401,163 @@
     @extend %compose-section-common;
   }
 }
+
+// Eamil notepad modal
+#composemodal {
+  .modal-content {
+    background-color: var(--bg-high);
+    @include setDimension(rem(600), auto);
+    .modal-body {
+      h4 {
+        color: var(--text-color-600);
+      }
+
+      .wrapper {
+        max-height: rem(500);
+        overflow-y: auto;
+        padding: 0 rem(18);
+
+        .input_container {
+          @include flex(center, center, "", 25, 0);
+          & input {
+            background-color: var(--bg-high);
+            border: rem(1) solid var(--input-border-color);
+            box-shadow: none;
+            border-radius: rem(18);
+            min-height: rem(54);
+            color: var(--text-color-600);
+            cursor: pointer;
+            padding-left: rem(18);
+            &::placeholder {
+              color: var(--text-color-600);
+            }
+            &:focus {
+              border: rem(2) solid var(--course-page-header-blue);
+            }
+          }
+        }
+
+        .notpad {
+          @include flex("", "", "", 5, 6);
+          @include setDimension(100%, auto);
+          background-color: #f5f5f5;
+          border: rem(1) solid var(--input-border-color);
+          flex-wrap: wrap;
+          border-radius: rem(6);
+
+          .items {
+            @include flex(center, center, "", 0, 0);
+            @include setDimension(rem(30), rem(30));
+            background-color: var(--white);
+            border: rem(1) solid var(--input-border-color);
+            cursor: pointer;
+            border-radius: rem(5);
+            flex-grow: 1;
+            max-width: rem(40);
+            i-feather {
+              color: black;
+              cursor: pointer;
+            }
+          }
+          .items img {
+            cursor: pointer;
+            width: rem(16);
+            object-fit: cover;
+          }
+          .items.color_pickers {
+            .color-picker {
+              position: relative;
+              display: inline-block;
+            }
+
+            input[type="color"] {
+              display: none;
+            }
+
+            .icon {
+              cursor: pointer;
+              font-size: rem(20);
+            }
+
+            .color-picker:focus-within input[type="color"] {
+              display: block;
+            }
+          }
+
+          .items.file_picker_wrapper {
+            width: 60px;
+            height: 30px;
+            overflow: hidden;
+
+            .file_picker {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              position: relative;
+            }
+
+            .file_picker input[type="file"] {
+              opacity: 0;
+              position: absolute;
+              cursor: pointer;
+            }
+          }
+
+          .format {
+            @include setDimension(rem(90), rem(28));
+            border-radius: rem(8);
+            border: rem(1) solid var(--input-border-color);
+            font-size: rem(12);
+            font-weight: 500;
+            padding: 0 rem(4);
+            cursor: pointer;
+            &:focus {
+              outline: none;
+            }
+            & option {
+              font-weight: 500;
+              font-size: rem(14);
+            }
+          }
+
+          .format_style {
+            @extend .format;
+          }
+          .clear_classes_style {
+            @extend .format;
+            width: rem(95);
+          }
+        }
+        #notpad_textarea {
+          background-color: var(--bg-high);
+          box-shadow: none;
+          border: rem(1) solid var(--input-border-color);
+          padding: rem(20);
+          min-height: rem(145);
+          &:focus {
+            border: rem(2) solid var(--course-page-header-blue);
+          }
+        }
+      }
+    }
+    // Notpad Footer
+    .notpade_footer {
+      @include flex(flex-start, center, "", 0, 0);
+      min-height: rem(80);
+      padding-left: rem(30);
+      border-top: rem(1) solid var(--input-border-color);
+
+      .send_btn {
+        @include setDimension(rem(63), rem(36));
+        background-color: var(--course-page-header-blue);
+        color: var(--white);
+        border: 0;
+      }
+      .save_btn {
+        @extend .send_btn;
+        @include setDimension(rem(124), rem(36));
+        background-color: var(--course-page-header-grey);
+      }
+    }
+  }
+}
