@@ -1,5 +1,5 @@
 <main>
-  <div class="contact_container">
+  <div class="contact_container" (scroll)="onScroll($event)">
     <div class="dashboard_section custome_radius">
       <span class="left f20">Contacts</span>
       <div class="right">
@@ -31,7 +31,7 @@
         class="card custome_radius box_shadow"
       >
         <div class="card-body card_items">
-          <img [src]="contact.profilePicture" alt="user-img" />
+          <img [src]="contact.profilePicture" alt="{{ contact.name }}" />
 
           <p class="f18">{{ contact.name }}</p>
           <p class="f14 mb-3">{{ contact.designation }}</p>
@@ -63,6 +63,11 @@
         </div>
       </div>
     </div>
+    <!-- <div *ngIf="isLoading" class="loading-indicator text-center">
+      Loading more contacts...
+    </div> -->
+    <!-- <div *ngIf="loading">Loading...</div> -->
+    <!-- <button (click)="loadMore()" [disabled]="loading">Load More</button> -->
   </div>
 
   <!-- Contact page modal -->

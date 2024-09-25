@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactComponent } from './contact.component';
 import { CommonService } from 'src/app/service/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -11,25 +11,30 @@ describe('ContactComponent', () => {
   let commonService: jasmine.SpyObj<CommonService>;
   let sanitizer: jasmine.SpyObj<DomSanitizer>;
   beforeEach(async () => {
-    const commonServiceSpy = jasmine.createSpyObj('CommonService', ['getAllContacts']);
-    const sanitizerSpy = jasmine.createSpyObj('DomSanitizer', ['bypassSecurityTrustResourceUrl']);
+    const commonServiceSpy = jasmine.createSpyObj('CommonService', [
+      'getAllContacts',
+    ]);
+    const sanitizerSpy = jasmine.createSpyObj('DomSanitizer', [
+      'bypassSecurityTrustResourceUrl',
+    ]);
 
     await TestBed.configureTestingModule({
       declarations: [ContactComponent],
       providers: [
         { provide: CommonService, useValue: commonServiceSpy },
-        { provide: DomSanitizer, useValue: sanitizerSpy }
-      ]
-    })
-      .compileComponents();
+        { provide: DomSanitizer, useValue: sanitizerSpy },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
-    commonService = TestBed.inject(CommonService) as jasmine.SpyObj<CommonService>;
+    commonService = TestBed.inject(
+      CommonService
+    ) as jasmine.SpyObj<CommonService>;
     sanitizer = TestBed.inject(DomSanitizer) as jasmine.SpyObj<DomSanitizer>;
+    commonService.getAllContacts.and.returnValue(of({ data: [] }));
   });
 
   it('should create', () => {
@@ -43,7 +48,7 @@ describe('ContactComponent', () => {
   it('should fetch all contacts and map them correctly', () => {
     const mockContacts = [
       { id: 1, name: 'John Doe', profilePicture: 'mockBase64String1' },
-      { id: 2, name: 'Jane Doe', profilePicture: 'mockBase64String2' }
+      { id: 2, name: 'Jane Doe', profilePicture: 'mockBase64String2' },
     ];
     commonService.getAllContacts.and.returnValue(of({ data: mockContacts }));
     sanitizer.bypassSecurityTrustResourceUrl.and.callFake((url: string) => url);
@@ -53,13 +58,47 @@ describe('ContactComponent', () => {
   it('should fetch all contacts and map them correctly', () => {
     const mockContacts = [
       { id: 1, name: 'John Doe' },
-      { id: 2, name: 'Jane Doe' }
+      { id: 2, name: 'Jane Doe' },
     ];
     commonService.getAllContacts.and.returnValue(of({ data: mockContacts }));
     sanitizer.bypassSecurityTrustResourceUrl.and.callFake((url: string) => url);
     component.getAllContacts();
     expect(commonService.getAllContacts).toHaveBeenCalled();
   });
+  it('should handle error during contact fetch', () => {
+    commonService.getAllContacts.and.returnValue(
+      throwError('Error fetching contacts')
+    );
+
+    component.getAllContacts();
+
+    expect(component.contacts.length).toBe(0);
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should not fetch contacts if already loading', () => {
+    component.isLoading = true;
+
+    component.getAllContacts();
+
+    expect(commonService.getAllContacts).not.toHaveBeenCalled();
+  });
+  it('should call getAllContacts when scrolled near the bottom', () => {
+    const event = {
+      target: {
+        scrollTop: 600,
+        clientHeight: 400,
+        scrollHeight: 1000,
+      },
+    } as unknown as Event;
+
+    spyOn(component, 'getAllContacts');
+
+    component.onScroll(event);
+
+    expect(component.getAllContacts).toHaveBeenCalled();
+  });
+
   it('should return the correct contact id', () => {
     const mockContact: any = { id: 1, name: 'John Doe' };
     const result = component.trackByContactId(mockContact);
