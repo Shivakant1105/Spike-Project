@@ -18,6 +18,7 @@ import {
 import { CommonService } from 'src/app/service/common.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { LoggerService } from 'src/app/service/logger.service';
 
 @Component({
   selector: 'app-employee',
@@ -29,7 +30,8 @@ export class EmployeeComponent implements OnInit {
     public fb: FormBuilder,
     private commonService: CommonService,
     private employeeService: EmployeeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loggerService: LoggerService
   ) {}
 
   formBuilder: any;
@@ -409,6 +411,7 @@ export class EmployeeComponent implements OnInit {
 
     this.employeeService.createEmployee(data).subscribe({
       next: (res: any) => {
+        this.loggerService.alertWithSuccess(res.message);
         this.employeeService
           .uploadProfileImage(this.image, res.data.id)
           .subscribe({
