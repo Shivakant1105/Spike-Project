@@ -340,16 +340,12 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <img
-          class="admin_image"
-         [src]="profilePicture"
-          alt="user image"
-        />
+        <img class="admin_image" [src]="profilePicture" alt="user image" />
 
         <div class="d-none d-xxl-block">
           <div class="d-flex flex-column mike_admin">
-            <h5 class="mike_nielsen text-nowrap">{{userName}}</h5>
-            <span class="admin_name">{{userData.role}}</span>
+            <h5 class="mike_nielsen text-nowrap">{{ userName }}</h5>
+            <span class="admin_name">{{ userData?.role }}</span>
           </div>
         </div>
       </div>
@@ -364,11 +360,11 @@
             <img [src]="profilePicture" alt="" />
 
             <div class="user_details">
-              <span class="f16">{{userData.name}}</span>
-              <span class="f14">{{userData.role}}</span>
+              <span class="f16">{{ userData?.name }}</span>
+              <span class="f14">{{ userData?.role }}</span>
               <div class="gap-1">
                 <i-feather class="mail" name="mail"></i-feather>
-                <span class="f14">{{userData.email}}</span>
+                <span class="f14">{{ userData?.email }}</span>
               </div>
             </div>
           </div>

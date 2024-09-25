@@ -16,6 +16,7 @@ import { NotesComponent } from './notes/notes.component';
 import { PostComponent } from './blog/post/post.component';
 import { DetailComponent } from './blog/detail/detail.component';
 import { EmailComponent } from './email/email.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EmailComponent } from './email/email.component';
     NotesComponent,
     PostComponent,
     DetailComponent,
-    EmailComponent
+    EmailComponent,
+    TicketsComponent
   ],
   imports: [
     CommonModule,
