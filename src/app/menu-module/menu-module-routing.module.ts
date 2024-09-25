@@ -11,6 +11,7 @@ import { PostComponent } from './blog/post/post.component';
 import { EmailComponent } from './email/email.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { TicketsComponent } from './tickets/tickets.component';
+import { TaskboardComponent } from './taskboard/taskboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'course', pathMatch: 'full' },
@@ -24,11 +25,15 @@ const routes: Routes = [
   { path: 'post', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'mail', component: EmailComponent, canActivate: [AuthGuard] },
   { path: 'tickets', component: TicketsComponent, canActivate: [AuthGuard] },
-
+  {
+    path: 'taskboard',
+    component: TaskboardComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MenuModuleRoutingModule { }
+export class MenuModuleRoutingModule {}
