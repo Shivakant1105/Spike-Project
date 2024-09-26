@@ -1,0 +1,277 @@
+<div class="tickets_wrapper">
+    <div class="tickets_header custome_radius">
+        <span class="left f20">Tickets</span>
+        <div class="right">
+            <span class="f14 dashboard">Dashboard</span>
+            <span class="circle f14"></span>
+            <span class="contact">Tickets</span>
+        </div>
+    </div>
+
+    <div class="tickets_card custome_radius">
+        <div class="blue_card">
+            <span class="f24 fw-bold">10</span>
+            <span class="f16 fw-medium">Total Tickets</span>
+        </div>
+
+        <div class="yellow_card">
+            <span class="f24 fw-bold">3</span>
+            <span class="f16 fw-medium">In Progress</span>
+        </div>
+
+        <div class="green_card">
+            <span class="f24 fw-bold">3</span>
+            <span class="f16 fw-medium">Open</span>
+        </div>
+
+        <div class="salmon_card">
+            <span class="f24 fw-bold">3</span>
+            <span class="f16 fw-medium">Closed</span>
+        </div>
+    </div>
+
+    <div class="tickets_search custome_radius">
+        <div class="left_items custome_radius flex-nowrap">
+            <input class="f14" type="text" placeholder="Search Tickets" />
+            <i-feather name="search" class="d-flex"></i-feather>
+        </div>
+
+        <button type="button" class="btn right_items custome_radius f14" data-bs-toggle="modal"
+            data-bs-target="#addTicketModal">
+            Add Tickets
+        </button>
+    </div>
+
+    <div class="tickets_details custome_radius">
+        <div class="table_wrapper flex-grow-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th scope="col">Tittle</th>
+                        <th scope="col">Assigned To</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <p class="f16 fw-medium">Sed ut perspiciatis unde omnis iste</p>
+                            <p class="f14">
+                                ab illo inventore veritatis et quasi architec...
+                            </p>
+                        </td>
+                        <td>
+                            <div class="user_profile">
+                                <img src="../../../assets/email_user-img.jpg" alt="" />
+                                <p>Alice</p>
+                            </div>
+                        </td>
+                        <td><span class="inProcess">In Process</span></td>
+                        <td class="f14">2023-05-01</td>
+                        <td>
+                            <div class="edit_delet_wrapper ">
+                                <i-feather class="f20" name="edit" data-bs-toggle="modal"
+                                    data-bs-target="#editTicketModal"></i-feather>
+                                <i-feather class="f20" name="trash" data-bs-toggle="modal"
+                                    data-bs-target="#deletTicketModal"></i-feather>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>
+                            <p class="f16 fw-medium">Xtreme theme dropdown issue</p>
+                            <p class="f14">ab illo inventore veritatis et quasi archite...</p>
+                        </td>
+                        <td>
+                            <div class="user_profile">
+                                <img src="../../../assets/email_user-img.jpg" alt="" />
+                                <p>Jonathan</p>
+                            </div>
+                        </td>
+                        <td><span class="open">Open</span></td>
+                        <td class="f14">2023-05-03</td>
+                        <td>
+                            <div class="edit_delet_wrapper ">
+                                <i-feather class="f20" name="edit" data-bs-toggle="modal"
+                                    data-bs-target="#editTicketModal"></i-feather>
+                                <i-feather class="f20" name="trash" data-bs-toggle="modal"
+                                    data-bs-target="#deletTicketModal"></i-feather>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>
+                            <p class="f16 fw-medium">Header issue in material admin</p>
+                            <p class="f14">ab illo inventore veritatis et quasi archi...</p>
+                        </td>
+                        <td>
+                            <div class="user_profile">
+                                <img src="../../../assets/email_user-img.jpg" alt="" />
+                                <p>Smith</p>
+                            </div>
+                        </td>
+                        <td><span class="closed">Closed</span></td>
+                        <td class="f14">2023-05-02</td>
+                        <td>
+                            <div class="edit_delet_wrapper ">
+                                <i-feather class="f20" name="edit" data-bs-toggle="modal"
+                                    data-bs-target="#editTicketModal"></i-feather>
+                                <i-feather class="f20" name="trash"></i-feather>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>
+                            <p class="f16 fw-medium">Sidebar issue in Nice admin</p>
+                            <p class="f14">
+                                ab illo inventore veritatis et quasi architecto...
+                            </p>
+                        </td>
+                        <td>
+                            <div class="user_profile">
+                                <img src="../../../assets/email_user-img.jpg" alt="" />
+                                <p>Vincent</p>
+                            </div>
+                        </td>
+                        <td><span class="inProcess">In Process</span></td>
+                        <td class="f14">2023-05-05</td>
+                        <td>
+                            <div class="edit_delet_wrapper ">
+                                <i-feather class="f20" name="edit" data-bs-toggle="modal"
+                                    data-bs-target="#editTicketModal"></i-feather>
+                                <i-feather class="f20" name="trash"></i-feather>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>
+                            <p class="f16 fw-medium">Elegant Theme Side Menu show OnClick</p>
+                            <p class="f14">ab illo inventore veritatis et quasi archit...</p>
+                        </td>
+                        <td>
+                            <div class="user_profile">
+                                <img src="../../../assets/email_user-img.jpg" alt="" />
+                                <p>Chris</p>
+                            </div>
+                        </td>
+                        <td><span class="open">Open</span></td>
+                        <td class="f14">2023-06-02</td>
+                        <td>
+                            <div class="edit_delet_wrapper ">
+                                <i-feather class="f20" name="edit"></i-feather>
+                                <i-feather class="f20" name="trash" data-bs-toggle="modal"
+                                    data-bs-target="#deletTicketModal"></i-feather>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table_footer">
+            <div class="d-flex gap-2 align-items-center position-relative">
+                <span class="text-nowrap">Items per page:</span>
+                <div class="table_select">
+                    <span class="f12">5</span>
+                    <i-feather class="f24" name="chevron-down"></i-feather>
+                </div>
+
+                <div class="drop_down box_shadow custome_radius">
+                    <span class="dropdown_items">5</span>
+                    <span class="dropdown_items">10</span>
+                    <span class="dropdown_items">20</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <span class="f12 text-nowrap">1 - 5 of 10</span>
+                <i-feather class="f24" name="chevrons-left"></i-feather>
+                <i-feather class="f24" name="chevron-left"></i-feather>
+                <i-feather class="f24" name="chevron-right"></i-feather>
+                <i-feather class="f24" name="chevrons-right"></i-feather>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Tciket Modal -->
+    <div class="modal fade addTicketModal" id="addTicketModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog addticket_modal">
+            <div class="modal-content modal_content custome_radius box_shadow">
+
+                <div class="modal-body">
+                    <h6 class="f18">Add</h6>
+                    <input type="text" class="form-control" placeholder="Id">
+                    <input type="text" class="form-control" placeholder="Ticket Tittle">
+                    <input type="text" class="form-control" placeholder="Ticket subtext">
+                    <input type="text" class="form-control" placeholder="Assigned to">
+
+                    <select id="status" class="form-control">
+                        <option value="in progress">In Progress</option>
+                        <option value="open">Open</option>
+                        <option value="closed">Closed</option>
+                    </select>
+
+                    <input type="text" class="form-control" placeholder="01 - 05 - 2023" />
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn add">Add</button>
+                    <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Ticket -->
+    <div class="modal fade" id="editTicketModal">
+        <div class="modal-dialog edit_ticket_modal">
+            <div class="modal-content modal_content edit_ticket_content custome_radius box_shadow">
+
+                <div class="modal-body edit_ticket_body">
+                    <h6 class="f18">Add</h6>
+                    <input type="text" class="form-control" placeholder="1">
+                    <input type="text" class="form-control" placeholder="Sed ut perspiciatis unde omnis iste">
+                    <input type="text" class="form-control"
+                        placeholder="ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos">
+                    <input type="text" class="form-control" placeholder="Alice">
+                    <input type="text" class="form-control" placeholder="Id">
+                    <input type="text" class="form-control" placeholder="01 - 05 - 2023" />
+
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn add">Add</button>
+                    <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delet Ticket -->
+    <div class="modal fade" id="deletTicketModal">
+        <div class="modal-dialog delete_ticket_dialog">
+            <div class="modal-content delete_ticket_modal custome_radius box_shadow">
+
+                <div class="modal-body">
+                    <h4 class="f18 fw-medium">Delete</h4>
+                    <p class="f14 mt-2">Sure to delete <strong>Sidebar issue in Nice admin?</strong></p>
+                </div>
+                <div class="modal-footer border-0 delete_ticket_footer">
+                    <button type="button" class="btn delete">Delete </button>
+                    <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

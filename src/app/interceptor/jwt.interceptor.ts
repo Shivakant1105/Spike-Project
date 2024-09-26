@@ -13,13 +13,15 @@ import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 
 import { LoggerService } from '../service/logger.service';
+import { CommonService } from '../service/common.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private commonService: CommonService
   ) {}
 
   intercept(
@@ -32,7 +34,6 @@ export class JwtInterceptor implements HttpInterceptor {
     if (token) {
       authReq = request.clone({
         headers: new HttpHeaders()
-          .set('Content-Type', 'application/json')
           .set('Authorization', `Bearer ${token}`),
       });
     }
@@ -43,14 +44,14 @@ export class JwtInterceptor implements HttpInterceptor {
 
         switch (error.status) {
           case 401:
-            errorMessage = error.error.data;
+            errorMessage = error.error.error;
             this.authService.clearStorageByKey('tkn');
             if (!request.url.includes('/login')) {
               this.router.navigate(['/auth/login']);
             }
             break;
           case 403:
-            errorMessage = error.error.data;
+            errorMessage = error.error.error;
             this.authService.clearStorageByKey('tkn');
             this.router.navigate(['/auth/login']);
 
@@ -60,9 +61,9 @@ export class JwtInterceptor implements HttpInterceptor {
             break;
 
           default:
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.error}`;
         }
-
+        this.commonService.hideLoader();
         this.loggerService.errorAlert(errorMessage);
         return throwError(() => new Error(errorMessage));
       })

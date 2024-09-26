@@ -23,7 +23,7 @@
 
   <div class="side_overview">
     <!-- For Home menu -->
-    <div class="home_menu_container" *ngIf="userData.role == 'ADMIN'">
+    <div class="home_menu_container" *ngIf="userData?.role == 'ADMIN'">
       <span class="f12">HOME</span>
 
       <div class="home_menu_items dash1 blue" routerLink="home/dashboard">
@@ -584,7 +584,7 @@
       <div class="login_user">
         <span class="f18"
           ><strong>{{ userName }}</strong></span
-        ><span class="f14">{{ userData.role }}</span>
+        ><span class="f14">{{ userData?.role }}</span>
       </div>
 
       <i-feather

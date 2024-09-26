@@ -6,6 +6,10 @@ export interface login {
 export interface departments {
   id: number;
   name: string;
+  createdAt?: string | null;
+  createdBy?: string | null;
+  updatedAt?: string | null;
+  updatedBy?: string | null;
 }
 
 export interface country {
@@ -56,4 +60,8 @@ export interface user {
   primaryMobileNumber: string;
   secondaryMobileNumber: string;
   addresses: address[];
+}
+export interface managerList {
+  id: number;
+  name: string;
 }

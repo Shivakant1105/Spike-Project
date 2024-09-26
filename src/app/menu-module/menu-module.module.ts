@@ -16,6 +16,10 @@ import { NotesComponent } from './notes/notes.component';
 import { PostComponent } from './blog/post/post.component';
 import { DetailComponent } from './blog/detail/detail.component';
 import { EmailComponent } from './email/email.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { SharedModule } from '../shared/shared.module';
+import { TaskboardComponent } from './taskboard/taskboard.component';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { EmailComponent } from './email/email.component';
     NotesComponent,
     PostComponent,
     DetailComponent,
-    EmailComponent
+    EmailComponent,
+    TicketsComponent,
+    TaskboardComponent,
+    TodoComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +46,7 @@ import { EmailComponent } from './email/email.component';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    SharedModule,
   ],
 })
 export class MenuModuleModule {}

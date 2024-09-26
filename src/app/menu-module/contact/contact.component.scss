@@ -7,7 +7,12 @@
 
 main {
   .contact_container {
-    @include setDimension(100%, 100vh);
+      overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 0;
+       
+          }
+    @include setDimension(100%, 100%);
     @include flex("", "", column, 30, 0);
 
     .dashboard_section {

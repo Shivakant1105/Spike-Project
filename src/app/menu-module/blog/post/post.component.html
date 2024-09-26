@@ -1,178 +1,210 @@
-<header class="sub_header custome_radius box_shadow">
+<div class="post-container" (scroll)="onScroll($event)">
+  <header class="sub_header custome_radius box_shadow">
     <h4 class="f20">Post</h4>
+    <button
+      class="btn btn-primary custome_radius f14"
+      data-bs-toggle="modal"
+      data-bs-target="#addBlog"
+      (click)="openAddBlogForm()"
+    >
+      Upload Blog
+    </button>
     <span class="f14">Dashboard</span>
     <ul>
-        <li class="f14">Post</li>
+      <li class="f14">Post</li>
     </ul>
-</header>
+  </header>
 
-<div class="blog_container">
-    <div class="top_blog custome_radius box_shadow">
-        <img class="bg_image img-fluid custome_radius"
-            src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img1.jpg" alt="">
+  <div id="scrollable" class="blog_container">
+    <div
+      *ngFor="let blog of blogs; trackBy: trackByBlogId"
+      class="blog custome_radius box_shadow"
+    >
+      <div class="image">
+        <!-- <img
+        class="post_img"
+        src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg"
+        alt=""
+      /> -->
+        <img class="post_img" [src]="blog.mediaFile" alt="" />
+        <button class="btn custome_radius">{{ blog.title }}</button>
+        <button class="btn custome_radius">2 mins read</button>
+      </div>
 
-        <img class="blog_user_logo" src="./assets/user.jpg" alt="">
-        <button class="btn btn-primary f12 custome_radius">gadget</button>
-        <div class="blog_content">
-            <p class="f24 w-100">Early Black Friday Amazon deals: cheap TVs, headphones, laptops</p>
-            <i-feather class="f24 me-1" name="eye"></i-feather>
-            <span class="me-4 f14">19,200</span>
-
-            <p><i-feather class="f24" name="message-circle"></i-feather>
-                <span class="f14">20</span>
+      <div class="post_content">
+        <!-- <img
+        class="user_img"
+        src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg"
+        alt=""
+      /> -->
+        <img class="user_img" [src]="blog.profilePic" alt="" />
+        <p class="user_name h6">{{ blog.userName }}</p>
+        <div class="post_body first_post f14">
+          <div class="wrapper">
+            <p>
+              {{ blog.content }}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reiciendis molestiae commodi eveniet
             </p>
-            <span class="f14">Mon,Dec 2023</span>
-        </div>
-    </div>
 
-    <div class="blog custome_radius box_shadow">
-
-        <div class="image">
-            <img class="post_img" src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg"
-                alt="">
-            <button class="btn custome_radius">Health</button>
-            <button class="btn custome_radius">2 mins read</button>
-        </div>
-
-        <div class="post_content">
-                <img class="user_img" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
-                <p class="user_name h6">M.S Dhoni</p>
-            <div class="post_body first_post f14">
-                <p class="mt-5 f18">Presented by Max Rushden with Barry Glendenning, Philippe Auclair</p>
-                <div class="d-flex align-items-center">
-                    <i-feather class="f24 me-1" name="thumbs-up"></i-feather>
-                    <span class="me-4">9,122</span>
-                    <i-feather class="f24 me-1" name="message-circle"></i-feather>
-                    <span>9,122</span>
-                    <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                        Mon, Dec23
-                    </p>
-                </div>
+            <div class="d-flex align-items-center mb-2">
+              <i-feather class="f24 me-1" name="Eye"></i-feather
+              ><span class="me-4">{{ blog.likeCount }}</span>
+              <i-feather class="f24 me-1" name="message-circle"></i-feather>
+              <span>{{ blog.commentCount }}</span>
+              <p
+                class="flex-grow-1 d-flex justify-content-end align-items-center"
+              >
+                Mon, Dec23
+              </p>
             </div>
+          </div>
         </div>
-
+      </div>
     </div>
+    <!-- <div *ngIf="!isLoading" class="loading-indicator text-center">
+    Loading more blogs...
+  </div> -->
+    <!-- <button (click)="loadMore()">Load More</button> -->
+  </div>
 
-    <div class="blog custome_radius box_shadow">
-        <div class="image">
-            <img class="post_img" src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg"
-                alt="">
-            <button class="btn custome_radius">Health</button>
-            <button class="btn custome_radius">2 mins read</button>
+  <!-- Add Modal -->
+  <div class="modal fade" id="addBlog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content box_shadow">
+        <div class="modal_header">
+          <h5>Add Blog</h5>
+          <div class="post_status">
+            <i-feather class="f24 me-3" name="Clock"></i-feather>
+            <button
+              [disabled]="!blog_form.valid"
+              class="btn btn-primary custome_radius f14"
+              (click)="onSubmit()"
+              type="submit"
+              data-bs-dismiss="modal"
+            >
+              post
+            </button>
+          </div>
         </div>
-        <div class="post_content">
-            <img class="user_img" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg"
-                alt="">
-
-            <div class="post_body f14">
-                <p class="mt-5 f18">Presented by Max Rushden with Barry Glendenning, Philippe Auclair</p>
-                <div class="d-flex align-items-center">
-                    <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">9,122</span>
-                    <i-feather class="f24 me-1" name="message-circle"></i-feather>
-                    <span>9,122</span>
-                    <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                        Mon, Dec23
-                    </p>
-                </div>
+        <div class="modal-body f14">
+          <form [formGroup]="blog_form" class="w-100">
+            <!-- fir the Title -->
+            <div
+              [ngClass]="{ error: checkError('title', 'required') }"
+              class="form_items w-100"
+            >
+              <label for="">Title Of Blog</label>
+              <input
+                type="text"
+                formControlName="title"
+                placeholder="Write Inspiring Title"
+              />
+              <p *ngIf="checkError('title', 'required')">
+                Blog title is required
+              </p>
             </div>
-        </div>
 
-    </div>
-
-    <div class="blog custome_radius box_shadow">
-        <div class="image">
-            <img class="post_img" src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg" alt="">
-            <button class="btn custome_radius">Health</button>
-            <button class="btn custome_radius">2 mins read</button>
-        </div>
-        <div class="post_content">
-            <img class="user_img" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
-    
-            <div class="post_body f14">
-                <p class="mt-5 f18">Presented by Max Rushden with Barry Glendenning, Philippe Auclair</p>
-                <div class="d-flex align-items-center">
-                    <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">9,122</span>
-                    <i-feather class="f24 me-1" name="message-circle"></i-feather>
-                    <span>9,122</span>
-                    <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                        Mon, Dec23
-                    </p>
-                </div>
+            <!-- fir the Title -->
+            <div
+              [ngClass]="{ error: checkError('departmentId', 'required') }"
+              class="form_items w-100"
+            >
+              <label for="">Select Department</label>
+              <select formControlName="departmentId">
+                <option value="null">Select a department</option>
+                <option
+                  *ngFor="
+                    let department of allDepartments;
+                    trackBy: trackByDepartmentId
+                  "
+                  [value]="department.id"
+                >
+                  {{ department.name }}
+                </option>
+              </select>
+              <p *ngIf="checkError('departmentId', 'required')">
+                Select the department Id
+              </p>
             </div>
-        </div>
-    
-    </div>
-
-    <div class="blog custome_radius box_shadow">
-        <div class="image">
-            <img class="post_img" src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg" alt="">
-            <button class="btn custome_radius">Health</button>
-            <button class="btn custome_radius">2 mins read</button>
-        </div>
-        <div class="post_content">
-            <img class="user_img" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
-    
-            <div class="post_body f14">
-                <p class="mt-5 f18">Presented by Max Rushden with Barry Glendenning, Philippe Auclair</p>
-                <div class="d-flex align-items-center">
-                    <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">9,122</span>
-                    <i-feather class="f24 me-1" name="message-circle"></i-feather>
-                    <span>9,122</span>
-                    <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                        Mon, Dec23
-                    </p>
-                </div>
+            <!-- for the Content -->
+            <div
+              [ngClass]="{
+                error:
+                  checkError('content', 'required') ||
+                  checkError('content', 'maxlength')
+              }"
+              class="form_items w-100"
+            >
+              <label for="">Write Content</label>
+              <textarea
+                formControlName="content"
+                class="custome_radius custome_border"
+                placeholder="Write Your Content"
+              ></textarea>
+              <p *ngIf="checkError('content', 'required')">
+                Add some content or description
+              </p>
+              <p *ngIf="checkError('content', 'maxlength')">
+                You can enter a maximum of 1000 words.
+              </p>
             </div>
-        </div>
-    
-    </div>
 
-    <div class="blog custome_radius box_shadow">
-        <div class="image">
-            <img class="post_img" src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg" alt="">
-            <button class="btn custome_radius">Health</button>
-            <button class="btn custome_radius">2 mins read</button>
-        </div>
-        <div class="post_content">
-            <img class="user_img" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
-    
-            <div class="post_body f14">
-                <p class="mt-5 f18">Presented by Max Rushden with Barry Glendenning, Philippe Auclair</p>
-                <div class="d-flex align-items-center">
-                    <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">9,122</span>
-                    <i-feather class="f24 me-1" name="message-circle"></i-feather>
-                    <span>9,122</span>
-                    <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                        Mon, Dec23
-                    </p>
+            <!-- for the media -->
+            <div class="media_container form_items">
+              <label class="f14" for=""
+                >Choose Media
+                <span class="f12 text-danger"
+                  >(Supported! '.PNG/.JPG/.JPEG/.GIF/.PDF/.MP4/.AVI...')</span
+                ></label
+              >
+              <label class="custom-file-upload">
+                <input
+                  type="file"
+                  (change)="onFileChange($event)"
+                  accept="image/*,audio/*"
+                />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/8191/8191581.png"
+                  alt="Upload Icon"
+                />
+              </label>
+
+              <!-- uploaded Image -->
+              <div *ngIf="fileType" class="choose_img mt-2 custome_radius">
+                <div *ngIf="fileType === 'image'">
+                  <img
+                    class="w-100 custome_radius h-100"
+                    [src]="fileSrc"
+                    alt="Image Preview"
+                  />
                 </div>
-            </div>
-        </div>
-    
-    </div>
 
-    <div class="blog custome_radius box_shadow">
-        <div class="image">
-            <img class="post_img" src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg" alt="">
-            <button class="btn custome_radius">Health</button>
-            <button class="btn custome_radius">2 mins read</button>
-        </div>
-        <div class="post_content">
-            <img class="user_img" src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg" alt="">
-    
-            <div class="post_body f14">
-                <p class="mt-5 f18">Presented by Max Rushden with Barry Glendenning, Philippe Auclair</p>
-                <div class="d-flex align-items-center">
-                    <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">9,122</span>
-                    <i-feather class="f24 me-1" name="message-circle"></i-feather>
-                    <span>9,122</span>
-                    <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                        Mon, Dec23
-                    </p>
+                <div *ngIf="fileType === 'audio'">
+                  <audio controls>
+                    <source [src]="fileSrc" type="audio/mpeg" />
+                  </audio>
                 </div>
+              </div>
+              <p *ngIf="!isImgSupported" class="mt-2 d-flex gap-1">
+                <i-feather class="f24" name="alert-circle"></i-feather>
+                <span
+                  >File Not Supported ( Image should 1 mb or else less than to
+                  it )</span
+                >
+              </p>
             </div>
-        </div>
-    
-    </div>
 
+            <button
+              (click)="reset_blog_form()"
+              type="reset"
+              class="btn btn-warning custome_radius"
+            >
+              Reset
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

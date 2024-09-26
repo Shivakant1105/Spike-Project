@@ -1,12 +1,12 @@
 @import "../../../styles.scss";
 .course_container {
-  @include setDimension(100%, 100vh);
+  @include setDimension(100%, 100%);
   @include flex("", "", column, 30, 0);
 
   .course_header_section {
     @include setDimension(100%, rem(81));
     min-height: rem(81);
-    background-color: var(--bg-high);
+    background-color: var(--bg-high); 
     @include flex(space-between, center, "", 0, 1);
     padding: 0 rem(30);
 

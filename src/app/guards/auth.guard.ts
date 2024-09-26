@@ -23,15 +23,14 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const requiredRoles = route.data['roles'];
-    const userRole = this.authService.getTokenData().role;
     if (
       this.authService.getToken() &&
-      requiredRoles.includes(userRole) &&
-      requiredRoles
+      requiredRoles &&
+      requiredRoles.includes(this.authService.getTokenData().role)
     ) {
       return true;
     }
     this.route.navigateByUrl('/auth/login');
-    return false;
+    return true;
   }
 }

@@ -14,10 +14,8 @@ import { CommonService } from 'src/app/service/common.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoggerService } from 'src/app/service/logger.service';
 import { Router } from '@angular/router';
-// import { CommonService } from 'src/app/service/common.service';
-// import { AuthService } from 'src/app/service/auth.service';
 
-fdescribe('AccountSettingComponent', () => {
+describe('AccountSettingComponent', () => {
   let component: AccountSettingComponent;
   let fixture: ComponentFixture<AccountSettingComponent>;
   let commonService: jasmine.SpyObj<CommonService>;
