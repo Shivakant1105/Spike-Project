@@ -19,6 +19,7 @@ import { EmailComponent } from './email/email.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { SharedModule } from '../shared/shared.module';
 import { TaskboardComponent } from './taskboard/taskboard.component';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TaskboardComponent } from './taskboard/taskboard.component';
     EmailComponent,
     TicketsComponent,
     TaskboardComponent,
+    TodoComponent,
   ],
   imports: [
     CommonModule,
