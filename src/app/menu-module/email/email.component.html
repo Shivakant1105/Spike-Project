@@ -5,20 +5,15 @@
     <div class="right_items">
       <span class="f14">Dashboard</span>
       <span class="circle"></span>
-      <span class="f12">Email</span>
+      <span class="f14 fw-medium">Email</span>
     </div>
   </div>
 
   <!-- Email body -->
   <div class="email_body custome_radius position-relative">
     <div class="email_body_header">
-      <i-feather
-        name="align-left"
-        class="f24 text-light"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#mailScrolling"
-        aria-controls="offcanvasExample"
-      >
+      <i-feather name="align-left" class="f24 text-light" data-bs-toggle="offcanvas" data-bs-target="#mailScrolling"
+        aria-controls="offcanvasExample">
       </i-feather>
 
       <span class="f18 fw-medium text-light">Inbox</span>
@@ -27,7 +22,8 @@
       <div class="offcanvas offcanvas-start" tabindex="-1" id="mailScrolling">
         <div class="offcanvas-body compose_section">
           <div class="p-3 d-flex flex-column gap-3">
-            <button class="btn compose_btn custome_radius border-0 f14">
+            <button class="btn compose_btn custome_radius border-0 f14" data-bs-toggle="modal"
+              data-bs-target="#composemodal">
               Compose
             </button>
 
@@ -96,7 +92,8 @@
       <!-- Compose section -->
       <div class="compose_wrapper">
         <div class="p-3 d-flex flex-column gap-3">
-          <button class="btn compose_btn custome_radius border-0 f14">
+          <button class="btn compose_btn custome_radius border-0 f14" data-bs-toggle="modal"
+            data-bs-target="#composemodal">
             Compose
           </button>
 
@@ -141,7 +138,7 @@
         <div class="sorted_wrapper p-3">
           <h6 class="text-nowrap f16 fw-medium">Labels</h6>
           <div class="icon_mail_wrapper p-4">
-            <i-feather name="file" class="f24 personal"></i-feather> 
+            <i-feather name="file" class="f24 personal"></i-feather>
             <span class="f14 fw-medium">Personal</span>
           </div>
           <div class="icon_mail_wrapper p-4">
@@ -150,7 +147,7 @@
           </div>
           <div class="icon_mail_wrapper p-4">
             <i-feather name="file" class="f24 payment"></i-feather>
-            <span class="f14 fw-medium ">Payment</span>
+            <span class="f14 fw-medium">Payment</span>
           </div>
           <div class="icon_mail_wrapper p-4">
             <i-feather name="file" class="f24 account"></i-feather>
@@ -187,9 +184,7 @@
               </div>
             </div>
 
-            <div
-              class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center"
-            >
+            <div class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center">
               <button class="btn mail_btn">Personal</button>
               <span class="f12">15 - Jan</span>
             </div>
@@ -210,9 +205,7 @@
               </div>
             </div>
 
-            <div
-              class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center"
-            >
+            <div class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center">
               <button class="btn mail_btn grey">Work</button>
               <span class="f12">15-Jan</span>
             </div>
@@ -233,9 +226,7 @@
               </div>
             </div>
 
-            <div
-              class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center"
-            >
+            <div class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center">
               <button class="btn mail_btn salmon">Accounts</button>
               <span class="f12">25 - Nov</span>
             </div>
@@ -256,9 +247,7 @@
               </div>
             </div>
 
-            <div
-              class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center"
-            >
+            <div class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center">
               <button class="btn mail_btn">Personal</button>
               <span class="f12">25 - Nov</span>
             </div>
@@ -279,9 +268,7 @@
               </div>
             </div>
 
-            <div
-              class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center"
-            >
+            <div class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center">
               <button class="btn mail_btn yellow">Payments</button>
               <span class="f12">15- Mar</span>
             </div>
@@ -302,9 +289,7 @@
               </div>
             </div>
 
-            <div
-              class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center"
-            >
+            <div class="right_mail_items d-flex flex-column gap-3 justify-content-center align-items-center">
               <button class="btn mail_btn">Personal</button>
               <span class="f12">15-Nov</span>
             </div>
@@ -351,11 +336,7 @@
           <div class="mail-content">
             <div class="d-flex d-flex justify-content-between">
               <div class="left d-flex gap-3">
-                <img
-                  class="user-img"
-                  src="../../../assets/email_user-img.jpg"
-                  alt=""
-                />
+                <img class="user-img" src="../../../assets/email_user-img.jpg" alt="" />
                 <div class="d-flex flex-column gap-1">
                   <h4 class="f16 fw-bold">Powel</h4>
                   <p class="f14">Lora_Kessler586@google.com</p>
@@ -376,12 +357,8 @@
             </p>
 
             <div class="input-container">
-              <textarea
-                id="textarea"
-                rows="4"
-                class="form-control custome_radius shadow-none"
-                placeholder=""
-              ></textarea>
+              <textarea id="textarea" rows="4" class="form-control custome_radius shadow-none"
+                placeholder=""></textarea>
               <span class="floating_label f14">Type your reply here</span>
             </div>
 
@@ -408,4 +385,164 @@
       </div>
     </div>
   </div>
+
+  <!-- Compose modal -->
+  <div class="modal fade" id="composemodal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered email_notepad_modal">
+      <div class="modal-content custome_radius box_shadow">
+        <div class="modal-body p-0">
+          <h4 class="f18 p-4">Compose Email</h4>
+          <div class="wrapper mt-3">
+            <div class="input_container">
+              <input class="form-control f14" type="text" placeholder="To" />
+              <input class="form-control f14" type="text" placeholder="Subject" />
+            </div>
+
+            <!-- Notepad -->
+            <div class="notpad mt-3">
+              <span class="items" title="undo">
+                <i-feather class="f20" name="rotate-ccw"> </i-feather>
+              </span>
+
+              <span class="items" title="redo">
+                <i-feather class="f20" name="rotate-cw"></i-feather>
+              </span>
+
+              <span class="items" title="Bold">
+                <i-feather class="f20" name="bold"></i-feather>
+              </span>
+
+              <span class="items" title="Italic">
+                <i-feather class="f20" name="italic"></i-feather>
+              </span>
+
+              <span class="items" title="Underline">
+                <i-feather class="f20" name="underline"> </i-feather>
+              </span>
+
+              <span class="items">
+                <i-feather class="f20" name="rotate-ccw"> </i-feather>
+              </span>
+
+              <span class="items">
+                <i-feather class="f24" name="dollar-sign"> </i-feather>
+              </span>
+
+              <span class="items" title="Subscript"> Ⅹ<sub>2</sub> </span>
+
+              <span class="items" title="Superscript"> Ⅹ<sup>2</sup> </span>
+
+              <span class="items" title="Justify Left">
+                <i-feather class="f24" name="align-left"> </i-feather>
+              </span>
+
+              <span class="items" title="Justify Center">
+                <i-feather class="f24" name="align-center"> </i-feather>
+              </span>
+
+              <span class="items" title="Justify Right">
+                <i-feather class="f24" name="align-right"> </i-feather>
+              </span>
+
+              <span class="items" title="Justify Full">
+                <i-feather class="f24" name="align-justify"> </i-feather>
+              </span>
+
+              <span class="items">
+                <i-feather class="f20" name="rotate-ccw"> </i-feather>
+              </span>
+
+              <span class="items">
+                <i-feather class="f20" name="rotate-ccw"> </i-feather>
+              </span>
+
+              <span class="items" title="Unordered List">
+                <i-feather class="f24" name="list"> </i-feather>
+              </span>
+
+              <span class="items" title="Ordered List">
+                <img src="https://cdn-icons-png.flaticon.com/128/2356/2356549.png" alt="" />
+              </span>
+
+              <select class="format">
+                <option value="Dafault" selected>Dafault</option>
+                <option value="">Heading 1</option>
+                <option value="">Heading 2</option>
+                <option value="">Heading 3</option>
+                <option value="">Heading 4</option>
+                <option value="">Heading 5</option>
+                <option value="">Heading 6</option>
+                <option value="">Paragraph</option>
+              </select>
+
+              <select class="format_style">
+                <option value="Dafault" selected>Arial</option>
+                <option value="">Times New Roman</option>
+                <option value="">Calibri</option>
+                <option value="">Comic Sans MS</option>
+              </select>
+
+              <span class="items color_pickers" title="Text Color">
+                <div class="color-picker">
+                  <input type="color" id="colorInput" />
+                  <label for="colorInput" class="icon">A</label>
+                </div>
+              </span>
+
+              <span class="items color_pickers" title="Background Color">
+                <div class="color-picker">
+                  <input type="color" id="colorInput" />
+                  <label for="colorInput" class="icon F10">BG</label>
+                </div>
+              </span>
+
+              <select class="clear_classes_style">
+                <option value="Dafault" selected>Clear class</option>
+                <option value="">quote</option>
+                <option value="">red Text</option>
+                <option value="">tittle text</option>
+              </select>
+
+              <span class="items">
+                <i-feather class="f24" name="link"></i-feather>
+              </span>
+
+              <span class="items">
+                <i-feather class="f24" name="link-2"></i-feather>
+              </span>
+
+              <span class="items file_picker_wrapper" title="Insert Image">
+                <div class="file_picker">
+                  <input type="file" id="fileInput" />
+                  <i-feather class="f24" name="file" for="fileInput"></i-feather>
+                </div>
+              </span>
+
+              <span class="items" title="Insert Video">
+                <i-feather class="f24" name="image"></i-feather>
+              </span>
+
+              <span class="items">
+                <i-feather class="f24" name="minus"></i-feather>
+              </span>
+            </div>
+
+            <textarea id="notpad_textarea" rows="4" class="text_area form-control custome_radius mt-3 mb-4"
+              placeholder="Enter text here"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer notpade_footer">
+          <button type="button" class="btn send_btn custome_radius f14">
+            Send
+          </button>
+          <button type="button" class="btn save_btn custome_radius f14">
+            Save as a Draft
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- composemodal -->

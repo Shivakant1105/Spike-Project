@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CommonService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   baseUrl: string = environment.baseUrl;
   sideBarTogglebtn = new BehaviorSubject(false);
@@ -20,66 +20,68 @@ export class CommonService {
   }
 
   /**
-* @description This method allows a user to reset their password.
-* @author Abhilasha Singh
-* @param {string} oldPassword - The user's current password that needs to be verified before setting the new password.
-* @param {string} newPassword - The user's desired new password.
-* @returns {Observable<any>} An observable that emits the server's response.
-*/
-
-  resetPassword( oldPassword: string, newPassword: string): Observable <any> {  
-    const body = { oldPassword, newPassword };
-    return this.http.put(`${this.baseUrl}/user/reset-password`,body)
-  }
-
-   /**
-   * @description This is get all contacts details method
-   * @author Shiva Kant
-   * @returns  {Observable<any>} 
+   * @description This method allows a user to reset their password.
+   * @author Abhilasha Singh
+   * @param {string} oldPassword - The user's current password that needs to be verified before setting the new password.
+   * @param {string} newPassword - The user's desired new password.
+   * @returns {Observable<any>} An observable that emits the server's response.
    */
 
-   getAllContacts(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/user/contacts`)
+  resetPassword(oldPassword: string, newPassword: string): Observable<any> {
+    const body = { oldPassword, newPassword };
+    return this.http.put(`${this.baseUrl}/user/reset-password`, body);
   }
 
   /**
- * @description This is method to get all department list.
- * @author Himmat
- * @returns {Observable<any>} An observable that emits the server's response.
- */
-  getAllDepartments(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/department/dropdown`)
+   * @description This is get all contacts details method
+   * @author Shiva Kant
+   * @returns  {Observable<any>}
+   */
+
+  getAllContacts(pageNo: number, pageSize: number): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/user/contacts?pageSize=${pageSize}&pageNo=${pageNo}`
+    );
   }
 
-   /**
- * @description This is method to get all country list.
- * @author Himmat
- * @returns {Observable<any>} An observable that emits the server's response.
- */
-  getCountry(): Observable<any>{
-    return this.http.get(`${this.baseUrl}/user/countries`) 
+  /**
+   * @description This is method to get all department list.
+   * @author Himmat
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  getAllDepartments(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/department/dropdown`);
   }
 
-   /**
- * @description This is method to get all state list based on country.
- * @author Himmat
- * @param {string} countryName - The country name.
- * @returns {Observable<any>} An observable that emits the server's response.
- */
-  getState(countryName:string):Observable<any>{
-    let httpParams= new HttpParams().set('countryName',countryName);
-    return this.http.get(`${this.baseUrl}/user/states`,{params:httpParams})
+  /**
+   * @description This is method to get all country list.
+   * @author Himmat
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  getCountry(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/countries`);
   }
 
-   /**
- * @description This is method to get all city list based on state.
- * @author Himmat
- * @param {string} stateName - The state name.
- * @returns {Observable<any>} An observable that emits the server's response.
- */
-  getCity(stateName:string):Observable<any>{
-    let httpParams= new HttpParams().set('stateName',stateName);
-    return this.http.get(`${this.baseUrl}/user/cities`,{params:httpParams})
+  /**
+   * @description This is method to get all state list based on country.
+   * @author Himmat
+   * @param {string} countryName - The country name.
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  getState(countryName: string): Observable<any> {
+    let httpParams = new HttpParams().set('countryName', countryName);
+    return this.http.get(`${this.baseUrl}/user/states`, { params: httpParams });
+  }
+
+  /**
+   * @description This is method to get all city list based on state.
+   * @author Himmat
+   * @param {string} stateName - The state name.
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  getCity(stateName: string): Observable<any> {
+    let httpParams = new HttpParams().set('stateName', stateName);
+    return this.http.get(`${this.baseUrl}/user/cities`, { params: httpParams });
   }
   /**
    * @description get fetch all userDetails by id
@@ -90,6 +92,4 @@ export class CommonService {
   getUserById(id: number) {
     return this.http.get(`${this.baseUrl}/user/self/${id}`);
   }
-
 }
-
