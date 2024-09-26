@@ -5,7 +5,7 @@
     <div class="right_items">
       <span class="f14">Dashboard</span>
       <span class="circle"></span>
-      <span class="f12">Email</span>
+      <span class="f14 fw-medium">Email</span>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
         <div class="offcanvas-body compose_section">
           <div class="p-3 d-flex flex-column gap-3">
             <button class="btn compose_btn custome_radius border-0 f14" data-bs-toggle="modal"
-            data-bs-target="#composemodal">
+              data-bs-target="#composemodal">
               Compose
             </button>
 
@@ -400,42 +400,51 @@
 
             <!-- Notepad -->
             <div class="notpad mt-3">
-              <span class="items">
+              <span class="items" title="undo">
                 <i-feather class="f20" name="rotate-ccw"> </i-feather>
               </span>
-              <span class="items">
+
+              <span class="items" title="redo">
                 <i-feather class="f20" name="rotate-cw"></i-feather>
               </span>
 
-              <span class="items">
-                <i-feather class="f20" name="rotate-ccw"> </i-feather>
+              <span class="items" title="Bold">
+                <i-feather class="f20" name="bold"></i-feather>
+              </span>
+
+              <span class="items" title="Italic">
+                <i-feather class="f20" name="italic"></i-feather>
+              </span>
+
+              <span class="items" title="Underline">
+                <i-feather class="f20" name="underline"> </i-feather>
               </span>
 
               <span class="items">
-                <i-feather class="f20" name="underline"> </i-feather>
+                <i-feather class="f20" name="rotate-ccw"> </i-feather>
               </span>
 
               <span class="items">
                 <i-feather class="f24" name="dollar-sign"> </i-feather>
               </span>
 
-              <span class="items"> Ⅹ<sub>2</sub> </span>
+              <span class="items" title="Subscript"> Ⅹ<sub>2</sub> </span>
 
-              <span class="items"> Ⅹ<sup>2</sup> </span>
+              <span class="items" title="Superscript"> Ⅹ<sup>2</sup> </span>
 
-              <span class="items">
+              <span class="items" title="Justify Left">
                 <i-feather class="f24" name="align-left"> </i-feather>
               </span>
 
-              <span class="items">
+              <span class="items" title="Justify Center">
                 <i-feather class="f24" name="align-center"> </i-feather>
               </span>
 
-              <span class="items">
+              <span class="items" title="Justify Right">
                 <i-feather class="f24" name="align-right"> </i-feather>
               </span>
 
-              <span class="items">
+              <span class="items" title="Justify Full">
                 <i-feather class="f24" name="align-justify"> </i-feather>
               </span>
 
@@ -447,11 +456,11 @@
                 <i-feather class="f20" name="rotate-ccw"> </i-feather>
               </span>
 
-              <span class="items">
+              <span class="items" title="Unordered List">
                 <i-feather class="f24" name="list"> </i-feather>
               </span>
 
-              <span class="items">
+              <span class="items" title="Ordered List">
                 <img src="https://cdn-icons-png.flaticon.com/128/2356/2356549.png" alt="" />
               </span>
 
@@ -463,6 +472,7 @@
                 <option value="">Heading 4</option>
                 <option value="">Heading 5</option>
                 <option value="">Heading 6</option>
+                <option value="">Paragraph</option>
               </select>
 
               <select class="format_style">
@@ -472,10 +482,17 @@
                 <option value="">Comic Sans MS</option>
               </select>
 
-              <span class="items color_pickers">
+              <span class="items color_pickers" title="Text Color">
                 <div class="color-picker">
                   <input type="color" id="colorInput" />
                   <label for="colorInput" class="icon">A</label>
+                </div>
+              </span>
+
+              <span class="items color_pickers" title="Background Color">
+                <div class="color-picker">
+                  <input type="color" id="colorInput" />
+                  <label for="colorInput" class="icon F10">BG</label>
                 </div>
               </span>
 
@@ -494,14 +511,14 @@
                 <i-feather class="f24" name="link-2"></i-feather>
               </span>
 
-              <span class="items file_picker_wrapper">
+              <span class="items file_picker_wrapper" title="Insert Image">
                 <div class="file_picker">
                   <input type="file" id="fileInput" />
                   <i-feather class="f24" name="file" for="fileInput"></i-feather>
                 </div>
               </span>
 
-              <span class="items">
+              <span class="items" title="Insert Video">
                 <i-feather class="f24" name="image"></i-feather>
               </span>
 

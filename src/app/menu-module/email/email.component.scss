@@ -534,8 +534,13 @@
           border: rem(1) solid var(--input-border-color);
           padding: rem(20);
           min-height: rem(145);
+          color: var(--text-color-600);
           &:focus {
             border: rem(2) solid var(--course-page-header-blue);
+          }
+          &::placeholder {
+            color: var(--text-color-400);
+            
           }
         }
       }
