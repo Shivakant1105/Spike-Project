@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   /**
    * @description Retrieves the token from local storage if available.
    * @author Gautam Yadav
@@ -62,5 +63,13 @@ export class AuthService {
       return jwtDecode(token);
     }
     return null;
+  }
+  /**
+   * @description This method sescribe the logout funtionality
+   * @author vivekSengar
+   */
+  logout(): void {
+    this.clearStorageByKey('tkn');
+    this.router.navigateByUrl('/auth/login');
   }
 }

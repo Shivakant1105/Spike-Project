@@ -114,7 +114,10 @@
               <select formControlName="departmentId">
                 <option value="null">Select a department</option>
                 <option
-                  *ngFor="let department of allDepartments"
+                  *ngFor="
+                    let department of allDepartments;
+                    trackBy: trackByDepartmentId
+                  "
                   [value]="department.id"
                 >
                   {{ department.name }}

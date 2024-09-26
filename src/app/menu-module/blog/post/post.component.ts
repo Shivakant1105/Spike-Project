@@ -105,6 +105,15 @@ export class PostComponent implements OnInit {
     return blog.id;
   }
 
+  /**
+   * @description This is a trackBy department id method.
+   * @author Jagdish
+   * @return {number}
+   */
+  trackByDepartmentId(department: any): number {
+    return department.id;
+  }
+
   blog_form = this.fb.group({
     departmentId: [null, Validators.required],
     title: ['', Validators.required],
