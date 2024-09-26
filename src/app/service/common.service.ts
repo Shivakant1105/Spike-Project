@@ -93,19 +93,19 @@ export class CommonService {
     return this.http.get(`${this.baseUrl}/user/self/${id}`);
   }
   /**
-   * @description for showing lodder
+   * @description for showing loader
    * @author vivekSengar
    * @returns {void} return void
    */
   showLoader(): void {
-    this.lodder.next(true);
+    this.loader.next(true);
   }
   /**
-   * @description for remove lodder
+   * @description for remove loader
    * @author vivekSengar
    * @returns {void} return void
    */
   hideLoader(): void {
-    this.lodder.next(false);
+    this.loader.next(false);
   }
 }
