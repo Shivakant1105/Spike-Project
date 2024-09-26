@@ -1,1 +1,182 @@
-<p>taskboard works!</p>
+<header class="sub_header custome_radius box_shadow">
+    <h4 class="f20">Taskboard</h4>
+    <span class="f14">Dashboard</span>
+    <ul>
+        <li class="f14">Taskboard</li>
+    </ul>
+</header>
+
+<div class="notes_container custome_radius">
+    <div class="task_header">
+        <p class="f20 h5">Taskboard</p>
+        <button class="btn f14 create_task_btn custome_radius" data-bs-toggle="modal" data-bs-target="#add_task">Create
+            Task</button>
+    </div>
+    <div class="task_status_container">
+
+        <!-- todo -->
+        <div class="task_item">
+            <button class="btn todo custome_radius">Todo</button>
+            <div class="task todo rounded">
+                <h5>Lorem, ipsum.</h5>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+
+            </div>
+
+            <div class="task todo rounded">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task todo rounded">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+        </div>
+
+        <!-- Inprogress -->
+        <div class="task_item">
+            <button class="btn inprogress custome_radius">Inprogress</button>
+            <div class="task rounded inprogress">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded inprogress">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded inprogress">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+            <div class="task rounded inprogress">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded inprogress">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded inprogress">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+        </div>
+
+        <!-- Onhold -->
+        <div class="task_item">
+            <button class="btn hold custome_radius">Onhld</button>
+            <div class="task rounded hold">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded hold">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded hold">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+        </div>
+
+        <!-- Completed -->
+        <div class="task_item">
+            <button class="btn completed custome_radius">Completed</button>
+            <div class="task rounded completed">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+
+            <div class="task rounded completed">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+            <div class="task rounded completed">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
+                </p>
+                <i-feather class="f24" name="Trash" data-bs-toggle="modal" data-bs-target="#delete_task"></i-feather>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add_task">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content m_body box_shadow">
+            <div class="modal-body">
+                <p class="mb-4 h5 f18 title_task">Add Task</p>
+                <form action="">
+                    <div class="form_items">
+                        <input type="text" class=" custome_border form-control custome_radius f14" placeholder="Title">
+                        <p class="f12">There is Error!</p>
+                    </div>
+
+                    <div class="form_items">
+                        <input type="text" class="form-control custome_border custome_radius f14"
+                            placeholder="Description">
+                        <p class="f12">There is Error</p>
+                    </div>
+
+                    <button class="btn btn-primary custome_radius me-4 px-3 add">Add</button>
+                    <button class="btn btn-warning custome_radius px-3 cancel" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- for the delete task -->
+<div class="modal fade bg-transparent" id="delete_task">
+    <div class="modal-dialog bg-transparent modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-body m_body_delete box_shadow custome_radius">
+                <p class="f14">Are You Sure, You want to delete</p>
+                <div class="btn_grp">
+                    <button class="btn custome_radius me-4 px-3 yes">Yes</button>
+                    <button class="btn bg-primary custome_radius px-3 cancel" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

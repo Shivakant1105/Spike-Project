@@ -61,10 +61,11 @@
    }
 
    .sub_header {
-      @include setDimension(100%, rem(81));
+      @include setDimension(100%, auto);
       @include flex('', center, '', 20, 16);
       background-color: var(--bg-high);
-
+      flex-wrap: wrap;
+      min-height: rem(81);
       h4 {
          flex-grow: 1;
          font-weight: 600;
