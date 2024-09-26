@@ -5,6 +5,7 @@
       class="btn btn-primary custome_radius f14"
       data-bs-toggle="modal"
       data-bs-target="#addBlog"
+      (click)="openAddBlogForm()"
     >
       Upload Blog
     </button>
@@ -76,7 +77,9 @@
           <div class="post_status">
             <i-feather class="f24 me-3" name="Clock"></i-feather>
             <button
-              class="btn box_shadow custome_radius add"
+              [disabled]="!blog_form.valid"
+              class="btn btn-primary custome_radius f14"
+              (click)="onSubmit()"
               type="submit"
               data-bs-dismiss="modal"
             >
@@ -85,23 +88,63 @@
           </div>
         </div>
         <div class="modal-body f14">
-          <form class="w-100">
+          <form [formGroup]="blog_form" class="w-100">
             <!-- fir the Title -->
-            <div class="form_items w-100">
+            <div
+              [ngClass]="{ error: checkError('title', 'required') }"
+              class="form_items w-100"
+            >
               <label for="">Title Of Blog</label>
-              <input type="text" required placeholder="Write Inspiring Title" />
-              <p>There is Error</p>
+              <input
+                type="text"
+                formControlName="title"
+                placeholder="Write Inspiring Title"
+              />
+              <p *ngIf="checkError('title', 'required')">
+                Blog title is required
+              </p>
             </div>
 
+            <!-- fir the Title -->
+            <div
+              [ngClass]="{ error: checkError('departmentId', 'required') }"
+              class="form_items w-100"
+            >
+              <label for="">Select Department</label>
+              <select formControlName="departmentId">
+                <option value="null">Select a department</option>
+                <option
+                  *ngFor="let department of allDepartments"
+                  [value]="department.id"
+                >
+                  {{ department.name }}
+                </option>
+              </select>
+              <p *ngIf="checkError('departmentId', 'required')">
+                Select the department Id
+              </p>
+            </div>
             <!-- for the Content -->
-            <div class="form_items w-100">
+            <div
+              [ngClass]="{
+                error:
+                  checkError('content', 'required') ||
+                  checkError('content', 'maxlength')
+              }"
+              class="form_items w-100"
+            >
               <label for="">Write Content</label>
               <textarea
-                required
+                formControlName="content"
                 class="custome_radius custome_border"
                 placeholder="Write Your Content"
               ></textarea>
-              <p>There is Error</p>
+              <p *ngIf="checkError('content', 'required')">
+                Add some content or description
+              </p>
+              <p *ngIf="checkError('content', 'maxlength')">
+                You can enter a maximum of 1000 words.
+              </p>
             </div>
 
             <!-- for the media -->
@@ -113,7 +156,11 @@
                 ></label
               >
               <label class="custom-file-upload">
-                <input type="file" />
+                <input
+                  type="file"
+                  (change)="onFileChange($event)"
+                  accept="image/*,audio/*"
+                />
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/8191/8191581.png"
                   alt="Upload Icon"
@@ -121,24 +168,35 @@
               </label>
 
               <!-- uploaded Image -->
-              <div class="choose_img mt-2 custome_radius">
-                <img
-                  class="w-100 custome_radius h-100"
-                  src="https://th.bing.com/th/id/OIP.axh1xIcOZbwPl1gQFQ4rxgHaFM?w=273&h=180&c=7&r=0&o=5&pid=1.7"
-                  alt=""
-                />
+              <div *ngIf="fileType" class="choose_img mt-2 custome_radius">
+                <div *ngIf="fileType === 'image'">
+                  <img
+                    class="w-100 custome_radius h-100"
+                    [src]="fileSrc"
+                    alt="Image Preview"
+                  />
+                </div>
 
-                <p class="mt-2 d-flex gap-1">
-                  <i-feather class="f24" name="alert-circle"></i-feather>
-                  <span
-                    >File Not
-                    Supported(hint:'.PNG/.JPG/.JPEG/.GIF/.PDF/.MP4/.AVI...')</span
-                  >
-                </p>
+                <div *ngIf="fileType === 'audio'">
+                  <audio controls>
+                    <source [src]="fileSrc" type="audio/mpeg" />
+                  </audio>
+                </div>
               </div>
+              <p *ngIf="!isImgSupported" class="mt-2 d-flex gap-1">
+                <i-feather class="f24" name="alert-circle"></i-feather>
+                <span
+                  >File Not Supported ( Image should 1 mb or else less than to
+                  it )</span
+                >
+              </p>
             </div>
 
-            <button type="reset" class="btn btn-warning custome_radius">
+            <button
+              (click)="reset_blog_form()"
+              type="reset"
+              class="btn btn-warning custome_radius"
+            >
               Reset
             </button>
           </form>
