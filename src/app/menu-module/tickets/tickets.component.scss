@@ -28,7 +28,7 @@
     background-color: var(--bg-high);
     .modal-body {
       @include flex("", "", column, 22, 0);
-      @include setDimension(rem(496), auto);
+      @include setDimension(auto, auto);
       overflow-y: auto;
       padding: rem(20);
       max-height: rem(550);
@@ -272,7 +272,7 @@
 
     .table_footer {
       @include flex(flex-end, center, "", 26, 0);
-      @include setDimension(100%, rem(70));
+      @include setDimension(100%, auto);
       padding-right: rem(20);
 
       i-feather {
@@ -360,6 +360,4 @@
     }
   }
 }
-
-//
 
