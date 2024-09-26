@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { Subject } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -18,7 +19,7 @@ describe('AppComponent', () => {
       events: mockRouterEvents.asObservable(),
     };
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,SharedModule],
+      imports: [RouterTestingModule, SharedModule, HttpClientModule],
       declarations: [AppComponent],
       providers: [{ provide: Router, useValue: mockRouter }],
     }).compileComponents();
@@ -50,7 +51,7 @@ describe('AppComponent', () => {
     mockRouterEvents.next(new NavigationEnd(1, '/home', '/home'));
     expect(component.isLogIn).toBeFalse();
   });
-  
+
   it(`should have as title 'spike-project'`, () => {
     expect(component.title).toEqual('spike-project');
   });

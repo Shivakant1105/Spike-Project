@@ -3,9 +3,13 @@ export interface login {
   password: string;
 }
 
-export interface departments {
-  id: number;
-  name: string;
+export interface departments{
+    id:number,
+    name:string,
+    createdAt?:string | null,
+    createdBy?:string | null,
+    updatedAt?:string | null,
+    updatedBy?:string | null,
 }
 
 export interface country {
@@ -32,24 +36,27 @@ export interface address {
   type: string;
 }
 
-export interface employee {
-  name: string;
-  email: string;
-  designation: string;
-  employeeCode: string;
-  managerId: number;
-  role: string;
-  primaryMobileNumber: string;
-  joiningDate: string;
-  salary: number;
-  linkedinUrl: string;
-  facebookUrl: string;
-  instagramUrl: string;
-  department: string[];
-  addresses: address[];
+export interface employee{
+    name:string,
+    email:string,
+    designation:string,
+    employeeCode:string,
+    managerId:number,
+    role:string,
+    primaryMobileNumber:string,
+    joiningDate:string,
+    salary:number,
+    linkedinUrl:string,
+    facebookUrl:string,
+    instagramUrl:string,
+    department:string[],
+    addresses:address[]
 }
 
 export interface managerList {
   id: number;
   name: string;
 }
+
+
+

@@ -39,14 +39,33 @@ describe('LoggerService', () => {
       })
     );
   });
-  it('should call Swal.fire with correct parameters', () => {
-    const message = 'Your password has been successfully updated.';
+  it('should call Swal.fire with correct parameters for dark theme', () => {
+    const errorMessage = 'An unexpected error occurred.';
     const swalSpy = spyOn(Swal, 'fire');
+    localStorage.setItem('theme', 'dark-theme');
+    service.alertWithSuccess(errorMessage);
+    expect(swalSpy).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        icon: 'success',
+        title: 'Success...',
+        text: errorMessage,
+        background: '#111C2D',
+      })
+    );
+  });
+
+  it('should call Swal.fire with correct parameters for light theme', () => {
+    const message = 'Another error occurred.';
+    const swalSpy = spyOn(Swal, 'fire');
+    localStorage.setItem('theme', 'light-theme');
     service.alertWithSuccess(message);
     expect(swalSpy).toHaveBeenCalledWith(
-      'Password Updated',
-      message,
-      'success'
+      jasmine.objectContaining({
+        icon: 'success',
+        title: 'Success...',
+        text: message,
+        background: '#FFFFFF',
+      })
     );
   });
 });

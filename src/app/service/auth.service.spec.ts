@@ -6,18 +6,23 @@ import {
 import { AuthService } from './auth.service';
 import jwtDecode from 'jwt-decode';
 
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+
 describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
+  let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [AuthService],
     });
 
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
+    router = TestBed.inject(Router);
   });
 
   afterEach(() => {
@@ -93,5 +98,19 @@ describe('AuthService', () => {
     const result = service.getTokenData();
 
     expect(result).toEqual(decodedToken);
+  });
+  it('should clear token from storage and navigate to login on logout', () => {
+    // Spy on the clearStorageByKey method
+    spyOn(service, 'clearStorageByKey').and.callThrough();
+    const navigateSpy = spyOn(router, 'navigateByUrl');
+
+    // Call the logout method
+    service.logout();
+
+    // Assert that clearStorageByKey is called with 'tkn'
+    expect(service.clearStorageByKey).toHaveBeenCalledWith('tkn');
+
+    // Assert that navigation to '/auth/login' occurred
+    expect(navigateSpy).toHaveBeenCalledWith('/auth/login');
   });
 });
