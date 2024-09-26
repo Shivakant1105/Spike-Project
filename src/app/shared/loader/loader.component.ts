@@ -12,7 +12,7 @@ export class LoaderComponent implements OnInit {
   loading: boolean = false;
   constructor(private commomService: CommonService) {}
   ngOnInit(): void {
-    this.commomService.lodder.pipe(takeUntil(this.unSub)).subscribe({
+    this.commomService.loader.pipe(takeUntil(this.unSub)).subscribe({
       next: (data) => {
         this.loading = data;
       },

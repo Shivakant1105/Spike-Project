@@ -65,7 +65,7 @@ export class AuthService {
     return null;
   }
   /**
-   * @description
+   * @description This method sescribe the logout funtionality
    * @author vivekSengar
    */
   logout(): void {

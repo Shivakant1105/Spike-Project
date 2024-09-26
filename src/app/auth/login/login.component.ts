@@ -27,7 +27,7 @@ export class LoginComponent {
    * @return {void} Return a void
    */
   onSubmit(): void {
-    this.commmonService.showLodder();
+    this.commmonService.showLoader();
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
         if (res.data.token) {
@@ -47,7 +47,7 @@ export class LoginComponent {
         }, (userData.exp - userData.iat) * 1000);
       },
       complete: () => {
-        this.commmonService.hideLodder();
+        this.commmonService.hideLoader();
       },
     });
   }

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CommonService {
   constructor(private http: HttpClient) {}
-  lodder = new BehaviorSubject<boolean>(false);
+  loader = new BehaviorSubject<boolean>(false);
   baseUrl: string = environment.baseUrl;
   sideBarTogglebtn = new BehaviorSubject(false);
   /** @description This is a toggle button for sidebar.
@@ -97,7 +97,7 @@ export class CommonService {
    * @author vivekSengar
    * @returns {void} return void
    */
-  showLodder(): void {
+  showLoader(): void {
     this.lodder.next(true);
   }
   /**
@@ -105,7 +105,7 @@ export class CommonService {
    * @author vivekSengar
    * @returns {void} return void
    */
-  hideLodder(): void {
+  hideLoader(): void {
     this.lodder.next(false);
   }
 }
