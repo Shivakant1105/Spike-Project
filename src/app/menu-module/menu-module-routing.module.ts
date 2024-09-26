@@ -12,6 +12,7 @@ import { EmailComponent } from './email/email.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { TicketsComponent } from './tickets/tickets.component';
 import { TaskboardComponent } from './taskboard/taskboard.component';
+import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'course', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
     component: TaskboardComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'todo', component: TodoComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
