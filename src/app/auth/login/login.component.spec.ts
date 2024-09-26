@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,11 +18,12 @@ describe('LoginComponent', () => {
       'login',
       'setDataInLocalStorage',
       'getTokenData',
+      'logout',
     ]);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, HttpClientModule],
       declarations: [LoginComponent],
       providers: [
         FormBuilder,
