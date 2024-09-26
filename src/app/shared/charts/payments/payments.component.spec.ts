@@ -22,4 +22,17 @@ describe('PaymentsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should call dispose on root when ngOnDestroy is called', () => {
+    component.root = {
+      dispose: jasmine.createSpy('dispose')
+    } as any;
+
+    component.ngOnDestroy();
+    expect(component.root.dispose).toHaveBeenCalled();
+  });
+
+
+  
 });

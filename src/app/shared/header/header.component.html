@@ -1,20 +1,11 @@
 <div class="header_body custome_radius box_shadow">
   <!-- Header Left Content -->
   <div class="header_left_container">
-    <i-feather
-      (click)="toggleFn()"
-      name="align-left"
-      id="menu_toggle"
-      class="menu"
-    ></i-feather>
+    <i-feather (click)="toggleFn()" name="align-left" id="menu_toggle" class="menu"></i-feather>
 
     <!-- Apps and icon container -->
     <div class="apps_icon_container d-none d-xl-block">
-      <div
-        class="apps_nav dropdown-toggle ms-2"
-        type="button"
-        data-bs-toggle="dropdown"
-      >
+      <div class="apps_nav dropdown-toggle ms-2" type="button" data-bs-toggle="dropdown">
         <button data-bs-toggle="modal" data-bs-target="#exampleModal2">
           Apps
         </button>
@@ -50,10 +41,7 @@
 
                 <div class="chats_icon_container">
                   <span class="chats_logo">
-                    <img
-                      src="../../../assets/modal_logo/phone.png"
-                      alt="contact"
-                    />
+                    <img src="../../../assets/modal_logo/phone.png" alt="contact" />
                   </span>
 
                   <div class="heading_mails_cnt">
@@ -63,10 +51,7 @@
                 </div>
                 <div class="chats_icon_container">
                   <span class="chats_logo">
-                    <img
-                      src="../../../assets/modal_logo/gmail.png"
-                      alt="mail"
-                    />
+                    <img src="../../../assets/modal_logo/gmail.png" alt="mail" />
                   </span>
 
                   <div class="heading_mails_cnt">
@@ -89,10 +74,7 @@
 
                 <div class="icon_heading_container">
                   <span class="logo_cnt">
-                    <img
-                      src="../../../assets/modal_logo/calendar.png"
-                      alt="calendar"
-                    />
+                    <img src="../../../assets/modal_logo/calendar.png" alt="calendar" />
                   </span>
                   <div class="heading_cnt">
                     <span class="f14">Calendar App</span>
@@ -102,10 +84,7 @@
 
                 <div class="icon_heading_container">
                   <span class="logo_cnt">
-                    <img
-                      src="../../../assets/modal_logo/ticket.png"
-                      alt="calendar"
-                    />
+                    <img src="../../../assets/modal_logo/ticket.png" alt="calendar" />
                   </span>
                   <div class="heading_cnt">
                     <span class="f14">Ticket App</span>
@@ -115,10 +94,7 @@
 
                 <div class="icon_heading_container">
                   <span class="logo_cnt">
-                    <img
-                      src="../../../assets/modal_logo/graduation.png"
-                      alt="calendar"
-                    />
+                    <img src="../../../assets/modal_logo/graduation.png" alt="calendar" />
                   </span>
                   <div class="heading_cnt">
                     <span class="f14">Cources</span>
@@ -160,12 +136,8 @@
 
   <!-- Header Right Content -->
   <div class="header_right_container">
-    <div
-      class="d-none d-xl-flex search_container custome_border"
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-    >
+    <div class="d-none d-xl-flex search_container custome_border" type="button" data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop">
       <i-feather class="seachlogo" name="search"></i-feather>
       <span class="f14">Try to Searching...</span>
     </div>
@@ -173,12 +145,7 @@
 
     <!-- Country Icon Card -->
     <div class="country_logo icons">
-      <button
-        class="dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+      <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="../../../assets/united-states.png" alt="" />
       </button>
 
@@ -207,13 +174,8 @@
 
     <!-- Massage  Card-->
     <div class="icons message_icon_container">
-      <i-feather
-        name="message-square"
-        class="d-flex icon dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+      <i-feather name="message-square" class="d-flex icon dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
       </i-feather>
 
       <div class="dropdown-menu p-0 box_shadow">
@@ -268,17 +230,13 @@
         <button class="message_btn p-2 f14 custome_radius border-0">
           See All Messages
         </button>
+
       </div>
     </div>
 
     <!-- Shortcut Card -->
     <div class="shortcut_icon_container">
-      <div
-        class="dropdown-toggle icons icon d-flex"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+      <div class="dropdown-toggle icons icon d-flex" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i-feather name="grid" class="d-flex"> </i-feather>
       </div>
 
@@ -334,18 +292,13 @@
 
     <!-- User Profile Card -->
     <div class="User_profile_container">
-      <div
-        class="dropdown-toggle user_admin rounded-5"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <img class="admin_image" [src]="profilePicture" alt="user image" />
+      <div class="dropdown-toggle user_admin rounded-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img class="admin_image" src="../../../assets/user.jpg" alt="user image" />
 
         <div class="d-none d-xxl-block">
           <div class="d-flex flex-column mike_admin">
-            <h5 class="mike_nielsen text-nowrap">{{ userName }}</h5>
-            <span class="admin_name">{{ userData?.role }}</span>
+            <h5 class="mike_nielsen text-nowrap">Mike Nielsen</h5>
+            <span class="admin_name">Admin</span>
           </div>
         </div>
       </div>
@@ -357,19 +310,19 @@
           </div>
 
           <div class="user_profile_item2">
-            <img [src]="profilePicture" alt="" />
+            <img src="../../../assets/user_profile.jpg" alt="" />
 
             <div class="user_details">
-              <span class="f16">{{ userData?.name }}</span>
-              <span class="f14">{{ userData?.role }}</span>
+              <span class="f16">Mike Nielsen</span>
+              <span class="f14">Admin</span>
               <div class="gap-1">
                 <i-feather class="mail" name="mail"></i-feather>
-                <span class="f14">{{ userData?.email }}</span>
+                <span class="f14">infospike.com</span>
               </div>
             </div>
           </div>
 
-          <div class="user_profile_item3" routerLink="home/account-setting">
+          <div class="user_profile_item3">
             <div class="profile_icon">
               <i-feather name="layout"></i-feather>
             </div>
@@ -399,10 +352,7 @@
             </div>
           </div>
 
-          <button
-            class="user_profile_logout_cnt f14 border-0"
-            (click)="logout()"
-          >
+          <button class="user_profile_logout_cnt f14 border-0" (click)="logout()">
             Logout
           </button>
         </div>
@@ -411,35 +361,14 @@
   </div>
 
   <!-- Search Modal -->
-  <div
-    class="modal fade"
-    id="staticBackdrop"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal_dialogs">
-      <div
-        class="modal-content p-1 modal_contents"
-        style="border-radius: 16px !important"
-      >
+      <div class="modal-content p-1 modal_contents" style="border-radius: 16px !important">
         <div class="modal-header modal_header input_filed_container">
-          <input
-            type="email"
-            class="form-control custome_radius"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Seach here"
-          />
-          <i-feather
-            type="button"
-            class="f24"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            name="X"
-          ></i-feather>
+          <input type="email" class="form-control custome_radius" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Seach here" />
+          <i-feather type="button" class="f24" data-bs-dismiss="modal" aria-label="Close" name="X"></i-feather>
         </div>
 
         <div class="modal-body p-0 mt-3 search_modal_body">

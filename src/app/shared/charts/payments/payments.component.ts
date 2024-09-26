@@ -21,7 +21,7 @@ export class PaymentsComponent implements OnInit,AfterViewInit {
     */
 
 
-  private root!: am5.Root;
+  public root!: am5.Root;
   public payPalPercentage!:number;
   public creditCardPercentage!:number
 
@@ -118,13 +118,6 @@ export class PaymentsComponent implements OnInit,AfterViewInit {
         },
       ];
 
-      function findPercentage(part: any, total: any) {
-        if (total === 0) {
-          throw new Error('Total cannot be zero');
-        }
-        return (part / total) * 100;
-      }
-
       // Create axes
       var xAxis = chart.xAxes.push(
         am5xy.CategoryAxis.new(root, {
@@ -160,7 +153,7 @@ export class PaymentsComponent implements OnInit,AfterViewInit {
 
       // Add series
 
-        xAxis.get('renderer').grid.template?.setAll({
+        xAxis.get('renderer').grid.template.setAll({
           
           
         });
@@ -343,29 +336,16 @@ export class PaymentsComponent implements OnInit,AfterViewInit {
 
       }
 
-      let s1 = 0;
-      let s2 = 0;
-      let total = 0;
-      data.forEach(({ s10, s11 }) => {
-        if (s10 && s11) {
-          s1 += s10 as any;
-          s2 += s11 as any;
-          total = total + s10 + s11;
-        }
-      });
-      this.payPalPercentage = Math.round(findPercentage(s1,total))
-      this.creditCardPercentage = Math.round(findPercentage(s2,total))
-
       
       makeSeries(
-        `Paypal ${Math.round(findPercentage(s1, total))}%`,
+        `Paypal 51%`,
         'Paypal',
         's10',
         am5.color(0x00c0ff),
         0
       );
       makeSeries(
-        `Credit Card ${Math.round(findPercentage(s2, total))}%`,
+        `Credit Card 49%`,
         'Credit Card',
         's11',
         am5.color(0xebeff2),
