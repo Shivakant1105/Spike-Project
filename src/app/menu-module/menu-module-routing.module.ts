@@ -10,6 +10,7 @@ import { DetailComponent } from './blog/detail/detail.component';
 import { PostComponent } from './blog/post/post.component';
 import { EmailComponent } from './email/email.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'course', pathMatch: 'full' },
@@ -22,11 +23,15 @@ const routes: Routes = [
   { path: 'details', component: DetailComponent, canActivate: [AuthGuard] },
   { path: 'post', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'mail', component: EmailComponent, canActivate: [AuthGuard] },
-
+  {
+    path: 'account-setting',
+    component: AccountSettingComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MenuModuleRoutingModule { }
+export class MenuModuleRoutingModule {}

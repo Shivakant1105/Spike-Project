@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 describe('CommonService', () => {
   let service: CommonService;
   let httpMock: HttpTestingController;
-  let baseUrl=environment.baseUrl;
+  let baseUrl = environment.baseUrl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,15 +51,18 @@ describe('CommonService', () => {
   it('should reset password', () => {
     const oldPassword = 'oldPassword123';
     const newPassword = 'newPassword123';
-    const mockResponse = { success: true, message: 'Password reset successfully' };
- 
+    const mockResponse = {
+      success: true,
+      message: 'Password reset successfully',
+    };
+
     service.resetPassword(oldPassword, newPassword).subscribe((response) => {
       expect(response).toEqual(mockResponse);
     });
- 
+
     const req = httpMock.expectOne(`${service.baseUrl}/user/reset-password`);
     expect(req.request.method).toBe('PUT');
-    expect(req.request.body).toEqual({ oldPassword, newPassword }); 
+    expect(req.request.body).toEqual({ oldPassword, newPassword });
     req.flush(mockResponse);
   });
   it('should fetch all contacts', () => {
@@ -77,10 +80,12 @@ describe('CommonService', () => {
     req.flush(mockContacts);
   });
 
-
   it('should get all department list', () => {
-    const mockDepartments = [{ id: 1, name: 'HR' }, { id: 2, name: 'Engineering' }];
-    service.getAllDepartments().subscribe(departments => {
+    const mockDepartments = [
+      { id: 1, name: 'HR' },
+      { id: 2, name: 'Engineering' },
+    ];
+    service.getAllDepartments().subscribe((departments) => {
       expect(departments).toEqual(mockDepartments);
     });
 
@@ -90,8 +95,11 @@ describe('CommonService', () => {
   });
 
   it('should get all country list', () => {
-    const mockCountries = [{ id: 1, name: 'India' }, { id: 2, name: 'Oman' }];
-    service.getCountry().subscribe(countries => {
+    const mockCountries = [
+      { id: 1, name: 'India' },
+      { id: 2, name: 'Oman' },
+    ];
+    service.getCountry().subscribe((countries) => {
       expect(countries).toEqual(mockCountries);
     });
 
@@ -101,29 +109,62 @@ describe('CommonService', () => {
   });
 
   it('should get all state list based on country', () => {
-    const mockState = [{ name: 'Delhi',countryName:'India' }, { name: 'Mumbai',countryName:'India' }];
-    service.getState('India').subscribe(state => {
+    const mockState = [
+      { name: 'Delhi', countryName: 'India' },
+      { name: 'Mumbai', countryName: 'India' },
+    ];
+    service.getState('India').subscribe((state) => {
       expect(state).toEqual(mockState);
     });
 
-    const req = httpMock.expectOne(req => 
-      req.url === `${baseUrl}/user/states` && req.params.get('countryName') === 'India'
+    const req = httpMock.expectOne(
+      (req) =>
+        req.url === `${baseUrl}/user/states` &&
+        req.params.get('countryName') === 'India'
     );
     expect(req.request.method).toEqual('GET');
     req.flush(mockState);
   });
 
-
   it('should get all city list based on state', () => {
-    const mockCities = [{ name: 'Noida',stateName:'Uttar pradesh' }];
-    service.getCity('Delhi').subscribe(cities => {
+    const mockCities = [{ name: 'Noida', stateName: 'Uttar pradesh' }];
+    service.getCity('Delhi').subscribe((cities) => {
       expect(cities).toEqual(mockCities);
     });
 
-    const req = httpMock.expectOne(req => 
-      req.url === `${baseUrl}/user/cities` && req.params.get('stateName') === 'Delhi'
+    const req = httpMock.expectOne(
+      (req) =>
+        req.url === `${baseUrl}/user/cities` &&
+        req.params.get('stateName') === 'Delhi'
     );
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
+  });
+  it('should update user details and return response', () => {
+    const mockUserData = {
+      username: 'johnDoe',
+      email: 'john.doe@example.com',
+      primaryMobileNumber: '1234567890',
+      secondaryMobileNumber: '0987654321',
+      role: 'ADMIN',
+      addresses: [
+        {
+          line1: '123 Main St',
+          state: 'California',
+          zip: '90210',
+          city: 'Los Angeles',
+          country: 'USA',
+          type: 'PERMANENT',
+        },
+      ],
+    };
+    const userId = 1;
+    const mockResponse = { message: 'User details updated successfully' };
+    service.updateUserDetail(userId, mockUserData).subscribe((res) => {
+      expect(res).toEqual(mockResponse);
+    });
+    const req = httpMock.expectOne(`${baseUrl}/user/update/details/${userId}`);
+    expect(req.request.method).toEqual('PUT');
+    req.flush(mockResponse);
   });
 });

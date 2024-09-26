@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { user } from '../modal/user';
 @Injectable({
   providedIn: 'root',
 })
@@ -82,7 +83,7 @@ export class CommonService {
     return this.http.get(`${this.baseUrl}/user/cities`,{params:httpParams})
   }
   /**
-   * @description get fetch all userDetails by id
+   * @description get all userDetails by id
    * @author vivekSengar
    * @param {number}  id-userid
    * @returns {Observable<any>} return observable
@@ -90,6 +91,25 @@ export class CommonService {
   getUserById(id: number) {
     return this.http.get(`${this.baseUrl}/user/self/${id}`);
   }
+    /**
+   * @description get department by id
+   * @author Abhilasha Singh
+   * @param {number}  id-userid
+   * @returns {Observable<any>} return observable
+   */
+  getDepartmentById(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/user/department/${id}`)
+  }
+      /**
+   * @description update user details
+   * @author Abhilasha Singh
+   * @param {number}  id-userid , userData
+   * @returns {Observable<any>} return observable
+   */
+  updateUserDetail(id:number,userData:user): Observable<any>{ 
+    return this.http.put(`${this.baseUrl}/user/update/details/${id}`,userData)
+  }
+
 
 }
 
