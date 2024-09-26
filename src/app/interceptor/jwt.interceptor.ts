@@ -13,13 +13,15 @@ import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 
 import { LoggerService } from '../service/logger.service';
+import { CommonService } from '../service/common.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private commonService: CommonService
   ) {}
 
   intercept(
@@ -60,7 +62,7 @@ export class JwtInterceptor implements HttpInterceptor {
           default:
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.error}`;
         }
-
+        this.commonService.hideLoader();
         this.loggerService.errorAlert(errorMessage);
         return throwError(() => new Error(errorMessage));
       })
