@@ -7,6 +7,11 @@
 
 main {
   .contact_container {
+      overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 0;
+       
+          }
     @include setDimension(100%, 100%);
     @include flex("", "", column, 30, 0);
 
