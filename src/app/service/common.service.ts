@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
   loader = new BehaviorSubject<boolean>(false);
   baseUrl: string = environment.baseUrl;
   sideBarTogglebtn = new BehaviorSubject(false);
@@ -49,9 +50,13 @@ export class CommonService {
    * @returns  {Observable<any>}
    */
 
-  getAllContacts(pageNo: number, pageSize: number): Observable<any> {
+  getAllContacts(
+    id: number,
+    pageNo: number,
+    pageSize: number
+  ): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/user/contacts?pageSize=${pageSize}&pageNo=${pageNo}`
+      `${this.baseUrl}/user/contacts?userId=${id}&pageSize=${pageSize}&pageNo=${pageNo}`
     );
   }
 
@@ -118,5 +123,20 @@ export class CommonService {
    */
   hideLoader(): void {
     this.loader.next(false);
+  }
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear().toString().slice(-2);
+    return `${day} ${month}, ${year}`;
+  }
+
+  getSanitizedUrl(data: string | null, fallback: string): any {
+    return data
+      ? this.sanitizer.bypassSecurityTrustResourceUrl(
+          'data:image/jpeg;base64,' + data
+        )
+      : fallback;
   }
 }

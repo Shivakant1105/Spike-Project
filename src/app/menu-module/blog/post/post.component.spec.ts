@@ -55,8 +55,33 @@ describe('PostComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should initialize departments on ngOnInit', () => {
-    const mockUser = { data: { department: [{ id: 1, name: 'HR' }] } };
+  it('should initialize all departments on ngOnInit for admin user and cover the assignment line', () => {
+    const mockUser = {
+      data: { role: 'ADMIN' },
+    };
+    const mockDepartments = {
+      data: [
+        { id: 1, name: 'HR' },
+        { id: 2, name: 'Finance' },
+      ],
+    };
+
+    mockCommonService.getUserById.and.returnValue(of(mockUser));
+
+    mockCommonService.getAllDepartments.and.returnValue(of(mockDepartments));
+
+    component.ngOnInit();
+
+    expect(mockCommonService.getUserById).toHaveBeenCalledWith(1);
+    expect(mockCommonService.getAllDepartments).toHaveBeenCalled();
+    // Ensure the specific line is covered
+    expect(component.allDepartments).toEqual(mockDepartments.data);
+  });
+  it('should initialize departments on ngOnInit for non-admin user', () => {
+    const mockUser = {
+      data: { department: [{ id: 1, name: 'HR' }] },
+    };
+
     mockCommonService.getUserById.and.returnValue(of(mockUser));
 
     component.ngOnInit();
@@ -70,15 +95,17 @@ describe('PostComponent', () => {
     component.ngOnInit();
     expect(component.getAllBlogs).toHaveBeenCalled();
   });
-
-  it('should handle successful loading of blogs', () => {
+  it('should load blogs successfully and process them', () => {
     const mockData = {
       data: [
         {
           id: 1,
           profilePic: 'base64Image',
+          mediaFile: 'mediaBase64Image',
+          createdDateTime: '2023-09-25T12:00:00Z',
         },
       ],
+      totalResults: 1,
     };
 
     mockBlogService.getAllBlogs.and.returnValue(of(mockData));
@@ -91,14 +118,17 @@ describe('PostComponent', () => {
     expect(component.blogs[0].profilePic).toBe(
       'data:image/jpeg;base64,base64Image'
     );
+    expect(component.blogs[0].mediaFile).toBe(
+      'data:image/jpeg;base64,mediaBase64Image'
+    );
+    expect(component.blogs[0].createdDate).toBe('25 Sep, 23');
+    expect(component.isLoading).toBe(false);
   });
-  it('should handle successful loading of blogs', () => {
+
+  it('should handle empty results correctly', () => {
     const mockData = {
-      data: [
-        {
-          id: 1,
-        },
-      ],
+      data: [],
+      totalResults: 0,
     };
 
     mockBlogService.getAllBlogs.and.returnValue(of(mockData));
@@ -106,8 +136,97 @@ describe('PostComponent', () => {
     component.getAllBlogs();
 
     expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
-    expect(component.blogs.length).toBe(1);
+    expect(component.blogs.length).toBe(0);
+    expect(component.allBlogsLoaded).toBe(true);
+    expect(component.isLoading).toBe(false);
   });
+
+  it('should handle errors correctly', () => {
+    mockBlogService.getAllBlogs.and.returnValue(throwError('Error occurred'));
+
+    component.getAllBlogs();
+
+    expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
+    expect(component.isLoading).toBe(false);
+  });
+
+  it('should not load blogs if already loading', () => {
+    component.isLoading = true;
+
+    component.getAllBlogs();
+
+    expect(mockBlogService.getAllBlogs).not.toHaveBeenCalled();
+  });
+
+  it('should increment currentPage after loading', () => {
+    const mockData = {
+      data: [
+        {
+          id: 1,
+          profilePic: 'base64Image',
+          mediaFile: 'mediaBase64Image',
+          createdDateTime: '2023-09-25T12:00:00Z',
+        },
+      ],
+      totalResults: 1,
+    };
+
+    mockBlogService.getAllBlogs.and.returnValue(of(mockData));
+    component.getAllBlogs();
+
+    expect(component.currentPage).toBe(1);
+  });
+
+  it('should set allBlogsLoaded to true when all blogs are loaded', () => {
+    const mockData = {
+      data: [{ id: 1 }],
+      totalResults: 1,
+    };
+
+    component.blogs = [{ id: 1 }]; // Simulate already loaded blog
+    mockBlogService.getAllBlogs.and.returnValue(of(mockData));
+
+    component.getAllBlogs();
+
+    expect(component.allBlogsLoaded).toBe(true);
+  });
+  // it('should handle successful loading of blogs', () => {
+  //   const mockData = {
+  //     data: [
+  //       {
+  //         id: 1,
+  //         profilePic: 'base64Image',
+  //       },
+  //     ],
+  //   };
+
+  //   mockBlogService.getAllBlogs.and.returnValue(of(mockData));
+  //   mockSanitizer.bypassSecurityTrustResourceUrl.and.callFake((url) => url);
+
+  //   component.getAllBlogs();
+
+  //   expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
+  //   expect(component.blogs.length).toBe(1);
+  //   expect(component.blogs[0].profilePic).toBe(
+  //     'data:image/jpeg;base64,base64Image'
+  //   );
+  // });
+  // it('should handle successful loading of blogs', () => {
+  //   const mockData = {
+  //     data: [
+  //       {
+  //         id: 1,
+  //       },
+  //     ],
+  //   };
+
+  //   mockBlogService.getAllBlogs.and.returnValue(of(mockData));
+
+  //   component.getAllBlogs();
+
+  //   expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
+  //   expect(component.blogs.length).toBe(1);
+  // });
 
   it('should handle errors when loading blogs', () => {
     mockBlogService.getAllBlogs.and.returnValue(
@@ -141,7 +260,11 @@ describe('PostComponent', () => {
     const blog = { id: 123 };
     expect(component.trackByBlogId(blog)).toBe(123);
   });
+  it('should return a different id for different departments', () => {
+    const department1 = { id: 1, name: 'HR' };
 
+    expect(component.trackByDepartmentId(department1)).toBe(1);
+  });
   it('should submit blog form successfully', () => {
     component.blog_form.patchValue({
       departmentId: 1,

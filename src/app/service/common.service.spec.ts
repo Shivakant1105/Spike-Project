@@ -66,6 +66,7 @@ describe('CommonService', () => {
     req.flush(mockResponse);
   });
   it('should fetch all contacts', () => {
+    const id = 1;
     const pageNo = 1;
     const pageSize = 10;
     const mockContacts = [
@@ -73,12 +74,12 @@ describe('CommonService', () => {
       { id: 2, name: 'Jane Doe' },
     ];
 
-    service.getAllContacts(pageNo, pageSize).subscribe((contacts) => {
+    service.getAllContacts(id, pageNo, pageSize).subscribe((contacts) => {
       expect(contacts).toEqual(mockContacts);
     });
 
     const req = httpMock.expectOne(
-      `${service.baseUrl}/user/contacts?pageSize=${pageSize}&pageNo=${pageNo}`
+      `${service.baseUrl}/user/contacts?userId=${id}&pageSize=${pageSize}&pageNo=${pageNo}`
     );
     expect(req.request.method).toBe('GET');
     req.flush(mockContacts);
@@ -153,5 +154,30 @@ describe('CommonService', () => {
     const req = httpMock.expectOne(`${service.baseUrl}/user/self/${userId}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockUser);
+  });
+  it('should format the date correctly', () => {
+    const dateString = '2024-09-27T00:00:00Z';
+    const formattedDate = service.formatDate(dateString);
+    expect(formattedDate).toBe('27 Sep, 24'); // Adjust based on your expected output
+  });
+
+  it('should return sanitized URL when data is provided', () => {
+    const base64Data = 'someBase64String';
+    const fallback = 'fallbackUrl';
+    const sanitizedUrl = service.getSanitizedUrl(base64Data, fallback);
+
+    expect(sanitizedUrl).toBe(
+      sanitizedUrl.bypassSecurityTrustResourceUrl(
+        'data:image/jpeg;base64,' + base64Data
+      )
+    );
+  });
+
+  it('should return fallback URL when no data is provided', () => {
+    const base64Data = null;
+    const fallback = 'fallbackUrl';
+    const sanitizedUrl = service.getSanitizedUrl(base64Data, fallback);
+
+    expect(sanitizedUrl).toBe(fallback);
   });
 });
