@@ -19,6 +19,8 @@ import { CommonService } from 'src/app/service/common.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoggerService } from 'src/app/service/logger.service';
+import { ButtonRendererComponent } from 'src/app/shared/cell-renderer/button-renderer/button-renderer.component';
+import { MultiValRendererComponent } from 'src/app/shared/cell-renderer/multi-val-renderer/multi-val-renderer.component';
 
 @Component({
   selector: 'app-employee',
@@ -49,19 +51,64 @@ export class EmployeeComponent implements OnInit {
   departmentToggle: boolean = false;
   managerList: managerList[] = [];
   employeeList: any[] = [];
+  gridOptions: any;
+  pageSize: number = 10;
+  pageNumber: number = 0;
 
   colDefs: ColDef[] = [
     {
       headerName: 'Id',
       field: 'id',
+      autoHeight: true,
+      cellClass: 'd-flex',
+      maxWidth: 100,
     },
     {
       headerName: 'Name',
-      field: 'name',
+      cellRenderer: MultiValRendererComponent,
+      autoHeight: true,
     },
-    { headerName: 'email', field: 'email' },
-    { headerName: 'Mobile', field: 'primaryMobileNumber' },
-    { headerName: 'Designation', field: 'designation' },
+    {
+      headerName: 'email',
+      field: 'email',
+      autoHeight: true,
+      cellClass: 'd-flex',
+      maxWidth: 200,
+    },
+    {
+      headerName: 'Mobile',
+      field: 'primaryMobileNumber',
+      autoHeight: true,
+      cellClass: 'd-flex',
+      maxWidth: 200,
+    },
+    {
+      headerName: 'Joining Date',
+      field: 'primaryMobileNumber',
+      autoHeight: true,
+      cellClass: 'd-flex',
+      maxWidth: 200,
+    },
+    {
+      headerName: 'Salary',
+      field: 'primaryMobileNumber',
+      autoHeight: true,
+      cellClass: 'd-flex',
+      maxWidth: 150,
+    },
+    {
+      headerName: 'Designation',
+      field: 'designation',
+      autoHeight: true,
+      cellClass: 'd-flex wrap',
+      maxWidth: 150,
+    },
+    {
+      headerName: 'Action',
+      cellRenderer: ButtonRendererComponent,
+      cellClass: 'd-flex',
+      maxWidth: 100,
+    },
   ];
 
   ngOnInit(): void {
@@ -89,11 +136,20 @@ export class EmployeeComponent implements OnInit {
       },
     });
 
-    this.employeeService.getAllEmployee().subscribe({
-      next: (res: any) => {
-        this.employeeList = res.data;
+    this.employeeService
+      .getAllEmployee(this.pageSize, this.pageNumber)
+      .subscribe({
+        next: (res: any) => {
+          this.employeeList = res.data;
+        },
+      });
+
+    this.gridOptions = {
+      context: {
+        component: this,
+        parentComponent: 'employeeComponent',
       },
-    });
+    };
   }
 
   employeeForm = this.fb.group({
@@ -139,11 +195,64 @@ export class EmployeeComponent implements OnInit {
   });
 
   /**
-   * @description This is method to get input type file value and convert that in formData and assign to image property.
+   * @description This is method to select perEmployee on a page.
    * @author Himmat
    * @param {Event} event
    */
-  onFileChange(event: Event) {
+  pageSizeSelected(event: any) {
+    this.pageSize = event.target.value;
+    this.employeeService
+      .getAllEmployee(this.pageSize, this.pageNumber)
+      .subscribe({
+        next: (res: any) => {
+          this.employeeList = res.data;
+        },
+      });
+  }
+
+  goFirstPage() {}
+
+  goLastPage() {}
+
+  /**
+   * @description This is method to go next page in table.
+   * @author Himmat
+   * @returns {void}
+   */
+  goNextPage(): void {
+    this.pageNumber += 1;
+    this.employeeService
+      .getAllEmployee(this.pageSize, this.pageNumber)
+      .subscribe({
+        next: (res: any) => {
+          this.employeeList = res.data;
+        },
+      });
+  }
+
+  /**
+   * @description This is method to go privious page in table.
+   * @author Himmat
+   * @returns {void}
+   */
+  goPreviousPage(): void {
+    this.pageNumber -= 1;
+    this.employeeService
+      .getAllEmployee(this.pageSize, this.pageNumber)
+      .subscribe({
+        next: (res: any) => {
+          this.employeeList = res.data;
+        },
+      });
+  }
+
+  /**
+   * @description This is method to get input type file value and convert that in formData and assign to image property.
+   * @author Himmat
+   * @param {Event} event
+   * @returns {void}
+   */
+  onFileChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     const file = target.files?.[0];
     if (file) {
@@ -157,8 +266,9 @@ export class EmployeeComponent implements OnInit {
    * @description This is method to convert file into base64.
    * @author Himmat
    * @param {File} file
+   * @returns {void}
    */
-  convertFileToBase64(file: File) {
+  convertFileToBase64(file: File): void {
     const reader = new FileReader();
     reader.onload = () => {
       const base64String = reader.result as string;
@@ -381,6 +491,35 @@ export class EmployeeComponent implements OnInit {
       country: currAddresVal.country,
     });
   }
+
+  /**
+   * @description This method is responsible for deleting single employee based on id and update table.
+   * @author Himmat
+   * @param {number} id
+   * @returns {void}
+   */
+  deleteEmployee(id: number) {
+    this.employeeService.deleteEmployee(id).subscribe({
+      next: (res: any) => {
+        this.loggerService.alertWithSuccess(res.message);
+        this.employeeService
+          .getAllEmployee(this.pageSize, this.pageNumber)
+          .subscribe({
+            next: (res: any) => {
+              this.employeeList = res.data;
+            },
+          });
+      },
+    });
+  }
+
+  /**
+   * @description This method is responsible for edit single employee based on id.
+   * @author Himmat
+   * @param {number} id
+   * @returns {void}
+   */
+  editEmployee(_id: number) {}
 
   /**
    * @description This method is responsible for submiting employeeForm and creating user on backend.

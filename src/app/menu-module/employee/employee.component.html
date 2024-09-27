@@ -31,21 +31,44 @@
         <app-grid-table
           [rowData]="employeeList"
           [colDefs]="colDefs"
+          [gridOptions]="gridOptions"
         ></app-grid-table>
       </div>
       <footer class="f12 pt-5">
         <span>Items Per Page:</span>
-        <select id="fruit" name="fruit" class="f14">
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="cherry">Cherry</option>
-          <option value="date">Date</option>
+        <select
+          id="fruit"
+          name="fruit"
+          class="f14"
+          (change)="pageSizeSelected($event)"
+        >
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="500">500</option>
         </select>
         <span class="page_number">1 – 9 of 9</span>
-        <i-feather class="f24" name="skip-back"></i-feather>
-        <i-feather class="f24" name="chevron-left"></i-feather>
-        <i-feather class="f24" name="chevron-right"></i-feather>
-        <i-feather class="f24" name="skip-forward"></i-feather>
+
+        <i-feather
+          class="f24"
+          name="skip-back"
+          (click)="goFirstPage()"
+        ></i-feather>
+        <i-feather
+          class="f24"
+          name="chevron-left"
+          (click)="goPreviousPage()"
+        ></i-feather>
+        <i-feather
+          class="f24"
+          name="chevron-right"
+          (click)="goNextPage()"
+        ></i-feather>
+        <i-feather
+          class="f24"
+          name="skip-forward"
+          (click)="goLastPage()"
+        ></i-feather>
       </footer>
     </div>
   </main>
