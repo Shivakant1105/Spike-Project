@@ -7,7 +7,7 @@
   max-height: rem(700);
   overflow-y: auto;
   overflow-x: hidden;
- 
+
   .seach_wrapper {
     @include setDimension(rem(246), rem(55));
     @include flex(space-between, center, "", 0, 0);
@@ -40,11 +40,12 @@
   }
 
   .notes_card {
-    @include setDimension(rem(243), rem(84));
+    @include setDimension(rem(243), auto);
     background-color: var(--notes-page-bg-color);
-    padding: rem(10) rem(15);
-    min-height: rem(84);
+    padding: rem(24) rem(15);
     border-radius: rem(18);
+    word-wrap: break-word;
+
     .f16 {
       color: var(--text-color-600);
       font-weight: 500;
@@ -104,7 +105,7 @@
       @extend %notes_sidebar_common;
     }
 
-    .open{
+    .open {
       border-right: 0.0625rem solid var(--input-border-color);
       transition: width 0.3s ease-in-out;
       padding: 1.25rem;
