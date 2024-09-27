@@ -1,17 +1,15 @@
 <div class="todo_wrapper">
-
     <div class="todo_section custome_radius">
         <span class="left f20">Todo App</span>
         <div class="right">
             <span class="f14 dashboard">Dashboard</span>
-            <span class="circle f14"></span>
+            <span class="circle"></span>
             <span class="contact f14">Todo App</span>
         </div>
     </div>
 
     <!-- Todo Section -->
     <div class="todo_container custome_radius">
-
         <div class="todo_sidebar">
             <h4 class="f18 todo_heading">Todo App</h4>
 
@@ -29,51 +27,79 @@
                 <span class="left f14">Completed</span>
                 <span class="right_circle green fw-medium">0</span>
             </div>
-
         </div>
 
         <div class="todo_content">
 
-            <div class="todo_header">
+            <div class="todo_header position-relative">
                 <div class="left">
-                    <i-feather class="f24" name="align-left"></i-feather>
-                    <input type="checkbox" class="checkbox">
-                    <span>Mark All</span>
+                    <i-feather class="f24 align_icon_first" name="align-left"></i-feather>
+                    <i-feather class="f24 align_icon_second" name="align-left" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                    </i-feather>
+                    <label class="custom-checkbox d-flex align-items-center gap-3">
+                        <input type="checkbox" class="checkbox" />
+                        <span class="checkmark"></span>
+                        Mark All
+                    </label>
+
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasScrolling"
+                        aria-labelledby="offcanvasScrollingLabel">
+                        <div class="offcanvas-body">
+                            <div class="onsmall">
+                                <h4 class="f18 todo_heading">Todo App</h4>
+
+                                <div class="task_status active">
+                                    <span class="left f14">All</span>
+                                    <span class="right_circle blue fw-medium">5</span>
+                                </div>
+
+                                <div class="task_status">
+                                    <span class="left f14">Incompleted</span>
+                                    <span class="right_circle salmon fw-medium">5</span>
+                                </div>
+
+                                <div class="task_status">
+                                    <span class="left f14">Completed</span>
+                                    <span class="right_circle green fw-medium">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="right custome_radius fw-medium">
                     <span>0</span>
                     <span>Tasks left</span>
                 </div>
-
             </div>
 
             <div class="todo_body">
-
-                <div class="serch_addtodo d-flex justify-content-between ">
-                    <input type="text" class="form-control add_todo_input" placeholder="Add Todo">
+                <div class="serch_addtodo d-flex justify-content-between">
+                    <input type="text" class="form-control add_todo_input" placeholder="Add Todo" />
                     <span class="add_todo custome_radius f14">Add Todo</span>
                 </div>
 
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
                         </div>
                     </div>
+                    <input type="text" class="form-control edite_note custome_radius"
+                        placeholder="I have go to office." />
 
                     <div class="right_items">
                         <i-feather class="f24" name="edit-2"></i-feather>
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
+
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
@@ -85,10 +111,10 @@
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
+
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
@@ -100,10 +126,10 @@
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
+
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
@@ -115,10 +141,10 @@
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
+
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
@@ -130,10 +156,10 @@
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
+
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
@@ -145,10 +171,10 @@
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
+
                 <div class="todo_items">
-
-                    <div class="left_items ">
-                        <input type="checkbox">
+                    <div class="todo_left_items">
+                        <input type="checkbox" />
                         <div class="headline_date">
                             <span>I have to go office</span>
                             <span>Feb 6, 2023</span>
@@ -160,9 +186,7 @@
                         <i-feather class="f24" name="trash"></i-feather>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
