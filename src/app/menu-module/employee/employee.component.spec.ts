@@ -31,6 +31,7 @@ describe('EmployeeComponent', () => {
       'getAllManagersList',
       'getAllEmployee',
       'uploadProfileImage',
+      'deleteEmployee',
     ]);
 
     await TestBed.configureTestingModule({
@@ -433,7 +434,6 @@ describe('EmployeeComponent', () => {
   });
 
   it('should convert file to base64 and append to FormData if file is present', () => {
-    // Arrange
     const mockFile = new Blob(['file content'], { type: 'image/png' });
     const event = {
       target: {
@@ -443,15 +443,94 @@ describe('EmployeeComponent', () => {
 
     spyOn(component, 'convertFileToBase64').and.callThrough();
 
-    // Act
     component.onFileChange(event);
-
-    // Assert
     expect(component.image.has('file')).toBeTrue();
     expect(component.image.get('file').name).toBe('test.png');
     expect(component.convertFileToBase64).toHaveBeenCalledWith(
       jasmine.any(File)
     );
+  });
+
+  it('should not do anything if no file is selected', () => {
+    const event = {
+      target: {
+        files: null,
+      },
+    } as unknown as Event;
+
+    spyOn(component, 'convertFileToBase64');
+
+    component.onFileChange(event);
+
+    expect(component.convertFileToBase64).not.toHaveBeenCalled();
+    expect(component.image).toBeUndefined();
+  });
+
+  it('should go to the next page and fetch employee data', () => {
+    const mockResponse = { data: ['Employee1', 'Employee2'] };
+    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
+
+    component.goNextPage();
+
+    expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
+      component.pageSize,
+      component.pageNumber
+    );
+    expect(component.employeeList).toEqual(mockResponse.data);
+  });
+
+  it('should go to the previous page and fetch employee data', () => {
+    component.pageNumber = 2; // Start on page 2
+    const mockResponse = { data: ['Employee3', 'Employee4'] };
+    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
+
+    component.goPreviousPage();
+
+    expect(component.pageNumber).toBe(1);
+    expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
+      component.pageSize,
+      component.pageNumber
+    );
+    expect(component.employeeList).toEqual(mockResponse.data);
+  });
+
+  it('should update pageSize and fetch employees on pageSizeSelected', () => {
+    const mockEvent = { target: { value: 20 } };
+    const mockResponse = { data: [{ id: 1, name: 'John Doe' }] };
+
+    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
+
+    component.pageSizeSelected(mockEvent);
+
+    expect(component.pageSize).toBe(20);
+    expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
+      20,
+      component.pageNumber
+    );
+    expect(component.employeeList).toEqual(mockResponse.data);
+  });
+
+  it('should delete employee and fetch updated employee list', () => {
+    const mockId = 1;
+    const mockDeleteResponse = { message: 'Employee deleted successfully' };
+    const mockEmployeeListResponse = { data: [{ id: 2, name: 'Jane Doe' }] };
+
+    employeeService.deleteEmployee.and.returnValue(of(mockDeleteResponse));
+    employeeService.getAllEmployee.and.returnValue(
+      of(mockEmployeeListResponse)
+    );
+
+    component.deleteEmployee(mockId);
+
+    expect(employeeService.deleteEmployee).toHaveBeenCalledWith(mockId);
+    // expect(loggerService.alertWithSuccess).toHaveBeenCalledWith(
+    //   mockDeleteResponse.message
+    // );
+    expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
+      component.pageSize,
+      component.pageNumber
+    );
+    expect(component.employeeList).toEqual(mockEmployeeListResponse.data);
   });
 
   it('should return the correct contact id', () => {

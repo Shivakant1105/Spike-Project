@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { CommonService } from './service/common.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
-  @ViewChild('theme') themeElem!: ElementRef<any>
+  @ViewChild('theme') themeElem!: ElementRef<any>;
 
   title = 'spike-project';
   isLogIn: boolean = true;
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
    * @author Gautam Yadav
    * @param {Router} router - Angular Router used to subscribe to navigation events
    */
-  constructor(private router: Router) {
+  constructor(private router: Router, private commonService: CommonService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.urlAfterRedirects === '/auth/login') {
@@ -31,35 +31,39 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  /**  
-    * @description This is a theme function.  
-    * @author Shiva Kant Mishra
-  */
+  /**
+   * @description This is a theme function.
+   * @author Shiva Kant Mishra
+   */
   ngAfterViewInit() {
     this.isTheme = localStorage.getItem('theme') as string;
 
     if (this.isTheme == null) {
-      this.themeElem.nativeElement.classList.add("light-theme");
-      localStorage.setItem('theme', "light-theme");
+      this.themeElem.nativeElement.classList.add('light-theme');
+      localStorage.setItem('theme', 'light-theme');
     } else {
       this.themeElem.nativeElement.classList.add(this.isTheme);
     }
+    this.commonService.setToggleTheme(this.isTheme);
   }
 
   toggleTheme() {
     if (this.themeElem.nativeElement.classList.contains('dark-theme')) {
-      this.themeElem.nativeElement.classList.replace("dark-theme", "light-theme");
+      this.themeElem.nativeElement.classList.replace(
+        'dark-theme',
+        'light-theme'
+      );
       this.isTheme = 'light-theme';
-
     } else {
-      this.themeElem.nativeElement.classList.replace("light-theme", "dark-theme");
-      this.isTheme = 'dark-theme'
+      this.themeElem.nativeElement.classList.replace(
+        'light-theme',
+        'dark-theme'
+      );
+      this.isTheme = 'dark-theme';
     }
-
+    this.commonService.setToggleTheme(this.isTheme);
     localStorage.setItem('theme', this.isTheme);
   }
 }
