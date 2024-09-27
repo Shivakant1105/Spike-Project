@@ -23,7 +23,14 @@ export class BlogService {
     );
   }
 
-  createBlog(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/blog/create`, data);
+  /**
+   * @description This is method to Post a blog.
+   * @author Jagdish
+   * @param {FormData} data - The postBlog object.
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  postBlog(data: FormData): Observable<any> {
+    let url = `${this.baseUrl}/blog/create`;
+    return this.http.post(url, data);
   }
 }

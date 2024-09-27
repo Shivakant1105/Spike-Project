@@ -33,7 +33,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
     if (token) {
       authReq = request.clone({
-        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
+        headers: new HttpHeaders()
+          .set('Authorization', `Bearer ${token}`),
       });
     }
 

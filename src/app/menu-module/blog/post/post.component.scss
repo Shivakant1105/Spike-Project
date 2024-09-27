@@ -5,7 +5,6 @@
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 0;
-    // height: 0;
   }
 }
 .sub_header {
@@ -209,7 +208,7 @@
         margin-bottom: rem(20);
 
         p {
-          display: none !important;
+          color: red;
         }
 
         &.error {
