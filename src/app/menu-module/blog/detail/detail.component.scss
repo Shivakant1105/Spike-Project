@@ -24,6 +24,11 @@
         color: var(--textColor-400);
       }
     }
+    .right {
+      i-feather {
+        cursor: pointer;
+      }
+    }
   }
   & :nth-child(2) {
     color: var(--text-color-400);
@@ -212,6 +217,14 @@
     .comment_heading {
       color: var(--text-color-600);
     }
+    .char_count {
+      @include flex(flex-end, center, "", 0, 0);
+      color: var(--text-color-600);
+      font-weight: 600;
+    }
+    span {
+      color: var(--text-color-400);
+    }
     .text_area {
       padding: rem(25);
       box-shadow: none;
@@ -260,7 +273,7 @@
     }
 
     .hide_comment {
-      display: none !important;
+      display: none;
     }
     .comment_reply {
       @include flex(space-between, center, "", 16, 0);

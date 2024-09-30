@@ -109,11 +109,17 @@ describe('EmployeeService', () => {
         { id: 2, name: 'Employee B' },
       ];
 
-      service.getAllEmployee().subscribe((employees) => {
+      const pageNumber = 1;
+      const pageSize = 10;
+
+      // Call getAllEmployee with the correct parameters
+      service.getAllEmployee(pageSize, pageNumber).subscribe((employees) => {
         expect(employees).toEqual(mockEmployees);
       });
 
-      const req = httpMock.expectOne(`${baseUrl}/user/employees`);
+      const req = httpMock.expectOne(
+        `${baseUrl}/user/employees?page=${pageNumber}&size=${pageSize}`
+      );
       expect(req.request.method).toBe('GET');
       req.flush(mockEmployees);
     });

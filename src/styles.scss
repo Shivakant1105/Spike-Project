@@ -4,8 +4,32 @@
 @import "./base/index";
 @import "./mixing";
 
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+
+.ag-theme-alpine-dark {
+  --ag-background-color: #131b2c !important;
+  --ag-border-color: #131b2c !important;
+  --ag-secondary-border-color: rgba(88, 86, 82, 0.5);
+  --ag-header-background-color: #131b2c;
+  --ag-odd-row-background-color: #131b2c;
+}
+
+.ag-theme-alpine {
+  --ag-background-color: #ffffff !important;
+  --ag-border-color: #ffffff !important;
+  --ag-secondary-border-color: #dde2eb;
+  --ag-header-background-color: #ffffff;
+  --ag-odd-row-background-color: #ffffff;
+}
+
+.ag-theme-alpine-dark .ag-header-row {
+  border-bottom: 1px solid rgba(88, 86, 82, 0.5);
+}
+
+.ag-theme-alpine .ag-header-row {
+  border-bottom: 1px solid #dde2eb;
+}
 
 * {
   box-sizing: border-box;
@@ -43,7 +67,8 @@ html {
 }
 
 .box_shadow {
-  box-shadow: 0 rem(1) rem(3) var(--inline-shadow), 0 rem(1) rem(2) var(--outline-shadow),
+  box-shadow: 0 rem(1) rem(3) var(--inline-shadow),
+    0 rem(1) rem(2) var(--outline-shadow),
     0 rem(4) rem(6) var(--strongly-shadow);
 }
 
@@ -68,6 +93,6 @@ html {
   display: none;
 }
 
-.modal-backdrop{
+.modal-backdrop {
   position: unset !important;
 }

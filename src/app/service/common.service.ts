@@ -10,6 +10,17 @@ export class CommonService {
   loader = new BehaviorSubject<boolean>(false);
   baseUrl: string = environment.baseUrl;
   sideBarTogglebtn = new BehaviorSubject(false);
+  toggleTheme = new BehaviorSubject('light-theme');
+
+  /** @description This is a method to emit subject which will change theme.
+   * @author Himmat
+   * @param { string } theme
+   * @return {void} Return a void
+   */
+  setToggleTheme(theme: string): void {
+    this.toggleTheme.next(theme);
+  }
+
   /** @description This is a toggle button for sidebar.
    * @author Gautam Yadav
    * @params {flag:boolean}

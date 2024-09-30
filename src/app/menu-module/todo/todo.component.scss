@@ -1,0 +1,262 @@
+@import "../../../styles.scss";
+
+%todo-status {
+  @include flex(space-between, center, "", 0, 0);
+  @include setDimension(100%, rem(50));
+  //   margin-top: rem(10);
+  padding: 0 rem(16);
+  cursor: pointer;
+  &:hover {
+    background-color: var(--btn-hover-color);
+  }
+
+  .right_circle {
+    @include rounded_icons(30, 30, "");
+    @include flex(center, center, "", 0, 0);
+    color: var(--white);
+    font-size: rem(14);
+  }
+}
+%todo-items-common {
+  @include flex(space-between, center, "", 0, 0);
+  @include setDimension(100%, rem(85));
+  border-bottom: rem(1) solid var(--input-border-color);
+  padding: rem(25);
+  color: var(--text-color-400);
+  font-size: rem(15);
+  font-weight: 500;
+
+  .todo_left_items {
+    @include flex("", center, "", 16, 0);
+    & input {
+      @include setDimension(rem(18), rem(18));
+      margin-top: rem(7);
+      align-self: flex-start;
+      cursor: pointer;
+    }
+    .headline_date {
+      @include flex(center, "", column, 6, 0);
+    }
+  }
+
+  .right_items {
+    @include flex("", center, "", 20, 0);
+    & i-feather {
+      cursor: pointer;
+    }
+  }
+}
+
+%todo_sidebar-common {
+  @include setDimension(rem(240), auto);
+  border-right: rem(1) solid var(--input-border-color);
+  overflow-y: auto;
+  max-height: rem(660);
+  color: var(--text-color-600);
+
+  .todo_heading {
+    padding: rem(20) 0 0 rem(20);
+  }
+  .task_status.active {
+    background-color: var(--header-footer);
+    margin-top: rem(28);
+  }
+  .task_status {
+    @extend %todo-status;
+
+    .right_circle.blue {
+      background-color: var(--course-page-header-blue);
+    }
+    .right_circle.salmon {
+      background-color: var(--course-page-header-salmon);
+    }
+    .right_circle.green {
+      background-color: var(--proccessing-text);
+    }
+  }
+}
+.todo_wrapper {
+  @include setDimension(100%, 100%);
+  @include flex("", "", column, 30, 0);
+
+  .todo_section {
+    @include setDimension(100%, rem(81));
+    min-height: rem(81);
+    background-color: var(--bg-high);
+    @include flex(space-between, center, "", 0, 1);
+    padding: 0 rem(30);
+
+    .left {
+      color: var(--text-color-600);
+      font-weight: 600;
+    }
+
+    .right {
+      @include flex(center, center, "", 15, 0);
+
+      .dashboard {
+        color: var(--quick-link-hover-color);
+        cursor: pointer;
+      }
+
+      .circle {
+        @include setDimension(rem(5), rem(5));
+        background-color: var(--textColor);
+        border-radius: 50%;
+      }
+
+      .contact {
+        color: var(--textColor);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .todo_container {
+    @include flex("", "", "", 0, 0);
+    @include setDimension(100%, auto);
+    background-color: var(--bg-high);
+    border: rem(1) solid var(--input-border-color);
+    .todo_sidebar {
+      @extend %todo_sidebar-common;
+    }
+
+    .todo_content {
+      flex-grow: 1;
+
+      .todo_header {
+        @include flex(space-between, center, "", 0, 0);
+        @include setDimension(100%, rem(65));
+        min-height: rem(65);
+        padding: 0 rem(25);
+        border-bottom: rem(1) solid var(--input-border-color);
+        color: var(--text-color-600);
+
+        .left {
+          @include flex(space-between, center, "", 20, 0);
+          cursor: pointer;
+
+          .checkbox {
+            @include setDimension(rem(20), rem(20));
+            border: rem(1) solid var(--input-border-color);
+            background-color: var(--bg-high);
+            cursor: pointer;
+          }
+          .align_icon_second {
+            display: none;
+          }
+
+          .custom-checkbox input {
+            display: none;
+          }
+
+          .custom-checkbox .checkmark {
+            @include setDimension(rem(20), rem(20));
+            background-color: var(--bg-high);
+            border: rem(1) solid var(--input-border-color);
+            border-radius: rem(5);
+            transition: background-color 0.3s;
+          }
+
+          .custom-checkbox input:checked + .checkmark {
+            background-color: var(--green);
+          }
+          .custom-checkbox {
+            cursor: pointer;
+          }
+          .custom-checkbox input:checked + .checkmark::after {
+            content: "";
+            display: block;
+            @include setDimension(rem(5), rem(10));
+            border: solid var(--white);
+            border-width: 0 rem(2) rem(2) 0;
+            transform: rotate(45deg);
+            position: relative;
+            left: rem(7);
+            top: rem(3);
+          }
+        }
+
+        .right {
+          @include flex(center, center, "", 4, 0);
+          @include setDimension(rem(100), rem(34));
+          padding: 0 rem(10);
+          background-color: var(--course-page-header-blue);
+          text-wrap: nowrap;
+          color: var(--white);
+          font-size: rem(14);
+          cursor: pointer;
+        }
+      }
+
+      .todo_body {
+        max-height: rem(600);
+        overflow-y: auto;
+        .serch_addtodo {
+          @include flex("", center, "", 0, 0);
+          @include setDimension(100%, rem(85));
+          border-bottom: rem(1) solid var(--input-border-color);
+          padding: rem(25);
+
+          .add_todo_input {
+            @include setDimension(rem(360), rem(55));
+            box-shadow: none;
+            cursor: pointer;
+            border-radius: rem(18);
+            background-color: var(--bg-high);
+            border: rem(1) solid var(--input-border-color);
+            &:focus {
+              border: rem(2) solid var(--course-page-header-blue);
+            }
+            &::placeholder {
+              color: var(--text-color-400);
+            }
+          }
+
+          .add_todo {
+            @include setDimension(rem(126), rem(36));
+            @include flex(center, center, "", 0, 0);
+            background-color: var(--border-color-light);
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-color-400);
+          }
+        }
+
+        .todo_items {
+          @extend %todo-items-common;
+        }
+        .todo_items .edite_note {
+          display: none;
+          @include setDimension(rem(210), rem(54));
+          box-shadow: none;
+          background-color: var(--bg-high);
+          border: rem(2) solid var(--input-border-color);
+          color: var(--text-color-600);
+          cursor: pointer;
+          text-overflow: ellipsis;
+          word-wrap: nowrap;
+          &::placeholder {
+            color: var(--text-color-400);
+            font-size: rem(14);
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+.offcanvas {
+  @include setDimension(rem(250), rem(665));
+  background-color: var(--bg-high);
+  position: absolute;
+  border-radius: rem(16) 0 0 rem(16);
+
+  .offcanvas-body {
+    padding: 0;
+    .onsmall {
+      @extend %todo_sidebar-common;
+      @include setDimension(rem(250), rem(665));
+    }
+  }
+}
