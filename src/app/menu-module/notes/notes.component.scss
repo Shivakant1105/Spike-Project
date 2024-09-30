@@ -14,9 +14,11 @@
     border: rem(1) solid var(--input-border-color);
     padding: 0 rem(15);
     min-height: rem(55);
+
     &:hover {
       border: rem(2) solid var(--input-modal-outline-color);
     }
+
     & input {
       background-color: var(--bg-high);
       color: var(--text-color-600);
@@ -30,10 +32,12 @@
         font-size: rem(15);
       }
     }
+
     .search_icon {
       color: var(--text-color-400);
     }
   }
+
   .Notes_heading {
     color: var(--text-color-600);
     font-weight: 600;
@@ -50,12 +54,14 @@
       color: var(--text-color-600);
       font-weight: 500;
     }
+
     .f12 {
       color: var(--textColor-200);
     }
 
     .date_icon_wrapper {
       @include flex(space-between, center, "", 0, 0);
+
       & :nth-child(2) {
         cursor: pointer;
         color: var(--text-color-600);
@@ -63,6 +69,7 @@
     }
   }
 }
+
 .notes_parent {
   @include flex("", "", column, 32, 0);
 
@@ -79,13 +86,16 @@
 
     .right_wrapper {
       @include flex("", center, "", 15, 0);
+
       .circle {
         @include rounded_icons(5, 5, var(--text-color-600));
       }
+
       .item1 {
         color: var(--contact-user-bg);
         cursor: pointer;
       }
+
       .item2 {
         color: var(--text-color-600);
       }
@@ -96,20 +106,22 @@
     @include flex("", "", "", 0, 0);
     @include setDimension(100%, rem(710));
     background-color: var(--bg-high);
+    position: relative;
 
     .notes_sidebar {
-      width: 0;
-      padding: 0;
-      border-right: none;
-      transition: width 0.3s ease-in-out;
-      @extend %notes_sidebar_common;
-    }
-
-    .open {
       border-right: 0.0625rem solid var(--input-border-color);
       transition: width 0.3s ease-in-out;
       padding: 1.25rem;
       width: 18.125rem;
+      transition: width 0.3s ease-in-out;
+      @extend %notes_sidebar_common;
+    }
+
+    .hide_notes_sidebar {
+      display: flex !important;
+      width: 0;
+      padding: 0;
+      border: none;
     }
 
     .notes_body {
@@ -120,10 +132,12 @@
         @include setDimension(100%, rem(63));
         border-bottom: rem(1) solid var(--input-border-color);
         padding: 0 rem(25);
+
         .menu {
           color: var(--text-color-400);
           cursor: pointer;
         }
+
         .notes_btn {
           @include setDimension(rem(102), rem(34));
           background-color: var(--course-page-header-blue);
@@ -139,7 +153,7 @@
         max-height: rem(600);
         overflow-y: auto;
         position: relative;
-        top: rem(-700);
+
         & .f16 {
           font-weight: 600;
           color: var(--text-color-600);
@@ -156,26 +170,33 @@
           resize: none;
           outline: none;
           cursor: pointer;
+
           &:focus {
             border: rem(2) solid var(--course-page-header-blue);
           }
         }
+
         .ball {
           @include rounded_icons(18, 18, "");
           cursor: pointer;
         }
+
         .blue {
           background-color: var(--course-page-header-blue);
         }
+
         .yellow {
           background-color: var(--course-page-header-yellow);
         }
+
         .grey {
           background-color: var(--course-page-header-grey);
         }
+
         .salmon {
           background-color: var(--course-page-header-salmon);
         }
+
         .green {
           background-color: var(--proccessing-text);
         }
@@ -196,9 +217,26 @@
 
     .notes_body {
       padding: 0;
+
       .notes_sidebar_small {
         @extend %notes_sidebar_common;
       }
     }
+  }
+}
+
+@media (max-width:rem(768)) {
+  .notes_sidebar {
+    display: none !important;
+  }
+
+  .hide_notes_sidebar {
+    position: absolute;
+    z-index: 10;
+    background-color: var(--bg-high);
+    border-right: 0.0625rem solid var(--input-border-color);
+    padding: 1.25rem !important;
+    width: 18.125rem !important;
+
   }
 }
