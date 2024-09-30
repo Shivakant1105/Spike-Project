@@ -190,43 +190,6 @@ describe('PostComponent', () => {
 
     expect(component.allBlogsLoaded).toBe(true);
   });
-  // it('should handle successful loading of blogs', () => {
-  //   const mockData = {
-  //     data: [
-  //       {
-  //         id: 1,
-  //         profilePic: 'base64Image',
-  //       },
-  //     ],
-  //   };
-
-  //   mockBlogService.getAllBlogs.and.returnValue(of(mockData));
-  //   mockSanitizer.bypassSecurityTrustResourceUrl.and.callFake((url) => url);
-
-  //   component.getAllBlogs();
-
-  //   expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
-  //   expect(component.blogs.length).toBe(1);
-  //   expect(component.blogs[0].profilePic).toBe(
-  //     'data:image/jpeg;base64,base64Image'
-  //   );
-  // });
-  // it('should handle successful loading of blogs', () => {
-  //   const mockData = {
-  //     data: [
-  //       {
-  //         id: 1,
-  //       },
-  //     ],
-  //   };
-
-  //   mockBlogService.getAllBlogs.and.returnValue(of(mockData));
-
-  //   component.getAllBlogs();
-
-  //   expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
-  //   expect(component.blogs.length).toBe(1);
-  // });
 
   it('should handle errors when loading blogs', () => {
     mockBlogService.getAllBlogs.and.returnValue(
@@ -299,22 +262,6 @@ describe('PostComponent', () => {
 
     expect(mockLoggerService.errorAlert).toHaveBeenCalled();
   });
-
-  // it('should handle file changes correctly', () => {
-  //   const file = new Blob([''], { type: 'image/png' });
-  //   const event = { target: { files: [file] } };
-
-  //   spyOn(window, 'FileReader').and.callFake(() => ({
-  //   //   readAsDataURL: function () {},
-  //   //   onload: (e) => {
-  //   //     this.onload(e);
-  //   //   },
-  //   // }));
-
-  //   // component.onFileChange(event);
-  //   // expect(component.fileSrc).toBeDefined();
-  //   expect(component.fileType).toBe('image');
-  // });
 
   it('should reset the blog form correctly', () => {
     component.reset_blog_form();

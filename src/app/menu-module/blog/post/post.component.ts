@@ -78,12 +78,6 @@ export class PostComponent implements OnInit {
                 'data:image/jpeg;base64,' + blog.mediaFile
               )
             : '../../../assets/blog-img1.jpg';
-          // const mediaFiles = blog.mediaFile
-          //   ? this.sanitizer.bypassSecurityTrustResourceUrl(
-          //       'data:image/jpeg;base64,' + blog.mediaFile
-          //     )
-          //   : '../../../assets/blog-img1.jpg';
-
           const date = new Date(blog.createdDateTime);
           const day = date.getDate();
           const month = date.toLocaleString('default', { month: 'short' });
