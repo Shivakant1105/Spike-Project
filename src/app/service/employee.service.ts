@@ -48,7 +48,18 @@ export class EmployeeService {
    * @author Himmat
    * @returns {Observable<any>} An observable that emits the server's response.
    */
-  getAllEmployee() {
-    return this.http.get(`${this.baseUrl}/user/employees`);
+  getAllEmployee(pageSize?: number, pageNumber?: number) {
+    const url = `${this.baseUrl}/user/employees?page=${pageNumber}&size=${pageSize}`;
+    return this.http.get(url);
+  }
+
+  /**
+   * @description This is method to delete employee.
+   * @author Himmat
+   * @param {number} employeeId
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  deleteEmployee(employeeId: number) {
+    return this.http.delete(`${this.baseUrl}/user/delete/${employeeId}`);
   }
 }

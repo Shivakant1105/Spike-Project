@@ -103,6 +103,21 @@ $largeDesktop: rem(1920);
       border-radius: unset !important;
     }
   }
+
+  // Todo Page
+  .todo_wrapper .todo_container {
+    .todo_sidebar {
+      display: none;
+    }
+    .todo_content .todo_header .left {
+      .align_icon_first {
+        display: none ;
+      }
+      .align_icon_second {
+        display: flex !important;
+      }
+    }
+  }
 }
 
 @include width-range(rem(0), $desktop - rem(1)) {
@@ -323,6 +338,19 @@ $largeDesktop: rem(1920);
       }
     }
   }
+
+  // Todo Page
+  .serch_addtodo {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    gap: rem(20) !important;
+    padding: rem(24) 0;
+
+    & input {
+      width: 100% !important;
+    }
+  }
 }
 
 @media only screen and (max-width: rem(400)) {
@@ -382,9 +410,18 @@ $largeDesktop: rem(1920);
       display: none;
     }
   }
+
+  // Todo Page
+  .todo_wrapper .todo_container {
+    .todo_header {
+      .left span {
+        font-size: rem(14);
+      }
+    }
+  }
 }
-@include width-range(rem(0), 450px){
-  .account_main{
+@include width-range(rem(0), 450px) {
+  .account_main {
     padding: 0 !important;
   }
 }

@@ -26,7 +26,7 @@
   font-size: rem(15);
   font-weight: 500;
 
-  .left_items {
+  .todo_left_items {
     @include flex("", center, "", 16, 0);
     & input {
       @include setDimension(rem(18), rem(18));
@@ -47,6 +47,34 @@
   }
 }
 
+%todo_sidebar-common {
+  @include setDimension(rem(240), auto);
+  border-right: rem(1) solid var(--input-border-color);
+  overflow-y: auto;
+  max-height: rem(660);
+  color: var(--text-color-600);
+
+  .todo_heading {
+    padding: rem(20) 0 0 rem(20);
+  }
+  .task_status.active {
+    background-color: var(--header-footer);
+    margin-top: rem(28);
+  }
+  .task_status {
+    @extend %todo-status;
+
+    .right_circle.blue {
+      background-color: var(--course-page-header-blue);
+    }
+    .right_circle.salmon {
+      background-color: var(--course-page-header-salmon);
+    }
+    .right_circle.green {
+      background-color: var(--proccessing-text);
+    }
+  }
+}
 .todo_wrapper {
   @include setDimension(100%, 100%);
   @include flex("", "", column, 30, 0);
@@ -88,33 +116,9 @@
     @include flex("", "", "", 0, 0);
     @include setDimension(100%, auto);
     background-color: var(--bg-high);
-
+    border: rem(1) solid var(--input-border-color);
     .todo_sidebar {
-      @include setDimension(rem(240), auto);
-      border-right: rem(1) solid var(--input-border-color);
-      overflow-y: auto;
-      color: var(--text-color-600);
-
-      .todo_heading {
-        padding: rem(20) 0 0 rem(20);
-      }
-      .task_status.active {
-        background-color: var(--header-footer);
-        margin-top: rem(28);
-      }
-      .task_status {
-        @extend %todo-status;
-
-        .right_circle.blue {
-          background-color: var(--course-page-header-blue);
-        }
-        .right_circle.salmon {
-          background-color: var(--course-page-header-salmon);
-        }
-        .right_circle.green {
-          background-color: var(--proccessing-text);
-        }
-      }
+      @extend %todo_sidebar-common;
     }
 
     .todo_content {
@@ -129,7 +133,7 @@
         color: var(--text-color-600);
 
         .left {
-          @include flex(space-between, center, "", 15, 0);
+          @include flex(space-between, center, "", 20, 0);
           cursor: pointer;
 
           .checkbox {
@@ -137,6 +141,39 @@
             border: rem(1) solid var(--input-border-color);
             background-color: var(--bg-high);
             cursor: pointer;
+          }
+          .align_icon_second {
+            display: none;
+          }
+
+          .custom-checkbox input {
+            display: none;
+          }
+
+          .custom-checkbox .checkmark {
+            @include setDimension(rem(20), rem(20));
+            background-color: var(--bg-high);
+            border: rem(1) solid var(--input-border-color);
+            border-radius: rem(5);
+            transition: background-color 0.3s;
+          }
+
+          .custom-checkbox input:checked + .checkmark {
+            background-color: var(--green);
+          }
+          .custom-checkbox {
+            cursor: pointer;
+          }
+          .custom-checkbox input:checked + .checkmark::after {
+            content: "";
+            display: block;
+            @include setDimension(rem(5), rem(10));
+            border: solid var(--white);
+            border-width: 0 rem(2) rem(2) 0;
+            transform: rotate(45deg);
+            position: relative;
+            left: rem(7);
+            top: rem(3);
           }
         }
 
@@ -162,7 +199,7 @@
           padding: rem(25);
 
           .add_todo_input {
-            @include setDimension(rem(380), rem(55));
+            @include setDimension(rem(360), rem(55));
             box-shadow: none;
             cursor: pointer;
             border-radius: rem(18);
@@ -189,7 +226,37 @@
         .todo_items {
           @extend %todo-items-common;
         }
+        .todo_items .edite_note {
+          display: none;
+          @include setDimension(rem(210), rem(54));
+          box-shadow: none;
+          background-color: var(--bg-high);
+          border: rem(2) solid var(--input-border-color);
+          color: var(--text-color-600);
+          cursor: pointer;
+          text-overflow: ellipsis;
+          word-wrap: nowrap;
+          &::placeholder {
+            color: var(--text-color-400);
+            font-size: rem(14);
+            font-weight: 500;
+          }
+        }
       }
+    }
+  }
+}
+.offcanvas {
+  @include setDimension(rem(250), rem(665));
+  background-color: var(--bg-high);
+  position: absolute;
+  border-radius: rem(16) 0 0 rem(16);
+
+  .offcanvas-body {
+    padding: 0;
+    .onsmall {
+      @extend %todo_sidebar-common;
+      @include setDimension(rem(250), rem(665));
     }
   }
 }
