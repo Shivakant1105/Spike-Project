@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/service/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,15 +10,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ContactComponent implements OnInit {
   contacts: any = [];
+  id!: number;
   currentPage: number = 0;
-  pageSize: number = 10;
   isLoading: boolean = false;
+  pageSize: number = 10;
+  totalContact: number = 1;
   constructor(
     private commonService: CommonService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    let data = this.authService.getTokenData();
+    this.id = data.id;
     this.getAllContacts();
   }
 
@@ -30,42 +36,54 @@ export class ContactComponent implements OnInit {
   getAllContacts() {
     if (this.isLoading) return;
     this.isLoading = true;
+    if (this.contacts.length !== this.totalContact) {
+      this.commonService.showLoader();
+      this.commonService
+        .getAllContacts(this.id, this.currentPage, this.pageSize)
+        .subscribe({
+          next: (data: any) => {
+            this.totalContact = data.totalContacts;
+            const newContacts = data.data.map((contact: any) => {
+              const profilePictureUrl = contact.profilePicture
+                ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                    'data:image/jpeg;base64,' + contact.profilePicture
+                  )
+                : '../../../assets/mesage_user.jpg';
 
-    this.commonService
-      .getAllContacts(this.currentPage, this.pageSize)
-      .subscribe({
-        next: (data: any) => {
-          const newContacts = data.data.map((contact: any) => {
-            const profilePictureUrl = contact.profilePicture
-              ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                  'data:image/jpeg;base64,' + contact.profilePicture
-                )
-              : '../../../assets/mesage_user.jpg';
+              return {
+                ...contact,
+                profilePicture: profilePictureUrl,
+              };
+            });
 
-            return {
-              ...contact,
-              profilePicture: profilePictureUrl,
-            };
-          });
-          this.contacts = [...this.contacts, ...newContacts];
-          this.currentPage++;
-          this.isLoading = false;
-        },
-        error: () => {
-          this.isLoading = false;
-        },
-      });
+            this.contacts = [...this.contacts, ...newContacts];
+            this.currentPage++;
+            this.isLoading = false;
+          },
+          error: () => {
+            this.commonService.hideLoader();
+          },
+          complete: () => {
+            this.commonService.hideLoader();
+          },
+        });
+    }
   }
-  /**
-   * @description This is a OnScroll method.
-   * @author Shiva Kant
-   */
 
+  /**
+ * @description This method handles the scroll event for a container.
+ * It checks if the user has scrolled close to the bottom and,
+ * if so, triggers the loading of more contacts.
+ 
+ * @author Shiva Kant Mishra
+ * @return {void} This method does not return a value.
+ */
   onScroll(event: Event) {
     const target = event.target as HTMLElement;
     const scrollTop = target.scrollTop + target.clientHeight;
     const scrollHeight = target.scrollHeight;
-    if (scrollTop >= scrollHeight - 400) {
+
+    if (scrollTop >= scrollHeight - 100) {
       this.getAllContacts();
     }
   }

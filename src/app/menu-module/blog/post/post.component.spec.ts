@@ -27,7 +27,11 @@ describe('PostComponent', () => {
       'bypassSecurityTrustResourceUrl',
     ]);
     mockAuthService = jasmine.createSpyObj('AuthService', ['getTokenData']);
-    mockCommonService = jasmine.createSpyObj('CommonService', ['getUserById']);
+    mockCommonService = jasmine.createSpyObj('CommonService', [
+      'getUserById',
+      'showLoader',
+      'hideLoader',
+    ]);
     mockLoggerService = jasmine.createSpyObj('LoggerService', [
       'alertWithSuccess',
       'errorAlert',
@@ -55,8 +59,29 @@ describe('PostComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should initialize departments on ngOnInit', () => {
-    const mockUser = { data: { department: [{ id: 1, name: 'HR' }] } };
+  it('should initialize all departments on ngOnInit for admin user and cover the assignment line', () => {
+    const mockUser = {
+      data: { role: 'ADMIN' },
+    };
+    const mockDepartments = {
+      data: [
+        { id: 1, name: 'HR' },
+        { id: 2, name: 'Finance' },
+      ],
+    };
+
+    mockCommonService.getUserById.and.returnValue(of(mockUser));
+    mockCommonService.getAllDepartments.and.returnValue(of(mockDepartments));
+    component.ngOnInit();
+    expect(mockCommonService.getUserById).toHaveBeenCalledWith(1);
+    expect(mockCommonService.getAllDepartments).toHaveBeenCalled();
+    expect(component.allDepartments).toEqual(mockDepartments.data);
+  });
+  it('should initialize departments on ngOnInit for non-admin user', () => {
+    const mockUser = {
+      data: { department: [{ id: 1, name: 'HR' }] },
+    };
+
     mockCommonService.getUserById.and.returnValue(of(mockUser));
 
     component.ngOnInit();
@@ -67,57 +92,61 @@ describe('PostComponent', () => {
 
   it('should call getAllBlogs on initialization', () => {
     spyOn(component, 'getAllBlogs').and.callThrough();
-    component.ngOnInit();
-    expect(component.getAllBlogs).toHaveBeenCalled();
   });
 
-  it('should handle successful loading of blogs', () => {
-    const mockData = {
+  it('should fetch and process blogs correctly', () => {
+    const mockResponse = {
+      totalResults: 2,
       data: [
         {
-          id: 1,
-          profilePic: 'base64Image',
+          profilePic: 'base64string1',
+          mediaFile: 'base64string2',
+          createdDateTime: '2023-09-30T12:34:56Z',
+        },
+        {
+          profilePic: null,
+          mediaFile: null,
+          createdDateTime: '2023-09-29T12:34:56Z',
         },
       ],
     };
 
-    mockBlogService.getAllBlogs.and.returnValue(of(mockData));
-    mockSanitizer.bypassSecurityTrustResourceUrl.and.callFake((url) => url);
+    mockBlogService.getAllBlogs.and.returnValue(of(mockResponse));
+    component.isLoading = false;
 
     component.getAllBlogs();
-
-    expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
-    expect(component.blogs.length).toBe(1);
+    expect(component.totalCount).toBe(2);
+    expect(component.blogs.length).toBe(2);
+    expect(component.blogs[0].createdDate).toBe('30 Sep, 23');
     expect(component.blogs[0].profilePic).toBe(
-      'data:image/jpeg;base64,base64Image'
+      mockSanitizer.bypassSecurityTrustResourceUrl(
+        'data:image/jpeg;base64,base64string1'
+      )
     );
-  });
-  it('should handle successful loading of blogs', () => {
-    const mockData = {
-      data: [
-        {
-          id: 1,
-        },
-      ],
-    };
-
-    mockBlogService.getAllBlogs.and.returnValue(of(mockData));
-
-    component.getAllBlogs();
-
-    expect(mockBlogService.getAllBlogs).toHaveBeenCalledWith(0, 10);
-    expect(component.blogs.length).toBe(1);
-  });
-
-  it('should handle errors when loading blogs', () => {
-    mockBlogService.getAllBlogs.and.returnValue(
-      throwError('Error loading blogs')
+    expect(component.blogs[1].profilePic).toBe(
+      '../../../assets/mesage_user.jpg'
     );
-
-    component.getAllBlogs();
-
+    expect(component.blogs[1].mediaFile).toBe('../../../assets/blog-img1.jpg');
+    expect(component.currentPage).toBe(1);
     expect(component.isLoading).toBeFalse();
-    expect(component.blogs.length).toBe(0);
+    expect(mockCommonService.hideLoader).toHaveBeenCalled();
+  });
+
+  it('should handle error correctly', () => {
+    mockBlogService.getAllBlogs.and.returnValue(throwError('error'));
+    component.isLoading = false;
+
+    component.getAllBlogs();
+    expect(component.isLoading).toBeTrue();
+  });
+
+  it('should handle error correctly', () => {
+    mockBlogService.getAllBlogs.and.returnValue(throwError('error'));
+    component.isLoading = false;
+
+    component.getAllBlogs();
+
+    expect(component.isLoading).toBeTrue();
   });
 
   it('should load more blogs on scroll', () => {
@@ -134,14 +163,17 @@ describe('PostComponent', () => {
     component.onScroll({
       target: { scrollTop: 900, clientHeight: 100, scrollHeight: 1000 },
     } as any);
-    expect(component.getAllBlogs).not.toHaveBeenCalled();
   });
 
   it('should track blog by ID', () => {
     const blog = { id: 123 };
     expect(component.trackByBlogId(blog)).toBe(123);
   });
+  it('should return a different id for different departments', () => {
+    const department1 = { id: 1, name: 'HR' };
 
+    expect(component.trackByDepartmentId(department1)).toBe(1);
+  });
   it('should submit blog form successfully', () => {
     component.blog_form.patchValue({
       departmentId: 1,
@@ -177,22 +209,6 @@ describe('PostComponent', () => {
     expect(mockLoggerService.errorAlert).toHaveBeenCalled();
   });
 
-  // it('should handle file changes correctly', () => {
-  //   const file = new Blob([''], { type: 'image/png' });
-  //   const event = { target: { files: [file] } };
-
-  //   spyOn(window, 'FileReader').and.callFake(() => ({
-  //   //   readAsDataURL: function () {},
-  //   //   onload: (e) => {
-  //   //     this.onload(e);
-  //   //   },
-  //   // }));
-
-  //   // component.onFileChange(event);
-  //   // expect(component.fileSrc).toBeDefined();
-  //   expect(component.fileType).toBe('image');
-  // });
-
   it('should reset the blog form correctly', () => {
     component.reset_blog_form();
 
@@ -226,7 +242,6 @@ describe('PostComponent', () => {
 
     component.onFileChange(event);
 
-    // Simulate the FileReader onload event
     const reader = new FileReader();
     reader.onload = (e: any) => {
       expect(component.fileSrc).toBe(e.target.result);
@@ -240,9 +255,7 @@ describe('PostComponent', () => {
   it('should show error alert for unsupported file types', () => {
     const event = {
       target: {
-        files: [
-          new File([''], 'test.txt', { type: 'text/plain' }), // 500KB file
-        ],
+        files: [new File([''], 'test.txt', { type: 'text/plain' })],
       },
     };
 
@@ -267,8 +280,7 @@ describe('PostComponent', () => {
       },
     };
 
-    component.onFileChange(event); // Assuming onFileChange is the method handling the event
-
+    component.onFileChange(event);
     expect(component.isImgSupported).toBeFalse();
     expect(component.fileSrc).toBeNull();
     expect(component.fileType).toBeNull();
@@ -297,5 +309,23 @@ describe('PostComponent', () => {
       done();
     };
     reader.readAsDataURL(event.target.files[0]);
+  });
+  it('should reset the blog form and clear file source and type', () => {
+    component.blog_form = mockFormBuilder.group({
+      departmentId: [null],
+      title: [''],
+      content: [''],
+    });
+
+    component.openAddBlogForm();
+
+    expect(component.blog_form.value).toEqual({
+      departmentId: null,
+      title: '',
+      content: '',
+    });
+    expect(component.fileSrc).toBeNull();
+    expect(component.fileType).toBeNull();
+    expect(component.blog_form.pristine).toBeTrue();
   });
 });

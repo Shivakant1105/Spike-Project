@@ -4,14 +4,15 @@
   @include flex(center, center, "", 0, 0);
   color: var(--white);
 }
-
+.contact-container {
+  overflow-y: auto;
+  height: 1000px;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
 main {
   .contact_container {
-      overflow-y: auto;
-        &::-webkit-scrollbar {
-            width: 0;
-       
-          }
     @include setDimension(100%, 100%);
     @include flex("", "", column, 30, 0);
 
