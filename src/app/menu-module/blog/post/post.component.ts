@@ -22,7 +22,8 @@ export class PostComponent implements OnInit {
   fileSrc: string | ArrayBuffer | File | null = null;
   isImgSupported: boolean = true;
   fileType: 'image' | 'audio' | null = null;
-
+  totalCount: number = 1;
+  userId!: number;
   constructor(
     private blogService: BlogService,
     private sanitizer: DomSanitizer,
@@ -33,8 +34,8 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.authService.getTokenData().id;
-    this.commonService.getUserById(id).subscribe({
+    this.userId = this.authService.getTokenData().id;
+    this.commonService.getUserById(this.userId).subscribe({
       next: (user: any) => {
         if (user.data.role === 'ADMIN') {
           this.commonService.getAllDepartments().subscribe({
@@ -58,47 +59,50 @@ export class PostComponent implements OnInit {
   getAllBlogs() {
     if (this.isLoading) return;
     this.isLoading = true;
+    if (this.blogs.length !== this.totalCount) {
+      this.commonService.showLoader();
 
-    this.blogService.getAllBlogs(this.currentPage, this.pageSize).subscribe({
-      next: (data: any) => {
-        console.log(data);
+      this.blogService.getAllBlogs(this.currentPage, this.pageSize).subscribe({
+        next: (data: any) => {
+          this.totalCount = data.totalResults;
+          const newBlogs = data.data.map((blog: any) => {
+            const profilePictureUrl = blog.profilePic
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/jpeg;base64,' + blog.profilePic
+                )
+              : '../../../assets/mesage_user.jpg';
 
-        if (this.blogs.length >= data.totalResults) {
-          this.allBlogsLoaded = true;
-        }
-        const newBlogs = data.data.map((blog: any) => {
-          const profilePictureUrl = blog.profilePic
-            ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                'data:image/jpeg;base64,' + blog.profilePic
-              )
-            : '../../../assets/mesage_user.jpg';
+            const mediaFiles = blog.mediaFile
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/jpeg;base64,' + blog.mediaFile
+                )
+              : '../../../assets/blog-img1.jpg';
 
-          const mediaFiles = blog.mediaFile
-            ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                'data:image/jpeg;base64,' + blog.mediaFile
-              )
-            : '../../../assets/blog-img1.jpg';
-          const date = new Date(blog.createdDateTime);
-          const day = date.getDate();
-          const month = date.toLocaleString('default', { month: 'short' });
-          const year = date.getFullYear().toString().slice(-2);
-          const createdDated = `${day} ${month}, ${year}`;
+            const date = new Date(blog.createdDateTime);
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.getFullYear().toString().slice(-2);
+            const createdDated = `${day} ${month}, ${year}`;
 
-          return {
-            ...blog,
-            createdDate: createdDated,
-            profilePic: profilePictureUrl,
-            mediaFile: mediaFiles,
-          };
-        });
-        this.blogs = [...this.blogs, ...newBlogs];
-        this.currentPage++;
-        this.isLoading = false;
-      },
-      error: () => {
-        this.isLoading = false;
-      },
-    });
+            return {
+              ...blog,
+              createdDate: createdDated,
+              profilePic: profilePictureUrl,
+              mediaFile: mediaFiles,
+            };
+          });
+          this.blogs = [...this.blogs, ...newBlogs];
+          this.currentPage++;
+          this.isLoading = false;
+        },
+        error: () => {
+          this.commonService.hideLoader();
+        },
+        complete: () => {
+          this.commonService.hideLoader();
+        },
+      });
+    }
   }
   /**
  * @description This method handles the scroll event for a container.
@@ -113,13 +117,8 @@ export class PostComponent implements OnInit {
     const scrollTop = target.scrollTop + target.clientHeight;
     const scrollHeight = target.scrollHeight;
 
-    if (
-      scrollTop >= scrollHeight - 100 &&
-      !this.isLoading &&
-      !this.allBlogsLoaded
-    ) {
+    if (scrollTop >= scrollHeight - 100) {
       this.getAllBlogs();
-      console.log(this.blogs);
     }
   }
   /**
@@ -174,6 +173,7 @@ export class PostComponent implements OnInit {
       formData.append('departmentId', departmentId as any);
       formData.append('title', this.blog_form.value.title);
       formData.append('content', this.blog_form.value.content);
+      formData.append('userId', this.userId as any);
 
       if (this.fileSrc) {
         const fileInput = document.querySelector(

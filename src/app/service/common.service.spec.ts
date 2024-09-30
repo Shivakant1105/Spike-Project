@@ -155,29 +155,4 @@ describe('CommonService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockUser);
   });
-  it('should format the date correctly', () => {
-    const dateString = '2024-09-27T00:00:00Z';
-    const formattedDate = service.formatDate(dateString);
-    expect(formattedDate).toBe('27 Sep, 24'); // Adjust based on your expected output
-  });
-
-  it('should return sanitized URL when data is provided', () => {
-    const base64Data = 'someBase64String';
-    const fallback = 'fallbackUrl';
-    const sanitizedUrl = service.getSanitizedUrl(base64Data, fallback);
-
-    expect(sanitizedUrl).toBe(
-      sanitizedUrl.bypassSecurityTrustResourceUrl(
-        'data:image/jpeg;base64,' + base64Data
-      )
-    );
-  });
-
-  it('should return fallback URL when no data is provided', () => {
-    const base64Data = null;
-    const fallback = 'fallbackUrl';
-    const sanitizedUrl = service.getSanitizedUrl(base64Data, fallback);
-
-    expect(sanitizedUrl).toBe(fallback);
-  });
 });

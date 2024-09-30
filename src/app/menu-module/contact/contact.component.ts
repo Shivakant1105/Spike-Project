@@ -12,10 +12,9 @@ export class ContactComponent implements OnInit {
   contacts: any = [];
   id!: number;
   currentPage: number = 0;
-  pageSize: number = 10;
   isLoading: boolean = false;
-  allContactsLoaded: boolean = false;
-  totalContact: number = 0;
+  pageSize: number = 10;
+  totalContact: number = 1;
   constructor(
     private commonService: CommonService,
     private sanitizer: DomSanitizer,
@@ -35,39 +34,40 @@ export class ContactComponent implements OnInit {
    */
 
   getAllContacts() {
-    if (this.isLoading || this.allContactsLoaded) return;
-
+    if (this.isLoading) return;
     this.isLoading = true;
+    if (this.contacts.length !== this.totalContact) {
+      this.commonService.showLoader();
+      this.commonService
+        .getAllContacts(this.id, this.currentPage, this.pageSize)
+        .subscribe({
+          next: (data: any) => {
+            this.totalContact = data.totalContacts;
+            const newContacts = data.data.map((contact: any) => {
+              const profilePictureUrl = contact.profilePicture
+                ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                    'data:image/jpeg;base64,' + contact.profilePicture
+                  )
+                : '../../../assets/mesage_user.jpg';
 
-    this.commonService
-      .getAllContacts(this.id, this.currentPage, this.pageSize)
-      .subscribe({
-        next: (data: any) => {
-          if (this.contacts.length >= data.totalContacts) {
-            this.allContactsLoaded = true;
-          }
-          const newContacts = data.data.map((contact: any) => {
-            const profilePictureUrl = contact.profilePicture
-              ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                  'data:image/jpeg;base64,' + contact.profilePicture
-                )
-              : '../../../assets/mesage_user.jpg';
+              return {
+                ...contact,
+                profilePicture: profilePictureUrl,
+              };
+            });
 
-            return {
-              ...contact,
-              profilePicture: profilePictureUrl,
-            };
-          });
-
-          // Update the contacts array and increment the current page
-          this.contacts = [...this.contacts, ...newContacts];
-          this.currentPage++;
-          this.isLoading = false;
-        },
-        error: () => {
-          this.isLoading = false;
-        },
-      });
+            this.contacts = [...this.contacts, ...newContacts];
+            this.currentPage++;
+            this.isLoading = false;
+          },
+          error: () => {
+            this.commonService.hideLoader();
+          },
+          complete: () => {
+            this.commonService.hideLoader();
+          },
+        });
+    }
   }
 
   /**
@@ -83,13 +83,8 @@ export class ContactComponent implements OnInit {
     const scrollTop = target.scrollTop + target.clientHeight;
     const scrollHeight = target.scrollHeight;
 
-    if (
-      scrollTop >= scrollHeight - 100 &&
-      !this.isLoading &&
-      !this.allContactsLoaded
-    ) {
+    if (scrollTop >= scrollHeight - 100) {
       this.getAllContacts();
-      console.log(this.contacts);
     }
   }
 

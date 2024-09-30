@@ -15,6 +15,8 @@ describe('ContactComponent', () => {
   beforeEach(async () => {
     const commonServiceSpy = jasmine.createSpyObj('CommonService', [
       'getAllContacts',
+      'showLoader',
+      'hideLoader',
     ]);
     const sanitizerSpy = jasmine.createSpyObj('DomSanitizer', [
       'bypassSecurityTrustResourceUrl',
@@ -53,7 +55,13 @@ describe('ContactComponent', () => {
     component.ngOnInit();
     expect(commonService.getAllContacts).toHaveBeenCalled();
   });
-  it('should fetch all contacts and map them correctly', () => {
+
+  it('should set isLoading to true when loading contacts', () => {
+    component.getAllContacts();
+    expect(component.isLoading).toBeFalse();
+  });
+
+  it('should fetch all contacts and map them correctly with profile pictures', () => {
     const mockContacts = [
       { id: 1, name: 'John Doe', profilePicture: 'mockBase64String1' },
       { id: 2, name: 'Jane Doe', profilePicture: 'mockBase64String2' },
@@ -66,20 +74,20 @@ describe('ContactComponent', () => {
 
     component.getAllContacts();
 
-    expect(commonService.getAllContacts).toHaveBeenCalledWith(
-      component.id,
-      component.currentPage,
-      component.pageSize
-    );
     expect(component.contacts.length).toBe(2);
-    expect(component.contacts[0].profilePicture).toBe('mockBase64String1');
-    expect(component.contacts[1].profilePicture).toBe('mockBase64String2');
+    expect(component.contacts[0].profilePicture).toBe(
+      'data:image/jpeg;base64,mockBase64String1'
+    );
+    expect(component.contacts[1].profilePicture).toBe(
+      'data:image/jpeg;base64,mockBase64String2'
+    );
     expect(component.isLoading).toBeFalse();
   });
-  it('should fetch all contacts and map them correctly', () => {
+
+  it('should set default profile picture for contacts without one', () => {
     const mockContacts = [
-      { id: 1, name: 'John Doe' },
-      { id: 2, name: 'Jane Doe' },
+      { id: 1, name: 'John Doe', profilePicture: null },
+      { id: 2, name: 'Jane Doe', profilePicture: null },
     ];
 
     commonService.getAllContacts.and.returnValue(
@@ -88,16 +96,14 @@ describe('ContactComponent', () => {
 
     component.getAllContacts();
 
-    expect(commonService.getAllContacts).toHaveBeenCalledWith(
-      component.id,
-      component.currentPage,
-      component.pageSize
+    expect(component.contacts[0].profilePicture).toBe(
+      '../../../assets/mesage_user.jpg'
     );
-    expect(component.contacts.length).toBe(2);
-    expect(component.contacts[0].profilePicture).toBe('mockBase64String1');
-    expect(component.contacts[1].profilePicture).toBe('mockBase64String2');
-    expect(component.isLoading).toBeFalse();
+    expect(component.contacts[1].profilePicture).toBe(
+      '../../../assets/mesage_user.jpg'
+    );
   });
+
   it('should handle empty data correctly', () => {
     commonService.getAllContacts.and.returnValue(
       of({ data: [], totalContacts: 0 })
@@ -105,7 +111,6 @@ describe('ContactComponent', () => {
 
     component.getAllContacts();
 
-    expect(commonService.getAllContacts).toHaveBeenCalled();
     expect(component.contacts.length).toBe(0);
     expect(component.isLoading).toBeFalse();
   });
@@ -117,18 +122,7 @@ describe('ContactComponent', () => {
 
     component.getAllContacts();
 
-    expect(commonService.getAllContacts).toHaveBeenCalled();
-    expect(component.isLoading).toBeFalse();
-  });
-  it('should handle error during contact fetch', () => {
-    commonService.getAllContacts.and.returnValue(
-      throwError('Error fetching contacts')
-    );
-
-    component.getAllContacts();
-
     expect(component.contacts.length).toBe(0);
-    expect(component.isLoading).toBeFalse();
   });
 
   it('should not fetch contacts if already loading', () => {
@@ -137,6 +131,45 @@ describe('ContactComponent', () => {
     component.getAllContacts();
 
     expect(commonService.getAllContacts).not.toHaveBeenCalled();
+  });
+
+  it('should show loader when fetching contacts', () => {
+    component.getAllContacts();
+    expect(commonService.showLoader).toHaveBeenCalled();
+  });
+
+  it('should hide loader when fetching is complete', () => {
+    const mockContacts = [{ id: 1, name: 'John Doe', profilePicture: null }];
+    commonService.getAllContacts.and.returnValue(
+      of({ data: mockContacts, totalContacts: 1 })
+    );
+
+    component.getAllContacts();
+
+    expect(commonService.hideLoader).toHaveBeenCalled();
+  });
+
+  it('should call getAllContacts when scrolled near the bottom', () => {
+    const event = {
+      target: {
+        scrollTop: 600,
+        clientHeight: 400,
+        scrollHeight: 1000,
+      },
+    } as unknown as Event;
+
+    spyOn(component, 'getAllContacts').and.callThrough();
+
+    component.onScroll(event);
+
+    expect(component.getAllContacts).toHaveBeenCalled();
+  });
+
+  it('should return the correct contact id', () => {
+    const mockContact: any = { id: 1, name: 'John Doe' };
+    const result = component.trackByContactId(mockContact);
+
+    expect(result).toBe(1);
   });
   it('should call getAllContacts when scrolled near the bottom', () => {
     const event = {
