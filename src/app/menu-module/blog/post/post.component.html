@@ -14,25 +14,19 @@
   <div id="scrollable" class="blog_container">
     <div *ngFor="let blog of blogs; trackBy: trackByBlogId" class="blog custom_radius box_shadow">
       <div class="image">
-        <!-- <img
-        class="post_img"
-        src="https://spike-angular-pro-main.netlify.app/assets/images/blog/blog-img2.jpg"
-        alt=""
-      /> -->
-        <img class="post_img" [src]="blog.mediaFile" alt="" />
-        <button class="btn custom_radius">{{ blog.title }}</button>
-        <button class="btn custom_radius">2 mins read</button>
+        <img class="post_img" [src]="blog.mediaFile" alt="user_mediaFile" />
+        <button class="btn custom_radius border border-2">
+          {{ blog.title }}
+        </button>
+        <button class="btn custom_radius border border-2">
+          {{ blog.departmentName }}
+        </button>
       </div>
 
       <div class="post_content">
-        <!-- <img
-        class="user_img"
-        src="https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg"
-        alt=""
-      /> -->
-        <img class="user_img" [src]="blog.profilePic" alt="" />
-        <p class="user_name h6">{{ blog.userName }}</p>
-        <div class="post_body first_post f14">
+        <img class="user_img" [src]="blog.profilePic" alt="user_profile_img" />
+        <p class="user_name h6">{{ blog.name }}</p>
+        <div class="post_body f14">
           <div class="wrapper">
             <p>
               {{ blog.content }}
@@ -42,20 +36,16 @@
 
             <div class="d-flex align-items-center mb-2">
               <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">{{ blog.likeCount }}</span>
-              <i-feather class="f24 me-1" name="message-circle"></i-feather>
+              <i-feather class="f24 me-1" name="message-circle" [routerLink]="'/menu/details/' + blog.id"></i-feather>
               <span>{{ blog.commentCount }}</span>
               <p class="flex-grow-1 d-flex justify-content-end align-items-center">
-                Mon, Dec23
+                {{ blog.createdDate }}
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div *ngIf="!isLoading" class="loading-indicator text-center">
-    Loading more blogs...
-  </div> -->
-    <!-- <button (click)="loadMore()">Load More</button> -->
   </div>
 
   <!-- Add Modal -->
