@@ -1,6 +1,6 @@
 <main>
   <div class="contact_container" (scroll)="onScroll($event)">
-    <div class="dashboard_section custome_radius">
+    <div class="dashboard_section custom_radius">
       <span class="left f20">Contacts</span>
       <div class="right">
         <span class="f14 dashboard">Dashboard</span>
@@ -9,35 +9,28 @@
       </div>
     </div>
 
-    <div class="contact_search_section custome_radius">
-      <div class="left_items custome_radius flex-nowrap">
+    <div class="contact_search_section custom_radius">
+      <div class="left_items custom_radius flex-nowrap">
         <input class="f14" type="text" placeholder="Search here..." />
         <i-feather name="search" class="d-flex"></i-feather>
       </div>
 
-      <button
-        type="button"
-        class="btn right_items custome_radius f14"
-        data-bs-toggle="modal"
-        data-bs-target="#contactpagegemodal"
-      >
+      <button type="button" class="btn right_items custom_radius f14" data-bs-toggle="modal"
+        data-bs-target="#contactpagegemodal">
         Add Contact
       </button>
     </div>
 
     <div class="user_profile">
-      <div
-        *ngFor="let contact of contacts; trackBy: trackByContactId"
-        class="card custome_radius box_shadow"
-      >
+      <div *ngFor="let contact of contacts; trackBy: trackByContactId" class="card custom_radius box_shadow">
         <div class="card-body card_items">
           <img [src]="contact.profilePicture" alt="{{ contact.name }}" />
 
           <p class="f18">{{ contact.name }}</p>
           <p class="f14 mb-3">{{ contact.designation }}</p>
           <div class="chat-follow d-flex gap-2">
-            <button class="btn btn1 custome_radius f14">Chat</button>
-            <button class="btn btn2 custome_radius f14">Follow</button>
+            <button class="btn btn1 custom_radius f14">Chat</button>
+            <button class="btn btn2 custom_radius f14">Follow</button>
           </div>
           <p class="text-center f14">
             {{ contact.addresses[0]?.line1 }}, {{ contact.addresses[0]?.city }},
@@ -71,52 +64,25 @@
   </div>
 
   <!-- Contact page modal -->
-  <div
-    class="modal fade"
-    id="contactpagegemodal"
-    tabindex="-1"
-    aria-labelledby="contactpagegemodal"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="contactpagegemodal" tabindex="-1" aria-labelledby="contactpagegemodal" aria-hidden="true">
     <div class="modal-dialog add_emp_modal_dialog">
-      <div class="modal-content modal_items custome_radius box_shadow">
+      <div class="modal-content modal_items custom_radius box_shadow">
         <div class="modal-body add_employee_body">
           <h3 class="f18 ms-2 heading">Add New Contact</h3>
-          <input
-            type="text"
-            class="form-control mt-3"
-            placeholder="Name Here"
-          />
+          <input type="text" class="form-control mt-3" placeholder="Name Here" />
           <input type="text" class="form-control" placeholder="Post Here" />
           <input type="text" class="form-control" placeholder="Address Here" />
           <input type="text" class="form-control" placeholder="Number Here" />
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Instagram Follower Here"
-          />
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Linkedin Follower Here"
-          />
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Facebook Follower Here"
-          />
+          <input type="text" class="form-control" placeholder="Instagram Follower Here" />
+          <input type="text" class="form-control" placeholder="Linkedin Follower Here" />
+          <input type="text" class="form-control" placeholder="Facebook Follower Here" />
         </div>
 
         <div class="modal-footer">
-          <button
-            id="cancel_button"
-            type="button"
-            class="btn"
-            data-bs-dismiss="modal"
-          >
+          <button id="cancel_button" type="button" class="btn" data-bs-dismiss="modal">
             Cancel
           </button>
-          <button type="button" class="btn enabled disabled custome_radius">
+          <button type="button" class="btn enabled disabled custom_radius">
             Add Contact
           </button>
         </div>

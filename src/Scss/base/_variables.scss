@@ -207,3 +207,19 @@
   --grey-hover-text: #c5c8ca;
   --grey-hover: #242f3e;
 }
+
+.ag-theme-alpine-dark {
+  --ag-background-color: #131b2c !important;
+  --ag-border-color: #131b2c !important;
+  --ag-secondary-border-color: rgba(88, 86, 82, 0.5);
+  --ag-header-background-color: #131b2c;
+  --ag-odd-row-background-color: #131b2c;
+}
+
+.ag-theme-alpine {
+  --ag-background-color: #ffffff !important;
+  --ag-border-color: #ffffff !important;
+  --ag-secondary-border-color: #dde2eb;
+  --ag-header-background-color: #ffffff;
+  --ag-odd-row-background-color: #ffffff;
+}

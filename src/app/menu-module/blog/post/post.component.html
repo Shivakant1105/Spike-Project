@@ -1,12 +1,8 @@
 <div class="post-container" (scroll)="onScroll($event)">
-  <header class="sub_header custome_radius box_shadow">
+  <header class="sub_header custom_radius box_shadow">
     <h4 class="f20">Post</h4>
-    <button
-      class="btn btn-primary custome_radius f14"
-      data-bs-toggle="modal"
-      data-bs-target="#addBlog"
-      (click)="openAddBlogForm()"
-    >
+    <button class="btn btn-primary custom_radius f14" data-bs-toggle="modal" data-bs-target="#addBlog"
+      (click)="openAddBlogForm()">
       Upload Blog
     </button>
     <span class="f14">Dashboard</span>
@@ -16,10 +12,7 @@
   </header>
 
   <div id="scrollable" class="blog_container">
-    <div
-      *ngFor="let blog of blogs; trackBy: trackByBlogId"
-      class="blog custome_radius box_shadow"
-    >
+    <div *ngFor="let blog of blogs; trackBy: trackByBlogId" class="blog custom_radius box_shadow">
       <div class="image">
         <!-- <img
         class="post_img"
@@ -27,8 +20,8 @@
         alt=""
       /> -->
         <img class="post_img" [src]="blog.mediaFile" alt="" />
-        <button class="btn custome_radius">{{ blog.title }}</button>
-        <button class="btn custome_radius">2 mins read</button>
+        <button class="btn custom_radius">{{ blog.title }}</button>
+        <button class="btn custom_radius">2 mins read</button>
       </div>
 
       <div class="post_content">
@@ -48,13 +41,10 @@
             </p>
 
             <div class="d-flex align-items-center mb-2">
-              <i-feather class="f24 me-1" name="Eye"></i-feather
-              ><span class="me-4">{{ blog.likeCount }}</span>
+              <i-feather class="f24 me-1" name="Eye"></i-feather><span class="me-4">{{ blog.likeCount }}</span>
               <i-feather class="f24 me-1" name="message-circle"></i-feather>
               <span>{{ blog.commentCount }}</span>
-              <p
-                class="flex-grow-1 d-flex justify-content-end align-items-center"
-              >
+              <p class="flex-grow-1 d-flex justify-content-end align-items-center">
                 Mon, Dec23
               </p>
             </div>
@@ -76,13 +66,8 @@
           <h5>Add Blog</h5>
           <div class="post_status">
             <i-feather class="f24 me-3" name="Clock"></i-feather>
-            <button
-              [disabled]="!blog_form.valid"
-              class="btn btn-primary custome_radius f14"
-              (click)="onSubmit()"
-              type="submit"
-              data-bs-dismiss="modal"
-            >
+            <button [disabled]="!blog_form.valid" class="btn btn-primary custom_radius f14" (click)="onSubmit()"
+              type="submit" data-bs-dismiss="modal">
               post
             </button>
           </div>
@@ -90,36 +75,23 @@
         <div class="modal-body f14">
           <form [formGroup]="blog_form" class="w-100">
             <!-- fir the Title -->
-            <div
-              [ngClass]="{ error: checkError('title', 'required') }"
-              class="form_items w-100"
-            >
+            <div [ngClass]="{ error: checkError('title', 'required') }" class="form_items w-100">
               <label for="">Title Of Blog</label>
-              <input
-                type="text"
-                formControlName="title"
-                placeholder="Write Inspiring Title"
-              />
+              <input type="text" formControlName="title" placeholder="Write Inspiring Title" />
               <p *ngIf="checkError('title', 'required')">
                 Blog title is required
               </p>
             </div>
 
             <!-- fir the Title -->
-            <div
-              [ngClass]="{ error: checkError('departmentId', 'required') }"
-              class="form_items w-100"
-            >
+            <div [ngClass]="{ error: checkError('departmentId', 'required') }" class="form_items w-100">
               <label for="">Select Department</label>
               <select formControlName="departmentId">
                 <option value="null">Select a department</option>
-                <option
-                  *ngFor="
+                <option *ngFor="
                     let department of allDepartments;
                     trackBy: trackByDepartmentId
-                  "
-                  [value]="department.id"
-                >
+                  " [value]="department.id">
                   {{ department.name }}
                 </option>
               </select>
@@ -128,20 +100,14 @@
               </p>
             </div>
             <!-- for the Content -->
-            <div
-              [ngClass]="{
+            <div [ngClass]="{
                 error:
                   checkError('content', 'required') ||
                   checkError('content', 'maxlength')
-              }"
-              class="form_items w-100"
-            >
+              }" class="form_items w-100">
               <label for="">Write Content</label>
-              <textarea
-                formControlName="content"
-                class="custome_radius custome_border"
-                placeholder="Write Your Content"
-              ></textarea>
+              <textarea formControlName="content" class="custom_radius custom_border"
+                placeholder="Write Your Content"></textarea>
               <p *ngIf="checkError('content', 'required')">
                 Add some content or description
               </p>
@@ -152,32 +118,17 @@
 
             <!-- for the media -->
             <div class="media_container form_items">
-              <label class="f14" for=""
-                >Choose Media
-                <span class="f12 text-danger"
-                  >(Supported! '.PNG/.JPG/.JPEG/.GIF/.PDF/.MP4/.AVI...')</span
-                ></label
-              >
+              <label class="f14" for="">Choose Media
+                <span class="f12 text-danger">(Supported! '.PNG/.JPG/.JPEG/.GIF/.PDF/.MP4/.AVI...')</span></label>
               <label class="custom-file-upload">
-                <input
-                  type="file"
-                  (change)="onFileChange($event)"
-                  accept="image/*,audio/*"
-                />
-                <img
-                  src="https://cdn-icons-png.flaticon.com/128/8191/8191581.png"
-                  alt="Upload Icon"
-                />
+                <input type="file" (change)="onFileChange($event)" accept="image/*,audio/*" />
+                <img src="https://cdn-icons-png.flaticon.com/128/8191/8191581.png" alt="Upload Icon" />
               </label>
 
               <!-- uploaded Image -->
-              <div *ngIf="fileType" class="choose_img mt-2 custome_radius">
+              <div *ngIf="fileType" class="choose_img mt-2 custom_radius">
                 <div *ngIf="fileType === 'image'">
-                  <img
-                    class="w-100 custome_radius h-100"
-                    [src]="fileSrc"
-                    alt="Image Preview"
-                  />
+                  <img class="w-100 custom_radius h-100" [src]="fileSrc" alt="Image Preview" />
                 </div>
 
                 <div *ngIf="fileType === 'audio'">
@@ -188,18 +139,12 @@
               </div>
               <p *ngIf="!isImgSupported" class="mt-2 d-flex gap-1">
                 <i-feather class="f24" name="alert-circle"></i-feather>
-                <span
-                  >File Not Supported ( Image should 1 mb or else less than to
-                  it )</span
-                >
+                <span>File Not Supported ( Image should 1 mb or else less than to
+                  it )</span>
               </p>
             </div>
 
-            <button
-              (click)="reset_blog_form()"
-              type="reset"
-              class="btn btn-warning custome_radius"
-            >
+            <button (click)="reset_blog_form()" type="reset" class="btn btn-warning custom_radius">
               Reset
             </button>
           </form>

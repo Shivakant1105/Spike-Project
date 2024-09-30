@@ -7,22 +7,6 @@
 @import "ag-grid-community/styles/ag-grid.css";
 @import "ag-grid-community/styles/ag-theme-alpine.css";
 
-.ag-theme-alpine-dark {
-  --ag-background-color: #131b2c !important;
-  --ag-border-color: #131b2c !important;
-  --ag-secondary-border-color: rgba(88, 86, 82, 0.5);
-  --ag-header-background-color: #131b2c;
-  --ag-odd-row-background-color: #131b2c;
-}
-
-.ag-theme-alpine {
-  --ag-background-color: #ffffff !important;
-  --ag-border-color: #ffffff !important;
-  --ag-secondary-border-color: #dde2eb;
-  --ag-header-background-color: #ffffff;
-  --ag-odd-row-background-color: #ffffff;
-}
-
 .ag-theme-alpine-dark .ag-header-row {
   border-bottom: 1px solid rgba(88, 86, 82, 0.5);
 }
@@ -34,6 +18,7 @@
 * {
   box-sizing: border-box;
   font-family: "Plus Jakarta Sans";
+  @include custom-scrollbar(rem(4), "", var(--scrollbar-thumb-color), "");
 }
 
 h1,
@@ -51,17 +36,17 @@ html {
   font-size: 100%;
 }
 
-.custome_bottom_border {
+.custom_bottom_border {
   border: none;
   border-bottom: rem(1) solid var(--border-color-lighter);
 }
 
-.custome_right_border {
+.custom_right_border {
   border: none;
   border-right: rem(1) solid var(--border-color-lighter);
 }
 
-.custome_radius,
+.custom_radius,
 .dropdown-menu.show {
   border-radius: rem(18) !important;
 }
@@ -72,17 +57,8 @@ html {
     0 rem(4) rem(6) var(--strongly-shadow);
 }
 
-.custome_border {
+.custom_border {
   border: rem(1) solid var(--border-color-light);
-}
-
-::-webkit-scrollbar {
-  @include setDimension(rem(4), rem(1));
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-color);
-  border-radius: rem(20);
 }
 
 .light-theme:has(.light_img) .light-logo {

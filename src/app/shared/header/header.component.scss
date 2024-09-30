@@ -721,7 +721,7 @@
       display: block;
     }
     & {
-      @include custom-scrollbar(rem(4), "", #C1C1C1, "");
+      @include custom-scrollbar(rem(4), "", var(--scrollbar-thumb-color), "");
     }
   }
 }

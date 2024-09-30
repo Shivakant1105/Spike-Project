@@ -1,4 +1,5 @@
 @import "../../../styles.scss";
+
 .course_container {
   @include setDimension(100%, 100%);
   @include flex("", "", column, 30, 0);
@@ -6,7 +7,7 @@
   .course_header_section {
     @include setDimension(100%, rem(81));
     min-height: rem(81);
-    background-color: var(--bg-high); 
+    background-color: var(--bg-high);
     @include flex(space-between, center, "", 0, 1);
     padding: 0 rem(30);
 
@@ -14,17 +15,21 @@
       color: var(--text-color-600);
       font-weight: 600;
     }
+
     .right {
       @include flex(center, center, "", 15, 0);
+
       .Dashboard {
         color: var(--quick-link-hover-color);
         cursor: pointer;
       }
+
       .circle {
         @include setDimension(rem(5), rem(5));
         background-color: var(--textColor);
         border-radius: 50%;
       }
+
       .contact {
         color: var(--textColor);
         cursor: pointer;
@@ -51,19 +56,21 @@
         border: rem(2) solid var(--contact-user-bg);
         cursor: pointer;
       }
+
       input {
         color: var(--text-color-600);
         width: rem(300);
         background-color: transparent;
         border: 0;
         cursor: pointer;
+
         &:focus {
           outline: 0;
         }
       }
 
-      .f14:focus + label,
-      .f14:not(:placeholder-shown) + label {
+      .f14:focus+label,
+      .f14:not(:placeholder-shown)+label {
         top: rem(-12);
         background-color: var(--bg-high);
         color: var(--contact-user-bg);
@@ -78,6 +85,7 @@
         color: var(--textColor-400);
         cursor: pointer;
       }
+
       .f24 {
         color: var(--text-color-600);
       }
@@ -86,18 +94,19 @@
     .right_selection {
       @include flex(space-between, center, "", 0, 0);
 
-      .form-select {
-        
-      }
-      .custome_radius {
+      .form-select {}
+
+      .custom_radius {
         @include setDimension(rem(360), rem(52));
         border: rem(1) solid var(--textColor-400);
         color: var(--text-color-600);
         background-color: var(--bg-high);
+
         &:focus {
           box-shadow: none;
           border: rem(2) solid var(--contact-user-bg);
         }
+
         &:hover {
           border: rem(2) solid var(--contact-user-bg);
         }
@@ -118,8 +127,10 @@
       flex-grow: 1;
       --bs-card-spacer-y: 0;
       --bs-card-spacer-x: 0;
+
       .course_body {
         @include flex("", "", column, 0, 0);
+
         .course_header {
           @include setDimension(100%, rem(50));
           @include topleft_topright_radius(rem(18), rem(18));
@@ -129,6 +140,7 @@
 
           .time_icon {
             @include flex("", center, "", 5, 0);
+
             .clock_icon {
               color: var(--white);
               @include setDimension(rem(15), rem(15));
@@ -136,15 +148,19 @@
             }
           }
         }
+
         .course_header.blue {
           background-color: var(--course-page-header-blue);
         }
+
         .course_header.salmon {
           background-color: var(--course-page-header-salmon);
         }
+
         .course_header.yellow {
           background-color: var(--course-page-header-yellow);
         }
+
         .course_header.grey {
           background-color: var(--course-page-header-grey);
         }
@@ -153,10 +169,12 @@
           background-color: var(--bg-high);
           flex-grow: 1;
           @include flex(center, center, column, 4, 0);
+
           .f16 {
             font-weight: 600;
             color: var(--text-color-600);
           }
+
           .f12 {
             word-spacing: rem(2);
             color: var(--textColor-200);
@@ -172,11 +190,13 @@
           @include flex(center, center, "", 0, 0);
           padding: 0 rem(20);
           color: var(--text-color-600);
+
           span {
             @include flex(center, center, "", 0, 0);
             @include setDimension(100%, rem(34));
             transition: background-color 0.4s ease-in-out;
             font-size: rem(14);
+
             &:hover {
               background-color: var(--sidebar-hover-bg);
               cursor: pointer;
