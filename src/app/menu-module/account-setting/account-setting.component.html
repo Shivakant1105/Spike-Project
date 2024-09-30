@@ -150,15 +150,25 @@
         To change your personal detail , edit and save from here
       </p>
       <form [formGroup]="userDetailForm">
+        <!-- for the Username -->
+        <div class="form_items">
+          <label class="w-100">Username</label>
+          <input
+            readonly
+            type="text"
+            class="form-control flex-grow-1 mb-3"
+            formControlName="username"
+          />
+        </div>
         <!-- for the Your name -->
         <div class="form_items">
           <label class="w-100">Your Name</label>
           <input
+            readonly
             type="text"
             class="form-control flex-grow-1 mb-3"
             formControlName="name"
           />
-          <p>Oops! Something Went Wrong</p>
         </div>
 
         <!-- for the Store name -->
@@ -240,6 +250,7 @@
         <div class="form_items">
           <label class="">Salary</label>
           <input
+            readonly
             type="text"
             class="form-control flex-grow-1"
             formControlName="salary"

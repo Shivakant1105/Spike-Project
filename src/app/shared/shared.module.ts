@@ -13,6 +13,7 @@ import { PaymentsComponent } from './charts/payments/payments.component';
 import { LoaderComponent } from './loader/loader.component';
 import { GridTableComponent } from './grid-table/grid-table.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { SmoothedXYLineSeriesComponent } from './charts/smoothed-xy-line-series/smoothed-xy-line-series.component';
 
 const declared = [
   HeaderComponent,
@@ -23,10 +24,11 @@ const declared = [
   PaymentsComponent,
   LoaderComponent,
   GridTableComponent,
+  SmoothedXYLineSeriesComponent,
 ];
 
 @NgModule({
-  declarations: [...declared],
+  declarations: [...declared, SmoothedXYLineSeriesComponent],
   imports: [
     CommonModule,
     RouterModule,

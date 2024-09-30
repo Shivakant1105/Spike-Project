@@ -30,6 +30,7 @@ export class CommonService {
 
   resetPassword(oldPassword: string, newPassword: string): Observable<any> {
     const body = { oldPassword, newPassword };
+
     return this.http.put(`${this.baseUrl}/user/reset-password`, body);
   }
 

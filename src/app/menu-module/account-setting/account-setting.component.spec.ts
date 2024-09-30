@@ -39,7 +39,6 @@ describe('AccountSettingComponent', () => {
     component = new AccountSettingComponent(
       new FormBuilder(),
       commonService,
-      route,
       loggerService,
       authService
     );
@@ -220,8 +219,10 @@ describe('AccountSettingComponent', () => {
     commonService.updateUserDetail.and.returnValue(of(mockResponse));
     component.updateUserDetails();
     const expectedUserData = {
-      username: 'John Doe',
+      username: 'johndoe',
+      name: 'John Doe',
       email: 'john@example.com',
+      backupEmail: 'john123@gmail.com',
       primaryMobileNumber: '1234567890',
       secondaryMobileNumber: '0987654321',
       role: 'ADMIN',

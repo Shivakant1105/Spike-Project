@@ -147,6 +147,8 @@ describe('CommonService', () => {
   it('should update user details and return response', () => {
     const mockUserData = {
       username: 'johnDoe',
+      name: 'John Doe',
+      backupEmail: 'john@gmail.com',
       email: 'john.doe@example.com',
       primaryMobileNumber: '1234567890',
       secondaryMobileNumber: '0987654321',

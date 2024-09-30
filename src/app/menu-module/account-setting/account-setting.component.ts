@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { city, country, departments, state, user } from 'src/app/modal/user';
 import { AuthService } from 'src/app/service/auth.service';
 // import { ActivatedRoute } from '@angular/router';
@@ -23,10 +22,10 @@ export class AccountSettingComponent implements OnInit {
   temporaryStates: state[] = [];
   permanentCity: city[] = [];
   temporaryCity: city[] = [];
+  username!: string;
   constructor(
     public fb: FormBuilder,
     private commonService: CommonService,
-    private route: Router,
     private loggerService: LoggerService,
     private authService: AuthService
   ) {}
@@ -52,6 +51,7 @@ export class AccountSettingComponent implements OnInit {
     );
 
     this.userDetailForm = this.fb.group({
+      username: [null],
       name: [null],
       email: [null],
       designation: [null],
@@ -74,6 +74,7 @@ export class AccountSettingComponent implements OnInit {
       temperory_zip: [null],
     });
     this.userId = this.authService.getTokenData().id;
+    this.username = this.authService.getTokenData().sub;
     this.commonService.getUserById(this.userId).subscribe((res: any) => {
       this.patchFormValues(res.data);
     });
@@ -152,7 +153,7 @@ export class AccountSettingComponent implements OnInit {
         .resetPassword(oldPassword, newPassword)
         .subscribe((res: any) => {
           this.loggerService.alertWithSuccess(res.data);
-          this.route.navigate(['/auth/login']);
+          this.authService.logout();
         });
     }
   }
@@ -189,26 +190,26 @@ export class AccountSettingComponent implements OnInit {
    * @returns {void} - No return value.
    */
   patchFormValues(data: any): void {
-    console.log(data.role);
-
-    if (data.addresses[0].type === 'CURRENT') {
-      console.log(data.addresses[0].country);
-
-      this.userDetailForm.patchValue({
-        temperory_address: data.addresses[0].line1,
-        temperory_country: data.addresses[0].country,
-        temperory_state: data.addresses[0].state,
-        temperory_city: data.addresses[0].city,
-        temperory_zip: data.addresses[0].zip,
-      });
-    }
-    if (data.addresses[0].type === 'PERMANENT') {
-      this.userDetailForm.patchValue({
-        permanent_address: data.addresses[0].line1,
-        permanent_country: data.addresses[0].country,
-        permanent_state: data.addresses[0].state,
-        permanent_city: data.addresses[0].city,
-        permanent_zip: data.addresses[0].zip,
+    if (data.addresses && data.addresses.length > 0) {
+      data.addresses.forEach((address: any) => {
+        if (address.type === 'CURRENT') {
+          this.userDetailForm.patchValue({
+            temperory_address: address.line1 || '',
+            temperory_country: address.country || '',
+            temperory_state: address.state || '',
+            temperory_city: address.city || '',
+            temperory_zip: address.zip || '',
+          });
+        }
+        if (address.type === 'PERMANENT') {
+          this.userDetailForm.patchValue({
+            permanent_address: address.line1 || '',
+            permanent_country: address.country || '',
+            permanent_state: address.state || '',
+            permanent_city: address.city || '',
+            permanent_zip: address.zip || '',
+          });
+        }
       });
     }
     this.userDetailForm.patchValue({
@@ -216,7 +217,10 @@ export class AccountSettingComponent implements OnInit {
       email: data.email,
       designation: data.designation,
       role: data.role,
-      department: data.department[0].name,
+      department:
+        data.department && data.department.length > 0
+          ? data.department[0].name
+          : '', // Check if department exists
       primaryMobileNumber: data.primaryMobileNumber,
       joining_date: data.joiningDate
         ? new Date(data.joiningDate).toISOString().substring(0, 10)
@@ -310,10 +314,12 @@ export class AccountSettingComponent implements OnInit {
    * @author Abhilasha Singh
    * @returns {void} - No return value.
    */
-  updateUserDetails() {
+  updateUserDetails(): void {
     if (this.userDetailForm.valid) {
       const userData: user = {
-        username: this.userDetailForm.value.name,
+        username: this.userDetailForm.value.username,
+        name: this.userDetailForm.value.name,
+        backupEmail: null,
         email: this.userDetailForm.value.email,
         primaryMobileNumber: this.userDetailForm.value.primaryMobileNumber,
         secondaryMobileNumber: this.userDetailForm.value.secondaryMobileNumber,
@@ -341,6 +347,7 @@ export class AccountSettingComponent implements OnInit {
         'userDetailForm',
         JSON.stringify(this.userDetailForm.value)
       );
+
       this.commonService
         .updateUserDetail(this.userId, userData)
         .subscribe((res: any) => {

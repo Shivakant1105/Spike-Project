@@ -55,6 +55,8 @@ export interface employee {
 
 export interface user {
   username: string;
+  name: string;
+  backupEmail: string | null;
   email: string;
   role: string;
   primaryMobileNumber: string;
