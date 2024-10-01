@@ -40,7 +40,6 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
-
         switch (error.status) {
           case 401:
             errorMessage = error.error.error;

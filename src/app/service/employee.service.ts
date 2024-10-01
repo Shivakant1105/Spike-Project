@@ -62,4 +62,15 @@ export class EmployeeService {
   deleteEmployee(employeeId: number) {
     return this.http.delete(`${this.baseUrl}/user/delete/${employeeId}`);
   }
+
+  /**
+   * @description This is method to edit employee.
+   * @author Himmat
+   * @param {number} id
+   * @param {employee} data
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+  editEmployee(id: number, data: employee) {
+    return this.http.put(`${this.baseUrl}/user/admin/update/${id}`, data);
+  }
 }

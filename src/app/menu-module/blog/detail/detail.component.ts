@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -18,6 +19,7 @@ export class DetailComponent implements OnInit {
   blogId!: string;
   isUpdateform: boolean = false;
   count: number = 0;
+  blogDetail: any;
   username!: string;
   commentForm!: FormGroup;
 
@@ -26,6 +28,7 @@ export class DetailComponent implements OnInit {
     private logger: LoggerService,
     private actRoute: ActivatedRoute,
     public commonService: CommonService,
+    private sanitizer: DomSanitizer,
     private authService: AuthService
   ) {
     this.commentForm = new FormGroup({
@@ -38,6 +41,8 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogId = this.actRoute.snapshot.paramMap.get('id')!;
+    this.getUserName();
+    this.getBlogById(this.blogId);
     this.getAllcommentById(this.blogId);
     this.commentForm.get('content')!.valueChanges.subscribe((res) => {
       this.count = res!.length;
@@ -72,8 +77,10 @@ export class DetailComponent implements OnInit {
         this.commentList = res.data.map((data: any) => {
           return { ...data, time: this.calculateTimeAgo(data.createdDate) };
         });
+        console.log(this.commentList);
 
-        this.commonService.hideLoader();
+        // we remove because api response time different
+        // this.commonService.hideLoader();
       },
       error: () => {
         this.commonService.hideLoader();
@@ -95,6 +102,7 @@ export class DetailComponent implements OnInit {
     this.blogService.createCommentById(id, formData).subscribe({
       next: () => {
         this.getAllcommentById(id);
+        this.getBlogById(this.blogId);
 
         this.commonService.hideLoader();
 
@@ -137,6 +145,7 @@ export class DetailComponent implements OnInit {
       next: (res: any) => {
         this.commonService.hideLoader();
         this.getAllcommentById(this.blogId);
+        this.getBlogById(this.blogId);
 
         this.logger.alertWithSuccess(res.message);
       },
@@ -157,6 +166,7 @@ export class DetailComponent implements OnInit {
     this.blogService.deleteCommentById(this.blogId, commentId).subscribe({
       next: (res: any) => {
         this.getAllcommentById(this.blogId);
+        this.getBlogById(this.blogId);
 
         this.logger.alertWithSuccess(res.message);
         this.commonService.hideLoader();
@@ -202,7 +212,47 @@ export class DetailComponent implements OnInit {
   identify(id: number): number {
     return id;
   }
+  /**
+   * @description Fetches a specific blog for editing.
+   * @author Gautam Yadav
+   * @return {void} Return a void
+   */
+  getBlogById(id: any): void {
+    this.commonService.showLoader();
+    this.blogService.getBlogById(id).subscribe({
+      next: (res: any) => {
+        const profilePictureUrl = res.data.profilePic
+          ? this.sanitizer.bypassSecurityTrustResourceUrl(
+              'data:image/jpeg;base64,' + res.data.profilePic
+            )
+          : '../../../assets/mesage_user.jpg';
 
+        const mediaFiles = res.data.mediaFile[0]
+          ? this.sanitizer.bypassSecurityTrustResourceUrl(
+              'data:image/jpeg;base64,' + res.data.mediaFile
+            )
+          : '../../../assets/blog-img1.jpg';
+
+        const date = new Date(res.data.createdDateTime);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'short' });
+        const year = date.getFullYear().toString().slice(-2);
+        const createdDated = `${day} ${month}, ${year}`;
+        this.blogDetail = {
+          ...res.data,
+          createdDatedCustom: createdDated,
+          profilePictureUrlCustom: profilePictureUrl,
+          mediaFileCustom: mediaFiles,
+        };
+        console.log(this.blogDetail);
+
+        this.commonService.hideLoader();
+      },
+      error: () => {
+        this.commonService.hideLoader();
+      },
+    });
+  }
   getUserName() {
     this.username = this.authService.getTokenData().sub;
   }

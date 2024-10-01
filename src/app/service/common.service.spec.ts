@@ -145,14 +145,33 @@ describe('CommonService', () => {
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
   });
-  it('should get user by ID', () => {
+  it('should update user details and return response', () => {
+    const mockUserData = {
+      username: 'johnDoe',
+      name: 'John Doe',
+      backupEmail: 'john@gmail.com',
+      email: 'john.doe@example.com',
+      primaryMobileNumber: '1234567890',
+      secondaryMobileNumber: '0987654321',
+      role: 'ADMIN',
+      addresses: [
+        {
+          line1: '123 Main St',
+          state: 'California',
+          zip: '90210',
+          city: 'Los Angeles',
+          country: 'USA',
+          type: 'PERMANENT',
+        },
+      ],
+    };
     const userId = 1;
-    const mockUser = { id: userId, name: 'John Doe' };
-    service.getUserById(userId).subscribe((user) => {
-      expect(user).toEqual(mockUser);
+    const mockResponse = { message: 'User details updated successfully' };
+    service.updateUserDetail(userId, mockUserData).subscribe((res) => {
+      expect(res).toEqual(mockResponse);
     });
-    const req = httpMock.expectOne(`${service.baseUrl}/user/self/${userId}`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockUser);
+    const req = httpMock.expectOne(`${baseUrl}/user/update/details/${userId}`);
+    expect(req.request.method).toEqual('PUT');
+    req.flush(mockResponse);
   });
 });

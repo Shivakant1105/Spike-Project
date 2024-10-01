@@ -193,4 +193,22 @@ describe('ContactComponent', () => {
 
     expect(result).toBe(1);
   });
+  it('should return all contacts when searchName is empty', () => {
+    component.searchName = '';
+    const result = component.filteredContacts;
+    expect(result).toEqual(component.contacts);
+  });
+
+  it('should return an empty array if no contacts match the searchName', () => {
+    component.searchName = 'xyz';
+    component.contacts = [{ name: 'xyz' }];
+    const result = component.filteredContacts;
+    expect(result).toEqual([]);
+  });
+
+  it('should be case insensitive when filtering', () => {
+    component.searchName = 'AL';
+    const result = component.filteredContacts;
+    expect(result).toEqual([]);
+  });
 });

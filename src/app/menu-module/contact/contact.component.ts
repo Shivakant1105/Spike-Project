@@ -14,7 +14,8 @@ export class ContactComponent implements OnInit {
   currentPage: number = 0;
   isLoading: boolean = false;
   pageSize: number = 10;
-  totalContact: number = 1;
+  totalContact!: number;
+  searchName: string = '';
   constructor(
     private commonService: CommonService,
     private sanitizer: DomSanitizer,
@@ -36,6 +37,7 @@ export class ContactComponent implements OnInit {
   getAllContacts() {
     if (this.isLoading) return;
     this.isLoading = true;
+
     if (this.contacts.length !== this.totalContact) {
       this.commonService.showLoader();
       this.commonService
@@ -59,11 +61,9 @@ export class ContactComponent implements OnInit {
             this.contacts = [...this.contacts, ...newContacts];
             this.currentPage++;
             this.isLoading = false;
-          },
-          error: () => {
             this.commonService.hideLoader();
           },
-          complete: () => {
+          error: () => {
             this.commonService.hideLoader();
           },
         });
@@ -96,5 +96,21 @@ export class ContactComponent implements OnInit {
 
   trackByContactId(contact: any) {
     return contact.id;
+  }
+  /**
+   * @description This function filters contacts based on the search name.
+   * @author Shiva Kant
+   * @param {string} searchName - The name to search for in the contacts.
+   * @param {Array} contacts - The list of contacts to filter.
+   * @return {Array} - The filtered list of contacts.
+   */
+  get filteredContacts() {
+    if (!this.searchName) {
+      return this.contacts;
+    }
+    const name = this.searchName.toLowerCase();
+    return this.contacts.filter((contact: any) =>
+      contact.name.toLowerCase().includes(name)
+    );
   }
 }
