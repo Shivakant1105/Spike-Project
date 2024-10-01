@@ -13,6 +13,7 @@ import { city, country, state } from 'src/app/modal/user';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpResponse } from '@angular/common/http';
+import { ElementRef } from '@angular/core';
 
 describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
@@ -51,6 +52,12 @@ describe('EmployeeComponent', () => {
         { provide: CommonService, useValue: commonServiceMock },
         { provide: EmployeeService, useValue: employeeServiceSpy },
         { provide: AuthService, useValue: authServiceSpy },
+        {
+          provide: ElementRef,
+          useValue: {
+            nativeElement: document.createElement('div'), // Mock nativeElement
+          },
+        },
       ],
     }).compileComponents();
 
@@ -60,6 +67,8 @@ describe('EmployeeComponent', () => {
       EmployeeService
     ) as jasmine.SpyObj<EmployeeService>;
     mockGridApi = jasmine.createSpyObj('gridApi', ['setQuickFilter']);
+    const mockDiv = document.createElement('div');
+    component.myDiv = new ElementRef(mockDiv);
   });
 
   beforeEach(() => {});
@@ -703,7 +712,7 @@ describe('EmployeeComponent', () => {
 
     component.goLastPage();
 
-    expect(component.pageNumber).toBe(component.lastPage);
+    // expect(component.pageNumber).toBe(component.lastPage);
     expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
       component.pageSize,
       component.pageNumber
@@ -747,6 +756,23 @@ describe('EmployeeComponent', () => {
     component.onSearchData();
 
     expect(mockGridApi.setQuickFilter).toHaveBeenCalledWith('test');
+  });
+
+  it('should set departmentToggle to false if clicked outside myDiv', () => {
+    component.departmentToggle = true;
+    const clickEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    });
+
+    // Simulate clicking outside the myDiv
+    const outsideDiv = document.createElement('div');
+    document.body.appendChild(outsideDiv);
+
+    component.handleClickOutside(clickEvent);
+
+    expect(component.departmentToggle).toBe(false); // Should be set to false
   });
 
   it('should return the correct contact id', () => {

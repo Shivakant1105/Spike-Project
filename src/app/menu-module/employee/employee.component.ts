@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -31,6 +37,7 @@ import { switchMap } from 'rxjs';
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild('addEmployeeButton') addEmployeeButton!: ElementRef;
+  @ViewChild('myDiv') myDiv!: ElementRef; // Reference to the div
 
   constructor(
     public fb: FormBuilder,
@@ -151,18 +158,7 @@ export class EmployeeComponent implements OnInit {
       },
     });
 
-    this.commonService.showLoader();
-    this.employeeService
-      .getAllEmployee(this.pageSize, this.pageNumber)
-      .subscribe({
-        next: (res: any) => {
-          this.employeeList = res.data;
-          this.totalEmployees = res.totalEmployees;
-          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
-          this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
-          this.commonService.hideLoader();
-        },
-      });
+    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
 
     this.gridOptions = {
       context: {
@@ -213,11 +209,47 @@ export class EmployeeComponent implements OnInit {
     }),
   });
 
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    const clickedInside = this.myDiv.nativeElement.contains(event.target);
+    if (this.departmentToggle && !clickedInside) {
+      this.departmentToggle = false;
+    }
+  }
+
+  /**
+   * @description This is method to get all employee.
+   * @author Himmat
+   * @param {number} pageSize
+   * @param {number} pageNumber
+   */
+  getAllEmployeeFunc(pageSize: number, pageNumber: number) {
+    this.commonService.showLoader();
+    this.employeeService.getAllEmployee(pageSize, pageNumber).subscribe({
+      next: (res: any) => {
+        this.employeeList = res.data;
+        this.totalEmployees = res.totalEmployees;
+        this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+        this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
+        this.commonService.hideLoader();
+      },
+    });
+  }
+
+  /**
+   * @description This is method to search employee.
+   * @author Himmat
+   * @param {any} params
+   */
   onGridReady(params: any) {
     this.gridApi = params;
   }
 
-  onSearchData() {
+  /**
+   * @description This is method to search employee.
+   * @author Himmat
+   */
+  onSearchData(): void {
     this.gridApi!.setQuickFilter(this.searchValue);
   }
 
@@ -228,48 +260,17 @@ export class EmployeeComponent implements OnInit {
    */
   pageSizeSelected(event: any) {
     this.pageSize = event.target.value;
-    this.commonService.showLoader();
-    this.employeeService
-      .getAllEmployee(this.pageSize, this.pageNumber)
-      .subscribe({
-        next: (res: any) => {
-          this.employeeList = res.data;
-          this.totalEmployees = res.totalEmployees;
-          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
-          this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
-          this.commonService.hideLoader();
-        },
-      });
+    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
   }
 
   goFirstPage() {
     this.pageNumber = 0;
-    this.commonService.showLoader();
-    this.employeeService
-      .getAllEmployee(this.pageSize, this.pageNumber)
-      .subscribe({
-        next: (res: any) => {
-          this.employeeList = res.data;
-          this.totalEmployees = res.totalEmployees;
-          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
-          this.commonService.hideLoader();
-        },
-      });
+    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
   }
 
   goLastPage() {
     this.pageNumber = this.lastPage;
-    this.commonService.showLoader();
-    this.employeeService
-      .getAllEmployee(this.pageSize, this.pageNumber)
-      .subscribe({
-        next: (res: any) => {
-          this.employeeList = res.data;
-          this.totalEmployees = res.totalEmployees;
-          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
-          this.commonService.hideLoader();
-        },
-      });
+    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
   }
 
   /**
@@ -580,17 +581,7 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.deleteEmployee(id).subscribe({
       next: (res: any) => {
         this.loggerService.alertWithSuccess(res.message);
-        this.employeeService
-          .getAllEmployee(this.pageSize, this.pageNumber)
-          .subscribe({
-            next: (res: any) => {
-              this.employeeList = res.data;
-              this.totalEmployees = res.totalEmployees;
-              this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
-              this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
-              this.commonService.hideLoader();
-            },
-          });
+        this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
       },
     });
   }
@@ -744,20 +735,7 @@ export class EmployeeComponent implements OnInit {
             .uploadProfileImage(this.image, res.data.id)
             .subscribe({
               next: () => {
-                this.employeeService
-                  .getAllEmployee(this.pageSize, this.pageNumber)
-                  .subscribe({
-                    next: (res: any) => {
-                      this.employeeList = res.data;
-                      this.totalEmployees = res.totalEmployees;
-                      this.totalPage = Math.ceil(
-                        this.totalEmployees / this.pageSize
-                      );
-                      this.lastPage = Math.floor(
-                        this.totalEmployees / this.pageSize
-                      );
-                    },
-                  });
+                this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
               },
             });
         },
