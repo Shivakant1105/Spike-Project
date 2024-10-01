@@ -51,9 +51,13 @@ export class CommonService {
    * @returns  {Observable<any>}
    */
 
-  getAllContacts(pageNo: number, pageSize: number): Observable<any> {
+  getAllContacts(
+    id: number,
+    pageNo: number,
+    pageSize: number
+  ): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/user/contacts?pageSize=${pageSize}&pageNo=${pageNo}`
+      `${this.baseUrl}/user/contacts?userId=${id}&pageSize=${pageSize}&pageNo=${pageNo}`
     );
   }
 

@@ -42,9 +42,7 @@
     position: relative;
     @include flex("", "", column, 0, 0);
 
-    &:not(:first-child) {
-      max-width: rem(408);
-    }
+    max-width: rem(408);
 
     .image {
       @include setDimension(100%, rem(235));

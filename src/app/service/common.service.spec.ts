@@ -66,6 +66,7 @@ describe('CommonService', () => {
     req.flush(mockResponse);
   });
   it('should fetch all contacts', () => {
+    const id = 1;
     const pageNo = 1;
     const pageSize = 10;
     const mockContacts = [
@@ -73,12 +74,12 @@ describe('CommonService', () => {
       { id: 2, name: 'Jane Doe' },
     ];
 
-    service.getAllContacts(pageNo, pageSize).subscribe((contacts) => {
+    service.getAllContacts(id, pageNo, pageSize).subscribe((contacts) => {
       expect(contacts).toEqual(mockContacts);
     });
 
     const req = httpMock.expectOne(
-      `${service.baseUrl}/user/contacts?pageSize=${pageSize}&pageNo=${pageNo}`
+      `${service.baseUrl}/user/contacts?userId=${id}&pageSize=${pageSize}&pageNo=${pageNo}`
     );
     expect(req.request.method).toBe('GET');
     req.flush(mockContacts);

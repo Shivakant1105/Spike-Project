@@ -18,11 +18,12 @@ export class PostComponent implements OnInit {
   pageSize: number = 10;
   isLoading: boolean = false;
   allDepartments: departments[] = [];
-
+  allBlogsLoaded: boolean = false;
   fileSrc: string | ArrayBuffer | File | null = null;
   isImgSupported: boolean = true;
   fileType: 'image' | 'audio' | null = null;
-
+  totalCount: number = 1;
+  userId!: number;
   constructor(
     private blogService: BlogService,
     private sanitizer: DomSanitizer,
@@ -33,10 +34,18 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.authService.getTokenData().id;
-    this.commonService.getUserById(id).subscribe({
+    this.userId = this.authService.getTokenData().id;
+    this.commonService.getUserById(this.userId).subscribe({
       next: (user: any) => {
-        this.allDepartments = user.data.department;
+        if (user.data.role === 'ADMIN') {
+          this.commonService.getAllDepartments().subscribe({
+            next: (res: any) => {
+              this.allDepartments = res.data;
+            },
+          });
+        } else {
+          this.allDepartments = user.data.department;
+        }
       },
     });
     this.getAllBlogs();
@@ -47,46 +56,62 @@ export class PostComponent implements OnInit {
    * @author Shiva Kant
    * @returns  {Observable<any>}
    */
-
   getAllBlogs() {
     if (this.isLoading) return;
     this.isLoading = true;
+    if (this.blogs.length !== this.totalCount) {
+      this.commonService.showLoader();
 
-    this.blogService.getAllBlogs(this.currentPage, this.pageSize).subscribe({
-      next: (data: any) => {
-        const newBlogs = data.data.map((blog: any) => {
-          const profilePictureUrl = blog.profilePic
-            ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                'data:image/jpeg;base64,' + blog.profilePic
-              )
-            : '../../../assets/mesage_user.jpg';
+      this.blogService.getAllBlogs(this.currentPage, this.pageSize).subscribe({
+        next: (data: any) => {
+          this.totalCount = data.totalResults;
+          const newBlogs = data.data.map((blog: any) => {
+            const profilePictureUrl = blog.profilePic
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/jpeg;base64,' + blog.profilePic
+                )
+              : '../../../assets/mesage_user.jpg';
 
-          const mediaFiles = blog.profilePic
-            ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                'data:image/jpeg;base64,' + blog.profilePic
-              )
-            : '../../../assets/blog-img1.jpg';
+            const mediaFiles = blog.mediaFile
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/jpeg;base64,' + blog.mediaFile
+                )
+              : '../../../assets/blog-img1.jpg';
 
-          return {
-            ...blog,
-            profilePic: profilePictureUrl,
-            mediaFile: mediaFiles,
-          };
-        });
+            const date = new Date(blog.createdDateTime);
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.getFullYear().toString().slice(-2);
+            const createdDated = `${day} ${month}, ${year}`;
 
-        this.blogs = [...this.blogs, ...newBlogs];
-        this.currentPage++;
-        this.isLoading = false;
-      },
-      error: () => {
-        this.isLoading = false;
-      },
-    });
+            return {
+              ...blog,
+              createdDate: createdDated,
+              profilePic: profilePictureUrl,
+              mediaFile: mediaFiles,
+            };
+          });
+          this.blogs = [...this.blogs, ...newBlogs];
+          this.currentPage++;
+          this.isLoading = false;
+        },
+        error: () => {
+          this.commonService.hideLoader();
+        },
+        complete: () => {
+          this.commonService.hideLoader();
+        },
+      });
+    }
   }
   /**
-   * @description This is a OnScroll method.
-   * @author Shiva Kant
-   */
+ * @description This method handles the scroll event for a container.
+ * It checks if the user has scrolled close to the bottom and,
+ * if so, triggers the loading of more blogs.
+ 
+ * @author Shiva Kant Mishra
+ * @return {void} This method does not return a value.
+ */
   onScroll(event: Event) {
     const target = event.target as HTMLElement;
     const scrollTop = target.scrollTop + target.clientHeight;
@@ -148,6 +173,7 @@ export class PostComponent implements OnInit {
       formData.append('departmentId', departmentId as any);
       formData.append('title', this.blog_form.value.title);
       formData.append('content', this.blog_form.value.content);
+      formData.append('userId', this.userId as any);
 
       if (this.fileSrc) {
         const fileInput = document.querySelector(
