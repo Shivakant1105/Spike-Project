@@ -21,7 +21,7 @@ export class GridTableComponent {
   @Input() colDefs?: ColDef[];
   @Input() rowData: any;
   @Input() gridOptions: any;
-  @Output() GridReady: EventEmitter<any> = new EventEmitter<GridApi>();
+  @Output() gridReady: EventEmitter<any> = new EventEmitter<GridApi>();
 
   themeClass: string = '';
   unSub = new Subject();
@@ -36,7 +36,7 @@ export class GridTableComponent {
 
   onGridReady(params: any) {
     this.gridApi = params.api;
-    this.GridReady.emit(this.gridApi);
+    this.gridReady.emit(this.gridApi);
   }
 
   ngOnDestroy(): void {

@@ -4,7 +4,7 @@ import { GridTableComponent } from './grid-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonService } from 'src/app/service/common.service';
 
-fdescribe('GridTableComponent', () => {
+describe('GridTableComponent', () => {
   let component: GridTableComponent;
   let fixture: ComponentFixture<GridTableComponent>;
   let commonService: CommonService;
@@ -25,7 +25,7 @@ fdescribe('GridTableComponent', () => {
 
     commonService = TestBed.inject(CommonService);
     mockEmitter = jasmine.createSpyObj('EventEmitter', ['emit']);
-    component.GridReady = mockEmitter; // Replace the emitter in your component
+    component.gridReady = mockEmitter; // Replace the emitter in your component
 
     mockApi = { api: {} };
   });
