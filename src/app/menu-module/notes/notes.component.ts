@@ -144,7 +144,10 @@ export class NotesComponent implements OnInit {
   getBackgroundColor(color: string): string {
     return this.colorMap[color] || '#ffffff';
   }
-
+  /**
+   * @description This method for notes functionality
+   * @param {evenet} event - The new color to apply to the note.
+   */
   searchNotes(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
     const searchTerm = inputElement.value.toLowerCase();
@@ -155,7 +158,6 @@ export class NotesComponent implements OnInit {
           this.notes = res.data;
         });
     }
-
     if (!searchTerm) {
       this.getNotes();
     }
