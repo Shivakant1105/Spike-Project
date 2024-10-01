@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { LoaderComponent } from "./loader.component";
 import { CommonService } from "src/app/service/common.service";
-// Adjust the import path as necessary
 
 class MockCommonService {
-  lodder = new Subject<boolean>();
+  loader = new BehaviorSubject<boolean>(false);
 }
 
 describe("LoaderComponent", () => {
@@ -23,9 +22,7 @@ describe("LoaderComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
-    commonService = TestBed.inject(
-      CommonService
-    ) as unknown as MockCommonService;
+    commonService = TestBed.inject(CommonService) as unknown as MockCommonService;
     fixture.detectChanges();
   });
 
@@ -37,11 +34,13 @@ describe("LoaderComponent", () => {
     expect(component.loading).toBeFalse();
   });
 
-  it("should subscribe to the loading observable and update loading state", () => {
-    commonService.lodder.next(true);
+  it("should subscribe to the loader observable and update loading state on ngOnInit", () => {
+    component.ngOnInit();
+
+    commonService.loader.next(true);
     expect(component.loading).toBeTrue();
 
-    commonService.lodder.next(false);
+    commonService.loader.next(false);
     expect(component.loading).toBeFalse();
   });
 
