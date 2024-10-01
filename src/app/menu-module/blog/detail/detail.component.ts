@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 import { BlogService } from 'src/app/service/blog.service';
 import { CommonService } from 'src/app/service/common.service';
@@ -17,13 +18,15 @@ export class DetailComponent implements OnInit {
   blogId!: string;
   isUpdateform: boolean = false;
   count: number = 0;
+  username!: string;
   commentForm!: FormGroup;
 
   constructor(
-    private blogService: BlogService,
+    public blogService: BlogService,
     private logger: LoggerService,
     private actRoute: ActivatedRoute,
-    private commonService: CommonService
+    public commonService: CommonService,
+    private authService: AuthService
   ) {
     this.commentForm = new FormGroup({
       content: new FormControl('', [
@@ -37,7 +40,7 @@ export class DetailComponent implements OnInit {
     this.blogId = this.actRoute.snapshot.paramMap.get('id')!;
     this.getAllcommentById(this.blogId);
     this.commentForm.get('content')!.valueChanges.subscribe((res) => {
-      this.count = res.length;
+      this.count = res!.length;
     });
   }
   /**
@@ -54,6 +57,7 @@ export class DetailComponent implements OnInit {
     this.isUpdateform = false;
     this.commentForm.reset();
   }
+
   /**
    * @description Fetches all comments for the given blog ID and formats the creation date.
    * @author Gautam Yadav
@@ -68,8 +72,10 @@ export class DetailComponent implements OnInit {
         this.commentList = res.data.map((data: any) => {
           return { ...data, time: this.calculateTimeAgo(data.createdDate) };
         });
+
+        this.commonService.hideLoader();
       },
-      complete: () => {
+      error: () => {
         this.commonService.hideLoader();
       },
     });
@@ -89,9 +95,13 @@ export class DetailComponent implements OnInit {
     this.blogService.createCommentById(id, formData).subscribe({
       next: () => {
         this.getAllcommentById(id);
+
         this.commonService.hideLoader();
 
         this.logger.alertWithSuccess('Comment posted successfully!🎉');
+      },
+      error: () => {
+        this.commonService.hideLoader();
       },
     });
   }
@@ -110,6 +120,9 @@ export class DetailComponent implements OnInit {
         this.isUpdateform = true;
         this.commonService.hideLoader();
       },
+      error: () => {
+        this.commonService.hideLoader();
+      },
     });
   }
   /**
@@ -124,7 +137,11 @@ export class DetailComponent implements OnInit {
       next: (res: any) => {
         this.commonService.hideLoader();
         this.getAllcommentById(this.blogId);
+
         this.logger.alertWithSuccess(res.message);
+      },
+      error: () => {
+        this.commonService.hideLoader();
       },
     });
   }
@@ -140,7 +157,11 @@ export class DetailComponent implements OnInit {
     this.blogService.deleteCommentById(this.blogId, commentId).subscribe({
       next: (res: any) => {
         this.getAllcommentById(this.blogId);
+
         this.logger.alertWithSuccess(res.message);
+        this.commonService.hideLoader();
+      },
+      error: () => {
         this.commonService.hideLoader();
       },
     });
@@ -180,5 +201,9 @@ export class DetailComponent implements OnInit {
 
   identify(id: number): number {
     return id;
+  }
+
+  getUserName() {
+    this.username = this.authService.getTokenData().sub;
   }
 }

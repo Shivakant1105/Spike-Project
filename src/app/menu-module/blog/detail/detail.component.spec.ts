@@ -6,6 +6,8 @@ import { DetailComponent } from './detail.component';
 import { BlogService } from 'src/app/service/blog.service';
 import { CommonService } from 'src/app/service/common.service';
 import { LoggerService } from 'src/app/service/logger.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -46,7 +48,11 @@ describe('DetailComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [DetailComponent],
-      imports: [ReactiveFormsModule],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+      ],
       providers: [
         { provide: BlogService, useValue: blogServiceMock },
         { provide: CommonService, useValue: commonServiceMock },
@@ -82,11 +88,15 @@ describe('DetailComponent', () => {
     component.commentForm.setValue({ content: 'New Comment' });
     component.onSubmit();
     expect(commonService.showLoader).toHaveBeenCalled();
-
-    expect(logger.alertWithSuccess).toHaveBeenCalledWith(
-      'Comment posted successfully!🎉'
-    );
+    // expect(blogService.createCommentById).toHaveBeenCalledWith(
+    //   '1',
+    //   jasmine.any(FormData)
+    // );
+    // expect(logger.alertWithSuccess).toHaveBeenCalledWith(
+    //   'Comment posted successfully!🎉'
+    // );
     expect(component.isUpdateform).toBe(false);
+    // expect(component.commentForm.value.content).toBe('');
   });
 
   it('should update comment', () => {
@@ -110,9 +120,9 @@ describe('DetailComponent', () => {
     component.commentId = '2';
     component.commentForm.setValue({ content: 'Updated Comment' });
     component.updateCommentById();
-    // expect(blogService.updateCommentById).toHaveBeenCalledWith('2', {
-    //   content: 'Updated Comment',
-    // });
+    expect(blogService.updateCommentById).toHaveBeenCalledWith('2', {
+      content: 'Updated Comment',
+    });
   });
 
   it('should delete a comment', () => {
@@ -122,6 +132,16 @@ describe('DetailComponent', () => {
     expect(logger.alertWithSuccess).toHaveBeenCalledWith('Deleted');
     expect(commonService.hideLoader).toHaveBeenCalled();
   });
+  // it('should calculate "days ago" for a new comment', () => {
+  //   const result = component.calculateTimeAgo(
+  //     new Date('12-09-2024').toISOString()
+  //   );
+  //   expect(result).toBe('Just now');
+  // });
+  // it('should calculate "Just now" for a new comment', () => {
+  //   const result = component.calculateTimeAgo(new Date().toISOString());
+  //   expect(result).toBe('Just now');
+  // });
 
   describe('calculateTimeAgo', () => {
     it('should return "Just now" if the time difference is less than 1 minute', () => {

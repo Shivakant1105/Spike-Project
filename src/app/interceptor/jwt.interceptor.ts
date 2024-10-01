@@ -33,8 +33,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     if (token) {
       authReq = request.clone({
-        headers: new HttpHeaders()
-          .set('Authorization', `Bearer ${token}`),
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
       });
     }
 
@@ -51,7 +50,7 @@ export class JwtInterceptor implements HttpInterceptor {
             }
             break;
           case 403:
-            errorMessage = error.error.error;
+            errorMessage = 'session expires';
             this.authService.clearStorageByKey('tkn');
             this.router.navigate(['/auth/login']);
 
@@ -61,6 +60,7 @@ export class JwtInterceptor implements HttpInterceptor {
             break;
 
           default:
+            this.router.navigate(['/auth/login']);
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.error}`;
         }
         this.commonService.hideLoader();

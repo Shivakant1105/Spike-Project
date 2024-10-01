@@ -69,7 +69,7 @@
             <span class="f12">{{ comment.time }}</span>
           </div>
         </div>
-        <div class="right d-flex gap-3">
+        <div *ngIf="username === comment.userName" class="right d-flex gap-3">
           <i-feather
             (click)="getCommentById(comment.id)"
             class="f24"
