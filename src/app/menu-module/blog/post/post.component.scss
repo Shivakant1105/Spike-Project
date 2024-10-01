@@ -8,7 +8,7 @@
   }
 }
 .sub_header {
-  @include setDimension(100%, rem(81));
+  @include setDimension(100%, auto);
   @include flex("", center, "", 20, 16);
   background-color: var(--bg-high);
   color: var(--textColor);
@@ -28,8 +28,12 @@
 }
 
 .blog_container {
-  @include flex("", "", "", 28, 0);
-  flex-wrap: wrap;
+  // @include flex("", "", "", 28, 0);
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-rows: repeat(1,2fr);
+  grid-template-columns: repeat(3,3fr);
+  gap: rem(28);
   margin-top: rem(25);
 
   .blog {
@@ -37,7 +41,7 @@
     background-color: var(--bg-high);
     color: var(--textColor);
     flex-grow: 1;
-    min-width: rem(380);
+    // min-width: rem(380);
     overflow-y: auto;
     position: relative;
     @include flex("", "", column, 0, 0);

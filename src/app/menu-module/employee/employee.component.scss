@@ -224,10 +224,17 @@
             .department {
                 min-width: rem(240);
                 height: rem(52);
-                padding: rem(10) !important;
+                padding-left: rem(17) !important;
                 @include flex(center, center, column, 0, 0);
                 position: relative;
                 border-radius: rem(40);
+
+                .custome_down_toggle{
+                    width: 15px;
+                    height: 30px;
+
+                    color: var(--textColor)
+                }
 
                 .input_box {
                     @include flex('', center, '', 10, 0);
