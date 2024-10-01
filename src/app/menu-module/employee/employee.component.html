@@ -15,10 +15,12 @@
 
     <button
       type="button"
+      #addEmployeeButton
       data-bs-toggle="modal"
       data-bs-target="#addEmployee"
       class="btn right_items custome_radius f14"
       *ngIf="userRole == 'ADMIN'"
+      (click)="formOpen()"
     >
       Add Employee
     </button>
@@ -40,34 +42,43 @@
           id="fruit"
           name="fruit"
           class="f14"
+          [(ngModel)]="pageSize"
           (change)="pageSizeSelected($event)"
         >
+          <option value="5">5</option>
           <option value="10">10</option>
           <option value="50">50</option>
           <option value="100">100</option>
           <option value="500">500</option>
         </select>
-        <span class="page_number">1 – 9 of 9</span>
+        <span class="page_number"
+          >{{ pageSize * pageNumber + "-" + pageSize * (pageNumber + 1) }} of
+          {{ totalEmployees }}</span
+        >
 
         <i-feather
           class="f24"
           name="skip-back"
-          (click)="goFirstPage()"
+          [ngClass]="{ desable: pageNumber == 0 }"
+          (click)="pageNumber > 0 ? goFirstPage() : null"
         ></i-feather>
         <i-feather
           class="f24"
           name="chevron-left"
-          (click)="goPreviousPage()"
+          [ngClass]="{ desable: pageNumber == 0 }"
+          (click)="pageNumber > 0 ? goPreviousPage() : null"
         ></i-feather>
         <i-feather
           class="f24"
           name="chevron-right"
-          (click)="goNextPage()"
+          [ngClass]="{ desable: lastPage == pageNumber }"
+          (click)="lastPage != pageNumber ? goNextPage() : null"
         ></i-feather>
         <i-feather
           class="f24"
           name="skip-forward"
-          (click)="goLastPage()"
+          [ngClass]="{ desable: lastPage == pageNumber }"
+          (click)="lastPage != pageNumber ? goLastPage() : null"
         ></i-feather>
       </footer>
     </div>
@@ -172,7 +183,7 @@
             <!-- for the  manager id-->
             <div class="form_items">
               <select name="" id="" formControlName="managerId">
-                <option value="">--Select Manager--</option>
+                <option value="null">--Select Manager--</option>
                 <option
                   [value]="manager.id"
                   *ngFor="let manager of managerList; trackBy: trackById"
@@ -568,7 +579,7 @@
               [ngClass]="{ disable: employeeForm.invalid }"
               data-bs-dismiss="modal"
             >
-              Add
+              {{ editMode ? "Update" : "Add" }}
             </button>
             <button
               type="reset"

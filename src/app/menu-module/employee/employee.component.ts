@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ColDef } from 'ag-grid-community';
 import {
+  address,
   city,
   country,
   departments,
@@ -21,6 +22,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { LoggerService } from 'src/app/service/logger.service';
 import { ButtonRendererComponent } from 'src/app/shared/cell-renderer/button-renderer/button-renderer.component';
 import { MultiValRendererComponent } from 'src/app/shared/cell-renderer/multi-val-renderer/multi-val-renderer.component';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-employee',
@@ -28,6 +30,7 @@ import { MultiValRendererComponent } from 'src/app/shared/cell-renderer/multi-va
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
+  @ViewChild('addEmployeeButton') addEmployeeButton!: ElementRef;
   constructor(
     public fb: FormBuilder,
     private commonService: CommonService,
@@ -41,6 +44,7 @@ export class EmployeeComponent implements OnInit {
   base64String!: string;
   data!: string;
   image: any;
+  editMode: boolean = false;
 
   allDepartments: departments[] = [];
   countryList: country[] = [];
@@ -54,6 +58,10 @@ export class EmployeeComponent implements OnInit {
   gridOptions: any;
   pageSize: number = 10;
   pageNumber: number = 0;
+  totalPage: number = 0;
+  totalEmployees: number = 0;
+  lastPage: number = 0;
+  employeeId!: number;
 
   colDefs: ColDef[] = [
     {
@@ -80,18 +88,22 @@ export class EmployeeComponent implements OnInit {
       field: 'primaryMobileNumber',
       autoHeight: true,
       cellClass: 'd-flex',
-      maxWidth: 200,
+      maxWidth: 150,
     },
     {
       headerName: 'Joining Date',
-      field: 'primaryMobileNumber',
+      field: 'joiningDate',
       autoHeight: true,
       cellClass: 'd-flex',
-      maxWidth: 200,
+      maxWidth: 100,
+      valueFormatter: (params) => {
+        let date = new Date(params.data.joiningDate);
+        return date.toLocaleDateString();
+      },
     },
     {
       headerName: 'Salary',
-      field: 'primaryMobileNumber',
+      field: 'salary',
       autoHeight: true,
       cellClass: 'd-flex',
       maxWidth: 150,
@@ -136,11 +148,16 @@ export class EmployeeComponent implements OnInit {
       },
     });
 
+    this.commonService.showLoader();
     this.employeeService
       .getAllEmployee(this.pageSize, this.pageNumber)
       .subscribe({
         next: (res: any) => {
           this.employeeList = res.data;
+          this.totalEmployees = res.totalEmployees;
+          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+          this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
+          this.commonService.hideLoader();
         },
       });
 
@@ -153,7 +170,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   employeeForm = this.fb.group({
-    profilePicture: [null],
     name: ['', Validators.required],
     email: [
       '',
@@ -167,7 +183,7 @@ export class EmployeeComponent implements OnInit {
     ],
     designation: ['', Validators.required],
     employeeCode: ['', Validators.required],
-    managerId: [''],
+    managerId: [null],
     role: ['', Validators.required],
     primaryMobileNumber: ['', [Validators.required, this.mobileValidator]],
     joiningDate: ['', Validators.required],
@@ -201,33 +217,78 @@ export class EmployeeComponent implements OnInit {
    */
   pageSizeSelected(event: any) {
     this.pageSize = event.target.value;
+    this.commonService.showLoader();
     this.employeeService
       .getAllEmployee(this.pageSize, this.pageNumber)
       .subscribe({
         next: (res: any) => {
           this.employeeList = res.data;
+          this.totalEmployees = res.totalEmployees;
+          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+          this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
+          this.commonService.hideLoader();
         },
       });
   }
 
-  goFirstPage() {}
+  goFirstPage() {
+    this.pageNumber = 0;
+    this.commonService.showLoader();
+    this.employeeService
+      .getAllEmployee(this.pageSize, this.pageNumber)
+      .subscribe({
+        next: (res: any) => {
+          this.employeeList = res.data;
+          this.totalEmployees = res.totalEmployees;
+          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+          this.commonService.hideLoader();
+        },
+      });
+  }
 
-  goLastPage() {}
+  goLastPage() {
+    this.pageNumber = this.lastPage;
+    this.commonService.showLoader();
+    this.employeeService
+      .getAllEmployee(this.pageSize, this.pageNumber)
+      .subscribe({
+        next: (res: any) => {
+          this.employeeList = res.data;
+          this.totalEmployees = res.totalEmployees;
+          this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+          this.commonService.hideLoader();
+        },
+      });
+  }
 
   /**
    * @description This is method to go next page in table.
    * @author Himmat
    * @returns {void}
    */
+  timeOut: any;
   goNextPage(): void {
     this.pageNumber += 1;
-    this.employeeService
-      .getAllEmployee(this.pageSize, this.pageNumber)
-      .subscribe({
-        next: (res: any) => {
-          this.employeeList = res.data;
-        },
-      });
+
+    clearTimeout(this.timeOut);
+    this.timeOut = setTimeout(() => {
+      this.commonService.showLoader();
+      this.employeeService
+        .getAllEmployee(this.pageSize, this.pageNumber)
+        .pipe(
+          switchMap(() =>
+            this.employeeService.getAllEmployee(this.pageSize, this.pageNumber)
+          )
+        )
+        .subscribe({
+          next: (res: any) => {
+            this.employeeList = res.data;
+            this.totalEmployees = res.totalEmployees;
+            this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+            this.commonService.hideLoader();
+          },
+        });
+    }, 300);
   }
 
   /**
@@ -237,13 +298,26 @@ export class EmployeeComponent implements OnInit {
    */
   goPreviousPage(): void {
     this.pageNumber -= 1;
-    this.employeeService
-      .getAllEmployee(this.pageSize, this.pageNumber)
-      .subscribe({
-        next: (res: any) => {
-          this.employeeList = res.data;
-        },
-      });
+    this.commonService.showLoader();
+    clearTimeout(this.timeOut);
+    this.timeOut = setTimeout(() => {
+      this.commonService.showLoader();
+      this.employeeService
+        .getAllEmployee(this.pageSize, this.pageNumber)
+        .pipe(
+          switchMap(() =>
+            this.employeeService.getAllEmployee(this.pageSize, this.pageNumber)
+          )
+        )
+        .subscribe({
+          next: (res: any) => {
+            this.employeeList = res.data;
+            this.totalEmployees = res.totalEmployees;
+            this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+            this.commonService.hideLoader();
+          },
+        });
+    }, 300);
   }
 
   /**
@@ -290,14 +364,6 @@ export class EmployeeComponent implements OnInit {
     const regex = /^\d{10}$/; // Regex for 10-digit mobile number
     return regex.test(control.value) ? null : { invalidMobile: true };
   }
-
-  // customEmailValidator(): ValidatorFn {
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const emailRegex = /[a-zA-Z0-9._-]{1,}@[a-zA-Z0-9.-].[a-zA-Z]{2,}$/;
-  //     const valid = emailRegex.test(control.value);
-  //     return valid ? null : { invalidEmail: { value: control.value } };
-  //   };
-  // }
 
   /**
    * @description This is method to check error in formcontrolls.
@@ -499,6 +565,7 @@ export class EmployeeComponent implements OnInit {
    * @returns {void}
    */
   deleteEmployee(id: number) {
+    this.commonService.showLoader();
     this.employeeService.deleteEmployee(id).subscribe({
       next: (res: any) => {
         this.loggerService.alertWithSuccess(res.message);
@@ -507,10 +574,24 @@ export class EmployeeComponent implements OnInit {
           .subscribe({
             next: (res: any) => {
               this.employeeList = res.data;
+              this.totalEmployees = res.totalEmployees;
+              this.totalPage = Math.ceil(this.totalEmployees / this.pageSize);
+              this.lastPage = Math.floor(this.totalEmployees / this.pageSize);
+              this.commonService.hideLoader();
             },
           });
       },
     });
+  }
+
+  /**
+   * @description This method is responsible for open form.
+   * @author Himmat
+   * @returns {void}
+   */
+  openAddEmployeeModal(): void {
+    const button: HTMLButtonElement = this.addEmployeeButton.nativeElement;
+    button.click();
   }
 
   /**
@@ -519,7 +600,100 @@ export class EmployeeComponent implements OnInit {
    * @param {number} id
    * @returns {void}
    */
-  editEmployee(_id: number) {}
+  editEmployee(id: number) {
+    this.openAddEmployeeModal();
+    this.editMode = true;
+    this.employeeId = id;
+
+    this.commonService.getUserById(id).subscribe({
+      next: (res: any) => {
+        let data = res.data;
+        let manager = this.managerList.filter(
+          (val) => val.id == data.managerId
+        );
+
+        this.employeeForm.patchValue({
+          name: data.name,
+          email: data.email,
+          designation: data.designation,
+          employeeCode: data.employeeCode,
+          managerId: manager.length > 0 ? manager[0].id : null,
+          role: data.role,
+          primaryMobileNumber: data.primaryMobileNumber,
+          joiningDate: data.joiningDate,
+          salary: data.salary,
+        });
+
+        data.department.map((val: departments) => {
+          this.department.push(new FormControl(val.name));
+        });
+
+        data.addresses.map((val: address) => {
+          if (val.type == 'CURRENT') {
+            if (val.country !== '') {
+              this.commonService.getState(val.country).subscribe({
+                next: (res: state[]) => {
+                  this.currentAddressStateList = res;
+                },
+              });
+            }
+
+            if (val.state !== '') {
+              this.commonService.getCity(val.state).subscribe({
+                next: (res: city[]) => {
+                  this.currentAddressCityList = res;
+                },
+              });
+            }
+
+            this.currentAddress.patchValue({
+              line1: val.line1,
+              state: val.state,
+              zip: val.zip,
+              city: val.city,
+              country: val.country,
+              type: val.type,
+            });
+          } else {
+            if (val.country !== '') {
+              this.commonService.getState(val.country).subscribe({
+                next: (res: state[]) => {
+                  this.permanentAddressStateList = res;
+                },
+              });
+            }
+
+            if (val.state !== '') {
+              this.commonService.getCity(val.state).subscribe({
+                next: (res: city[]) => {
+                  this.permanentAddressCityList = res;
+                },
+              });
+            }
+
+            this.permanentAddress.patchValue({
+              line1: val.line1,
+              state: val.state,
+              zip: val.zip,
+              city: val.city,
+              country: val.country,
+              type: val.type,
+            });
+          }
+        });
+      },
+    });
+  }
+
+  /**
+   * @description This method will clear form on opening if value is there.
+   * @author Himmat
+   * @returns {void}
+   */
+  formOpen() {
+    this.editMode = false;
+    this.reset();
+  }
 
   /**
    * @description This method is responsible for submiting employeeForm and creating user on backend.
@@ -548,18 +722,44 @@ export class EmployeeComponent implements OnInit {
       ],
     } as employee;
 
-    this.employeeService.createEmployee(data).subscribe({
-      next: (res: any) => {
-        this.loggerService.alertWithSuccess(res.message);
-        this.employeeService
-          .uploadProfileImage(this.image, res.data.id)
-          .subscribe({
-            next: () => {},
-          });
-      },
-    });
+    if (!this.editMode) {
+      this.commonService.showLoader();
+      this.employeeService.createEmployee(data).subscribe({
+        next: (res: any) => {
+          this.commonService.hideLoader();
+          this.loggerService.alertWithSuccess(res.message);
 
-    // this.reset();
+          this.employeeService
+            .uploadProfileImage(this.image, res.data.id)
+            .subscribe({
+              next: () => {
+                this.employeeService
+                  .getAllEmployee(this.pageSize, this.pageNumber)
+                  .subscribe({
+                    next: (res: any) => {
+                      this.employeeList = res.data;
+                      this.totalEmployees = res.totalEmployees;
+                      this.totalPage = Math.ceil(
+                        this.totalEmployees / this.pageSize
+                      );
+                      this.lastPage = Math.floor(
+                        this.totalEmployees / this.pageSize
+                      );
+                    },
+                  });
+              },
+            });
+        },
+      });
+    } else {
+      this.employeeService.editEmployee(this.employeeId, data).subscribe({
+        next: (res: any) => {
+          console.log(res);
+        },
+      });
+    }
+    this.editMode = false;
+    this.reset();
   }
   /**
    * @description This method is responsible for reseting the form field value.
