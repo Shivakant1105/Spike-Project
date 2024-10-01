@@ -14,7 +14,7 @@ export class ContactComponent implements OnInit {
   currentPage: number = 0;
   isLoading: boolean = false;
   pageSize: number = 10;
-  totalContact: number = 1;
+  totalContact!: number;
   searchName: string = '';
   constructor(
     private commonService: CommonService,
@@ -44,8 +44,6 @@ export class ContactComponent implements OnInit {
         .getAllContacts(this.id, this.currentPage, this.pageSize)
         .subscribe({
           next: (data: any) => {
-            console.log(data);
-
             this.totalContact = data.totalContacts;
             const newContacts = data.data.map((contact: any) => {
               const profilePictureUrl = contact.profilePicture
