@@ -67,3 +67,23 @@ export interface managerList {
   id: number;
   name: string;
 }
+
+export interface CreateTask {
+  departmentId: number;
+  title: string;
+  content: string;
+}
+
+export interface ITask {
+  id: string;
+  userName: string;
+  departmentId: number;
+  departmentName: string;
+  title: string;
+  taskDes: string;
+  status: string;
+  createdAt: string;
+  createdBy: string;
+  lastModifiedDate: any;
+  lastModifiedBy: any;
+}
