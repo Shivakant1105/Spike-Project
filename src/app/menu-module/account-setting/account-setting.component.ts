@@ -68,7 +68,6 @@ export class AccountSettingComponent implements OnInit {
       secondaryMobileNumber: [null],
       joining_date: [null],
       salary: [null],
-      project: [null],
       permanent_address: [null],
       permanent_state: [null],
       permanent_country: [null],
@@ -82,8 +81,10 @@ export class AccountSettingComponent implements OnInit {
     });
     this.userId = this.authService.getTokenData().id;
     this.username = this.authService.getTokenData().sub;
+    this.commonService.showLoader();
     this.commonService.getUserById(this.userId).subscribe((res: any) => {
       this.patchFormValues(res.data);
+      this.commonService.hideLoader();
     });
     this.getAllDepartment();
     this.getCountry();
@@ -138,10 +139,10 @@ export class AccountSettingComponent implements OnInit {
         }
       });
     this.getDepartmentById();
-    const savedForm = localStorage.getItem('userDetailForm');
-    if (savedForm) {
-      this.userDetailForm.patchValue(JSON.parse(savedForm));
-    }
+    // const savedForm = localStorage.getItem('userDetailForm');
+    // if (savedForm) {
+    //   this.userDetailForm.patchValue(JSON.parse(savedForm));
+    // }
   }
 
   /**
@@ -351,11 +352,6 @@ export class AccountSettingComponent implements OnInit {
           },
         ],
       };
-      localStorage.setItem(
-        'userDetailForm',
-        JSON.stringify(this.userDetailForm.value)
-      );
-
       this.commonService
         .updateUserDetail(this.userId, userData)
         .subscribe((res: any) => {
