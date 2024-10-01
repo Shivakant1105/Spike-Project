@@ -13,6 +13,7 @@ import { PaymentsComponent } from './charts/payments/payments.component';
 import { LoaderComponent } from './loader/loader.component';
 import { GridTableComponent } from './grid-table/grid-table.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { SmoothedXYLineSeriesComponent } from './charts/smoothed-xy-line-series/smoothed-xy-line-series.component';
 import { ButtonRendererComponent } from './cell-renderer/button-renderer/button-renderer.component';
 import { MultiValRendererComponent } from './cell-renderer/multi-val-renderer/multi-val-renderer.component';
 
@@ -25,10 +26,15 @@ const declared = [
   PaymentsComponent,
   LoaderComponent,
   GridTableComponent,
+  SmoothedXYLineSeriesComponent,
 ];
 
 @NgModule({
-  declarations: [...declared, ButtonRendererComponent, MultiValRendererComponent],
+  declarations: [
+    ...declared,
+    ButtonRendererComponent,
+    MultiValRendererComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
