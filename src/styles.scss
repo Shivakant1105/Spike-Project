@@ -36,17 +36,17 @@ html {
   font-size: 100%;
 }
 
-.custom_bottom_border {
+.custome_bottom_border {
   border: none;
   border-bottom: rem(1) solid var(--border-color-lighter);
 }
 
-.custom_right_border {
+.custome_right_border {
   border: none;
   border-right: rem(1) solid var(--border-color-lighter);
 }
 
-.custom_radius,
+.custome_radius,
 .dropdown-menu.show {
   border-radius: rem(18) !important;
 }
@@ -57,7 +57,7 @@ html {
     0 rem(4) rem(6) var(--strongly-shadow);
 }
 
-.custom_border {
+.custome_border {
   border: rem(1) solid var(--border-color-light);
 }
 

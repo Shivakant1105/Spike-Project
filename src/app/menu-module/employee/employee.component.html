@@ -1,5 +1,5 @@
-<section class="account_container custom_radius">
-  <header class="sub_header custom_radius box_shadow">
+<section class="account_container custome_radius">
+  <header class="sub_header custome_radius box_shadow">
     <h4 class="f20">Employee</h4>
     <span class="f14">Dashboard</span>
     <ul>
@@ -7,20 +7,20 @@
     </ul>
   </header>
 
-  <div class="employee_search_section custom_radius box_shadow">
-    <div class="left_items custom_radius flex-nowrap">
+  <div class="employee_search_section custome_radius box_shadow">
+    <div class="left_items custome_radius flex-nowrap">
       <input class="f14" type="text" placeholder="Search Employee" />
       <i-feather name="search" class="d-flex"></i-feather>
     </div>
 
-    <button type="button" data-bs-toggle="modal" data-bs-target="#addEmployee" class="btn right_items custom_radius f14"
-      *ngIf="userRole == 'ADMIN'">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#addEmployee"
+      class="btn right_items custome_radius f14" *ngIf="userRole == 'ADMIN'">
       Add Employee
     </button>
   </div>
 
   <!-- for the table -->
-  <main class="custom_radius">
+  <main class="custome_radius">
     <div class="wrapper">
       <div class="h-100">
         <app-grid-table [rowData]="employeeList" [colDefs]="colDefs" [gridOptions]="gridOptions"></app-grid-table>
@@ -115,7 +115,7 @@
             </div>
 
             <!-- for the  Department-->
-            <div class="custom_border department flex-grow-1">
+            <div class="custome_border department flex-grow-1">
               <div class="input_box" (click)="openDepartmentDropDown()">
                 <div class="input_div align-items-center">
                   <span *ngIf="department.value.length == 0">Department</span>
@@ -129,7 +129,7 @@
                 <i-feather name="chevron-down"></i-feather>
               </div>
 
-              <div class="option_body custom_border" *ngIf="departmentToggle">
+              <div class="option_body custome_border" *ngIf="departmentToggle">
                 <div class="option" (click)="addDepartment(deptmnt)"
                   *ngFor="let deptmnt of allDepartments; trackBy: trackById">
                   <input type="checkbox" [checked]="department.value.includes(deptmnt.name)" />
@@ -271,7 +271,7 @@
               formGroupName="permanentAddress">
               <!-- for the address -->
               <p class="fw-bold">Permanent Address</p>
-              <button type="button" class="btn btn-warning custom_radius" (click)="fillPermanentAddress()">
+              <button type="button" class="btn btn-warning custome_radius" (click)="fillPermanentAddress()">
                 Same as Current
               </button>
               <div class="w-100 d-flex gap-2">
@@ -347,11 +347,11 @@
               </div>
             </div>
 
-            <button class="btn btn-warning custom_radius" type="submit" [disabled]="employeeForm.invalid"
+            <button class="btn btn-warning custome_radius" type="submit" [disabled]="employeeForm.invalid"
               [ngClass]="{ disable: employeeForm.invalid }" data-bs-dismiss="modal">
               Add
             </button>
-            <button type="reset" class="btn btn-warning custom_radius" (click)="reset()">
+            <button type="reset" class="btn btn-warning custome_radius" (click)="reset()">
               Reset
             </button>
           </form>

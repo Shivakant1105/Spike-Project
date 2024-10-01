@@ -1,7 +1,7 @@
 <div class="post-container" (scroll)="onScroll($event)">
-  <header class="sub_header custom_radius box_shadow">
+  <header class="sub_header custome_radius box_shadow">
     <h4 class="f20">Post</h4>
-    <button class="btn btn-primary custom_radius f14" data-bs-toggle="modal" data-bs-target="#addBlog"
+    <button class="btn btn-primary custome_radius f14" data-bs-toggle="modal" data-bs-target="#addBlog"
       (click)="openAddBlogForm()">
       Upload Blog
     </button>
@@ -12,13 +12,13 @@
   </header>
 
   <div id="scrollable" class="blog_container">
-    <div *ngFor="let blog of blogs; trackBy: trackByBlogId" class="blog custom_radius box_shadow">
+    <div *ngFor="let blog of blogs; trackBy: trackByBlogId" class="blog custome_radius box_shadow">
       <div class="image">
         <img class="post_img" [src]="blog.mediaFile" alt="user_mediaFile" />
-        <button class="btn custom_radius border border-2">
+        <button class="btn custome_radius border border-2">
           {{ blog.title }}
         </button>
-        <button class="btn custom_radius border border-2">
+        <button class="btn custome_radius border border-2">
           {{ blog.departmentName }}
         </button>
       </div>
@@ -56,7 +56,7 @@
           <h5>Add Blog</h5>
           <div class="post_status">
             <i-feather class="f24 me-3" name="Clock"></i-feather>
-            <button [disabled]="!blog_form.valid" class="btn btn-primary custom_radius f14" (click)="onSubmit()"
+            <button [disabled]="!blog_form.valid" class="btn btn-primary custome_radius f14" (click)="onSubmit()"
               type="submit" data-bs-dismiss="modal">
               post
             </button>
@@ -96,7 +96,7 @@
                   checkError('content', 'maxlength')
               }" class="form_items w-100">
               <label for="">Write Content</label>
-              <textarea formControlName="content" class="custom_radius custom_border"
+              <textarea formControlName="content" class="custome_radius custome_border"
                 placeholder="Write Your Content"></textarea>
               <p *ngIf="checkError('content', 'required')">
                 Add some content or description
@@ -116,9 +116,9 @@
               </label>
 
               <!-- uploaded Image -->
-              <div *ngIf="fileType" class="choose_img mt-2 custom_radius">
+              <div *ngIf="fileType" class="choose_img mt-2 custome_radius">
                 <div *ngIf="fileType === 'image'">
-                  <img class="w-100 custom_radius h-100" [src]="fileSrc" alt="Image Preview" />
+                  <img class="w-100 custome_radius h-100" [src]="fileSrc" alt="Image Preview" />
                 </div>
 
                 <div *ngIf="fileType === 'audio'">
@@ -134,7 +134,7 @@
               </p>
             </div>
 
-            <button (click)="reset_blog_form()" type="reset" class="btn btn-warning custom_radius">
+            <button (click)="reset_blog_form()" type="reset" class="btn btn-warning custome_radius">
               Reset
             </button>
           </form>

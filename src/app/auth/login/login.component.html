@@ -1,5 +1,5 @@
 <div class="login_section">
-  <section class="p-2 box_shadow custom_radius">
+  <section class="p-2 box_shadow custome_radius">
     <img class="dark-logo light_img me-2"
       src="https://spike-angular-pro-main.netlify.app/assets/images/logos/dark-logo.svg" alt="" />
     <!-- image in dark theme -->
@@ -18,11 +18,11 @@
         </div>
 
         <div class="icon_container">
-          <button class="first_btn custom_radius">
+          <button class="first_btn custome_radius">
             <img src="../../../assets/login/google_logo.png" alt="" />
             <span class="f14">Sign in with Google</span>
           </button>
-          <button class="second_btn custom_radius">
+          <button class="second_btn custome_radius">
             <img src="../../../assets/login/facebook_logo.png" alt="" />
             <span class="f14">Sign in with Facebook</span>
           </button>
@@ -37,7 +37,7 @@
         <form class="form_wrapper" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group username_cnt gap-2 d-flex flex-column">
             <label for="username">Username</label>
-            <input type="email" class="form-control custom_radius" id="username" formControlName="username" [ngClass]="{
+            <input type="email" class="form-control custome_radius" id="username" formControlName="username" [ngClass]="{
                 'is-invalid':
                   loginForm.get('username')?.invalid &&
                   loginForm.get('username')?.touched
@@ -52,7 +52,7 @@
 
           <div class="form-group password_cnt gap-2 d-flex flex-column">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control custom_radius" id="password" formControlName="password"
+            <input type="password" class="form-control custome_radius" id="password" formControlName="password"
               [ngClass]="{
                 'is-invalid':
                   loginForm.get('password')?.invalid &&
@@ -76,7 +76,7 @@
             <span class="f14 forget">Forgot Password ?</span>
           </div>
 
-          <button type="submit" class="custom_radius signin_btn text-white " [disabled]="loginForm.invalid"
+          <button type="submit" class="custome_radius signin_btn text-white " [disabled]="loginForm.invalid"
             [ngClass]="{'valid_btn': loginForm.valid}">
             Sign In
           </button>

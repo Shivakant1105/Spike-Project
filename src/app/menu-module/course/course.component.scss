@@ -96,7 +96,7 @@
 
       .form-select {}
 
-      .custom_radius {
+      .custome_radius {
         @include setDimension(rem(360), rem(52));
         border: rem(1) solid var(--textColor-400);
         color: var(--text-color-600);
