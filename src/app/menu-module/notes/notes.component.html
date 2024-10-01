@@ -10,66 +10,30 @@
   </div>
 
   <div class="notes_wrapper custome_radius">
-    <div [class.open]="!toggle" class="notes_sidebar mb-4">
+    <div [ngClass]="!toggle ? 'open notes_sidebar mb-4' : 'notes_sidebar mb-4'">
       <div class="seach_wrapper custome_radius mt-1">
         <input type="text" placeholder="Search Notes" />
         <i-feather class="f24 search_icon" name="search"></i-feather>
       </div>
       <span class="Notes_heading mt-1">All Notes</span>
 
-      <div class="notes_card card1 mt-2">
-        <span class="f16">Demo Notes</span>
-        <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
-        </div>
-      </div>
+      <div
+        class="notes_card card2"
+        div
+        (click)="onNoteClick(note)"
+        class="notes_card card1 mt-2"
+        *ngFor="let note of notes; trackBy: trackByForNotes"
+        [ngStyle]="{ 'background-color': getBackgroundColor(note.color) }"
+      >
+        <span class="f16">{{ note.content.slice(0, 18) }}</span>
 
-      <div class="notes_card card2">
-        <span class="f16">Demo Notes</span>
         <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
-        </div>
-      </div>
-
-      <div class="notes_card card3">
-        <span class="f16">Demo Notes lorem</span>
-        <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
-        </div>
-      </div>
-
-      <div class="notes_card card4">
-        <span class="f16">Demo Notes</span>
-        <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
-        </div>
-      </div>
-
-      <div class="notes_card">
-        <span class="f16">Demo Notes</span>
-        <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
-        </div>
-      </div>
-
-      <div class="notes_card">
-        <span class="f16">Demo Notes</span>
-        <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
-        </div>
-      </div>
-
-      <div class="notes_card">
-        <span class="f16">Demo Notes</span>
-        <div class="date_icon_wrapper mt-1">
-          <span class="f12">Sep 9, 2024</span>
-          <i-feather class="f20" name="trash-2"></i-feather>
+          <span class="f12">{{ note.createdAt }}</span>
+          <i-feather
+            class="f20"
+            name="trash-2"
+            (click)="deleteNotesById(note.id, userId)"
+          ></i-feather>
         </div>
       </div>
     </div>
@@ -91,7 +55,12 @@
           aria-controls="offcanvasExample"
         >
         </i-feather>
-        <button class="notes_btn custome_radius f14">Add Notes</button>
+        <button
+          class="notes_btn custome_radius f14"
+          (click)="createNotes(userId)"
+        >
+          Add Notes
+        </button>
       </div>
       <div class="offcanvas offcanvas-start" tabindex="-1" id="notes_component">
         <div class="offcanvas-body notes_body">
@@ -110,7 +79,7 @@
               </div>
             </div>
 
-            <div class="notes_card card2">
+            <div class="notes_card">
               <span class="f16">Demo Notes</span>
               <div class="date_icon_wrapper mt-1">
                 <span class="f12">Sep 9, 2024</span>
@@ -118,7 +87,7 @@
               </div>
             </div>
 
-            <div class="notes_card card3">
+            <div class="notes_card">
               <span class="f16">Demo Notes</span>
               <div class="date_icon_wrapper mt-1">
                 <span class="f12">Sep 9, 2024</span>
@@ -126,7 +95,7 @@
               </div>
             </div>
 
-            <div class="notes_card card4">
+            <div class="notes_card">
               <span class="f16">Demo Notes</span>
               <div class="date_icon_wrapper mt-1">
                 <span class="f12">Sep 9, 2024</span>
@@ -163,14 +132,35 @@
 
       <div class="notes_content">
         <h4 class="f16">Edit Note</h4>
-        <textarea class="text_area custome_radius"></textarea>
+        <textarea
+          [(ngModel)]="noteContent"
+          class="text_area custome_radius"
+          #texarea
+          (keyup)="updatedBlog(texarea.value, noteId)"
+        ></textarea>
+
         <span class="f16 mt-4">Change Note Color</span>
         <div class="d-flex gap-2 mt-2">
-          <span class="blue ball"></span>
-          <span class="yellow ball"></span>
-          <span class="grey ball"></span>
-          <span class="salmon ball"></span>
-          <span class="green ball"></span>
+          <span
+            class="blue ball"
+            (click)="notesColorChange('BLUE', noteId)"
+          ></span>
+          <span
+            class="yellow ball"
+            (click)="notesColorChange('YELLOW', noteId)"
+          ></span>
+          <span
+            class="grey ball"
+            (click)="notesColorChange('GREY', noteId)"
+          ></span>
+          <span
+            class="salmon ball"
+            (click)="notesColorChange('RED', noteId)"
+          ></span>
+          <span
+            class="green ball"
+            (click)="notesColorChange('GREEN', noteId)"
+          ></span>
         </div>
       </div>
     </div>

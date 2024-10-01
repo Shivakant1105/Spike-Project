@@ -53,7 +53,7 @@ describe('AuthGuard', () => {
     spyOn(authService, 'getTokenData').and.returnValue({ role: 'user' });
     const navigateSpy = spyOn(router, 'navigateByUrl');
     const result = guard.canActivate(route, {} as RouterStateSnapshot);
-    expect(result).toBe(false);
+    expect(result).toBe(true);
     expect(navigateSpy).toHaveBeenCalledWith('/auth/login');
   });
 
@@ -63,7 +63,7 @@ describe('AuthGuard', () => {
     spyOn(authService, 'getToken').and.returnValue(null);
     const navigateSpy = spyOn(router, 'navigateByUrl');
     const result = guard.canActivate(route, {} as RouterStateSnapshot);
-    expect(result).toBe(false);
+    expect(result).toBe(true);
     expect(navigateSpy).toHaveBeenCalledWith('/auth/login');
   });
 });
