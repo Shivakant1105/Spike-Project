@@ -12,7 +12,12 @@
 
       <div class="contact_search_section custome_radius">
         <div class="left_items custome_radius flex-nowrap">
-          <input class="f14" type="text" placeholder="Search here..." />
+          <input
+            class="f14"
+            type="text"
+            placeholder="Search here..."
+            [(ngModel)]="searchName"
+          />
           <i-feather name="search" class="d-flex"></i-feather>
         </div>
 
@@ -28,7 +33,7 @@
 
       <div class="user_profile">
         <div
-          *ngFor="let contact of contacts; trackBy: trackByContactId"
+          *ngFor="let contact of filteredContacts; trackBy: trackByContactId"
           class="card custome_radius box_shadow"
         >
           <div class="card-body card_items">
@@ -65,11 +70,6 @@
           </div>
         </div>
       </div>
-      <!-- <div *ngIf="isLoading" class="loading-indicator text-center">
-      Loading more contacts...
-    </div> -->
-      <!-- <div *ngIf="loading">Loading...</div> -->
-      <!-- <button (click)="loadMore()" [disabled]="loading">Load More</button> -->
     </div>
 
     <!-- Contact page modal -->
@@ -82,50 +82,56 @@
     >
       <div class="modal-dialog add_emp_modal_dialog">
         <div class="modal-content modal_items custome_radius box_shadow">
-          <div class="modal-body add_employee_body">
-            <h3 class="f18 ms-2 heading">Add New Contact</h3>
-            <input
-              type="text"
-              class="form-control mt-3"
-              placeholder="Name Here"
-            />
-            <input type="text" class="form-control" placeholder="Post Here" />
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Address Here"
-            />
-            <input type="text" class="form-control" placeholder="Number Here" />
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Instagram Follower Here"
-            />
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Linkedin Follower Here"
-            />
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Facebook Follower Here"
-            />
-          </div>
+          <form>
+            <div class="modal-body add_employee_body">
+              <h3 class="f18 ms-2 heading">Add New Contact</h3>
+              <input
+                type="text"
+                class="form-control mt-3"
+                placeholder="Name Here"
+              />
+              <input type="text" class="form-control" placeholder="Post Here" />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Address Here"
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Number Here"
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Instagram Follower Here"
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Linkedin Follower Here"
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Facebook Follower Here"
+              />
+            </div>
 
-          <div class="modal-footer">
-            <button
-              id="cancel_button"
-              type="button"
-              class="btn"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button type="button" class="btn enabled disabled custome_radius">
-              Add Contact
-            </button>
-          </div>
+            <div class="modal-footer">
+              <button
+                id="cancel_button"
+                type="button"
+                class="btn"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button type="button" class="btn enabled disabled custome_radius">
+                Add Contact
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
