@@ -9,7 +9,13 @@
 
   <div class="employee_search_section custome_radius box_shadow">
     <div class="left_items custome_radius flex-nowrap">
-      <input class="f14" type="text" placeholder="Search Employee" />
+      <input
+        class="f14"
+        type="text"
+        placeholder="Search Employee"
+        [(ngModel)]="searchValue"
+        (ngModelChange)="onSearchData()"
+      />
       <i-feather name="search" class="d-flex"></i-feather>
     </div>
 
@@ -34,6 +40,7 @@
           [rowData]="employeeList"
           [colDefs]="colDefs"
           [gridOptions]="gridOptions"
+          (GridReady)="onGridReady($event)"
         ></app-grid-table>
       </div>
       <footer class="f12 pt-5">
@@ -59,26 +66,26 @@
         <i-feather
           class="f24"
           name="skip-back"
-          [ngClass]="{ desable: pageNumber == 0 }"
-          (click)="pageNumber > 0 ? goFirstPage() : null"
+          [ngClass]="{ disabled: pageNumber == 0 }"
+          (click)="goFirstPage()"
         ></i-feather>
         <i-feather
           class="f24"
           name="chevron-left"
-          [ngClass]="{ desable: pageNumber == 0 }"
-          (click)="pageNumber > 0 ? goPreviousPage() : null"
+          [ngClass]="{ disabled: pageNumber == 0 }"
+          (click)="goPreviousPage()"
         ></i-feather>
         <i-feather
           class="f24"
           name="chevron-right"
-          [ngClass]="{ desable: lastPage == pageNumber }"
-          (click)="lastPage != pageNumber ? goNextPage() : null"
+          [ngClass]="{ disabled: lastPage == pageNumber }"
+          (click)="goNextPage()"
         ></i-feather>
         <i-feather
           class="f24"
           name="skip-forward"
-          [ngClass]="{ desable: lastPage == pageNumber }"
-          (click)="lastPage != pageNumber ? goLastPage() : null"
+          [ngClass]="{ disabled: lastPage == pageNumber }"
+          (click)="goLastPage()"
         ></i-feather>
       </footer>
     </div>

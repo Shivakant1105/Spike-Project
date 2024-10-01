@@ -13,7 +13,7 @@ describe('NotesComponent', () => {
   beforeEach(async () => {
     const notesServiceSpy = jasmine.createSpyObj('NotesService', [
       'getAllNotesById',
-      'updatedBlog',
+      'updatedNotes',
       'deleteNotesById',
       'createNotes',
       'notesColorChange',
@@ -98,7 +98,7 @@ describe('NotesComponent', () => {
     const mockNoteId = '1';
     const mockContent = 'Updated note content';
 
-    component.updatedBlog(mockContent, mockNoteId);
+    component.updatedNotes(mockContent, mockNoteId);
 
     component.updateNoteSubject.subscribe((value) => {
       expect(value.content).toEqual(mockContent);
@@ -106,22 +106,22 @@ describe('NotesComponent', () => {
     });
   });
 
-  it('should update notes after calling updatedBlog', (done) => {
+  it('should update notes after calling updatedNotes', (done) => {
     const mockUserId = 1;
     const mockNoteId = '1';
     const mockContent = 'Updated note content';
     const mockNotes = { data: [{ id: 1, content: mockContent }] };
 
     authService.getTokenData.and.returnValue({ id: mockUserId });
-    notesService.updatedBlog.and.returnValue(of({}));
+    notesService.updatedNotes.and.returnValue(of({}));
     notesService.getAllNotesById.and.returnValue(of(mockNotes));
 
     component.ngOnInit();
 
-    component.updatedBlog(mockContent, mockNoteId);
+    component.updatedNotes(mockContent, mockNoteId);
 
     setTimeout(() => {
-      expect(notesService.updatedBlog).toHaveBeenCalledWith(
+      expect(notesService.updatedNotes).toHaveBeenCalledWith(
         mockContent,
         mockNoteId
       );

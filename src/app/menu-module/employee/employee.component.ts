@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridApi } from 'ag-grid-community';
 import {
   address,
   city,
@@ -31,6 +31,7 @@ import { switchMap } from 'rxjs';
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild('addEmployeeButton') addEmployeeButton!: ElementRef;
+
   constructor(
     public fb: FormBuilder,
     private commonService: CommonService,
@@ -62,6 +63,8 @@ export class EmployeeComponent implements OnInit {
   totalEmployees: number = 0;
   lastPage: number = 0;
   employeeId!: number;
+  gridApi!: GridApi;
+  searchValue!: string;
 
   colDefs: ColDef[] = [
     {
@@ -209,6 +212,14 @@ export class EmployeeComponent implements OnInit {
       type: ['PERMANENT'],
     }),
   });
+
+  onGridReady(params: any) {
+    this.gridApi = params;
+  }
+
+  onSearchData() {
+    this.gridApi!.setQuickFilter(this.searchValue);
+  }
 
   /**
    * @description This is method to select perEmployee on a page.
@@ -753,9 +764,7 @@ export class EmployeeComponent implements OnInit {
       });
     } else {
       this.employeeService.editEmployee(this.employeeId, data).subscribe({
-        next: (res: any) => {
-          console.log(res);
-        },
+        next: () => {},
       });
     }
     this.editMode = false;

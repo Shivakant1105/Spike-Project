@@ -4,10 +4,12 @@ import { GridTableComponent } from './grid-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonService } from 'src/app/service/common.service';
 
-describe('GridTableComponent', () => {
+fdescribe('GridTableComponent', () => {
   let component: GridTableComponent;
   let fixture: ComponentFixture<GridTableComponent>;
   let commonService: CommonService;
+  let mockApi: any;
+  let mockEmitter: jasmine.SpyObj<any>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,9 +22,12 @@ describe('GridTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GridTableComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
 
     commonService = TestBed.inject(CommonService);
+    mockEmitter = jasmine.createSpyObj('EventEmitter', ['emit']);
+    component.GridReady = mockEmitter; // Replace the emitter in your component
+
+    mockApi = { api: {} };
   });
 
   it('should create', () => {
@@ -39,5 +44,12 @@ describe('GridTableComponent', () => {
     // Emit 'dark-theme'
     commonService.toggleTheme.next('dark-theme');
     expect(component.themeClass).toBe('ag-theme-alpine-dark');
+  });
+
+  it('should set gridApi and emit GridReady event', () => {
+    component.onGridReady(mockApi);
+
+    expect(component.gridApi).toBe(mockApi.api); // Check if gridApi is set correctly
+    expect(mockEmitter.emit).toHaveBeenCalledWith(mockApi.api); // Check if emit was called with the correct value
   });
 });

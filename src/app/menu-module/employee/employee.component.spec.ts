@@ -20,6 +20,7 @@ describe('EmployeeComponent', () => {
   let commonServiceMock: jasmine.SpyObj<CommonService>;
   let employeeService: jasmine.SpyObj<EmployeeService>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
+  let mockGridApi: any;
 
   beforeEach(async () => {
     commonServiceMock = jasmine.createSpyObj('CommonService', [
@@ -58,6 +59,7 @@ describe('EmployeeComponent', () => {
     employeeService = TestBed.inject(
       EmployeeService
     ) as jasmine.SpyObj<EmployeeService>;
+    mockGridApi = jasmine.createSpyObj('gridApi', ['setQuickFilter']);
   });
 
   beforeEach(() => {});
@@ -731,6 +733,20 @@ describe('EmployeeComponent', () => {
       component.pageNumber
     );
     expect(component.employeeList).toEqual(mockEmployeeListResponse.data);
+  });
+
+  it('should set the gridApi when onGridReady is called', () => {
+    component.onGridReady(mockGridApi);
+    expect(component.gridApi).toBe(mockGridApi);
+  });
+
+  it('should call setQuickFilter on gridApi with the searchValue', () => {
+    component.gridApi = mockGridApi; // Set the mock gridApi
+    component.searchValue = 'test'; // Set a test search value
+
+    component.onSearchData();
+
+    expect(mockGridApi.setQuickFilter).toHaveBeenCalledWith('test');
   });
 
   it('should return the correct contact id', () => {
