@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from "@angular/router";
-import { Subject, takeUntil } from "rxjs";
-import { AuthService } from "src/app/service/auth.service";
-import { CommonService } from "src/app/service/common.service";
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/service/auth.service';
+import { CommonService } from 'src/app/service/common.service';
 
 @Component({
-  selector: "app-sidebar",
-  templateUrl: "./sidebar.component.html",
-  styleUrls: ["./sidebar.component.scss"],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
   toggle!: boolean;
@@ -25,70 +25,71 @@ export class SidebarComponent implements OnInit {
     className: string;
   }[] = [
     {
-      name: "Chats",
-      icon: "message-circle",
-      route: "menu/chat",
-      className: "orange",
+      name: 'Chats',
+      icon: 'message-circle',
+      route: 'menu/chat',
+      className: 'orange',
     },
     {
-      name: "Calender",
-      icon: "calendar",
-      route: "menu/calender",
-      className: "green",
+      name: 'Calender',
+      icon: 'calendar',
+      route: 'menu/calender',
+      className: 'green',
     },
     {
-      name: "Email",
-      icon: "Mail",
-      route: "menu/mail",
-      className: "red",
+      name: 'Email',
+      icon: 'Mail',
+      route: 'menu/mail',
+      className: 'red',
     },
     {
-      name: "Contact",
-      icon: "phone",
-      route: "menu/contacts",
-      className: "blue",
+      name: 'Contact',
+      icon: 'phone',
+      route: 'menu/contacts',
+      className: 'blue',
     },
     {
-      name: "Courses",
-      icon: "book",
-      route: "menu/course",
-      className: "grey",
+      name: 'Courses',
+      icon: 'book',
+      route: 'menu/course',
+      className: 'grey',
     },
     {
-      name: "Employee",
-      icon: "users",
-      route: "menu/employee",
-      className: "orange",
+      name: 'Employee',
+      icon: 'users',
+      route: 'menu/employee',
+      className: 'orange',
     },
     {
-      name: "Notes",
-      icon: "book-open",
-      route: "menu/notes",
-      className: "green",
+      name: 'Notes',
+      icon: 'book-open',
+      route: 'menu/notes',
+      className: 'green',
     },
     {
-      name: "Tickets",
-      icon: "minus-square",
-      route: "menu/tickets",
-      className: "red",
+      name: 'Tickets',
+      icon: 'minus-square',
+      route: 'menu/tickets',
+      className: 'red',
+    },
+
+    {
+      name: 'Todo',
+      icon: 'edit',
+      route: 'menu/todo',
+      className: 'blue',
     },
     {
-      name: "Invoice",
-      icon: "folder",
-      route: "menu/invoice",
-      className: "blue",
+      name: 'Taskboard',
+      icon: 'trello',
+      route: 'menu/taskboard',
+      className: 'grey',
     },
     {
-      name: "Todo",
-      icon: "edit",
-      route: "menu/todo",
-      className: "grey",
-    },
-    {
-      name: "Taskboard",
-      icon: "trello",
-      route: "menu/taskboard",
-      className: "orange",
+      name: 'Blog',
+      icon: 'life-buoy',
+      route: 'menu/post',
+      className: 'orange',
     },
   ];
 
@@ -102,12 +103,11 @@ export class SidebarComponent implements OnInit {
       next: (data) => {
         this.toggle = data;
       },
-   
     });
   }
 
   /**
-   * @description fetch id from the tokenData and get all user details by id 
+   * @description fetch id from the tokenData and get all user details by id
    * @author vivekSengar
    */
   ngOnInit(): void {
@@ -115,12 +115,12 @@ export class SidebarComponent implements OnInit {
     this.commonService.getUserById(this.tokenData.id).subscribe({
       next: (user: any) => {
         this.userData = user.data;
-        this.userName = user.data.name.split(" ")[0];
+        this.userName = user.data.name.split(' ')[0];
         this.profilePicture = user.data.profilePicture
           ? this.sanitizer.bypassSecurityTrustResourceUrl(
-              "data:image/jpeg;base64," + user.data.profilePicture
+              'data:image/jpeg;base64,' + user.data.profilePicture
             )
-          : "../../../assets/mesage_user.jpg";
+          : '../../../assets/mesage_user.jpg';
       },
     });
   }
@@ -140,12 +140,11 @@ export class SidebarComponent implements OnInit {
    * @return {void} Return a void
    */
   logout() {
-    this.authService.clearStorageByKey("tkn");
-    this.route.navigateByUrl("/auth/login");
+    this.authService.clearStorageByKey('tkn');
+    this.route.navigateByUrl('/auth/login');
   }
   ngOnDestroy(): void {
     this.unSub.next(null);
     this.unSub.complete();
   }
-
 }
