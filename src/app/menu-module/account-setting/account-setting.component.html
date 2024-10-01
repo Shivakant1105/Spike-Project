@@ -139,7 +139,7 @@
       </form>
 
       <div class="action_buttons w-100 d-flex gap-3 justify-content-end mt-3">
-        <button class="btn save_btn" (click)="save()">save</button>
+        <button class="btn save_btn" (click)="save()">Save</button>
       </div>
     </div>
 
@@ -159,6 +159,16 @@
             class="form-control flex-grow-1 mb-3"
             formControlName="username"
           />
+
+          <div
+            *ngIf="
+              userDetailForm.get('username')?.hasError('required') &&
+              userDetailForm.get('username')?.touched
+            "
+            class="text-danger"
+          >
+            Username is required.
+          </div>
         </div>
         <!-- for the Your name -->
         <div class="form_items">
@@ -169,6 +179,15 @@
             class="form-control flex-grow-1 mb-3"
             formControlName="name"
           />
+          <div
+            *ngIf="
+              userDetailForm.get('name')?.hasError('required') &&
+              userDetailForm.get('name')?.touched
+            "
+            class="text-danger"
+          >
+            Name is required.
+          </div>
         </div>
 
         <!-- for the Store name -->
@@ -179,7 +198,15 @@
             class="form-control flex-grow-1 mb-3"
             formControlName="email"
           />
-          <p>Oops! Something Went Wrong</p>
+          <div
+            *ngIf="
+              userDetailForm.get('email')?.hasError('required') &&
+              userDetailForm.get('email')?.touched
+            "
+            class="text-danger"
+          >
+            Email is required.
+          </div>
         </div>
 
         <!-- for the Designation name -->
@@ -190,7 +217,15 @@
             class="form-control flex-grow-1"
             formControlName="designation"
           />
-          <p>Oops! Something Went Wrong</p>
+          <div
+            *ngIf="
+              userDetailForm.get('designation')?.hasError('required') &&
+              userDetailForm.get('designation')?.touched
+            "
+            class="text-danger"
+          >
+            Designation is required.
+          </div>
         </div>
 
         <!-- for the Role -->
@@ -202,17 +237,37 @@
             <option value="EMPLOYEE">EMPLOYEE</option>
             <option value="ADMIN">ADMIN</option>
           </select>
-          <p>Oops! Something Went Wrong</p>
+          <div
+            *ngIf="
+              userDetailForm.get('role')?.hasError('required') &&
+              userDetailForm.get('role')?.touched
+            "
+            class="text-danger"
+          >
+            Role is required.
+          </div>
         </div>
 
         <!-- for the Department -->
         <div class="form_items">
           <label class="w-100">Select Department</label>
           <select formControlName="department">
-            <option *ngFor="let dept of department" [value]="dept.name">
+            <option
+              *ngFor="let dept of department; trackBy: trackById"
+              [value]="dept.name"
+            >
               {{ dept.name }}
             </option>
           </select>
+          <div
+            *ngIf="
+              userDetailForm.get('department')?.hasError('required') &&
+              userDetailForm.get('department')?.touched
+            "
+            class="text-danger"
+          >
+            Department is required.
+          </div>
         </div>
 
         <!-- for the mobile -->
@@ -223,7 +278,21 @@
             class="form-control flex-grow-1"
             formControlName="primaryMobileNumber"
           />
-          <p>Oops! Something Went Wrong</p>
+          <div
+            *ngIf="
+              userDetailForm.get('primaryMobileNumber')?.hasError('required') &&
+              userDetailForm.get('primaryMobileNumber')?.touched
+            "
+            class="text-danger"
+          >
+            Mobile Number is required.
+          </div>
+          <div
+            *ngIf="userDetailForm.get('primaryMobileNumber')?.errors?.['minlength'] || userDetailForm.get('primaryMobileNumber')?.errors?.['maxlength'] "
+            class="text-danger"
+          >
+            Mobile number must be 10 digits long.
+          </div>
         </div>
         <!-- for the Alternative Mobile -->
         <div class="form_items">
@@ -233,7 +302,6 @@
             class="form-control flex-grow-1"
             formControlName="secondaryMobileNumber"
           />
-          <p>Oops! Something Went Wrong</p>
         </div>
 
         <!-- for the DOB -->
@@ -244,7 +312,6 @@
             class="form-control flex-grow-1"
             formControlName="joining_date"
           />
-          <p>Oops! Something Went Wrong</p>
         </div>
         <!-- for the salary -->
         <div class="form_items">
@@ -255,20 +322,7 @@
             class="form-control flex-grow-1"
             formControlName="salary"
           />
-          <p>Oops! Something Went Wrong</p>
         </div>
-
-        <!-- for the Currency -->
-        <!-- <div class="form_items">
-          <label>Country</label>
-          <select class="form-select" formControlName="country">
-            <option selected>India</option>
-            <option value="1">USA</option>
-            <option value="2">UK</option>
-            <option value="3">China</option>
-          </select>
-          <p>Oops! Something Went Wrong</p>
-        </div> -->
 
         <!-- for the Projects -->
         <div class="form_items">
@@ -278,7 +332,6 @@
             class="form-control flex-grow-1"
             formControlName="project"
           />
-          <p>Oops! Something Went Wrong</p>
         </div>
 
         <!-- for the Peramanent address -->
@@ -325,7 +378,6 @@
                 {{ state.name.toUpperCase() }}
               </option>
             </select>
-            <p>Oops! Something Went Wrong</p>
           </div>
 
           <!-- for the City -->
@@ -345,7 +397,6 @@
                 {{ city.name.toUpperCase() }}
               </option>
             </select>
-            <p>Oops! Something Went Wrong</p>
           </div>
           <!-- for the Zip -->
           <div class="form_items">
@@ -355,7 +406,6 @@
               class="form-control flex-grow-1"
               formControlName="permanent_zip"
             />
-            <p>Oops! Something Went Wrong</p>
           </div>
         </div>
 
@@ -370,7 +420,6 @@
               class="form-control flex-grow-1"
               formControlName="temperory_address"
             />
-            <p>Oops! Something Went Wrong</p>
           </div>
 
           <!-- for the Country -->
@@ -384,7 +433,6 @@
                 {{ country.name.toUpperCase() }}
               </option>
             </select>
-            <p>Oops! Something Went Wrong</p>
           </div>
 
           <!-- for the State -->
@@ -405,7 +453,6 @@
                 {{ state.name.toUpperCase() }}
               </option>
             </select>
-            <p>Oops! Something Went Wrong</p>
           </div>
 
           <!-- for the City -->
@@ -425,7 +472,6 @@
                 {{ city.name.toUpperCase() }}
               </option>
             </select>
-            <p>Oops! Something Went Wrong</p>
           </div>
           <!-- for the Zip -->
           <div class="form_items">
@@ -435,7 +481,6 @@
               class="form-control flex-grow-1"
               formControlName="temperory_zip"
             />
-            <p>Oops! Something Went Wrong</p>
           </div>
         </div>
       </form>
@@ -443,7 +488,7 @@
 
     <!-- buttons for save and cancel -->
     <div class="action_buttons w-100 d-flex gap-3 justify-content-end">
-      <button class="btn save_btn" (click)="updateUserDetails()">save</button>
+      <button class="btn save_btn" (click)="updateUserDetails()">Save</button>
       <button type="reset" class="btn cancel_btn">cancel</button>
     </div>
   </main>

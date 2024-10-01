@@ -51,13 +51,20 @@ export class AccountSettingComponent implements OnInit {
     );
 
     this.userDetailForm = this.fb.group({
-      username: [null],
-      name: [null],
-      email: [null],
-      designation: [null],
-      role: [null],
-      department: [null],
-      primaryMobileNumber: [null],
+      username: [null, Validators.required],
+      name: [null, Validators.required],
+      email: [null, Validators.required],
+      designation: [null, Validators.required],
+      role: [null, Validators.required],
+      department: [null, Validators.required],
+      primaryMobileNumber: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
       secondaryMobileNumber: [null],
       joining_date: [null],
       salary: [null],
@@ -213,6 +220,7 @@ export class AccountSettingComponent implements OnInit {
       });
     }
     this.userDetailForm.patchValue({
+      username: this.username,
       name: data.name,
       email: data.email,
       designation: data.designation,

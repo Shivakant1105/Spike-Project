@@ -53,16 +53,7 @@ export class SmoothedXYLineSeriesComponent implements OnInit {
     xRenderer.grid.template.setAll({
       location: 0.5,
     });
-
-    xAxis.data.setAll([
-      { day: 'Mon' },
-      { day: 'Tues' },
-      { day: 'Wed' },
-      { day: 'Thurs' },
-      { day: 'Fri' },
-      { day: 'Sat' },
-      { day: 'Sun' },
-    ]);
+    xAxis.data.setAll(data);
 
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
