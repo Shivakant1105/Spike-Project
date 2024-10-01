@@ -1,5 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { EmployeeComponent } from './employee.component';
 import { CommonService } from 'src/app/service/common.service';
 import { EmployeeService } from 'src/app/service/employee.service';
@@ -15,6 +20,7 @@ describe('EmployeeComponent', () => {
   let commonServiceMock: jasmine.SpyObj<CommonService>;
   let employeeService: jasmine.SpyObj<EmployeeService>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
+  let mockGridApi: any;
 
   beforeEach(async () => {
     commonServiceMock = jasmine.createSpyObj('CommonService', [
@@ -23,6 +29,8 @@ describe('EmployeeComponent', () => {
       'getState',
       'getCity',
       'getUserById',
+      'showLoader',
+      'hideLoader',
     ]);
 
     authServiceSpy = jasmine.createSpyObj('AuthService', ['getTokenData']);
@@ -32,11 +40,12 @@ describe('EmployeeComponent', () => {
       'getAllEmployee',
       'uploadProfileImage',
       'deleteEmployee',
+      'editEmployee',
     ]);
 
     await TestBed.configureTestingModule({
       declarations: [EmployeeComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [HttpClientTestingModule],
       providers: [
         FormBuilder,
         { provide: CommonService, useValue: commonServiceMock },
@@ -50,6 +59,7 @@ describe('EmployeeComponent', () => {
     employeeService = TestBed.inject(
       EmployeeService
     ) as jasmine.SpyObj<EmployeeService>;
+    mockGridApi = jasmine.createSpyObj('gridApi', ['setQuickFilter']);
   });
 
   beforeEach(() => {});
@@ -345,39 +355,128 @@ describe('EmployeeComponent', () => {
     );
   });
 
-  it('should submit employee form and call createEmployee service', () => {
-    component.employeeForm = component.fb.group({
-      name: [''],
-      email: [''],
-      designation: [''],
-      employeeCode: [''],
-      managerId: [''],
-      role: [''],
-      primaryMobileNumber: [''],
-      joiningDate: [''],
-      salary: [''],
-      linkedinUrl: [''],
-      facebookUrl: [''],
-      instagramUrl: [''],
-      department: component.fb.array([]),
-      currentAddress: component.fb.group({
-        line1: [''],
-        state: [''],
-        zip: [''],
-        city: [''],
-        country: [''],
-        type: ['CURRENT'],
-      }),
-      permanentAddress: component.fb.group({
-        line1: [''],
-        state: [''],
-        zip: [''],
-        city: [''],
-        country: [''],
-        type: ['PERMANENT'],
-      }),
-    });
+  it('when manager id is not in matching', () => {
+    component.editMode = true;
+    spyOn(component, 'openAddEmployeeModal').and.callFake(() => {});
+    const mockResponse = {
+      data: {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        designation: 'Developer',
+        employeeCode: 'EMP001',
+        managerId: 5,
+        role: 'Developer',
+        primaryMobileNumber: '1234567890',
+        joiningDate: '2022-01-01',
+        salary: 50000,
+        department: [{ name: 'IT' }],
+        addresses: [
+          {
+            type: 'CURRENT',
+            line1: '123 Street',
+            state: '',
+            zip: '12345',
+            city: 'Los Angeles',
+            country: '',
+          },
+          {
+            type: 'PERMANENT',
+            line1: '456 Avenue',
+            state: '',
+            zip: '67890',
+            city: 'New York',
+            country: '',
+          },
+        ],
+      },
+    };
 
+    component.managerList = [
+      { id: 1, name: 'Mahesh' },
+      { id: 2, name: 'Rahul' },
+    ];
+
+    commonServiceMock.getUserById.and.returnValue(of(mockResponse));
+    component.editEmployee(1);
+  });
+
+  it('should call openAddEmployeeModal when the button is clicked', () => {
+    component.addEmployeeButton = { nativeElement: { click: () => {} } };
+    component.openAddEmployeeModal();
+  });
+
+  it('should call form open()', () => {
+    spyOn(component, 'reset').and.callThrough();
+    component.formOpen();
+    expect(component.reset).toHaveBeenCalled();
+    expect(component.editMode).toBeFalse();
+  });
+
+  it('should fill employee form and addresses on editEmployee', () => {
+    const mockId = 1;
+    component.editMode = true;
+    spyOn(component, 'openAddEmployeeModal').and.callFake(() => {});
+    const mockResponse = {
+      data: {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        designation: 'Developer',
+        employeeCode: 'EMP001',
+        managerId: 1,
+        role: 'Developer',
+        primaryMobileNumber: '1234567890',
+        joiningDate: '2022-01-01',
+        salary: 50000,
+        department: [{ name: 'IT' }],
+        addresses: [
+          {
+            type: 'CURRENT',
+            line1: '123 Street',
+            state: 'Delhi',
+            zip: '12345',
+            city: 'Los Angeles',
+            country: 'India',
+          },
+          {
+            type: 'PERMANENT',
+            line1: '456 Avenue',
+            state: 'Delhi',
+            zip: '67890',
+            city: 'New York',
+            country: 'India',
+          },
+        ],
+      },
+    };
+
+    const mockStates: state[] = [
+      { name: 'Delhi', countryName: 'India' },
+      { name: 'Panjab', countryName: 'India' },
+    ];
+
+    const mockCities: city[] = [
+      { name: 'City1', stateName: 'Delhi' },
+      { name: 'City2', stateName: 'panjab' },
+    ];
+
+    component.managerList = [
+      { id: 1, name: 'Mahesh' },
+      { id: 2, name: 'Rahul' },
+    ];
+
+    commonServiceMock.getUserById.and.returnValue(of(mockResponse));
+    commonServiceMock.getState.and.returnValue(of(mockStates));
+    commonServiceMock.getCity.and.returnValue(of(mockCities));
+
+    component.editEmployee(mockId);
+
+    expect(component.department.length).toBe(1);
+    expect(component.department.value[0]).toBe('IT');
+    expect(component.currentAddressStateList).toEqual(mockStates);
+    expect(component.permanentAddressCityList).toEqual(mockCities);
+  });
+
+  it('should submit employee form and call createEmployee service', () => {
     component.employeeForm.setValue({
       name: 'John Doe',
       email: 'john@example.com',
@@ -420,9 +519,52 @@ describe('EmployeeComponent', () => {
 
     employeeService.createEmployee.and.returnValue(of({ data: { id: 1 } }));
     employeeService.uploadProfileImage.and.returnValue(of(mockUploadResponse));
+    employeeService.getAllEmployee.and.returnValue(of(mockUploadResponse));
     component.employeeFormSubmit();
     expect(employeeService.createEmployee).toHaveBeenCalled();
     expect(employeeService.uploadProfileImage).toHaveBeenCalled();
+    expect(employeeService.getAllEmployee).toHaveBeenCalled();
+  });
+
+  it('should should submit form when editMode is true', () => {
+    component.employeeId = 1;
+    component.editMode = true;
+    const mockResponse = {
+      data: {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        designation: 'Software Engineer',
+        employeeCode: 'EMP001',
+        managerId: 1,
+        role: 'Employee',
+        primaryMobileNumber: '1234567890',
+        joiningDate: '2023-01-01',
+        salary: 60000,
+        department: [{ name: 'Engineering' }],
+        addresses: [
+          {
+            type: 'CURRENT',
+            line1: '123 Main St',
+            state: 'CA',
+            zip: '12345',
+            city: 'Los Angeles',
+            country: 'USA',
+          },
+          {
+            type: 'PERMANENT',
+            line1: '456 Elm St',
+            state: 'NY',
+            zip: '67890',
+            city: 'New York',
+            country: 'USA',
+          },
+        ],
+      },
+    };
+
+    employeeService.editEmployee.and.returnValue(of(mockResponse));
+    component.employeeFormSubmit();
+    spyOn(component, 'reset');
   });
 
   it('should reset the form', () => {
@@ -466,33 +608,52 @@ describe('EmployeeComponent', () => {
     expect(component.image).toBeUndefined();
   });
 
-  it('should go to the next page and fetch employee data', () => {
-    const mockResponse = { data: ['Employee1', 'Employee2'] };
-    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
+  it('fetch employee on goNextPage()', fakeAsync(() => {
+    const mockResponse = {
+      data: [
+        { id: 1, name: 'John Doe' },
+        { id: 2, name: 'John Doe' },
+      ],
+      totalEmployees: 15,
+    };
 
+    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
     component.goNextPage();
 
+    tick(300);
+
+    expect(commonServiceMock.showLoader).toHaveBeenCalled();
     expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
       component.pageSize,
       component.pageNumber
     );
     expect(component.employeeList).toEqual(mockResponse.data);
-  });
+    expect(component.totalEmployees).toBe(mockResponse.totalEmployees);
+    expect(commonServiceMock.hideLoader).toHaveBeenCalled();
+  }));
 
-  it('should go to the previous page and fetch employee data', () => {
-    component.pageNumber = 2; // Start on page 2
-    const mockResponse = { data: ['Employee3', 'Employee4'] };
+  it('fetch employee on goPreviousPage()', fakeAsync(() => {
+    const mockResponse = {
+      data: [
+        { id: 1, name: 'John Doe' },
+        { id: 2, name: 'John Doe' },
+      ],
+      totalEmployees: 15,
+    };
+
     employeeService.getAllEmployee.and.returnValue(of(mockResponse));
-
     component.goPreviousPage();
+    tick(300);
 
-    expect(component.pageNumber).toBe(1);
+    expect(commonServiceMock.showLoader).toHaveBeenCalled();
     expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
       component.pageSize,
       component.pageNumber
     );
     expect(component.employeeList).toEqual(mockResponse.data);
-  });
+    expect(component.totalEmployees).toBe(mockResponse.totalEmployees);
+    expect(commonServiceMock.hideLoader).toHaveBeenCalled();
+  }));
 
   it('should update pageSize and fetch employees on pageSizeSelected', () => {
     const mockEvent = { target: { value: 20 } };
@@ -510,6 +671,50 @@ describe('EmployeeComponent', () => {
     expect(component.employeeList).toEqual(mockResponse.data);
   });
 
+  it('should set pageNumber to 0 and call getAllEmployee with correct parameters', () => {
+    const mockResponse = {
+      data: [{ id: 1, name: 'Employee 1' }],
+      totalEmployees: 50,
+    };
+
+    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
+
+    component.goFirstPage();
+
+    expect(component.pageNumber).toBe(0);
+    expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
+      component.pageSize,
+      component.pageNumber
+    );
+    expect(component.employeeList).toEqual(mockResponse.data);
+    expect(component.totalEmployees).toBe(mockResponse.totalEmployees);
+    expect(component.totalPage).toBe(
+      Math.ceil(mockResponse.totalEmployees / component.pageSize)
+    );
+  });
+
+  it('should set pageNumber to lastPage and call getAllEmployee with correct parameters', () => {
+    const mockResponse = {
+      data: [{ id: 5, name: 'Employee 5' }],
+      totalEmployees: 50,
+    };
+
+    employeeService.getAllEmployee.and.returnValue(of(mockResponse));
+
+    component.goLastPage();
+
+    expect(component.pageNumber).toBe(component.lastPage);
+    expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
+      component.pageSize,
+      component.pageNumber
+    );
+    expect(component.employeeList).toEqual(mockResponse.data);
+    expect(component.totalEmployees).toBe(mockResponse.totalEmployees);
+    expect(component.totalPage).toBe(
+      Math.ceil(mockResponse.totalEmployees / component.pageSize)
+    );
+  });
+
   it('should delete employee and fetch updated employee list', () => {
     const mockId = 1;
     const mockDeleteResponse = { message: 'Employee deleted successfully' };
@@ -523,14 +728,25 @@ describe('EmployeeComponent', () => {
     component.deleteEmployee(mockId);
 
     expect(employeeService.deleteEmployee).toHaveBeenCalledWith(mockId);
-    // expect(loggerService.alertWithSuccess).toHaveBeenCalledWith(
-    //   mockDeleteResponse.message
-    // );
     expect(employeeService.getAllEmployee).toHaveBeenCalledWith(
       component.pageSize,
       component.pageNumber
     );
     expect(component.employeeList).toEqual(mockEmployeeListResponse.data);
+  });
+
+  it('should set the gridApi when onGridReady is called', () => {
+    component.onGridReady(mockGridApi);
+    expect(component.gridApi).toBe(mockGridApi);
+  });
+
+  it('should call setQuickFilter on gridApi with the searchValue', () => {
+    component.gridApi = mockGridApi; // Set the mock gridApi
+    component.searchValue = 'test'; // Set a test search value
+
+    component.onSearchData();
+
+    expect(mockGridApi.setQuickFilter).toHaveBeenCalledWith('test');
   });
 
   it('should return the correct contact id', () => {

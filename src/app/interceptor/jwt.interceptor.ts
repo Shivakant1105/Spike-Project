@@ -33,15 +33,13 @@ export class JwtInterceptor implements HttpInterceptor {
 
     if (token) {
       authReq = request.clone({
-        headers: new HttpHeaders()
-          .set('Authorization', `Bearer ${token}`),
+        headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
       });
     }
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
-
         switch (error.status) {
           case 401:
             errorMessage = error.error.error;

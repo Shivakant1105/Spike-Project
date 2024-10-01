@@ -111,8 +111,6 @@ describe('EmployeeService', () => {
 
       const pageNumber = 1;
       const pageSize = 10;
-
-      // Call getAllEmployee with the correct parameters
       service.getAllEmployee(pageSize, pageNumber).subscribe((employees) => {
         expect(employees).toEqual(mockEmployees);
       });
@@ -123,5 +121,68 @@ describe('EmployeeService', () => {
       expect(req.request.method).toBe('GET');
       req.flush(mockEmployees);
     });
+  });
+
+  it('should send a DELETE request to delete an employee', () => {
+    const employeeId = 1;
+    const expectedUrl = `${baseUrl}/user/delete/${employeeId}`;
+
+    service.deleteEmployee(employeeId).subscribe((response) => {
+      expect(response).toBeTruthy();
+    });
+
+    const req = httpMock.expectOne(expectedUrl);
+    expect(req.request.method).toBe('DELETE');
+    req.flush({});
+  });
+
+  it('should send a PUT request to edit an employee', () => {
+    const employeeId = 1;
+    const employeeData: employee = {
+      name: 'John Doe',
+      email: 'john@example.com',
+      designation: 'Developer',
+      employeeCode: 'EMP123',
+      managerId: 1,
+      role: 'Admin',
+      primaryMobileNumber: '1234567890',
+      joiningDate: '2024-01-01',
+      salary: 50000,
+      linkedinUrl: 'https://linkedin.com/in/johndoe',
+      facebookUrl: 'https://facebook.com/johndoe',
+      instagramUrl: 'https://instagram.com/johndoe',
+      department: [],
+      addresses: [
+        {
+          line1: '123 Main St',
+          state: 'CA',
+          zip: '90001',
+          city: 'Los Angeles',
+          country: 'USA',
+          type: 'CURRENT',
+        },
+        {
+          line1: '456 Elm St',
+          state: 'CA',
+          zip: '90001',
+          city: 'Los Angeles',
+          country: 'USA',
+          type: 'CURRENT',
+        },
+      ],
+    };
+
+    service.editEmployee(employeeId, employeeData).subscribe(() => {});
+
+    const req = httpMock.expectOne(
+      `${baseUrl}/user/admin/update/${employeeId}`
+    );
+
+    // Assert the method and the body of the request
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(employeeData);
+
+    // Simulate a successful response
+    req.flush({ success: true });
   });
 });
