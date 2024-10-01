@@ -17,6 +17,7 @@ export class NotesComponent implements OnInit {
   noteId!: string;
   backendColor!: string;
   updateNoteSubject = new Subject<{ content: string; noteId: string }>();
+  color!: string;
   colorMap: { [key: string]: string } = {
     BLUE: '#0085db',
     YELLOW: '#f8c076',
@@ -33,7 +34,7 @@ export class NotesComponent implements OnInit {
       .pipe(debounceTime(300))
       .subscribe(({ content, noteId }) => {
         this.notesService
-          .updatedBlog(content, noteId)
+          .updatedNotes(content, noteId)
           .pipe(switchMap(() => this.notesService.getAllNotesById(this.userId)))
           .subscribe((res: any) => {
             this.notes = [...res.data];
@@ -71,12 +72,11 @@ export class NotesComponent implements OnInit {
    * @returns {Observable<any>} An observable that emits the server's response upon completion of the request.
    */
   deleteNotesById(noteId: number, userId: number): void {
-    this.notesService
-      .deleteNotesById(noteId, userId)
-      .pipe(switchMap(() => this.notesService.getAllNotesById(userId)))
-      .subscribe((res: any) => {
+    this.notesService.deleteNotesById(noteId, userId).subscribe(() => {
+      this.notesService.getAllNotesById(userId).subscribe((res: any) => {
         this.notes = [...res.data];
       });
+    });
   }
   /**
    * @description This methos describe  the create note functionality
@@ -84,12 +84,11 @@ export class NotesComponent implements OnInit {
    
    */
   createNotes(userId: number) {
-    this.notesService
-      .createNotes(userId)
-      .pipe(switchMap(() => this.notesService.getAllNotesById(userId)))
-      .subscribe((res: any) => {
+    this.notesService.createNotes(userId).subscribe(() => {
+      this.notesService.getAllNotesById(userId).subscribe((res: any) => {
         this.notes = [...res.data];
       });
+    });
   }
   /**
    * @description This methos describe the note is active and ready to update
@@ -105,7 +104,7 @@ export class NotesComponent implements OnInit {
    * @param {string} content - The content is updated content
    * @param {string} noteId - The ID of the note whose content is to be changed.
    */
-  updatedBlog(content: string, noteId: string) {
+  updatedNotes(content: string, noteId: string) {
     this.updateNoteSubject.next({ content, noteId });
   }
   /**
@@ -115,13 +114,13 @@ export class NotesComponent implements OnInit {
    * @returns {Observable<any>} An observable that emits the server's response upon completion of the request.
    */
   notesColorChange(color: string, noteid: string) {
+    this.color = color;
     if (noteid) {
-      this.notesService
-        .notesColorChange(color, noteid)
-        .pipe(switchMap(() => this.notesService.getAllNotesById(this.userId)))
-        .subscribe((res: any) => {
+      this.notesService.notesColorChange(color, noteid).subscribe(() => {
+        this.notesService.getAllNotesById(this.userId).subscribe((res: any) => {
           this.notes = [...res.data];
         });
+      });
     }
   }
   /**

@@ -40,7 +40,7 @@ export class NotesService {
    * @param {string} noteId - The ID of the note whose content is to be changed.
    * @returns {Observable<any>} An observable that emits the server's response upon completion of the request.
    */
-  updatedBlog(content: string, noteId: string): Observable<any> {
+  updatedNotes(content: string, noteId: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/notes/edit/${noteId}`, { content });
   }
   /**
@@ -50,7 +50,6 @@ export class NotesService {
    * @returns {Observable<any>} An observable that emits the server's response upon completion of the request.
    */
   notesColorChange(color: string, noteId: string): Observable<any> {
-    console.log('ks');
     return this.http.put(`${this.baseUrl}/notes/color/${noteId}/${color}`, {});
   }
 }

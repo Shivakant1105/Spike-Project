@@ -74,7 +74,7 @@ describe('NotesService', () => {
     const noteId = '123';
     const mockResponse = { success: true };
 
-    service.updatedBlog(content, noteId).subscribe((response) => {
+    service.updatedNotes(content, noteId).subscribe((response) => {
       expect(response).toEqual(mockResponse);
     });
 
