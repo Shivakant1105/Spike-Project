@@ -147,10 +147,7 @@ export class SidebarComponent implements OnInit {
   }
   togglebtnSidebar: boolean = false;
   toggleFn() {
-    console.log('dfhlsuidf');
-
     this.togglebtnSidebar != this.togglebtnSidebar;
     this.toggle = this.togglebtnSidebar;
-    console.log(this.toggle);
   }
 }
