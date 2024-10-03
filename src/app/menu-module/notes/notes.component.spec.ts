@@ -4,7 +4,7 @@ import { NotesService } from 'src/app/service/notes.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { of } from 'rxjs';
 
-fdescribe('NotesComponent', () => {
+describe('NotesComponent', () => {
   let component: NotesComponent;
   let fixture: ComponentFixture<NotesComponent>;
   let notesService: jasmine.SpyObj<NotesService>;

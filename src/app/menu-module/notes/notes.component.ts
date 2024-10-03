@@ -165,6 +165,7 @@ export class NotesComponent implements OnInit {
       this.notesService.getAllNotesById(this.userId).subscribe({
         next: (res: any) => {
           this.notes = [...res.data];
+          console.log(this.notes);
         },
       });
     }
