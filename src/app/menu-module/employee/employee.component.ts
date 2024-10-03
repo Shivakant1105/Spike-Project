@@ -130,10 +130,31 @@ export class EmployeeComponent implements OnInit {
       cellRenderer: ButtonRendererComponent,
       cellClass: 'd-flex',
       maxWidth: 100,
+      // hide: this.authService.getTokenData().role != 'ADMIN',
     },
   ];
 
   ngOnInit(): void {
+    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
+
+    this.gridOptions = {
+      context: {
+        component: this,
+        parentComponent: 'employeeComponent',
+      },
+    };
+
+    const id = this.authService.getTokenData().id;
+    this.commonService.getUserById(id).subscribe({
+      next: (user: any) => {
+        this.userRole = user.data.role;
+      },
+    });
+
+    if (this.authService.getTokenData().role != 'ADMIN') {
+      this.colDefs[7].hide = true;
+      return;
+    }
     this.commonService.getCountry().subscribe({
       next: (res: country[]) => {
         this.countryList = res;
@@ -145,27 +166,12 @@ export class EmployeeComponent implements OnInit {
         this.allDepartments = res.data;
       },
     });
-    const id = this.authService.getTokenData().id;
-    this.commonService.getUserById(id).subscribe({
-      next: (user: any) => {
-        this.userRole = user.data.role;
-      },
-    });
 
     this.employeeService.getAllManagersList().subscribe({
       next: (res: any) => {
         this.managerList = res;
       },
     });
-
-    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
-
-    this.gridOptions = {
-      context: {
-        component: this,
-        parentComponent: 'employeeComponent',
-      },
-    };
   }
 
   employeeForm = this.fb.group({
@@ -582,13 +588,15 @@ export class EmployeeComponent implements OnInit {
    * @returns {void}
    */
   deleteEmployee(id: number) {
-    this.commonService.showLoader();
-    this.employeeService.deleteEmployee(id).subscribe({
-      next: (res: any) => {
-        this.loggerService.alertWithSuccess(res.message);
-        this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
-      },
-    });
+    if (confirm('Are You Sure, You want to delete ?')) {
+      this.commonService.showLoader();
+      this.employeeService.deleteEmployee(id).subscribe({
+        next: (res: any) => {
+          this.loggerService.alertWithSuccess(res.message);
+          this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
+        },
+      });
+    }
   }
 
   /**
@@ -618,6 +626,12 @@ export class EmployeeComponent implements OnInit {
         let manager = this.managerList.filter(
           (val) => val.id == data.managerId
         );
+
+        // this.data = data.profilePicture
+        //   ? this.sanitizer.bypassSecurityTrustResourceUrl(
+        //       'data:image/jpeg;base64,' + params.data.profilePicture
+        //     )
+        //   : '../../../../assets/mesage_user.jpg';
 
         this.employeeForm.patchValue({
           name: data.name,

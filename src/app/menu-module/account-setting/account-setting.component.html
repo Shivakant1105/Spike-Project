@@ -20,13 +20,24 @@
     >
       <h5 class="mb-2">Change Profile</h5>
       <p class="f14">Change your profile picture from here</p>
-      <img src="./assets/account/user-1.jpg" alt="" />
+      <img
+        [src]="
+          profilePictureUrl
+            ? profilePictureUrl
+            : 'https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg'
+        "
+        alt="profilePicture"
+      />
       <div class="btn_group">
         <div class="file-upload">
           <label for="file-input" class="custom-button">Upload</label>
-          <input type="file" id="file-input" class="file-input" />
+          <input
+            type="file"
+            id="file-input"
+            class="file-input"
+            (change)="onFileChange($event)"
+          />
         </div>
-        <button class="btn reset">Reset</button>
         <p class="w-100 text-center">
           Allowed JPG, GIF or PNG. Max size of 800K
         </p>
@@ -194,6 +205,7 @@
         <div class="form_items">
           <label class="w-100">Email</label>
           <input
+            readonly
             type="text"
             class="form-control flex-grow-1 mb-3"
             formControlName="email"
@@ -324,16 +336,6 @@
           />
         </div>
 
-        <!-- for the Projects -->
-        <div class="form_items">
-          <label class="">Projects</label>
-          <input
-            type="text"
-            class="form-control flex-grow-1"
-            formControlName="project"
-          />
-        </div>
-
         <!-- for the Peramanent address -->
         <div class="address">
           <!-- for the line one -->
@@ -416,7 +418,7 @@
             <label class="">Temporary Address</label>
             <input
               type="text"
-              placeholder="line2"
+              placeholder="line1"
               class="form-control flex-grow-1"
               formControlName="temperory_address"
             />
