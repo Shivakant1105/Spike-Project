@@ -31,7 +31,6 @@ export class ButtonRendererComponent {
     return true;
   }
   deleteData() {
-    console.log(this.params.data.id);
     this.params.context.component.deleteEmployee(this.params.data.id);
   }
   editData() {

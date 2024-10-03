@@ -73,4 +73,16 @@ export class EmployeeService {
   editEmployee(id: number, data: employee) {
     return this.http.put(`${this.baseUrl}/user/admin/update/${id}`, data);
   }
+
+  /**
+   * @description This is method to update profile image of user.
+   * @author Abhilasha Singh
+   * @param {FormData} data
+   * @returns {Observable<any>} An observable that emits the server's response.
+   */
+
+  updateSelfProfileImage(data: FormData) {
+    let url = `${this.baseUrl}/user/update/profile-picture`;
+    return this.http.put(url, data);
+  }
 }

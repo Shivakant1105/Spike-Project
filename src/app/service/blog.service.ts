@@ -94,4 +94,17 @@ export class BlogService {
       `${this.baseUrl}/comments/delete/${blogId}/${commentId}`
     );
   }
+  /**
+   * @description Fetches a specific blog by its ID for a blog post.
+   * @author Gautam Yadav
+   * @param {string} id - The ID of the blog to retrieve.
+   * @returns {Observable<any>} - return Observable
+   */
+  getBlogById(id: string) {
+    return this.http.get(`${this.baseUrl}/blog/get/${id}`).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
 }

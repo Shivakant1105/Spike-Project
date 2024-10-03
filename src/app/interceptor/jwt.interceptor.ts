@@ -49,7 +49,7 @@ export class JwtInterceptor implements HttpInterceptor {
             }
             break;
           case 403:
-            errorMessage = error.error.error;
+            errorMessage = 'Session Expired';
             this.authService.clearStorageByKey('tkn');
             this.router.navigate(['/auth/login']);
 
@@ -59,6 +59,7 @@ export class JwtInterceptor implements HttpInterceptor {
             break;
 
           default:
+            this.router.navigate(['/auth/login']);
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.error}`;
         }
         this.commonService.hideLoader();

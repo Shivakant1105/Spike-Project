@@ -16,7 +16,7 @@ import { TodoComponent } from './todo/todo.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'course', pathMatch: 'full' },
+  { path: '', redirectTo: 'contacts', pathMatch: 'full' },
   { path: 'calender', component: CalendarComponent, canActivate: [AuthGuard] },
   { path: 'contacts', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'course', component: CourseComponent, canActivate: [AuthGuard] },
