@@ -130,6 +130,7 @@ export class EmployeeComponent implements OnInit {
       cellRenderer: ButtonRendererComponent,
       cellClass: 'd-flex',
       maxWidth: 100,
+      hide: this.authService.getTokenData().role != 'ADMIN',
     },
   ];
 
@@ -620,6 +621,13 @@ export class EmployeeComponent implements OnInit {
         let manager = this.managerList.filter(
           (val) => val.id == data.managerId
         );
+        console.log(data);
+
+        // this.data = data.profilePicture
+        //   ? this.sanitizer.bypassSecurityTrustResourceUrl(
+        //       'data:image/jpeg;base64,' + params.data.profilePicture
+        //     )
+        //   : '../../../../assets/mesage_user.jpg';
 
         this.employeeForm.patchValue({
           name: data.name,
