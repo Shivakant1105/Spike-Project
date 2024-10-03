@@ -87,7 +87,7 @@ export class EmployeeComponent implements OnInit {
       autoHeight: true,
     },
     {
-      headerName: 'email',
+      headerName: 'Email',
       field: 'email',
       autoHeight: true,
       cellClass: 'd-flex',
