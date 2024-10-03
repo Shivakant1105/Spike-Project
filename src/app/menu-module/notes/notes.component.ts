@@ -54,16 +54,7 @@ export class NotesComponent implements OnInit {
   ngOnInit(): void {
     this.getNotes();
   }
-  getNotes() {
-    if (this.authService.getTokenData()) {
-      this.userId = this.authService.getTokenData().id;
-      this.notesService.getAllNotesById(this.userId).subscribe({
-        next: (res: any) => {
-          this.notes = [...res.data];
-        },
-      });
-    }
-  }
+
   /**
    * @description This is a notesSidebar.
    * @author Shiva Kant Mishra
@@ -126,13 +117,15 @@ export class NotesComponent implements OnInit {
    * @param {string} noteId - The ID of the note whose color is to be changed.
    * @returns {Observable<any>} An observable that emits the server's response upon completion of the request.
    */
-  notesColorChange(color: string, noteid: string) {
-    this.color;
-    if (noteid) {
-      this.notesService.notesColorChange(color, noteid).subscribe(() => {
-        this.notesService.getAllNotesById(this.userId).subscribe((res: any) => {
-          this.notes = [...res.data];
-        });
+  notesColorChange(color: string, noteId: string) {
+    if (noteId) {
+      this.notesService.notesColorChange(color, noteId).subscribe(() => {
+        const noteIndex = this.notes.findIndex(
+          (note: any) => note.id === noteId
+        );
+        if (noteIndex !== -1) {
+          this.notes[noteIndex].color = color;
+        }
       });
     }
   }
@@ -160,6 +153,20 @@ export class NotesComponent implements OnInit {
     }
     if (!searchTerm) {
       this.getNotes();
+    }
+  }
+  /**
+   * @description This method describe fetch all notes
+   * @author Shiva Kant Mishra
+   */
+  getNotes() {
+    if (this.authService.getTokenData()) {
+      this.userId = this.authService.getTokenData().id;
+      this.notesService.getAllNotesById(this.userId).subscribe({
+        next: (res: any) => {
+          this.notes = [...res.data];
+        },
+      });
     }
   }
   ngOnDestroy(): void {

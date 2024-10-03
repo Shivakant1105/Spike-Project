@@ -12,23 +12,28 @@
 
       <div class="contact_search_section custome_radius">
         <div class="left_items custome_radius flex-nowrap">
-          <input class="f14" type="text" placeholder="Search here..." />
+          <input
+            class="f14"
+            type="text"
+            placeholder="Search here..."
+            [(ngModel)]="searchName"
+          />
           <i-feather name="search" class="d-flex"></i-feather>
         </div>
 
-        <button
+        <!-- <button
           type="button"
           class="btn right_items custome_radius f14"
           data-bs-toggle="modal"
           data-bs-target="#contactpagegemodal"
         >
           Add Contact
-        </button>
+        </button> -->
       </div>
 
       <div class="user_profile">
         <div
-          *ngFor="let contact of contacts; trackBy: trackByContactId"
+          *ngFor="let contact of filteredContacts; trackBy: trackByContactId"
           class="card custome_radius box_shadow"
         >
           <div class="card-body card_items">
@@ -65,11 +70,6 @@
           </div>
         </div>
       </div>
-      <!-- <div *ngIf="isLoading" class="loading-indicator text-center">
-      Loading more contacts...
-    </div> -->
-      <!-- <div *ngIf="loading">Loading...</div> -->
-      <!-- <button (click)="loadMore()" [disabled]="loading">Load More</button> -->
     </div>
 
     <!-- Contact page modal -->
