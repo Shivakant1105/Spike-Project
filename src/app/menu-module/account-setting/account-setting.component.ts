@@ -160,7 +160,7 @@ export class AccountSettingComponent implements OnInit {
         .resetPassword(oldPassword, newPassword)
         .subscribe((res: any) => {
           this.loggerService.alertWithSuccess(res.data);
-          this.authService.logout();
+          // this.authService.logout();
         });
     }
   }

@@ -1,5 +1,5 @@
 <div
-  [ngClass]="toggle ? 'hover_sidecontainer' : ''"
+  [ngClass]="toggle ? 'hover_sidecontainer ' : ''"
   class="sidebar_container custome_radius box_shadow"
 >
   <div class="side_header">
@@ -17,7 +17,7 @@
     />
 
     <div class="justify-content-end d-flex d-xl-none d-lg-none d-md-none">
-      <i-feather class="f24 cross" name="x"></i-feather>
+      <i-feather class="f24 cross" name="x" (click)="toggleFn()"></i-feather>
     </div>
   </div>
 
@@ -28,13 +28,13 @@
 
       <div class="home_menu_items dash1 blue" routerLink="home/dashboard">
         <i-feather class="f24" name="grid"></i-feather
-        ><span class="f15">Dashboard1</span>
+        ><span class="f15">Dashboard</span>
       </div>
-
+      <!-- 
       <div class="home_menu_items dash2 grey">
         <i-feather class="f24" name="grid"></i-feather
         ><span class="f15">Dashboard2</span>
-      </div>
+      </div> -->
     </div>
 
     <!-- For Apps Menu -->
@@ -49,286 +49,6 @@
       >
         <i-feather class="f24" name="{{ sidebar.icon }}"></i-feather
         ><span class="f15">{{ sidebar.name }}</span>
-      </div>
-    </div>
-
-    <!-- For Pages menu -->
-    <div class="home_menu_container">
-      <span class="f12">PAGES</span>
-      <!-- Roll base access -->
-      <div class="home_menu_items">
-        <i-feather class="f24" name="lock"></i-feather
-        ><span class="f15">Roll Base Access</span>
-      </div>
-
-      <!-- Tree view -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="git-merge"></i-feather
-        ><span class="f15">Treeview</span>
-      </div>
-
-      <!-- Pricing -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="dollar-sign"></i-feather
-        ><span class="f15">Pricing</span>
-      </div>
-
-      <!-- Account setting -->
-      <div routerLink="menu/account-setting" class="home_menu_items dash2">
-        <i-feather class="f24" name="user"></i-feather
-        ><span class="f15">Account Setting</span>
-      </div>
-
-      <!-- FAQ -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="help-circle"></i-feather
-        ><span class="f15">FAQ</span>
-      </div>
-
-      <!-- Landingpage -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="tablet"></i-feather
-        ><span class="f15">Landingpage</span>
-      </div>
-
-      <!-- for the Weight -->
-      <div class="accordion accordion-flush" id="weight_menubar">
-        <div class="accordion-item">
-          <div class="wrapper">
-            <button
-              class="accordion-button1 p-3 collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#weight"
-              aria-controls="weight"
-            >
-              <i-feather class="f24" name="command"></i-feather
-              ><span class="f15">Weight</span>
-            </button>
-          </div>
-
-          <div
-            id="weight"
-            class="accordion-collapse collapse"
-            data-bs-parent="#weight_menubar"
-          >
-            <div class="accordion-body">
-              <ul>
-                <li><span>Card</span></li>
-                <li><span>Banner</span></li>
-                <li><span>Charts</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- For Form menu -->
-    <div class="home_menu_container">
-      <span class="f12">FORM</span>
-
-      <!-- Form elemeny -->
-      <div class="accordion accordion-flush" id="form_elements">
-        <div class="accordion-item">
-          <div class="wrapper">
-            <button
-              class="accordion-button1 p-3 collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#form"
-              aria-expanded="false"
-              aria-controls="flush-collapseOne"
-            >
-              <i-feather class="f24" name="life-buoy"></i-feather
-              ><span class="f15">Form elements</span>
-            </button>
-          </div>
-
-          <div
-            id="form"
-            class="accordion-collapse collapse"
-            data-bs-parent="#form_elements"
-          >
-            <div class="accordion-body">
-              <ul>
-                <li><span>Autocomplete</span></li>
-                <li><span>Button</span></li>
-                <li><span>Checkbox</span></li>
-                <li><span>Radio</span></li>
-                <li><span>Datepicker</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form Horizontal -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="sidebar"></i-feather
-        ><span class="f15">Form Horizontal</span>
-      </div>
-
-      <!-- Form Vertical -->
-      <div class="home_menu_items dash2 mx-1">
-        <i-feather class="f24 sidebar" name="sidebar"></i-feather
-        ><span class="f15">Form Vertical</span>
-      </div>
-
-      <!-- form Wizard -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="copy"></i-feather
-        ><span class="f15">Form Wizard</span>
-      </div>
-    </div>
-
-    <!-- For Table menu -->
-    <div class="home_menu_container">
-      <span class="f12">TABLE</span>
-
-      <!-- for the Blog -->
-      <div class="accordion accordion-flush" id="table_menu">
-        <div class="accordion-item">
-          <div class="wrapper">
-            <button
-              class="accordion-button1 p-3 collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#table"
-              aria-expanded="false"
-              aria-controls="table"
-            >
-              <i-feather class="f24" name="life-buoy"></i-feather
-              ><span class="f15">Tables</span>
-            </button>
-          </div>
-
-          <div
-            id="table"
-            class="accordion-collapse collapse"
-            data-bs-parent="#table_menu"
-          >
-            <div class="accordion-body">
-              <ul>
-                <li><span>Basic Table</span></li>
-                <li><span>Dynamic Table</span></li>
-                <li><span>Expand Table</span></li>
-                <li><span>Filterable Table</span></li>
-                <li><span>Footer Row Table</span></li>
-                <li><span>HTTP Table</span></li>
-                <li><span>Mix Table</span></li>
-                <li><span>Multi Header Table</span></li>
-                <li><span>Pagination Table</span></li>
-                <li><span>Row Context Table</span></li>
-                <li><span>Selection Table</span></li>
-                <li><span>Sortable Table</span></li>
-                <li><span>Sticky Column</span></li>
-                <li><span>Sticky Header Footer</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="maximize"></i-feather
-        ><span class="f15">Data table</span>
-      </div>
-    </div>
-
-    <!-- Chart -->
-    <div class="home_menu_container">
-      <span class="f12">CHART</span>
-
-      <!-- for line -->
-      <div class="home_menu_items dash1">
-        <i-feather class="f24" name="activity"></i-feather
-        ><span class="f15">Line</span>
-      </div>
-
-      <!-- for the Gradient -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="aperture"></i-feather
-        ><span class="f15">Gradient</span>
-      </div>
-
-      <!-- for the area -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="zap"></i-feather
-        ><span class="f15">Area</span>
-      </div>
-
-      <!-- candlestick -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="wind"></i-feather
-        ><span class="f15">Candlestick</span>
-      </div>
-
-      <!-- for the column -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="columns"></i-feather
-        ><span class="f15">Column</span>
-      </div>
-
-      <!-- for th eDoughnut -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="chrome"></i-feather
-        ><span class="f15">Doughnut & Pie</span>
-      </div>
-
-      <!-- for the Radialbar -->
-      <div class="home_menu_items dash2">
-        <i-feather class="f24" name="box"></i-feather
-        ><span class="f15">Radialbar & Radar</span>
-      </div>
-    </div>
-
-    <!-- For Home UI -->
-    <div class="home_menu_container">
-      <span class="f12">UI</span>
-      <div class="accordion accordion-flush" id="UI_menu">
-        <div class="accordion-item">
-          <div class="wrapper">
-            <button
-              class="accordion-button1 p-3 collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#ui"
-              aria-expanded="false"
-              aria-controls="ui"
-            >
-              <i-feather class="f24" name="life-buoy"></i-feather
-              ><span class="f15">Ui Components</span>
-            </button>
-          </div>
-          <div
-            id="ui"
-            class="accordion-collapse collapse"
-            data-bs-parent="#UI_menu"
-          >
-            <div class="accordion-body">
-              <ul>
-                <li><span>Badge</span></li>
-                <li><span>Expansion</span></li>
-                <li><span>Chips</span></li>
-                <li><span>Dialog</span></li>
-                <li><span>Lists</span></li>
-                <li><span>Divider</span></li>
-                <li><span>Menu</span></li>
-                <li><span>Pagination</span></li>
-                <li><span>Progress Bar</span></li>
-                <li><span>Progress Spinner</span></li>
-                <li><span>Ripples</span></li>
-                <li><span>Slide Toggle</span></li>
-                <li><span>Slider</span></li>
-                <li><span>Snackbar</span></li>
-                <li><span>Tabs</span></li>
-                <li><span>Toolbar</span></li>
-                <li><span>Tooltips</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
