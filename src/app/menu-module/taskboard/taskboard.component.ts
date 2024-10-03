@@ -141,7 +141,7 @@ export class TaskboardComponent implements OnInit {
    */
 
   onDrop(event: DragEvent, newStatus: string): void {
-    const taskId = Number(event.dataTransfer?.getData('text/plain'));
+    const taskId = Number(event.dataTransfer!.getData('text/plain'));
     const task = this.tasks.find((t) => t.id === taskId);
     if (task) {
       task.status = newStatus;
@@ -214,14 +214,5 @@ export class TaskboardComponent implements OnInit {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
     this.commonService.hideLoader();
     this.loggerService.alertWithSuccess('Task Deleted!');
-  }
-
-  onDepartmentChange(target: any) {
-    let departmentId = target.value;
-    this.taskboardService.getTaskByDepartment(departmentId).subscribe({
-      next: (res) => {
-        console.log('value department', res);
-      },
-    });
   }
 }
