@@ -138,10 +138,16 @@ export class PostComponent implements OnInit {
   trackByDepartmentId(department: any): number {
     return department.id;
   }
-
   blog_form = this.fb.group({
     departmentId: [null, Validators.required],
-    title: ['', Validators.required],
+    title: [
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(50),
+        Validators.pattern(/^[A-Za-z]+[A-Za-z ]*$/),
+      ],
+    ],
     content: ['', [Validators.required, Validators.maxLength(1000)]],
   });
 
