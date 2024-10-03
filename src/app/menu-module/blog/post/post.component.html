@@ -15,7 +15,7 @@
     <div *ngFor="let blog of blogs; trackBy: trackByBlogId" class="blog custome_radius box_shadow">
       <div class="image">
         <img class="post_img" [src]="blog.mediaFile" alt="user_mediaFile" />
-        <button class="btn custome_radius " [routerLink]="'/menu/details/' + blog.id">
+        <button class="btn custome_radius" [routerLink]="'/menu/details/' + blog.id">
           {{ blog.title }}
         </button>
         <button class="btn custome_radius">
