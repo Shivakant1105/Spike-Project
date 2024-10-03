@@ -582,13 +582,15 @@ export class EmployeeComponent implements OnInit {
    * @returns {void}
    */
   deleteEmployee(id: number) {
-    this.commonService.showLoader();
-    this.employeeService.deleteEmployee(id).subscribe({
-      next: (res: any) => {
-        this.loggerService.alertWithSuccess(res.message);
-        this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
-      },
-    });
+    if (confirm('Are You Sure, You want to delete ?')) {
+      this.commonService.showLoader();
+      this.employeeService.deleteEmployee(id).subscribe({
+        next: (res: any) => {
+          this.loggerService.alertWithSuccess(res.message);
+          this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
+        },
+      });
+    }
   }
 
   /**

@@ -8,7 +8,7 @@ import { TaskboardService } from 'src/app/service/taskboard.service';
 import { of } from 'rxjs';
 import { ElementRef } from '@angular/core';
 
-fdescribe('TaskboardComponent', () => {
+describe('TaskboardComponent', () => {
   let component: TaskboardComponent;
   let fixture: ComponentFixture<TaskboardComponent>;
   let authService: jasmine.SpyObj<AuthService>;
