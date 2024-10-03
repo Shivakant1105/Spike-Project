@@ -626,7 +626,6 @@ export class EmployeeComponent implements OnInit {
         let manager = this.managerList.filter(
           (val) => val.id == data.managerId
         );
-        console.log(data);
 
         // this.data = data.profilePicture
         //   ? this.sanitizer.bypassSecurityTrustResourceUrl(
