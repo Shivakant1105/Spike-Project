@@ -77,7 +77,6 @@ export class DetailComponent implements OnInit {
         this.commentList = res.data.map((data: any) => {
           return { ...data, time: this.calculateTimeAgo(data.createdDate) };
         });
-        console.log(this.commentList);
 
         // we remove because api response time different
         // this.commonService.hideLoader();
@@ -244,7 +243,6 @@ export class DetailComponent implements OnInit {
           profilePictureUrlCustom: profilePictureUrl,
           mediaFileCustom: mediaFiles,
         };
-        console.log(this.blogDetail);
 
         this.commonService.hideLoader();
       },

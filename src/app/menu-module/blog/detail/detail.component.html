@@ -8,7 +8,49 @@
       <span class="f14">Courses</span>
     </div>
   </div>
-
+  <div class="blog_content custome_radius">
+    <div class="image-container">
+      <img
+        class="blog_img img-fluid"
+        [src]="blogDetail?.mediaFileCustom"
+        alt="blog-img"
+      />
+      <button class="read_more_btn custome_radius f16 p-3">
+        {{ blogDetail?.departmentName }}
+      </button>
+      <img
+        class="user_img"
+        [src]="blogDetail?.profilePictureUrlCustom"
+        alt="user-img"
+      />
+    </div>
+    <div class="card_content">
+      <div class="top_heading">
+        <button type="button" class="f14 gadget_btn custome_radius">
+          {{ blogDetail?.name }}
+        </button>
+        <h2 class="blog_heading">
+          {{ blogDetail?.title }}
+        </h2>
+        <div class="icon_date_wrapper">
+          <div class="left_icon_wrapper">
+            <div class="d-flex gap-1 align-items-center">
+              <i-feather name="thumbs-up" class="f24"></i-feather>
+              <span class="f12">{{ blogDetail?.likeCount }}</span>
+            </div>
+            <div class="d-flex gap-1 align-items-center">
+              <i-feather name="message-square" class="f24"></i-feather>
+              <span class="f12">{{ blogDetail?.commentCount }}</span>
+            </div>
+          </div>
+          <div class="date_circle_wrapper">
+            <span class="circle"></span>
+            <span class="date f14">{{ blogDetail?.createdDatedCustom }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Blog Commnets -->
   <div class="blog_comments custome_radius">
     <h5 class="comment_heading f20">Post Comments</h5>

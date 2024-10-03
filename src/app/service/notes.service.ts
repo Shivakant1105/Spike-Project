@@ -52,4 +52,9 @@ export class NotesService {
   notesColorChange(color: string, noteId: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/notes/color/${noteId}/${color}`, {});
   }
+  searchWithContent(search: string, userId: number) {
+    return this.http.get(
+      `${this.baseUrl}/notes/fetch/${userId}?content=${search}`
+    );
+  }
 }
