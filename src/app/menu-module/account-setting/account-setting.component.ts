@@ -259,9 +259,12 @@ export class AccountSettingComponent implements OnInit {
    * @returns {void} - No return value.
    */
   getAllDepartment() {
-    this.commonService.getAllDepartments().subscribe((res: any) => {
-      this.department = res.data;
-    });
+    const userData = this.authService.getTokenData();
+    if (userData.role === 'ADMIN') {
+      this.commonService.getAllDepartments().subscribe((res: any) => {
+        this.department = res.data;
+      });
+    }
   }
 
   /**
