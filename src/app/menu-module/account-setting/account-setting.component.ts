@@ -4,6 +4,7 @@ import { city, country, departments, state, user } from 'src/app/modal/user';
 import { AuthService } from 'src/app/service/auth.service';
 // import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/service/common.service';
+import { EmployeeService } from 'src/app/service/employee.service';
 import { LoggerService } from 'src/app/service/logger.service';
 
 @Component({
@@ -23,11 +24,16 @@ export class AccountSettingComponent implements OnInit {
   permanentCity: city[] = [];
   temporaryCity: city[] = [];
   username!: string;
+  image!: FormData;
+  base64String!: string;
+  data!: string;
+  profilePictureUrl!: string | null;
   constructor(
     public fb: FormBuilder,
     private commonService: CommonService,
     private loggerService: LoggerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private employeeService: EmployeeService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +89,15 @@ export class AccountSettingComponent implements OnInit {
     this.username = this.authService.getTokenData().sub;
     this.commonService.showLoader();
     this.commonService.getUserById(this.userId).subscribe((res: any) => {
+      console.log(res);
+
       this.patchFormValues(res.data);
+      if (res.data.profilePicture) {
+        // Assuming the response contains base64-encoded image data
+        this.profilePictureUrl = res.data.profilePicture
+          ? `data:image/jpeg;base64,${res.data.profilePicture}`
+          : null;
+      }
       this.commonService.hideLoader();
     });
     this.getAllDepartment();
@@ -362,5 +376,49 @@ export class AccountSettingComponent implements OnInit {
 
   trackById(id: number): number {
     return id;
+  }
+
+  /**
+   * @description Handles the file change event triggered by the user when selecting a new profile picture.
+   * @author Abhilasha Singh
+   * @param {any} event - The file input change event triggered by the user's selection.
+   * @returns {void} - No return value.
+   */
+
+  onFileChange(event: any): void {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (file) {
+      this.convertFileToBase64(file);
+      this.image = new FormData();
+      this.image.append('profilePicture', file, file.name);
+    }
+    this.employeeService.updateSelfProfileImage(this.image).subscribe({
+      next: (res: any) => {
+        console.log(res);
+
+        this.loggerService.alertWithSuccess(res.message);
+        this.profilePictureUrl = this.data;
+      },
+    });
+  }
+
+  /**
+   * @description Converts the selected file to a base64 string using the FileReader API.
+   * @author Abhilasha Singh
+   * @param {File} file - The file object to be converted to base64 format.
+   * @returns {void} - No return value.
+   */
+
+  convertFileToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64String = reader.result as string;
+      const base64 = base64String.split(',')[1];
+      this.base64String = base64;
+      this.data = base64String;
+    };
+
+    reader.readAsDataURL(file);
   }
 }

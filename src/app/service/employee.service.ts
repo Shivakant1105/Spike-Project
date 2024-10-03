@@ -73,4 +73,9 @@ export class EmployeeService {
   editEmployee(id: number, data: employee) {
     return this.http.put(`${this.baseUrl}/user/admin/update/${id}`, data);
   }
+
+  updateSelfProfileImage(data: FormData) {
+    let url = `${this.baseUrl}/user/update/profile-picture`;
+    return this.http.put(url, data);
+  }
 }

@@ -14,13 +14,16 @@ import { CommonService } from 'src/app/service/common.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoggerService } from 'src/app/service/logger.service';
 import { Router } from '@angular/router';
+import { EmployeeService } from 'src/app/service/employee.service';
 
-fdescribe('AccountSettingComponent', () => {
+describe('AccountSettingComponent', () => {
   let component: AccountSettingComponent;
   let fixture: ComponentFixture<AccountSettingComponent>;
   let commonService: jasmine.SpyObj<CommonService>;
   let authService: jasmine.SpyObj<AuthService>;
   let loggerService: jasmine.SpyObj<LoggerService>;
+  let employeeService: jasmine.SpyObj<EmployeeService>;
+
   let route: jasmine.SpyObj<Router>;
   beforeEach(async () => {
     commonService = jasmine.createSpyObj('CommonService', [
@@ -40,7 +43,8 @@ fdescribe('AccountSettingComponent', () => {
       new FormBuilder(),
       commonService,
       loggerService,
-      authService
+      authService,
+      employeeService
     );
     await TestBed.configureTestingModule({
       imports: [
