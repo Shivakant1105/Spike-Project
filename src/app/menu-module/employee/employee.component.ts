@@ -209,6 +209,11 @@ export class EmployeeComponent implements OnInit {
     }),
   });
 
+  /**
+   * @description This is a hostlistner which will close dropdown.
+   * @author Himmat
+   * @param {MouseEvent} event
+   */
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     const clickedInside = this.myDiv.nativeElement.contains(event.target);
@@ -731,13 +736,18 @@ export class EmployeeComponent implements OnInit {
           this.commonService.hideLoader();
           this.loggerService.alertWithSuccess(res.message);
 
-          this.employeeService
-            .uploadProfileImage(this.image, res.data.id)
-            .subscribe({
-              next: () => {
-                this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
-              },
-            });
+          //checking if image is there
+          if (this.data) {
+            this.employeeService
+              .uploadProfileImage(this.image, res.data.id)
+              .subscribe({
+                next: () => {
+                  this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
+                },
+              });
+          } else {
+            this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
+          }
         },
       });
     } else {
