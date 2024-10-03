@@ -25,34 +25,10 @@ export class SidebarComponent implements OnInit {
     className: string;
   }[] = [
     {
-      name: 'Chats',
-      icon: 'message-circle',
-      route: 'menu/chat',
-      className: 'orange',
-    },
-    {
-      name: 'Calender',
-      icon: 'calendar',
-      route: 'menu/calender',
-      className: 'green',
-    },
-    {
-      name: 'Email',
-      icon: 'Mail',
-      route: 'menu/mail',
-      className: 'red',
-    },
-    {
       name: 'Contact',
       icon: 'phone',
       route: 'menu/contacts',
       className: 'blue',
-    },
-    {
-      name: 'Courses',
-      icon: 'book',
-      route: 'menu/course',
-      className: 'grey',
     },
     {
       name: 'Employee',
@@ -61,23 +37,10 @@ export class SidebarComponent implements OnInit {
       className: 'orange',
     },
     {
-      name: 'Notes',
-      icon: 'book-open',
-      route: 'menu/notes',
+      name: 'Blog',
+      icon: 'life-buoy',
+      route: 'menu/post',
       className: 'green',
-    },
-    {
-      name: 'Tickets',
-      icon: 'minus-square',
-      route: 'menu/tickets',
-      className: 'red',
-    },
-
-    {
-      name: 'Todo',
-      icon: 'edit',
-      route: 'menu/todo',
-      className: 'blue',
     },
     {
       name: 'Taskboard',
@@ -85,11 +48,46 @@ export class SidebarComponent implements OnInit {
       route: 'menu/taskboard',
       className: 'grey',
     },
+
     {
-      name: 'Blog',
-      icon: 'life-buoy',
-      route: 'menu/post',
+      name: 'Notes',
+      icon: 'book-open',
+      route: 'menu/notes',
+      className: 'red',
+    },
+
+    {
+      name: 'Chats',
+      icon: 'message-circle',
+      route: 'menu/chat',
+      className: 'blue',
+    },
+
+    {
+      name: 'Email',
+      icon: 'Mail',
+      route: 'menu/mail',
       className: 'orange',
+    },
+
+    {
+      name: 'Courses',
+      icon: 'book',
+      route: 'menu/course',
+      className: 'green',
+    },
+
+    {
+      name: 'Tickets',
+      icon: 'minus-square',
+      route: 'menu/tickets',
+      className: 'grey',
+    },
+    {
+      name: 'Account Setting',
+      icon: 'user',
+      route: 'menu/account-setting',
+      className: 'red',
     },
   ];
 
@@ -146,5 +144,10 @@ export class SidebarComponent implements OnInit {
   ngOnDestroy(): void {
     this.unSub.next(null);
     this.unSub.complete();
+  }
+  togglebtnSidebar: boolean = false;
+  toggleFn() {
+    this.togglebtnSidebar != this.togglebtnSidebar;
+    this.toggle = this.togglebtnSidebar;
   }
 }

@@ -130,11 +130,31 @@ export class EmployeeComponent implements OnInit {
       cellRenderer: ButtonRendererComponent,
       cellClass: 'd-flex',
       maxWidth: 100,
-      hide: this.authService.getTokenData().role != 'ADMIN',
+      // hide: this.authService.getTokenData().role != 'ADMIN',
     },
   ];
 
   ngOnInit(): void {
+    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
+
+    this.gridOptions = {
+      context: {
+        component: this,
+        parentComponent: 'employeeComponent',
+      },
+    };
+
+    const id = this.authService.getTokenData().id;
+    this.commonService.getUserById(id).subscribe({
+      next: (user: any) => {
+        this.userRole = user.data.role;
+      },
+    });
+
+    if (this.authService.getTokenData().role != 'ADMIN') {
+      this.colDefs[7].hide = true;
+      return;
+    }
     this.commonService.getCountry().subscribe({
       next: (res: country[]) => {
         this.countryList = res;
@@ -146,27 +166,12 @@ export class EmployeeComponent implements OnInit {
         this.allDepartments = res.data;
       },
     });
-    const id = this.authService.getTokenData().id;
-    this.commonService.getUserById(id).subscribe({
-      next: (user: any) => {
-        this.userRole = user.data.role;
-      },
-    });
 
     this.employeeService.getAllManagersList().subscribe({
       next: (res: any) => {
         this.managerList = res;
       },
     });
-
-    this.getAllEmployeeFunc(this.pageSize, this.pageNumber);
-
-    this.gridOptions = {
-      context: {
-        component: this,
-        parentComponent: 'employeeComponent',
-      },
-    };
   }
 
   employeeForm = this.fb.group({

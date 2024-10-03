@@ -271,7 +271,6 @@
   width: rem(80);
 
   .side_header {
-
     .dark_logo,
     .light_logo {
       display: none !important;
@@ -364,10 +363,10 @@
         ul {
           padding-left: rem(25) !important;
           li {
-              span {
-                display: block !important;
-              }
+            span {
+              display: block !important;
             }
+          }
         }
       }
     }
@@ -417,5 +416,10 @@
 
   &.grey {
     @include activeStyles(var(--grey-hover-text), var(--grey-hover));
+  }
+}
+@media screen and (min-width: 480px) {
+  .hover_sidecontainer {
+    width: auto;
   }
 }

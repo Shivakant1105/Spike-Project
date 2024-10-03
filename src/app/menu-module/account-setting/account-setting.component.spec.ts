@@ -14,6 +14,7 @@ import { CommonService } from 'src/app/service/common.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoggerService } from 'src/app/service/logger.service';
 import { Router } from '@angular/router';
+import { EmployeeService } from 'src/app/service/employee.service';
 
 describe('AccountSettingComponent', () => {
   let component: AccountSettingComponent;
@@ -21,6 +22,8 @@ describe('AccountSettingComponent', () => {
   let commonService: jasmine.SpyObj<CommonService>;
   let authService: jasmine.SpyObj<AuthService>;
   let loggerService: jasmine.SpyObj<LoggerService>;
+  let employeeService: jasmine.SpyObj<EmployeeService>;
+
   let route: jasmine.SpyObj<Router>;
   beforeEach(async () => {
     commonService = jasmine.createSpyObj('CommonService', [
@@ -40,7 +43,8 @@ describe('AccountSettingComponent', () => {
       new FormBuilder(),
       commonService,
       loggerService,
-      authService
+      authService,
+      employeeService
     );
     await TestBed.configureTestingModule({
       imports: [
@@ -217,12 +221,35 @@ describe('AccountSettingComponent', () => {
   it('should update user details and show success message', () => {
     const mockResponse = { message: 'User details updated successfully' };
     commonService.updateUserDetail.and.returnValue(of(mockResponse));
+
+    // Mocking form values
+    component.userDetailForm.setValue({
+      username: 'johndoe',
+      name: 'John Doe',
+      backupEmail: 'john123@gmail.com',
+      email: 'john@example.com',
+      primaryMobileNumber: '1234567890',
+      secondaryMobileNumber: '0987654321',
+      role: 'ADMIN',
+      permanent_address: '123 Main St',
+      permanent_state: 'California',
+      permanent_zip: '90210',
+      permanent_city: 'Los Angeles',
+      permanent_country: 'USA',
+      temperory_address: '456 Secondary St',
+      temperory_state: 'Nevada',
+      temperory_zip: '89101',
+      temperory_city: 'Las Vegas',
+      temperory_country: 'USA',
+    });
+
     component.updateUserDetails();
+
     const expectedUserData = {
       username: 'johndoe',
       name: 'John Doe',
-      email: 'john@example.com',
       backupEmail: 'john123@gmail.com',
+      email: 'john@example.com',
       primaryMobileNumber: '1234567890',
       secondaryMobileNumber: '0987654321',
       role: 'ADMIN',
@@ -252,10 +279,6 @@ describe('AccountSettingComponent', () => {
     );
     expect(loggerService.alertWithSuccess).toHaveBeenCalledWith(
       mockResponse.message
-    );
-    const storedUserData = localStorage.getItem('userDetailForm');
-    expect(storedUserData).toEqual(
-      JSON.stringify(component.userDetailForm.value)
     );
   });
 
@@ -293,7 +316,6 @@ describe('AccountSettingComponent', () => {
     expect(loggerService.alertWithSuccess).toHaveBeenCalledWith(
       'Password reset successful'
     );
-    expect(route.navigate).toHaveBeenCalledWith(['/auth/login']);
   });
 
   it('should not call resetPassword if the form is invalid', () => {

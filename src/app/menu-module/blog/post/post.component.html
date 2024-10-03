@@ -22,7 +22,10 @@
     >
       <div class="image">
         <img class="post_img" [src]="blog.mediaFile" alt="user_mediaFile" />
-        <button class="btn custome_radius border border-2">
+        <button
+          class="btn custome_radius border border-2"
+          [routerLink]="'/menu/details/' + blog.id"
+        >
           {{ blog.title }}
         </button>
         <button class="btn custome_radius border border-2">
@@ -37,8 +40,6 @@
           <div class="wrapper">
             <p>
               {{ blog.content }}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis molestiae commodi eveniet
             </p>
 
             <div class="d-flex align-items-center mb-2">
@@ -77,7 +78,7 @@
               type="submit"
               data-bs-dismiss="modal"
             >
-              post
+              Post
             </button>
           </div>
         </div>
@@ -85,7 +86,11 @@
           <form [formGroup]="blog_form" class="w-100">
             <!-- fir the Title -->
             <div
-              [ngClass]="{ error: checkError('title', 'required') }"
+              [ngClass]="{
+                error:
+                  checkError('title', 'required') ||
+                  checkError('title', 'maxlength')
+              }"
               class="form_items w-100"
             >
               <label for="">Title Of Blog</label>
@@ -96,6 +101,12 @@
               />
               <p *ngIf="checkError('title', 'required')">
                 Blog title is required
+              </p>
+              <p *ngIf="checkError('title', 'maxlength')">
+                You can enter a maximum of 50 words.
+              </p>
+              <p *ngIf="checkError('title', 'pattern')">
+                It should not contain any special character.
               </p>
             </div>
 

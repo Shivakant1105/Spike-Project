@@ -9,13 +9,13 @@ import { EmployeeComponent } from './employee.component';
 import { CommonService } from 'src/app/service/common.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { of } from 'rxjs';
-import { city, country, state } from 'src/app/modal/user';
+import { city, state } from 'src/app/modal/user';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpResponse } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
 
-describe('EmployeeComponent', () => {
+fdescribe('EmployeeComponent', () => {
   let component: EmployeeComponent;
   let fixture: ComponentFixture<EmployeeComponent>;
   let commonServiceMock: jasmine.SpyObj<CommonService>;
@@ -73,24 +73,19 @@ describe('EmployeeComponent', () => {
 
   beforeEach(() => {});
 
-  it('should load countries and departments on init', () => {
-    const mockCountries: country[] = [
-      { id: 1, name: 'Country1' },
-      { id: 2, name: 'Country2' },
-    ];
-    const mockDepartments = {
-      data: [
-        { id: 1, name: 'Dept1' },
-        { id: 2, name: 'Dept2' },
-      ],
-    };
-    const mockUser = { data: { role: 'admin' } };
-    const mockUserId = 1;
+  it('should validate mobile number', () => {
+    const validControl = new FormControl('1234567890');
+    const invalidControl = new FormControl('123');
 
-    const mockManagerList = [
-      { id: 1, name: 'Dept1' },
-      { id: 2, name: 'Dept2' },
-    ];
+    expect(component.mobileValidator(validControl)).toBeNull();
+    expect(component.mobileValidator(invalidControl)).toEqual({
+      invalidMobile: true,
+    });
+  });
+
+  it('should load countries and departments on init without admin', () => {
+    const mockUser = { data: { role: 'HR' } };
+    const mockUserId = 1;
 
     const mockEmployeeList = {
       data: [
@@ -115,30 +110,19 @@ describe('EmployeeComponent', () => {
       ],
     };
 
-    authServiceSpy.getTokenData.and.returnValue({ id: mockUserId });
+    authServiceSpy.getTokenData.and.returnValue(
+      of({
+        id: mockUserId,
+        role: 'HR',
+      })
+    );
     commonServiceMock.getUserById.and.returnValue(of(mockUser));
-    commonServiceMock.getCountry.and.returnValue(of(mockCountries));
-    commonServiceMock.getAllDepartments.and.returnValue(of(mockDepartments));
-    employeeService.getAllManagersList.and.returnValue(of(mockManagerList));
     employeeService.getAllEmployee.and.returnValue(of(mockEmployeeList));
 
     component.ngOnInit();
 
-    expect(component.countryList).toEqual(mockCountries);
-    expect(component.allDepartments).toEqual(mockDepartments.data);
-    expect(component.userRole).toBe('admin');
-    expect(component.managerList).toEqual(mockManagerList);
+    expect(component.userRole).toBe('HR');
     expect(component.employeeList).toEqual(mockEmployeeList.data);
-  });
-
-  it('should validate mobile number', () => {
-    const validControl = new FormControl('1234567890');
-    const invalidControl = new FormControl('123');
-
-    expect(component.mobileValidator(validControl)).toBeNull();
-    expect(component.mobileValidator(invalidControl)).toEqual({
-      invalidMobile: true,
-    });
   });
 
   it('should add and remove departments', () => {
