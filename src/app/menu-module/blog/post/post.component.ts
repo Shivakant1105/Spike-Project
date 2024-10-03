@@ -196,6 +196,9 @@ export class PostComponent implements OnInit {
       this.blogService.postBlog(formData).subscribe({
         next: (response) => {
           this.loggerService.alertWithSuccess(response.message);
+          this.currentPage = 0;
+          this.blogs = [];
+          this.getAllBlogs();
           this.reset_blog_form();
         },
         error: (_err) => {
