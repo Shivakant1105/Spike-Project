@@ -9,13 +9,25 @@
 
   <div class="employee_search_section custome_radius box_shadow">
     <div class="left_items custome_radius flex-nowrap">
-      <input class="f14" type="text" placeholder="Search Employee" [(ngModel)]="searchValue"
-        (ngModelChange)="onSearchData()" />
+      <input
+        class="f14"
+        type="text"
+        placeholder="Search Employee"
+        [(ngModel)]="searchValue"
+        (ngModelChange)="onSearchData()"
+      />
       <i-feather name="search" class="d-flex"></i-feather>
     </div>
 
-    <button type="button" #addEmployeeButton data-bs-toggle="modal" data-bs-target="#addEmployee"
-      class="btn right_items custome_radius f14" *ngIf="userRole == 'ADMIN'" (click)="formOpen()">
+    <button
+      type="button"
+      #addEmployeeButton
+      data-bs-toggle="modal"
+      data-bs-target="#addEmployee"
+      class="btn right_items custome_radius f14"
+      *ngIf="userRole == 'ADMIN'"
+      (click)="formOpen()"
+    >
       Add Employee
     </button>
   </div>
@@ -24,29 +36,57 @@
   <main class="custome_radius">
     <div class="wrapper">
       <div class="h-100">
-        <app-grid-table [rowData]="employeeList" [colDefs]="colDefs" [gridOptions]="gridOptions"
-          (gridReady)="onGridReady($event)"></app-grid-table>
+        <app-grid-table
+          [rowData]="employeeList"
+          [colDefs]="colDefs"
+          [gridOptions]="gridOptions"
+          (gridReady)="onGridReady($event)"
+        ></app-grid-table>
       </div>
       <footer class="f12 pt-5">
         <span>Items Per Page:</span>
-        <select id="fruit" name="fruit" class="f14" [(ngModel)]="pageSize" (change)="pageSizeSelected($event)">
+        <select
+          id="fruit"
+          name="fruit"
+          class="f14"
+          [(ngModel)]="pageSize"
+          (change)="pageSizeSelected($event)"
+        >
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="50">50</option>
           <option value="100">100</option>
           <option value="500">500</option>
         </select>
-        <span class="page_number">{{ pageSize * pageNumber + "-" + pageSize * (pageNumber + 1) }} of
-          {{ totalEmployees }}</span>
+        <span class="page_number"
+          >{{ pageSize * pageNumber + "-" + pageSize * (pageNumber + 1) }} of
+          {{ totalEmployees }}</span
+        >
 
-        <i-feather class="f24" name="skip-back" [ngClass]="{ disabled: pageNumber == 0 }"
-          (click)="goFirstPage()"></i-feather>
-        <i-feather class="f24" name="chevron-left" [ngClass]="{ disabled: pageNumber == 0 }"
-          (click)="goPreviousPage()"></i-feather>
-        <i-feather class="f24" name="chevron-right" [ngClass]="{ disabled: lastPage == pageNumber }"
-          (click)="goNextPage()"></i-feather>
-        <i-feather class="f24" name="skip-forward" [ngClass]="{ disabled: lastPage == pageNumber }"
-          (click)="goLastPage()"></i-feather>
+        <i-feather
+          class="f24"
+          name="skip-back"
+          [ngClass]="{ disabled: pageNumber == 0 }"
+          (click)="goFirstPage()"
+        ></i-feather>
+        <i-feather
+          class="f24"
+          name="chevron-left"
+          [ngClass]="{ disabled: pageNumber == 0 }"
+          (click)="goPreviousPage()"
+        ></i-feather>
+        <i-feather
+          class="f24"
+          name="chevron-right"
+          [ngClass]="{ disabled: lastPage == pageNumber }"
+          (click)="goNextPage()"
+        ></i-feather>
+        <i-feather
+          class="f24"
+          name="skip-forward"
+          [ngClass]="{ disabled: lastPage == pageNumber }"
+          (click)="goLastPage()"
+        ></i-feather>
       </footer>
     </div>
   </main>
@@ -57,46 +97,91 @@
       <div class="modal-content box_shadow">
         <strong class="modal-header border-0 h5"> Add </strong>
         <div class="modal-body f14">
-          <form class="w-100" [formGroup]="employeeForm" (ngSubmit)="employeeFormSubmit()">
-            <img [src]="
+          <form
+            class="w-100"
+            [formGroup]="employeeForm"
+            (ngSubmit)="employeeFormSubmit()"
+          >
+            <img
+              [src]="
                 data
                   ? data
                   : 'https://spike-angular-pro-main.netlify.app/assets/images/profile/user-1.jpg'
-              " alt="" />
-            <input (change)="onFileChange($event)" class="input_file" type="file" />
+              "
+              alt=""
+            />
+            <input
+              (change)="onFileChange($event)"
+              class="input_file"
+              type="file"
+            />
             <!-- for the name -->
-            <div class="form_items" [ngClass]="{ error: checkError('name', 'required') }">
-              <input type="text" placeholder="Name" class="form-control" formControlName="name" />
+            <div
+              class="form_items"
+              [ngClass]="{ error: checkError('name', 'required') }"
+            >
+              <input
+                type="text"
+                placeholder="Name"
+                class="form-control"
+                formControlName="name"
+              />
               <p *ngIf="checkError('name', 'required')">Name is required.</p>
             </div>
 
             <!-- Position -->
-            <div class="form_items" [ngClass]="{ error: checkError('designation', 'required') }">
-              <input type="text" placeholder="Designation" class="form-control" formControlName="designation" />
+            <div
+              class="form_items"
+              [ngClass]="{ error: checkError('designation', 'required') }"
+            >
+              <input
+                type="text"
+                placeholder="Designation"
+                class="form-control"
+                formControlName="designation"
+              />
               <p *ngIf="checkError('designation', 'required')">
                 Designation is required.
               </p>
             </div>
 
             <!-- for the Email -->
-            <div class="form_items" [ngClass]="{
+            <div
+              class="form_items"
+              [ngClass]="{
                 error:
                   checkError('email', 'pattern') ||
                   checkError('email', 'required')
-              }">
-              <input type="email" placeholder="Email" class="form-control" formControlName="email" />
+              }"
+            >
+              <input
+                type="email"
+                placeholder="Email"
+                class="form-control"
+                formControlName="email"
+              />
               <p *ngIf="checkError('email', 'required')">Email is required.</p>
-              <p *ngIf="
+              <p
+                *ngIf="
                   checkError('email', 'pattern') &&
                   !checkError('email', 'required')
-                ">
+                "
+              >
                 Wrong Email.
               </p>
             </div>
 
             <!-- for the Employee code -->
-            <div class="form_items" [ngClass]="{ error: checkError('employeeCode', 'required') }">
-              <input type="text" placeholder="Employee Code" class="form-control" formControlName="employeeCode" />
+            <div
+              class="form_items"
+              [ngClass]="{ error: checkError('employeeCode', 'required') }"
+            >
+              <input
+                type="text"
+                placeholder="Employee Code"
+                class="form-control"
+                formControlName="employeeCode"
+              />
               <p *ngIf="checkError('employeeCode', 'required')">
                 Employee code is required.
               </p>
@@ -104,16 +189,27 @@
 
             <!-- for the  manager id-->
             <div class="form_items">
-              <select class="form-select" name="" id="" formControlName="managerId">
+              <select
+                class="form-select"
+                name=""
+                id=""
+                formControlName="managerId"
+              >
                 <option value="null">--Select Manager--</option>
-                <option [value]="manager.id" *ngFor="let manager of managerList; trackBy: trackById">
+                <option
+                  [value]="manager.id"
+                  *ngFor="let manager of managerList; trackBy: trackById"
+                >
                   {{ manager.name }}
                 </option>
               </select>
             </div>
 
             <!-- for the  role-->
-            <div class="form_items" [ngClass]="{ error: checkError('role', 'required') }">
+            <div
+              class="form_items"
+              [ngClass]="{ error: checkError('role', 'required') }"
+            >
               <select class="form-select" name="" id="" formControlName="role">
                 <option value="">Select Role</option>
                 <option value="MANAGER">MANAGER</option>
@@ -127,39 +223,61 @@
               <div class="input_box" (click)="openDepartmentDropDown()">
                 <div class="input_div align-items-center px-2">
                   <span *ngIf="department.value.length == 0">Department</span>
-                  <span class="selected_items" *ngFor="
+                  <span
+                    class="selected_items"
+                    *ngFor="
                       let deptmnt of department.value.slice(0, 3);
                       trackBy: trackById
-                    ">{{ deptmnt }}</span>
+                    "
+                    >{{ deptmnt }}</span
+                  >
 
-                  <span *ngIf="department.value.length > 3" class="">{{ department.value.length }}+</span>
+                  <span *ngIf="department.value.length > 3" class=""
+                    >{{ department.value.length }}+</span
+                  >
                 </div>
                 <i-feather class="f24 fw-bold" name="chevron-down"></i-feather>
               </div>
 
               <div class="option_body custome_border" *ngIf="departmentToggle">
-                <div class="option" (click)="addDepartment(deptmnt)"
-                  *ngFor="let deptmnt of allDepartments; trackBy: trackById">
-                  <input type="checkbox" [checked]="department.value.includes(deptmnt.name)" />
+                <div
+                  class="option"
+                  (click)="addDepartment(deptmnt)"
+                  *ngFor="let deptmnt of allDepartments; trackBy: trackById"
+                >
+                  <input
+                    type="checkbox"
+                    [checked]="department.value.includes(deptmnt.name)"
+                  />
                   <label for="">{{ deptmnt.name }}</label>
                 </div>
               </div>
             </div>
 
             <!-- for the Mobile -->
-            <div class="form_items" [ngClass]="{
+            <div
+              class="form_items"
+              [ngClass]="{
                 error:
                   checkError('primaryMobileNumber', 'invalidMobile') ||
                   checkError('primaryMobileNumber', 'required')
-              }">
-              <input type="number" placeholder="Mobile" class="form-control" formControlName="primaryMobileNumber" />
+              }"
+            >
+              <input
+                type="number"
+                placeholder="Mobile"
+                class="form-control"
+                formControlName="primaryMobileNumber"
+              />
               <p *ngIf="checkError('primaryMobileNumber', 'required')">
                 Mobile number is required
               </p>
-              <p *ngIf="
+              <p
+                *ngIf="
                   !checkError('primaryMobileNumber', 'required') &&
                   checkError('primaryMobileNumber', 'invalidMobile')
-                ">
+                "
+              >
                 Mobile Number Must be 10 digit.
               </p>
               <!-- <p>Oops! Something Went Wrong</p> -->
@@ -167,15 +285,28 @@
 
             <!-- for the Mobile -->
             <div class="form_items">
-              <input type="number" placeholder="Salary" class="form-control" formControlName="salary" />
+              <input
+                type="number"
+                placeholder="Salary"
+                class="form-control"
+                formControlName="salary"
+              />
               <p>Oops! Something Went Wrong</p>
             </div>
 
             <!-- for the DOB,SALARY,and Projects -->
             <div class="d-flex gap-2 flex-wrap">
               <!-- for the DOB -->
-              <div class="form_items" [ngClass]="{ error: checkError('joiningDate', 'required') }">
-                <input type="date" placeholder="Joining Date" class="form-control dob" formControlName="joiningDate" />
+              <div
+                class="form_items"
+                [ngClass]="{ error: checkError('joiningDate', 'required') }"
+              >
+                <input
+                  type="date"
+                  placeholder="Joining Date"
+                  class="form-control dob"
+                  formControlName="joiningDate"
+                />
                 <p *ngIf="checkError('joiningDate', 'required')">
                   Joining Date is required.
                 </p>
@@ -183,29 +314,55 @@
 
               <!-- for the Linkdin Url -->
               <div class="form_items">
-                <input type="text" placeholder="Linkdin Url" class="form-control" formControlName="linkedinUrl" />
+                <input
+                  type="text"
+                  placeholder="Linkdin Url"
+                  class="form-control"
+                  formControlName="linkedinUrl"
+                />
               </div>
 
               <!-- for the facebook Url -->
               <div class="form_items">
-                <input type="text" placeholder="Facebook Url" class="form-control" formControlName="facebookUrl" />
+                <input
+                  type="text"
+                  placeholder="Facebook Url"
+                  class="form-control"
+                  formControlName="facebookUrl"
+                />
               </div>
 
               <!-- for the instgram Url -->
               <div class="form_items">
-                <input type="text" placeholder="Instagram Url" class="form-control" formControlName="instagramUrl" />
+                <input
+                  type="text"
+                  placeholder="Instagram Url"
+                  class="form-control"
+                  formControlName="instagramUrl"
+                />
               </div>
             </div>
 
             <!-- for the Current address -->
-            <div class="address_container w-100 d-flex flex-wrap gap-3" formGroupName="currentAddress">
+            <div
+              class="address_container w-100 d-flex flex-wrap gap-3"
+              formGroupName="currentAddress"
+            >
               <!-- for the address -->
               <p class="fw-bold">Current Address</p>
               <div class="w-100 d-flex gap-2">
-                <div class="form_items" [ngClass]="{
+                <div
+                  class="form_items"
+                  [ngClass]="{
                     error: addressErrorCheck('CURRENT', 'line1', 'required')
-                  }">
-                  <input type="text" placeholder="Line1" class="form-control" formControlName="line1" />
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="Line1"
+                    class="form-control"
+                    formControlName="line1"
+                  />
                   <p *ngIf="addressErrorCheck('CURRENT', 'line1', 'required')">
                     Line1 is required.
                   </p>
@@ -213,12 +370,22 @@
               </div>
 
               <!-- for the Country -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('CURRENT', 'country', 'required')
-                }">
-                <select class="form-select" formControlName="country" (change)="countrySelect('CURRENT')">
+                }"
+              >
+                <select
+                  class="form-select"
+                  formControlName="country"
+                  (change)="countrySelect('CURRENT')"
+                >
                   <option value="">Choose Country</option>
-                  <option [value]="country.name" *ngFor="let country of countryList; trackBy: trackById">
+                  <option
+                    [value]="country.name"
+                    *ngFor="let country of countryList; trackBy: trackById"
+                  >
                     {{ country.name }}
                   </option>
                 </select>
@@ -228,15 +395,25 @@
               </div>
 
               <!-- for the state -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('CURRENT', 'state', 'required')
-                }">
-                <select class="form-select" formControlName="state" (change)="stateSelected('CURRENT')">
+                }"
+              >
+                <select
+                  class="form-select"
+                  formControlName="state"
+                  (change)="stateSelected('CURRENT')"
+                >
                   <option value="">Choose State</option>
-                  <option [value]="state.name" *ngFor="
+                  <option
+                    [value]="state.name"
+                    *ngFor="
                       let state of currentAddressStateList;
                       trackBy: trackById
-                    ">
+                    "
+                  >
                     {{ state.name }}
                   </option>
                 </select>
@@ -246,15 +423,21 @@
               </div>
 
               <!-- for the city -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('CURRENT', 'city', 'required')
-                }">
+                }"
+              >
                 <select class="form-select" formControlName="city">
                   <option value="">Choose City</option>
-                  <option [value]="city.name" *ngFor="
+                  <option
+                    [value]="city.name"
+                    *ngFor="
                       let city of currentAddressCityList;
                       trackBy: trackById
-                    ">
+                    "
+                  >
                     {{ city.name }}
                   </option>
                 </select>
@@ -264,9 +447,12 @@
               </div>
 
               <!-- for the zip -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('CURRENT', 'zip', 'required')
-                }">
+                }"
+              >
                 <input type="text" placeholder="Zip" formControlName="zip" />
                 <p *ngIf="addressErrorCheck('CURRENT', 'zip', 'required')">
                   Zip is required.
@@ -275,49 +461,87 @@
             </div>
 
             <!-- for the Permanenet address -->
-            <div class="address_container w-100 d-flex flex-wrap gap-3 align-items-center"
-              formGroupName="permanentAddress">
+            <div
+              class="address_container w-100 d-flex flex-wrap gap-3 align-items-center"
+              formGroupName="permanentAddress"
+            >
               <!-- for the address -->
               <p class="fw-bold">Permanent Address</p>
-              <button type="button" class="btn btn-warning custome_radius" (click)="fillPermanentAddress()">
+              <button
+                type="button"
+                class="btn btn-warning custome_radius"
+                (click)="fillPermanentAddress()"
+              >
                 Same as Current
               </button>
               <div class="w-100 d-flex gap-2">
-                <div class="form_items" [ngClass]="{
+                <div
+                  class="form_items"
+                  [ngClass]="{
                     error: addressErrorCheck('PERMANENT', 'line1', 'required')
-                  }">
-                  <input type="text" placeholder="Line1" class="form-control" formControlName="line1" />
-                  <p *ngIf="addressErrorCheck('PERMANENT', 'line1', 'required')">
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="Line1"
+                    class="form-control"
+                    formControlName="line1"
+                  />
+                  <p
+                    *ngIf="addressErrorCheck('PERMANENT', 'line1', 'required')"
+                  >
                     Line1 is required.
                   </p>
                 </div>
               </div>
 
               <!-- for the Country -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('PERMANENT', 'country', 'required')
-                }">
-                <select class="form-select" formControlName="country" (change)="countrySelect('PERMANENT')">
+                }"
+              >
+                <select
+                  class="form-select"
+                  formControlName="country"
+                  (change)="countrySelect('PERMANENT')"
+                >
                   <option value="">Choose Country</option>
-                  <option [value]="country.name" *ngFor="let country of countryList; trackBy: trackById">
+                  <option
+                    [value]="country.name"
+                    *ngFor="let country of countryList; trackBy: trackById"
+                  >
                     {{ country.name }}
                   </option>
                 </select>
-                <p *ngIf="addressErrorCheck('PERMANENT', 'country', 'required')">
+                <p
+                  *ngIf="addressErrorCheck('PERMANENT', 'country', 'required')"
+                >
                   Country is required.
                 </p>
               </div>
 
               <!-- for the state -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('PERMANENT', 'state', 'required')
-                }">
-                <select class="form-select" formControlName="state" (change)="stateSelected('PERMANENT')">
+                }"
+              >
+                <select
+                  class="form-select"
+                  formControlName="state"
+                  (change)="stateSelected('PERMANENT')"
+                >
                   <option value="">Choose State</option>
-                  <option [value]="state.name" *ngFor="
+                  <option
+                    [value]="state.name"
+                    *ngFor="
                       let state of permanentAddressStateList;
                       trackBy: trackById
-                    ">
+                    "
+                  >
                     {{ state.name }}
                   </option>
                 </select>
@@ -327,15 +551,21 @@
               </div>
 
               <!-- for the city -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('PERMANENT', 'city', 'required')
-                }">
+                }"
+              >
                 <select class="form-select" formControlName="city">
                   <option value="">Choose City</option>
-                  <option [value]="city.name" *ngFor="
+                  <option
+                    [value]="city.name"
+                    *ngFor="
                       let city of permanentAddressCityList;
                       trackBy: trackById
-                    ">
+                    "
+                  >
                     {{ city.name }}
                   </option>
                 </select>
@@ -345,9 +575,12 @@
               </div>
 
               <!-- for the zip -->
-              <div class="form_items flex-grow-1" [ngClass]="{
+              <div
+                class="form_items flex-grow-1"
+                [ngClass]="{
                   error: addressErrorCheck('PERMANENT', 'zip', 'required')
-                }">
+                }"
+              >
                 <input type="text" placeholder="Zip" formControlName="zip" />
                 <p *ngIf="addressErrorCheck('PERMANENT', 'zip', 'required')">
                   Zip is required.
@@ -355,11 +588,21 @@
               </div>
             </div>
 
-            <button class="btn btn-warning custome_radius" type="submit" [disabled]="employeeForm.invalid"
-              [ngClass]="{ disable: employeeForm.invalid }" data-bs-dismiss="modal">
+            <button
+              class="btn btn-warning custome_radius"
+              type="submit"
+              [disabled]="employeeForm.invalid"
+              [ngClass]="{ disable: employeeForm.invalid }"
+              data-bs-dismiss="modal"
+            >
               {{ editMode ? "Update" : "Add" }}
             </button>
-            <button type="reset" class="btn btn-warning custome_radius" (click)="reset()">
+            <button
+              #closeForm
+              type="reset"
+              class="btn btn-warning custome_radius"
+              (click)="reset()"
+            >
               Reset
             </button>
           </form>
