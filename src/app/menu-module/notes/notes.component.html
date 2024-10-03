@@ -12,13 +12,17 @@
   <div class="notes_wrapper custome_radius">
     <div [ngClass]="!toggle ? 'open notes_sidebar mb-4' : 'notes_sidebar mb-4'">
       <div class="seach_wrapper custome_radius mt-1">
-        <input type="text" placeholder="Search Notes" />
+        <input
+          type="text"
+          placeholder="Search Notes"
+          (keyup)="searchNotes($event)"
+        />
         <i-feather class="f24 search_icon" name="search"></i-feather>
       </div>
       <span class="Notes_heading mt-1">All Notes</span>
 
       <div
-        class="notes_card card2"
+        class="notes_card"
         div
         (click)="onNoteClick(note)"
         class="notes_card card1 mt-2"
@@ -66,7 +70,11 @@
         <div class="offcanvas-body notes_body">
           <div class="notes_sidebar_small mb-4">
             <div class="seach_wrapper custome_radius mt-1">
-              <input type="text" placeholder="Search Notes" />
+              <input
+                type="text"
+                placeholder="Search Notes"
+                (keyup)="searchNotes($event)"
+              />
               <i-feather class="f24" name="search"></i-feather>
             </div>
             <span class="Notes_heading mt-1">All Notes</span>

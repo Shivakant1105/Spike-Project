@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { debounceTime, Subject, Subscription, switchMap } from 'rxjs';
+import { debounceTime, map, Subject, Subscription, switchMap } from 'rxjs';
 
 import { AuthService } from 'src/app/service/auth.service';
 import { NotesService } from 'src/app/service/notes.service';
@@ -12,6 +12,7 @@ import { NotesService } from 'src/app/service/notes.service';
 export class NotesComponent implements OnInit {
   toggle: boolean = false;
   notes: any;
+  orginalNotes: any;
   noteContent: string = '';
   userId!: number;
   noteId!: string;
@@ -25,32 +26,33 @@ export class NotesComponent implements OnInit {
     RED: '#fb977d',
     GREEN: '#58d595',
   };
+  classChange: boolean = false;
   updateSubscription!: Subscription;
   constructor(
     private notesService: NotesService,
     private authService: AuthService
   ) {
     this.updateSubscription = this.updateNoteSubject
-      .pipe(debounceTime(300))
+      .pipe(
+        debounceTime(300),
+        switchMap(({ content, noteId }) =>
+          this.notesService
+            .updatedNotes(content, noteId)
+            .pipe(map(() => ({ content, noteId })))
+        )
+      )
       .subscribe(({ content, noteId }) => {
-        this.notesService
-          .updatedNotes(content, noteId)
-          .pipe(switchMap(() => this.notesService.getAllNotesById(this.userId)))
-          .subscribe((res: any) => {
-            this.notes = [...res.data];
-          });
+        const noteIndex = this.notes.findIndex(
+          (note: any) => note.id === noteId
+        );
+        if (noteIndex !== -1) {
+          this.notes[noteIndex].content = content;
+        }
       });
   }
 
   ngOnInit(): void {
-    if (this.authService.getTokenData()) {
-      this.userId = this.authService.getTokenData().id;
-      this.notesService.getAllNotesById(this.userId).subscribe({
-        next: (res: any) => {
-          this.notes = [...res.data];
-        },
-      });
-    }
+    this.getNotes();
   }
 
   /**
@@ -105,7 +107,9 @@ export class NotesComponent implements OnInit {
    * @param {string} noteId - The ID of the note whose content is to be changed.
    */
   updatedNotes(content: string, noteId: string) {
-    this.updateNoteSubject.next({ content, noteId });
+    if (noteId) {
+      this.updateNoteSubject.next({ content, noteId });
+    }
   }
   /**
    * @description This method changes the color of a specified note.
@@ -113,13 +117,15 @@ export class NotesComponent implements OnInit {
    * @param {string} noteId - The ID of the note whose color is to be changed.
    * @returns {Observable<any>} An observable that emits the server's response upon completion of the request.
    */
-  notesColorChange(color: string, noteid: string) {
-    this.color = color;
-    if (noteid) {
-      this.notesService.notesColorChange(color, noteid).subscribe(() => {
-        this.notesService.getAllNotesById(this.userId).subscribe((res: any) => {
-          this.notes = [...res.data];
-        });
+  notesColorChange(color: string, noteId: string) {
+    if (noteId) {
+      this.notesService.notesColorChange(color, noteId).subscribe(() => {
+        const noteIndex = this.notes.findIndex(
+          (note: any) => note.id === noteId
+        );
+        if (noteIndex !== -1) {
+          this.notes[noteIndex].color = color;
+        }
       });
     }
   }
@@ -131,7 +137,39 @@ export class NotesComponent implements OnInit {
   getBackgroundColor(color: string): string {
     return this.colorMap[color] || '#ffffff';
   }
-
+  /**
+   * @description This method for notes functionality
+   * @param {evenet} event - The new color to apply to the note.
+   */
+  searchNotes(event: KeyboardEvent) {
+    const inputElement = event.target as HTMLInputElement;
+    const searchTerm = inputElement.value.toLowerCase();
+    if (event.key == 'Enter' && searchTerm) {
+      this.notesService
+        .searchWithContent(searchTerm, this.userId)
+        .subscribe((res: any) => {
+          this.notes = res.data;
+        });
+    }
+    if (!searchTerm) {
+      this.getNotes();
+    }
+  }
+  /**
+   * @description This method describe fetch all notes
+   * @author Shiva Kant Mishra
+   */
+  getNotes() {
+    if (this.authService.getTokenData()) {
+      this.userId = this.authService.getTokenData().id;
+      this.notesService.getAllNotesById(this.userId).subscribe({
+        next: (res: any) => {
+          this.notes = [...res.data];
+          console.log(this.notes);
+        },
+      });
+    }
+  }
   ngOnDestroy(): void {
     if (this.updateSubscription) {
       this.updateSubscription.unsubscribe();
