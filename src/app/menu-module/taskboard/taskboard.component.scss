@@ -1,191 +1,190 @@
-@import '../styles.scss';
+@import "../styles.scss";
 
 .sub_header {
-    @include setDimension(100%, auto);
-    @include flex('', center, '', 20, 16);
-    background-color: var(--bg-high);
-    color: var(--textColor);
-    flex-wrap: wrap;
-    min-height: rem(81);
+  @include setDimension(100%, auto);
+  @include flex("", center, "", 20, 16);
+  background-color: var(--bg-high);
+  color: var(--textColor);
+  flex-wrap: wrap;
+  min-height: rem(81);
 
-    ul {
-        margin-top: 15px;
-    }
+  ul {
+    margin-top: 15px;
+  }
 
-    h4 {
-        flex-grow: 1;
-        font-weight: 600;
-    }
+  h4 {
+    flex-grow: 1;
+    font-weight: 600;
+  }
 
-    span {
-        color: var(--dashboard-color);
-    }
+  span {
+    color: var(--dashboard-color);
+  }
 }
 
 .notes_container {
-    @include setDimension(100%, 100%);
-    background-color: var(--bg-high);
-    margin-top: rem(17);
-    @include flex('', '', column, 20, 20);
+  @include setDimension(100%, 100%);
+  background-color: var(--bg-high);
+  margin-top: rem(17);
+  @include flex("", "", column, 20, 20);
 
-    .task_header {
-        @include flex(center, '', '', 0, 0);
-        flex-wrap: wrap;
-        width: 100%;
+  .task_header {
+    @include flex(center, "", "", 0, 0);
+    flex-wrap: wrap;
+    width: 100%;
+    color: var(--textColor);
+
+    p {
+      flex-grow: 1;
+      @include flex("", center, "", 0, 0);
+    }
+
+    button {
+      background-color: var(--contact-user-bg);
+      color: var(--white);
+    }
+  }
+
+  .task_status_container {
+    width: 100%;
+    height: auto;
+    @include flex("", "", "", 30, 0);
+    padding: rem(10) 0;
+    flex-wrap: wrap;
+
+    .task_item {
+      flex-grow: 1;
+      @include flex("", "", column, 20, 0);
+      width: rem(254);
+
+      .task {
+        @include flex("", "", column, 10, 0);
+        padding: rem(10) rem(14) rem(20) rem(16);
         color: var(--textColor);
 
         p {
-            flex-grow: 1;
-            @include flex('', center, '', 0, 0);
+          font-size: rem(14);
         }
 
-        button {
-            background-color: var(--contact-user-bg);
-            color: var(--white);
+        i-feather {
+          align-self: end;
         }
 
+        &.todo {
+          background-color: var(--blue-hover);
+        }
+
+        &.inprogress {
+          background-color: var(--orange-hover);
+        }
+
+        &.hold {
+          background-color: var(--red-hover);
+        }
+
+        &.completed {
+          background-color: var(--green-hover);
+        }
+      }
     }
 
-    .task_status_container {
-        width: 100%;
-        height: auto;
-        @include flex('', '', '', 30, 0);
-        padding: rem(10) 0;
-        flex-wrap: wrap;
+    button {
+      @include flex(start, center, "", 30, 0);
+      padding-left: rem(13);
+      min-height: rem(38);
+      color: var(--white);
+      font-size: rem(14);
 
-        .task_item {
-            flex-grow: 1;
-            @include flex('', '', column, 20, 0);
-            width: rem(254);
+      &.todo {
+        background-color: var(--blue-hover-text);
+      }
 
-            .task {
-                @include flex('', '', column, 10, 0);
-                padding: rem(10) rem(14) rem(20) rem(16);
-                color: var(--textColor);
+      &.inprogress {
+        background-color: var(--orange-hover-text);
+      }
 
-                p {
-                    font-size: rem(14);
-                }
+      &.hold {
+        background-color: var(--red-hover-text);
+      }
 
-                i-feather {
-                    align-self: end;
-                }
-
-                &.todo {
-                    background-color: var(--blue-hover);
-                }
-
-                &.inprogress {
-                    background-color: var(--orange-hover);
-                }
-
-                &.hold {
-                    background-color: var(--red-hover);
-                }
-
-                &.completed {
-                    background-color: var(--green-hover);
-                }
-            }
-        }
-
-        button {
-            @include flex(start, center, '', 30, 0);
-            padding-left: rem(13);
-            min-height: rem(38);
-            color: var(--white);
-            font-size: rem(14);
-
-            &.todo {
-                background-color: var(--blue-hover-text);
-            }
-
-            &.inprogress {
-                background-color: var(--orange-hover-text);
-            }
-
-            &.hold {
-                background-color: var(--red-hover-text);
-            }
-
-            &.completed {
-                background-color: var(--green-hover-text);
-            }
-        }
+      &.completed {
+        background-color: var(--green-hover-text);
+      }
     }
+  }
 }
 
 .m_body {
-    max-height: rem(544);
-    overflow-y: auto;
-    background-color: var(--bg-high);
+  max-height: rem(544);
+  overflow-y: auto;
+  background-color: var(--bg-high);
+  color: var(--textColor);
+
+  input {
+    height: rem(52);
+    background-color: transparent;
     color: var(--textColor);
 
-    input {
-        height: rem(52);
-        background-color: transparent;
-        color: var(--textColor);
+    &:focus {
+      box-shadow: none;
+    }
 
-        &:focus {
-            box-shadow: none;
-        }
+    &::placeholder {
+      color: var(--textColor-200);
+    }
+  }
+
+  .add {
+    background-color: var(--textColor-400);
+    color: var(--white);
+    border: none;
+  }
+
+  .cancel {
+    background-color: transparent;
+    border: 1px solid var(--red-hover-text);
+    color: var(--red-hover-text);
+  }
+
+  .form_items {
+    @include flex(center, "", column, 6, 0);
+    margin-bottom: rem(15);
+
+    p {
+      margin-left: rem(16);
+      //   display: none;
+    }
+
+    &.error {
+      input {
+        color: var(--red);
+        border-color: var(--red);
 
         &::placeholder {
-            color: var(--textColor-200);
+          color: var(--red);
         }
+      }
+
+      p {
+        display: block;
+        color: var(--red);
+      }
     }
-
-    .add {
-        background-color: var(--textColor-400);
-        color: var(--white);
-        border: none;
-    }
-
-    .cancel {
-        background-color: transparent;
-        border: 1px solid var(--red-hover-text);
-        color: var(--red-hover-text)
-    }
-
-    .form_items {
-        @include flex(center, '', column, 6, 0);
-        margin-bottom: rem(15);
-
-        p {
-            margin-left: rem(16);
-            display: none;
-        }
-
-        &.error {
-            input {
-                color: var(--red);
-                border-color: var(--red);
-
-                &::placeholder {
-                    color: var(--red);
-                }
-            }
-
-            p {
-                display: block;
-                color: var(--red);
-            }
-        }
-    }
+  }
 }
 
-.m_body_delete{
-    width: rem(300);
-    background-color: var(--bg);
-    @include flex(center,center,column,10,10);
-    color: var(--textColor);
-    .btn_grp{
-        width: 100%;
-        @include flex(center,center,row,10,10);
-    }
-    .yes{
-        background-color: transparent;
-        color: var(--red-hover-text);
-        border: rem(1) solid var(--red-hover-text);
-    }
+.m_body_delete {
+  width: rem(300);
+  background-color: var(--bg);
+  @include flex(center, center, column, 10, 10);
+  color: var(--textColor);
+  .btn_grp {
+    width: 100%;
+    @include flex(center, center, row, 10, 10);
+  }
+  .yes {
+    background-color: transparent;
+    color: var(--red-hover-text);
+    border: rem(1) solid var(--red-hover-text);
+  }
 }
