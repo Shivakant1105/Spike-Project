@@ -251,7 +251,7 @@
         <!-- for the Department -->
         <div class="form_items">
           <label class="w-100">Select Department</label>
-          <select formControlName="department">
+          <select class="form-select" formControlName="department">
             <option
               *ngFor="let dept of department; trackBy: trackById"
               [value]="dept.name"

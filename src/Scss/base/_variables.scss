@@ -20,9 +20,9 @@
   --delivered-text: #4cccec;
   --dashboard-color: #9fc1ea;
   --red: #f50707;
-  --green:#42d90b;
-  --incoming-chat-Box:rgba(173, 216, 230, 0.343);
-  --outgoin-chat-Box:rgba(64, 83, 89, 0.325);
+  --green: #42d90b;
+  --incoming-chat-Box: rgba(173, 216, 230, 0.343);
+  --outgoin-chat-Box: rgba(64, 83, 89, 0.325);
   --loader-bg: rgba(0, 0, 0, 0.511);
 }
 
@@ -119,6 +119,10 @@
 }
 
 .dark-theme {
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
   --bg: #15263a;
   --bg-high: #111c2d;
   --textColor: white;
@@ -160,7 +164,7 @@
   // message moddal
   --message-madal-bg: #111c2d;
   --message-madal-box-shadow: #919eab4d 0 0 rem(2),
-    #919eab05 0 1rem (2) rem(24) rem(-4);
+  #919eab05 0 1rem (2) rem(24) rem(-4);
 
   // Shotcuts modal
   --invoce-icon-bg: #2a4d61;
