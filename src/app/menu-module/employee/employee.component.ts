@@ -765,6 +765,9 @@ export class EmployeeComponent implements OnInit {
    */
   reset() {
     this.employeeForm.reset();
+    this.data = '';
+    this.image = '';
+    this.base64String = '';
     this.employeeForm.patchValue({
       role: '',
     });

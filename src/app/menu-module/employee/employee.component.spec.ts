@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { HttpResponse } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
 
-fdescribe('EmployeeComponent', () => {
+describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
   let fixture: ComponentFixture<EmployeeComponent>;
   let commonServiceMock: jasmine.SpyObj<CommonService>;
