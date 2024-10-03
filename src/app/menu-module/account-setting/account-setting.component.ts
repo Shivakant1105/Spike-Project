@@ -89,8 +89,6 @@ export class AccountSettingComponent implements OnInit {
     this.username = this.authService.getTokenData().sub;
     this.commonService.showLoader();
     this.commonService.getUserById(this.userId).subscribe((res: any) => {
-      console.log(res);
-
       this.patchFormValues(res.data);
       if (res.data.profilePicture) {
         // Assuming the response contains base64-encoded image data
@@ -398,8 +396,6 @@ export class AccountSettingComponent implements OnInit {
     }
     this.employeeService.updateSelfProfileImage(this.image).subscribe({
       next: (res: any) => {
-        console.log(res);
-
         this.loggerService.alertWithSuccess(res.message);
         this.profilePictureUrl = this.data;
       },
