@@ -4,13 +4,16 @@
   @include flex(center, center, "", 0, 0);
   color: var(--white);
 }
+
 .contact-container {
   overflow-y: auto;
   height: 1000px;
+
   &::-webkit-scrollbar {
     width: 0;
   }
 }
+
 main {
   .contact_container {
     @include setDimension(100%, 100%);
@@ -75,11 +78,13 @@ main {
           border-top-left-radius: rem(18);
           border-bottom-left-radius: rem(18);
           padding-left: rem(15);
+
           &:hover {
             border: rem(1) solid var(--contact-user-bg);
             border-width: rem(1) 0;
             cursor: pointer;
           }
+
           &:focus {
             outline: 0;
           }
@@ -104,12 +109,14 @@ main {
 
     .user_profile {
       flex-grow: 1;
-      @include flex("", "", "", 20, 0);
-      padding-bottom: rem(16);
-      flex-wrap: wrap;
-
+      // @include flex("", "", "", 20, 0);
+      display: grid;
+      grid-template-rows: repeat(1, 2fr);
+      grid-template-columns: repeat(3, 3fr);
+      gap: rem(28);
+      padding: rem(5);
       .card {
-        @include setDimension(rem(408), rem(433));
+        // @include setDimension(rem(408), rem(433));
         background-color: var(--bg-high);
         // flex-grow: 1;
 
@@ -162,6 +169,7 @@ main {
 // Contact page modal
 .add_emp_modal_dialog {
   margin-top: 5%;
+
   .modal_items {
     @include setDimension(rem(600), rem(730));
     background-color: var(--bg-high);
@@ -177,6 +185,7 @@ main {
         color: var(--text-color-600);
         font-weight: 600;
       }
+
       input {
         background-color: var(--bg-high);
         border-radius: rem(18);
@@ -186,15 +195,18 @@ main {
         color: var(--text-color-600);
         border: rem(1) solid var(--input-border-color);
         cursor: pointer;
+
         &::placeholder {
           font-size: rem(14);
           color: var(--text-color-400);
         }
+
         &:focus {
           border: rem(2) solid var(--input-modal-outline-color);
         }
       }
     }
+
     .modal-footer {
       @include flex(flex-start, center, "", 0, 0);
       @include setDimension(100%, rem(85));
@@ -208,6 +220,7 @@ main {
         font-size: rem(14);
         color: var(--hold-text);
       }
+
       .disabled {
         @include setDimension(rem(117), rem(36));
         font-size: rem(14);
