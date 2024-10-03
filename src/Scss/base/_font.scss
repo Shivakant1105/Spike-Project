@@ -60,6 +60,7 @@
     }
 
     &.f10 {
-        @include setDimension(rem(10), rem(10));
+        @include setDimension(rem(16), rem(10));
+        font-weight: 600 !important;
     }
 }

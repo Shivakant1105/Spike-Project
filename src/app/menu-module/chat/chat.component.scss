@@ -301,9 +301,13 @@
                 input {
                     background-color: transparent;
                     border: none;
-
+                    color: var(--textColor);
+                    &::placeholder{
+                        color: var(--textColor);
+                    }
                     &:focus {
                         outline: none;
+                        color: var(--textColor);
                         box-shadow: none;
                     }
                 }

@@ -314,6 +314,10 @@
       .user_details {
         @include flex("", "", column, 5, 0);
 
+        .user_name_profile{
+          @include textTruncate(rem(476))
+        }
+
         & div {
           @include flex("", center, "", 0, 0);
         }

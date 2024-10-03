@@ -256,6 +256,10 @@
 
       .login_user {
         @include flex(center, center, column, 1, 0);
+
+        .user_name{
+          @include textTruncate(rem(140))
+        }
       }
 
       .logout_icon {
