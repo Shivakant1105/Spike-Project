@@ -59,8 +59,10 @@
           <option value="500">500</option>
         </select>
         <span class="page_number"
-          >{{ pageSize * pageNumber + "-" + pageSize * (pageNumber + 1) }} of
-          {{ totalEmployees }}</span
+          >{{
+            pageSize * pageNumber + 1 + "-" + pageSize * (pageNumber + 1)
+          }}
+          of {{ totalEmployees }}</span
         >
 
         <i-feather
@@ -233,7 +235,7 @@
                   >
 
                   <span *ngIf="department.value.length > 3" class=""
-                    >{{ department.value.length }}+</span
+                    >{{ department.value.length - 3 }}+</span
                   >
                 </div>
                 <i-feather class="f24 fw-bold" name="chevron-down"></i-feather>
