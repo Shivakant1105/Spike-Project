@@ -29,6 +29,7 @@ import { LoggerService } from 'src/app/service/logger.service';
 import { ButtonRendererComponent } from 'src/app/shared/cell-renderer/button-renderer/button-renderer.component';
 import { MultiValRendererComponent } from 'src/app/shared/cell-renderer/multi-val-renderer/multi-val-renderer.component';
 import { switchMap } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-employee',
@@ -38,19 +39,21 @@ import { switchMap } from 'rxjs';
 export class EmployeeComponent implements OnInit {
   @ViewChild('addEmployeeButton') addEmployeeButton!: ElementRef;
   @ViewChild('myDiv') myDiv!: ElementRef; // Reference to the div
+  @ViewChild('closeForm') closeForm!: ElementRef;
 
   constructor(
     public fb: FormBuilder,
     private commonService: CommonService,
     private employeeService: EmployeeService,
     private authService: AuthService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private sanitizer: DomSanitizer
   ) {}
 
   formBuilder: any;
   userRole!: any;
   base64String!: string;
-  data!: string;
+  data!: any;
   image: any;
   editMode: boolean = false;
 
@@ -627,11 +630,12 @@ export class EmployeeComponent implements OnInit {
           (val) => val.id == data.managerId
         );
 
-        // this.data = data.profilePicture
-        //   ? this.sanitizer.bypassSecurityTrustResourceUrl(
-        //       'data:image/jpeg;base64,' + params.data.profilePicture
-        //     )
-        //   : '../../../../assets/mesage_user.jpg';
+        this.data = data.profilePicture
+          ? this.sanitizer.bypassSecurityTrustResourceUrl(
+              'data:image/jpeg;base64,' + data.profilePicture
+            )
+          : '../../../../assets/mesage_user.jpg';
+        console.log(data);
 
         this.employeeForm.patchValue({
           name: data.name,
@@ -713,6 +717,7 @@ export class EmployeeComponent implements OnInit {
    */
   formOpen() {
     this.editMode = false;
+    this.closeForm.nativeElement.click();
     this.reset();
   }
 
@@ -770,7 +775,6 @@ export class EmployeeComponent implements OnInit {
       });
     }
     this.editMode = false;
-    this.reset();
   }
   /**
    * @description This method is responsible for reseting the form field value.
