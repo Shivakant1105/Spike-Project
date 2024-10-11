@@ -9,8 +9,7 @@ import { allIcons } from 'angular-feather/icons';
 import { CourseComponent } from './course/course.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ChatComponent } from './chat/chat.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesComponent } from './notes/notes.component';
 import { PostComponent } from './blog/post/post.component';
@@ -20,7 +19,8 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { SharedModule } from '../shared/shared.module';
 import { TaskboardComponent } from './taskboard/taskboard.component';
 import { TodoComponent } from './todo/todo.component';
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 @NgModule({
   declarations: [
     ContactComponent,
@@ -42,11 +42,11 @@ import { TodoComponent } from './todo/todo.component';
     ReactiveFormsModule,
     FormsModule,
     FeatherModule.pick(allIcons),
+    SharedModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-    SharedModule,
   ],
 })
 export class MenuModuleModule {}

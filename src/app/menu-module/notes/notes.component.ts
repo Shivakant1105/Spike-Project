@@ -100,6 +100,9 @@ export class NotesComponent implements OnInit {
   onNoteClick(note: any) {
     this.noteContent = note.content;
     this.noteId = note.id;
+    this.notes.forEach((element: any) => {
+      element.active = element.id === note.id;
+    });
   }
   /**
    * @description This methos describe the Updated notes functionality
@@ -164,7 +167,12 @@ export class NotesComponent implements OnInit {
       this.userId = this.authService.getTokenData().id;
       this.notesService.getAllNotesById(this.userId).subscribe({
         next: (res: any) => {
-          this.notes = [...res.data];
+          this.notes = res.data.map((note: any) => {
+            return {
+              ...note,
+              active: false,
+            };
+          });
         },
       });
     }

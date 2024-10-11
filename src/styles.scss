@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import "./function";
 @import "./base/index";
@@ -6,7 +7,6 @@
 
 @import "ag-grid-community/styles/ag-grid.css";
 @import "ag-grid-community/styles/ag-theme-alpine.css";
-
 .ag-theme-alpine-dark {
   --ag-background-color: #131b2c !important;
   --ag-border-color: #131b2c !important;

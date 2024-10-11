@@ -10,6 +10,7 @@ import { CommonService } from 'src/app/service/common.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  passwordVisible!: boolean;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -50,5 +51,8 @@ export class LoginComponent {
         this.commmonService.hideLoader();
       },
     });
+  }
+  eyeOpen() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

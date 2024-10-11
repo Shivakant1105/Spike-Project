@@ -28,6 +28,7 @@
         class="notes_card card1 mt-2"
         *ngFor="let note of notes; trackBy: trackByForNotes"
         [ngStyle]="{ 'background-color': getBackgroundColor(note.color) }"
+        [ngClass]="note.active ? 'borderActive' : ''"
       >
         <span class="f16">{{ note.content.slice(0, 18) }}</span>
 

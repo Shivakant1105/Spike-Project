@@ -90,27 +90,25 @@
         .form_wrapper {
           @include flex("", "", column, 25, 0);
           .username_cnt,
-            .password_cnt {
+          .password_cnt {
+            color: var(--text-color-400);
+            & input {
+              min-height: rem(50);
+              box-shadow: none;
+              padding-left: rem(16);
+              border: rem(1) solid var(--icons-outline-color);
+              background-color: var(--bg-high);
               color: var(--text-color-400);
-              & input {
-                min-height: rem(50);
-                box-shadow: none;
-                padding-left: rem(16);
-                border: rem(1) solid var(--icons-outline-color);
-                background-color: var(--bg-high);
-                color: var(--text-color-400);
-                cursor: pointer;
-                &:focus {
-                  border: rem(1) solid #465670;
-                }
-  
+              cursor: pointer;
+              &:focus {
+                border: rem(1) solid #465670;
               }
-          
-              .is-invalid {
-                border: 2px solid red;
-              }
-           
             }
+
+            .is-invalid {
+              border: 2px solid red;
+            }
+          }
 
           .checkbox_forget_page {
             @include flex(space-between, center, "", 0, 0);
@@ -136,7 +134,7 @@
             outline: none;
             border: 0;
             @include setDimension("", rem(36));
-            background-color:var(--btn-bg-color);
+            background-color: var(--btn-bg-color);
             color: var(--text-color-600);
             @include flex(center, center, "", 0, 16);
           }
@@ -149,11 +147,39 @@
             cursor: pointer;
           }
 
-          .valid_btn{
-            background-color: var(--payment-textColor) !important
+          .valid_btn {
+            background-color: var(--payment-textColor) !important;
           }
         }
       }
     }
   }
+}
+.input-group {
+  position: relative;
+  width: 100%; /* Adjust the width as needed */
+}
+
+.password-input {
+  padding-right: 40px; /* Space for the icon */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px; /* Space from the right edge */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+  cursor: pointer; /* Change cursor on hover */
+  z-index: 5; /* Ensure the icon is above the input */
+  color: #888; /* Change the icon color if needed */
+}
+
+/* Optional: Change color on hover */
+.eye-icon:hover {
+  color: #333; /* Darker color on hover */
+}
+
+/* Style for invalid input */
+.is-invalid {
+  border: 1px solid red; /* Change the border color for invalid input */
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CalendarComponent } from './calendar/calendar.component';
+// import { CalendarComponent } from './calendar/calendar.component';
 import { ContactComponent } from './contact/contact.component';
 import { CourseComponent } from './course/course.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -14,6 +14,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { TaskboardComponent } from './taskboard/taskboard.component';
 import { TodoComponent } from './todo/todo.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'contacts', pathMatch: 'full' },

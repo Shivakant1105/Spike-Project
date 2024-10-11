@@ -72,17 +72,42 @@
 
           <div class="form-group password_cnt gap-2 d-flex flex-column">
             <label for="password" class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control custome_radius"
-              id="password"
-              formControlName="password"
-              [ngClass]="{
-                'is-invalid':
-                  loginForm.get('password')?.invalid &&
-                  loginForm.get('password')?.touched
-              }"
-            />
+            <!-- <input
+                [type]="passwordVisible ? 'text' : 'password'"
+                class="form-control custome_radius"
+                id="password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid':
+                    loginForm.get('password')?.invalid &&
+                    loginForm.get('password')?.touched
+                }"
+              />
+              <span
+                ><i-feather name="eye-off" (click)="eyeOpen()"
+                  >sdgsgs</i-feather
+                ></span
+              > -->
+
+            <div class="input-group">
+              <input
+                [type]="passwordVisible ? 'text' : 'password'"
+                class="form-control custome_radius password-input"
+                id="password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid':
+                    loginForm.get('password')?.invalid &&
+                    loginForm.get('password')?.touched
+                }"
+              />
+              <span class="eye-icon" (click)="eyeOpen()">
+                <i-feather
+                  [name]="passwordVisible ? 'eye' : 'eye-off'"
+                ></i-feather>
+              </span>
+            </div>
+
             <div
               *ngIf="
                 loginForm.get('password')?.invalid &&
@@ -111,9 +136,9 @@
 
           <button
             type="submit"
-            class="custome_radius signin_btn text-white "
+            class="custome_radius signin_btn text-white"
             [disabled]="loginForm.invalid"
-            [ngClass]="{'valid_btn': loginForm.valid}" 
+            [ngClass]="{ valid_btn: loginForm.valid }"
           >
             Sign In
           </button>
